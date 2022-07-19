@@ -3,4 +3,4 @@ test/**
 go.mod
 api/**
 .travis.yml
-git-push.sh
+git_push.sh
