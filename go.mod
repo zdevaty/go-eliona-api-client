@@ -1,4 +1,4 @@
-module github.com/eliona-smart-building-assistant/go-eliona
+module github.com/eliona-smart-building-assistant/go-eliona-api-client
 
 go 1.13
 
