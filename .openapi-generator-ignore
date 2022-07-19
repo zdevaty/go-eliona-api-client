@@ -1,0 +1,6 @@
+test/**
+.gitignore
+go.mod
+api/**
+.travis.yml
+git-push.sh
