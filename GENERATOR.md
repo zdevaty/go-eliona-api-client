@@ -9,7 +9,7 @@ Then you can generate the go client, with the following command. Note, that you 
 ```bash
 java -jar openapi-generator-cli-6.0.0.jar generate \
   -g go \
-  -i https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/eliona-api-v2.yaml \
+  -i https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/openapi.yaml \
   -o ./ \
   --additional-properties="packageName=api,packageVersion=1.0.0"
 ```

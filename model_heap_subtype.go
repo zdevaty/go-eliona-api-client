@@ -20,8 +20,8 @@ type HeapSubtype string
 
 // List of HeapSubtype
 const (
-	INPUT  HeapSubtype = "input"
-	INFO   HeapSubtype = "info"
+	INPUT HeapSubtype = "input"
+	INFO HeapSubtype = "info"
 	STATUS HeapSubtype = "status"
 	OUTPUT HeapSubtype = "output"
 )
@@ -112,3 +112,4 @@ func (v *NullableHeapSubtype) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

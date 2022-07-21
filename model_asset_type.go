@@ -23,14 +23,14 @@ type AssetType struct {
 	// The vendor providing assets of this type
 	Vendor *string `json:"vendor,omitempty"`
 	// The specific model of assets of this type
-	Model       *string      `json:"model,omitempty"`
+	Model *string `json:"model,omitempty"`
 	Translation *Translation `json:"translation,omitempty"`
 	// The url describing assets of this type
 	Urldoc *string `json:"urldoc,omitempty"`
 	// Icon name corresponding to assets of this type
 	Icon *string `json:"icon,omitempty"`
 	// List of named attributes
-	Attributes []Attribute `json:"attributes,omitempty"`
+	Attributes []AssetTypeAttribute `json:"attributes,omitempty"`
 }
 
 // NewAssetType instantiates a new AssetType object
@@ -263,9 +263,9 @@ func (o *AssetType) SetIcon(v string) {
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *AssetType) GetAttributes() []Attribute {
+func (o *AssetType) GetAttributes() []AssetTypeAttribute {
 	if o == nil || o.Attributes == nil {
-		var ret []Attribute
+		var ret []AssetTypeAttribute
 		return ret
 	}
 	return o.Attributes
@@ -273,7 +273,7 @@ func (o *AssetType) GetAttributes() []Attribute {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AssetType) GetAttributesOk() ([]Attribute, bool) {
+func (o *AssetType) GetAttributesOk() ([]AssetTypeAttribute, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -289,8 +289,8 @@ func (o *AssetType) HasAttributes() bool {
 	return false
 }
 
-// SetAttributes gets a reference to the given []Attribute and assigns it to the Attributes field.
-func (o *AssetType) SetAttributes(v []Attribute) {
+// SetAttributes gets a reference to the given []AssetTypeAttribute and assigns it to the Attributes field.
+func (o *AssetType) SetAttributes(v []AssetTypeAttribute) {
 	o.Attributes = v
 }
 
@@ -358,3 +358,5 @@ func (v *NullableAssetType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -21,7 +21,7 @@ type WidgetData struct {
 	// Key for the data
 	Key *string `json:"key,omitempty"`
 	// The master asset id of this widget
-	AssetId *int32       `json:"assetId,omitempty"`
+	AssetId *int32 `json:"assetId,omitempty"`
 	Subtype *HeapSubtype `json:"subtype,omitempty"`
 	// Attribute of the asset type, which heap data should be used
 	Attribute *string `json:"attribute,omitempty"`
@@ -293,3 +293,5 @@ func (v *NullableWidgetData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

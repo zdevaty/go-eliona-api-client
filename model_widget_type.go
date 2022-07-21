@@ -19,7 +19,7 @@ type WidgetType struct {
 	// The unique name for this widget type
 	Name string `json:"name"`
 	// Is this a customer created type or not
-	Custom      bool        `json:"custom"`
+	Custom bool `json:"custom"`
 	Translation Translation `json:"translation"`
 	// Icon name corresponding to assets used in this widget
 	Icon *string `json:"icon,omitempty"`
@@ -315,3 +315,5 @@ func (v *NullableWidgetType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal Id of asset | [optional] 
+**Id** | Pointer to **int32** | The internal Id of asset | [optional] [readonly] 
 **ProjectId** | **string** | ID of the project to which the asset belongs | 
 **GlobalAssetIdentifier** | **string** | Unique identifier for the asset | 
 **Name** | Pointer to **string** | Alternate text for the asset to display in frontend | [optional] 
@@ -12,7 +12,10 @@ Name | Type | Description | Notes
 **Latitude** | Pointer to **float64** | Latitude coordinate (GPS) of the asset | [optional] 
 **Longitude** | Pointer to **float64** | Longitude coordinate (GPS) of the asset | [optional] 
 **Description** | Pointer to **string** | Textual description for this asset | [optional] 
+**ParentFunctionalAssetId** | Pointer to **int32** | The id of an asset which groups this asset as a functional child | [optional] 
+**ParentLocationalAssetId** | Pointer to **int32** | The id of an asset which groups this asset as a locational child | [optional] 
 **Tags** | Pointer to **[]string** | List of tags associated with asset | [optional] 
+**Children** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. This list is filled when the &#x60;withChildren&#x60; parameter is set. | [optional] [readonly] 
 
 ## Methods
 
@@ -218,6 +221,56 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetParentFunctionalAssetId
+
+`func (o *Asset) GetParentFunctionalAssetId() int32`
+
+GetParentFunctionalAssetId returns the ParentFunctionalAssetId field if non-nil, zero value otherwise.
+
+### GetParentFunctionalAssetIdOk
+
+`func (o *Asset) GetParentFunctionalAssetIdOk() (*int32, bool)`
+
+GetParentFunctionalAssetIdOk returns a tuple with the ParentFunctionalAssetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentFunctionalAssetId
+
+`func (o *Asset) SetParentFunctionalAssetId(v int32)`
+
+SetParentFunctionalAssetId sets ParentFunctionalAssetId field to given value.
+
+### HasParentFunctionalAssetId
+
+`func (o *Asset) HasParentFunctionalAssetId() bool`
+
+HasParentFunctionalAssetId returns a boolean if a field has been set.
+
+### GetParentLocationalAssetId
+
+`func (o *Asset) GetParentLocationalAssetId() int32`
+
+GetParentLocationalAssetId returns the ParentLocationalAssetId field if non-nil, zero value otherwise.
+
+### GetParentLocationalAssetIdOk
+
+`func (o *Asset) GetParentLocationalAssetIdOk() (*int32, bool)`
+
+GetParentLocationalAssetIdOk returns a tuple with the ParentLocationalAssetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentLocationalAssetId
+
+`func (o *Asset) SetParentLocationalAssetId(v int32)`
+
+SetParentLocationalAssetId sets ParentLocationalAssetId field to given value.
+
+### HasParentLocationalAssetId
+
+`func (o *Asset) HasParentLocationalAssetId() bool`
+
+HasParentLocationalAssetId returns a boolean if a field has been set.
+
 ### GetTags
 
 `func (o *Asset) GetTags() []string`
@@ -242,6 +295,31 @@ SetTags sets Tags field to given value.
 `func (o *Asset) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetChildren
+
+`func (o *Asset) GetChildren() []Asset`
+
+GetChildren returns the Children field if non-nil, zero value otherwise.
+
+### GetChildrenOk
+
+`func (o *Asset) GetChildrenOk() (*[]Asset, bool)`
+
+GetChildrenOk returns a tuple with the Children field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChildren
+
+`func (o *Asset) SetChildren(v []Asset)`
+
+SetChildren sets Children field to given value.
+
+### HasChildren
+
+`func (o *Asset) HasChildren() bool`
+
+HasChildren returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

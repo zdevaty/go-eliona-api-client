@@ -17,13 +17,15 @@ import (
 // Dashboard A frontend dashboard
 type Dashboard struct {
 	// The internal Id of dashboard
-	Id *int32 `json:"id,omitempty"`
+	Id *int32 `json:"Id,omitempty"`
 	// The name for this dashboard
 	Name string `json:"name"`
 	// ID of the project to which the dashboard belongs
 	ProjectId string `json:"projectId"`
 	// ID of the user who owns the dashboard
 	UserId string `json:"userId"`
+	// The sequence of the. If not defined, the sequence is automatically incremented.
+	Sequence *int32 `json:"sequence,omitempty"`
 }
 
 // NewDashboard instantiates a new Dashboard object
@@ -150,10 +152,42 @@ func (o *Dashboard) SetUserId(v string) {
 	o.UserId = v
 }
 
+// GetSequence returns the Sequence field value if set, zero value otherwise.
+func (o *Dashboard) GetSequence() int32 {
+	if o == nil || o.Sequence == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Sequence
+}
+
+// GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetSequenceOk() (*int32, bool) {
+	if o == nil || o.Sequence == nil {
+		return nil, false
+	}
+	return o.Sequence, true
+}
+
+// HasSequence returns a boolean if a field has been set.
+func (o *Dashboard) HasSequence() bool {
+	if o != nil && o.Sequence != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSequence gets a reference to the given int32 and assigns it to the Sequence field.
+func (o *Dashboard) SetSequence(v int32) {
+	o.Sequence = &v
+}
+
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
-		toSerialize["id"] = o.Id
+		toSerialize["Id"] = o.Id
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -163,6 +197,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["userId"] = o.UserId
+	}
+	if o.Sequence != nil {
+		toSerialize["sequence"] = o.Sequence
 	}
 	return json.Marshal(toSerialize)
 }
@@ -202,3 +239,5 @@ func (v *NullableDashboard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

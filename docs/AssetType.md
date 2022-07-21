@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Translation** | Pointer to [**Translation**](Translation.md) |  | [optional] 
 **Urldoc** | Pointer to **string** | The url describing assets of this type | [optional] 
 **Icon** | Pointer to **string** | Icon name corresponding to assets of this type | [optional] 
-**Attributes** | Pointer to [**[]Attribute**](Attribute.md) | List of named attributes | [optional] 
+**Attributes** | Pointer to [**[]AssetTypeAttribute**](AssetTypeAttribute.md) | List of named attributes | [optional] 
 
 ## Methods
 
@@ -199,20 +199,20 @@ HasIcon returns a boolean if a field has been set.
 
 ### GetAttributes
 
-`func (o *AssetType) GetAttributes() []Attribute`
+`func (o *AssetType) GetAttributes() []AssetTypeAttribute`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *AssetType) GetAttributesOk() (*[]Attribute, bool)`
+`func (o *AssetType) GetAttributesOk() (*[]AssetTypeAttribute, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *AssetType) SetAttributes(v []Attribute)`
+`func (o *AssetType) SetAttributes(v []AssetTypeAttribute)`
 
 SetAttributes sets Attributes field to given value.
 

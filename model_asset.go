@@ -17,7 +17,7 @@ import (
 // Asset An asset
 type Asset struct {
 	// The internal Id of asset
-	Id *int32 `json:"id,omitempty"`
+	Id *int32 `json:"Id,omitempty"`
 	// ID of the project to which the asset belongs
 	ProjectId string `json:"projectId"`
 	// Unique identifier for the asset
@@ -32,8 +32,14 @@ type Asset struct {
 	Longitude *float64 `json:"longitude,omitempty"`
 	// Textual description for this asset
 	Description *string `json:"description,omitempty"`
+	// The id of an asset which groups this asset as a functional child
+	ParentFunctionalAssetId *int32 `json:"parentFunctionalAssetId,omitempty"`
+	// The id of an asset which groups this asset as a locational child
+	ParentLocationalAssetId *int32 `json:"parentLocationalAssetId,omitempty"`
 	// List of tags associated with asset
 	Tags []string `json:"tags,omitempty"`
+	// List of children for this asset. This list is filled when the `withChildren` parameter is set.
+	Children []Asset `json:"children,omitempty"`
 }
 
 // NewAsset instantiates a new Asset object
@@ -288,6 +294,70 @@ func (o *Asset) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetParentFunctionalAssetId returns the ParentFunctionalAssetId field value if set, zero value otherwise.
+func (o *Asset) GetParentFunctionalAssetId() int32 {
+	if o == nil || o.ParentFunctionalAssetId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ParentFunctionalAssetId
+}
+
+// GetParentFunctionalAssetIdOk returns a tuple with the ParentFunctionalAssetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Asset) GetParentFunctionalAssetIdOk() (*int32, bool) {
+	if o == nil || o.ParentFunctionalAssetId == nil {
+		return nil, false
+	}
+	return o.ParentFunctionalAssetId, true
+}
+
+// HasParentFunctionalAssetId returns a boolean if a field has been set.
+func (o *Asset) HasParentFunctionalAssetId() bool {
+	if o != nil && o.ParentFunctionalAssetId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParentFunctionalAssetId gets a reference to the given int32 and assigns it to the ParentFunctionalAssetId field.
+func (o *Asset) SetParentFunctionalAssetId(v int32) {
+	o.ParentFunctionalAssetId = &v
+}
+
+// GetParentLocationalAssetId returns the ParentLocationalAssetId field value if set, zero value otherwise.
+func (o *Asset) GetParentLocationalAssetId() int32 {
+	if o == nil || o.ParentLocationalAssetId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ParentLocationalAssetId
+}
+
+// GetParentLocationalAssetIdOk returns a tuple with the ParentLocationalAssetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Asset) GetParentLocationalAssetIdOk() (*int32, bool) {
+	if o == nil || o.ParentLocationalAssetId == nil {
+		return nil, false
+	}
+	return o.ParentLocationalAssetId, true
+}
+
+// HasParentLocationalAssetId returns a boolean if a field has been set.
+func (o *Asset) HasParentLocationalAssetId() bool {
+	if o != nil && o.ParentLocationalAssetId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParentLocationalAssetId gets a reference to the given int32 and assigns it to the ParentLocationalAssetId field.
+func (o *Asset) SetParentLocationalAssetId(v int32) {
+	o.ParentLocationalAssetId = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Asset) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -320,10 +390,42 @@ func (o *Asset) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetChildren returns the Children field value if set, zero value otherwise.
+func (o *Asset) GetChildren() []Asset {
+	if o == nil || o.Children == nil {
+		var ret []Asset
+		return ret
+	}
+	return o.Children
+}
+
+// GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Asset) GetChildrenOk() ([]Asset, bool) {
+	if o == nil || o.Children == nil {
+		return nil, false
+	}
+	return o.Children, true
+}
+
+// HasChildren returns a boolean if a field has been set.
+func (o *Asset) HasChildren() bool {
+	if o != nil && o.Children != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetChildren gets a reference to the given []Asset and assigns it to the Children field.
+func (o *Asset) SetChildren(v []Asset) {
+	o.Children = v
+}
+
 func (o Asset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
-		toSerialize["id"] = o.Id
+		toSerialize["Id"] = o.Id
 	}
 	if true {
 		toSerialize["projectId"] = o.ProjectId
@@ -346,8 +448,17 @@ func (o Asset) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.ParentFunctionalAssetId != nil {
+		toSerialize["parentFunctionalAssetId"] = o.ParentFunctionalAssetId
+	}
+	if o.ParentLocationalAssetId != nil {
+		toSerialize["parentLocationalAssetId"] = o.ParentLocationalAssetId
+	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.Children != nil {
+		toSerialize["children"] = o.Children
 	}
 	return json.Marshal(toSerialize)
 }
@@ -387,3 +498,5 @@ func (v *NullableAsset) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

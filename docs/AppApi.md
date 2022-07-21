@@ -84,7 +84,7 @@ No authorization required
 
 ## GetAppByName
 
-> App GetAppByName(ctx, appName).Execute()
+> string GetAppByName(ctx).Execute()
 
 Information about an app
 
@@ -103,40 +103,31 @@ import (
 )
 
 func main() {
-    appName := "weather" // string | The name of the app
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppApi.GetAppByName(context.Background(), appName).Execute()
+    resp, r, err := apiClient.AppApi.GetAppByName(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppApi.GetAppByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetAppByName`: App
+    // response from `GetAppByName`: string
     fmt.Fprintf(os.Stdout, "Response from `AppApi.GetAppByName`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appName** | **string** | The name of the app | 
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetAppByNameRequest struct via the builder pattern
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
 ### Return type
 
-[**App**](App.md)
+**string**
 
 ### Authorization
 

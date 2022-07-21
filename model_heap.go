@@ -18,7 +18,7 @@ import (
 // Heap Heap data
 type Heap struct {
 	// ID of the corresponding asset
-	AssetId int32       `json:"assetId"`
+	AssetId int32 `json:"assetId"`
 	Subtype HeapSubtype `json:"subtype"`
 	// Timestamp of the latest data change
 	Timestamp *time.Time `json:"timestamp,omitempty"`
@@ -204,3 +204,5 @@ func (v *NullableHeap) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -19,65 +19,67 @@ import (
 	"strings"
 )
 
-// DashboardApiService DashboardApi service
-type DashboardApiService service
 
-type ApiPostDashboardRequest struct {
-	ctx        context.Context
-	ApiService *DashboardApiService
-	dashboard  *Dashboard
+// AssetTypesApiService AssetTypesApi service
+type AssetTypesApiService service
+
+type ApiGetAssetTypesRequest struct {
+	ctx context.Context
+	ApiService *AssetTypesApiService
+	withAttributes *bool
 }
 
-func (r ApiPostDashboardRequest) Dashboard(dashboard Dashboard) ApiPostDashboardRequest {
-	r.dashboard = &dashboard
+// Gets also the the list of attributes
+func (r ApiGetAssetTypesRequest) WithAttributes(withAttributes bool) ApiGetAssetTypesRequest {
+	r.withAttributes = &withAttributes
 	return r
 }
 
-func (r ApiPostDashboardRequest) Execute() (*Dashboard, *http.Response, error) {
-	return r.ApiService.PostDashboardExecute(r)
+func (r ApiGetAssetTypesRequest) Execute() ([]AssetType, *http.Response, error) {
+	return r.ApiService.GetAssetTypesExecute(r)
 }
 
 /*
-PostDashboard Creates a new dashboard
+GetAssetTypes List of asset types
 
-Create a new dashboard for frontend
+Returns a list of asset types
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostDashboardRequest
+ @return ApiGetAssetTypesRequest
 */
-func (a *DashboardApiService) PostDashboard(ctx context.Context) ApiPostDashboardRequest {
-	return ApiPostDashboardRequest{
+func (a *AssetTypesApiService) GetAssetTypes(ctx context.Context) ApiGetAssetTypesRequest {
+	return ApiGetAssetTypesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Dashboard
-func (a *DashboardApiService) PostDashboardExecute(r ApiPostDashboardRequest) (*Dashboard, *http.Response, error) {
+//  @return []AssetType
+func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) ([]AssetType, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Dashboard
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardApiService.PostDashboard")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/dashboard"
+	localVarPath := localBasePath + "/asset-types"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.dashboard == nil {
-		return localVarReturnValue, nil, reportError("dashboard is required and must be specified")
-	}
 
+	if r.withAttributes != nil {
+		localVarQueryParams.Add("withAttributes", parameterToString(*r.withAttributes, ""))
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -93,8 +95,6 @@ func (a *DashboardApiService) PostDashboardExecute(r ApiPostDashboardRequest) (*
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.dashboard
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -132,56 +132,56 @@ func (a *DashboardApiService) PostDashboardExecute(r ApiPostDashboardRequest) (*
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostWidgetTypeRequest struct {
-	ctx        context.Context
-	ApiService *DashboardApiService
-	widgetType *WidgetType
+type ApiPutAssetTypeRequest struct {
+	ctx context.Context
+	ApiService *AssetTypesApiService
+	assetType *AssetType
 }
 
-func (r ApiPostWidgetTypeRequest) WidgetType(widgetType WidgetType) ApiPostWidgetTypeRequest {
-	r.widgetType = &widgetType
+func (r ApiPutAssetTypeRequest) AssetType(assetType AssetType) ApiPutAssetTypeRequest {
+	r.assetType = &assetType
 	return r
 }
 
-func (r ApiPostWidgetTypeRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PostWidgetTypeExecute(r)
+func (r ApiPutAssetTypeRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutAssetTypeExecute(r)
 }
 
 /*
-PostWidgetType Adds a new widget type
+PutAssetType Create or update an asset type
 
-Create a new widget type
+Create a new asset type or update an asset type if already exists
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostWidgetTypeRequest
+ @return ApiPutAssetTypeRequest
 */
-func (a *DashboardApiService) PostWidgetType(ctx context.Context) ApiPostWidgetTypeRequest {
-	return ApiPostWidgetTypeRequest{
+func (a *AssetTypesApiService) PutAssetType(ctx context.Context) ApiPutAssetTypeRequest {
+	return ApiPutAssetTypeRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *DashboardApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) (*http.Response, error) {
+func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardApiService.PostWidgetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetType")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/widget-type"
+	localVarPath := localBasePath + "/asset-types"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.widgetType == nil {
-		return nil, reportError("widgetType is required and must be specified")
+	if r.assetType == nil {
+		return nil, reportError("assetType is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -202,7 +202,7 @@ func (a *DashboardApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.widgetType
+	localVarPostBody = r.assetType
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -231,60 +231,60 @@ func (a *DashboardApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) 
 	return localVarHTTPResponse, nil
 }
 
-type ApiPutDashboardWidgetRequest struct {
-	ctx         context.Context
-	ApiService  *DashboardApiService
-	dashboardId int32
-	widget      *Widget
+type ApiPutAssetTypeAttributeRequest struct {
+	ctx context.Context
+	ApiService *AssetTypesApiService
+	assetTypeName string
+	assetTypeAttribute *AssetTypeAttribute
 }
 
-func (r ApiPutDashboardWidgetRequest) Widget(widget Widget) ApiPutDashboardWidgetRequest {
-	r.widget = &widget
+func (r ApiPutAssetTypeAttributeRequest) AssetTypeAttribute(assetTypeAttribute AssetTypeAttribute) ApiPutAssetTypeAttributeRequest {
+	r.assetTypeAttribute = &assetTypeAttribute
 	return r
 }
 
-func (r ApiPutDashboardWidgetRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PutDashboardWidgetExecute(r)
+func (r ApiPutAssetTypeAttributeRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutAssetTypeAttributeExecute(r)
 }
 
 /*
-PutDashboardWidget Adds widget to dashboard
+PutAssetTypeAttribute Create or update an asset type attribute
 
-Create a new widget an ad this to a dashboard
+Create a new asset type attribute or update an asset type attribute if already exists
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiPutDashboardWidgetRequest
+ @param assetTypeName The name of the asset type
+ @return ApiPutAssetTypeAttributeRequest
 */
-func (a *DashboardApiService) PutDashboardWidget(ctx context.Context, dashboardId int32) ApiPutDashboardWidgetRequest {
-	return ApiPutDashboardWidgetRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		dashboardId: dashboardId,
+func (a *AssetTypesApiService) PutAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPutAssetTypeAttributeRequest {
+	return ApiPutAssetTypeAttributeRequest{
+		ApiService: a,
+		ctx: ctx,
+		assetTypeName: assetTypeName,
 	}
 }
 
 // Execute executes the request
-func (a *DashboardApiService) PutDashboardWidgetExecute(r ApiPutDashboardWidgetRequest) (*http.Response, error) {
+func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAttributeRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardApiService.PutDashboardWidget")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetTypeAttribute")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/dashboard/{dashboard-id}/widget"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard-id"+"}", url.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath := localBasePath + "/asset-types/{asset-type-name}/attributes"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.widget == nil {
-		return nil, reportError("widget is required and must be specified")
+	if r.assetTypeAttribute == nil {
+		return nil, reportError("assetTypeAttribute is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -305,7 +305,7 @@ func (a *DashboardApiService) PutDashboardWidgetExecute(r ApiPutDashboardWidgetR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.widget
+	localVarPostBody = r.assetTypeAttribute
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

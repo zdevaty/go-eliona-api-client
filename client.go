@@ -49,15 +49,15 @@ type APIClient struct {
 
 	// API Services
 
-	AppApi *AppApiService
+	AppsApi *AppsApiService
 
-	AssetApi *AssetApiService
+	AssetTypesApi *AssetTypesApiService
 
-	AssetTypeApi *AssetTypeApiService
+	AssetsApi *AssetsApiService
 
-	DashboardApi *DashboardApiService
+	DashboardsApi *DashboardsApiService
 
-	HeapApi *HeapApiService
+	HeapsApi *HeapsApiService
 }
 
 type service struct {
@@ -76,11 +76,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AppApi = (*AppApiService)(&c.common)
-	c.AssetApi = (*AssetApiService)(&c.common)
-	c.AssetTypeApi = (*AssetTypeApiService)(&c.common)
-	c.DashboardApi = (*DashboardApiService)(&c.common)
-	c.HeapApi = (*HeapApiService)(&c.common)
+	c.AppsApi = (*AppsApiService)(&c.common)
+	c.AssetTypesApi = (*AssetTypesApiService)(&c.common)
+	c.AssetsApi = (*AssetsApiService)(&c.common)
+	c.DashboardsApi = (*DashboardsApiService)(&c.common)
+	c.HeapsApi = (*HeapsApiService)(&c.common)
 
 	return c
 }
@@ -202,9 +202,9 @@ func (c *APIClient) GetConfig() *Configuration {
 }
 
 type formFile struct {
-	fileBytes    []byte
-	fileName     string
-	formFileName string
+		fileBytes []byte
+		fileName string
+		formFileName string
 }
 
 // prepareRequest build the request
@@ -258,11 +258,11 @@ func (c *APIClient) prepareRequest(
 				w.Boundary()
 				part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 				if err != nil {
-					return nil, err
+						return nil, err
 				}
 				_, err = part.Write(formFile.fileBytes)
 				if err != nil {
-					return nil, err
+						return nil, err
 				}
 			}
 		}
