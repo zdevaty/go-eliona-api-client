@@ -6,17 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The unique name for this widget type | 
 **Custom** | **bool** | Is this a customer created type or not | [default to true]
-**Translation** | [**Translation**](Translation.md) |  | 
-**Icon** | Pointer to **string** | Icon name corresponding to assets used in this widget | [optional] 
-**WithAlarm** | Pointer to **bool** | Show alarms in widget | [optional] [default to false]
-**WithTimespan** | Pointer to **bool** | Show selection for timespan in widget | [optional] [default to false]
+**Translation** | [**NullableTranslation**](Translation.md) |  | 
+**Icon** | Pointer to **NullableString** | Icon name corresponding to assets used in this widget | [optional] 
+**WithAlarm** | Pointer to **NullableBool** | Show alarms in widget | [optional] [default to false]
+**WithTimespan** | Pointer to **NullableBool** | Show selection for timespan in widget | [optional] [default to false]
 **Elements** | [**[]WidgetTypeElement**](WidgetTypeElement.md) | A list of elements for this widget | 
 
 ## Methods
 
 ### NewWidgetType
 
-`func NewWidgetType(name string, custom bool, translation Translation, elements []WidgetTypeElement, ) *WidgetType`
+`func NewWidgetType(name string, custom bool, translation NullableTranslation, elements []WidgetTypeElement, ) *WidgetType`
 
 NewWidgetType instantiates a new WidgetType object
 This constructor will assign default values to properties that have it defined,
@@ -91,6 +91,16 @@ and a boolean to check if the value has been set.
 SetTranslation sets Translation field to given value.
 
 
+### SetTranslationNil
+
+`func (o *WidgetType) SetTranslationNil(b bool)`
+
+ SetTranslationNil sets the value for Translation to be an explicit nil
+
+### UnsetTranslation
+`func (o *WidgetType) UnsetTranslation()`
+
+UnsetTranslation ensures that no value is present for Translation, not even an explicit nil
 ### GetIcon
 
 `func (o *WidgetType) GetIcon() string`
@@ -116,6 +126,16 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *WidgetType) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *WidgetType) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 ### GetWithAlarm
 
 `func (o *WidgetType) GetWithAlarm() bool`
@@ -141,6 +161,16 @@ SetWithAlarm sets WithAlarm field to given value.
 
 HasWithAlarm returns a boolean if a field has been set.
 
+### SetWithAlarmNil
+
+`func (o *WidgetType) SetWithAlarmNil(b bool)`
+
+ SetWithAlarmNil sets the value for WithAlarm to be an explicit nil
+
+### UnsetWithAlarm
+`func (o *WidgetType) UnsetWithAlarm()`
+
+UnsetWithAlarm ensures that no value is present for WithAlarm, not even an explicit nil
 ### GetWithTimespan
 
 `func (o *WidgetType) GetWithTimespan() bool`
@@ -166,6 +196,16 @@ SetWithTimespan sets WithTimespan field to given value.
 
 HasWithTimespan returns a boolean if a field has been set.
 
+### SetWithTimespanNil
+
+`func (o *WidgetType) SetWithTimespanNil(b bool)`
+
+ SetWithTimespanNil sets the value for WithTimespan to be an explicit nil
+
+### UnsetWithTimespan
+`func (o *WidgetType) UnsetWithTimespan()`
+
+UnsetWithTimespan ensures that no value is present for WithTimespan, not even an explicit nil
 ### GetElements
 
 `func (o *WidgetType) GetElements() []WidgetTypeElement`

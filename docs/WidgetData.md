@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ElementSequence** | **int32** | Position of the element in widget type | 
-**Key** | Pointer to **string** | Key for the data | [optional] 
-**AssetId** | Pointer to **int32** | The master asset id of this widget | [optional] 
+**Key** | Pointer to **NullableString** | Key for the data | [optional] 
+**AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
 **Subtype** | Pointer to [**HeapSubtype**](HeapSubtype.md) |  | [optional] [default to INPUT]
-**Attribute** | Pointer to **string** | Attribute of the asset type, which heap data should be used | [optional] 
-**Description** | Pointer to **string** | Text for frontend | [optional] 
+**Attribute** | Pointer to **NullableString** | Attribute of the asset type, which heap data should be used | [optional] 
+**Description** | Pointer to **NullableString** | Text for frontend | [optional] 
 
 ## Methods
 
@@ -75,6 +75,16 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
+### SetKeyNil
+
+`func (o *WidgetData) SetKeyNil(b bool)`
+
+ SetKeyNil sets the value for Key to be an explicit nil
+
+### UnsetKey
+`func (o *WidgetData) UnsetKey()`
+
+UnsetKey ensures that no value is present for Key, not even an explicit nil
 ### GetAssetId
 
 `func (o *WidgetData) GetAssetId() int32`
@@ -100,6 +110,16 @@ SetAssetId sets AssetId field to given value.
 
 HasAssetId returns a boolean if a field has been set.
 
+### SetAssetIdNil
+
+`func (o *WidgetData) SetAssetIdNil(b bool)`
+
+ SetAssetIdNil sets the value for AssetId to be an explicit nil
+
+### UnsetAssetId
+`func (o *WidgetData) UnsetAssetId()`
+
+UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetSubtype
 
 `func (o *WidgetData) GetSubtype() HeapSubtype`
@@ -150,6 +170,16 @@ SetAttribute sets Attribute field to given value.
 
 HasAttribute returns a boolean if a field has been set.
 
+### SetAttributeNil
+
+`func (o *WidgetData) SetAttributeNil(b bool)`
+
+ SetAttributeNil sets the value for Attribute to be an explicit nil
+
+### UnsetAttribute
+`func (o *WidgetData) UnsetAttribute()`
+
+UnsetAttribute ensures that no value is present for Attribute, not even an explicit nil
 ### GetDescription
 
 `func (o *WidgetData) GetDescription() string`
@@ -175,6 +205,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *WidgetData) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *WidgetData) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

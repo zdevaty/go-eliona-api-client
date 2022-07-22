@@ -18,53 +18,54 @@ import (
 	"net/url"
 )
 
-// HeapApiService HeapApi service
-type HeapApiService service
 
-type ApiPostHeapRequest struct {
-	ctx        context.Context
-	ApiService *HeapApiService
-	heap       *Heap
+// HeapsApiService HeapsApi service
+type HeapsApiService service
+
+type ApiPutHeapRequest struct {
+	ctx context.Context
+	ApiService *HeapsApiService
+	heap *Heap
 }
 
-func (r ApiPostHeapRequest) Heap(heap Heap) ApiPostHeapRequest {
+func (r ApiPutHeapRequest) Heap(heap Heap) ApiPutHeapRequest {
 	r.heap = &heap
 	return r
 }
 
-func (r ApiPostHeapRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PostHeapExecute(r)
+func (r ApiPutHeapRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutHeapExecute(r)
 }
 
 /*
-PostHeap Create or update heap data
+PutHeap Create or update heap data
 
 Create new heap data or update data if already exists
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostHeapRequest
+ @return ApiPutHeapRequest
 */
-func (a *HeapApiService) PostHeap(ctx context.Context) ApiPostHeapRequest {
-	return ApiPostHeapRequest{
+func (a *HeapsApiService) PutHeap(ctx context.Context) ApiPutHeapRequest {
+	return ApiPutHeapRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-func (a *HeapApiService) PostHeapExecute(r ApiPostHeapRequest) (*http.Response, error) {
+func (a *HeapsApiService) PutHeapExecute(r ApiPutHeapRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HeapApiService.PostHeap")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HeapsApiService.PutHeap")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/heap"
+	localVarPath := localBasePath + "/heaps"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

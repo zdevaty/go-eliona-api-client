@@ -1,16 +1,16 @@
-# \HeapApi
+# \HeapsApi
 
 All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PostHeap**](HeapApi.md#PostHeap) | **Post** /heap | Create or update heap data
+[**PutHeap**](HeapsApi.md#PutHeap) | **Put** /heaps | Create or update heap data
 
 
 
-## PostHeap
+## PutHeap
 
-> PostHeap(ctx).Heap(heap).Execute()
+> PutHeap(ctx).Heap(heap).Execute()
 
 Create or update heap data
 
@@ -33,9 +33,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HeapApi.PostHeap(context.Background()).Heap(heap).Execute()
+    resp, r, err := apiClient.HeapsApi.PutHeap(context.Background()).Heap(heap).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HeapApi.PostHeap``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `HeapsApi.PutHeap``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -47,7 +47,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPostHeapRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPutHeapRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal Id of dashboard | [optional] 
+**Id** | Pointer to **NullableInt32** | The internal Id of dashboard | [optional] [readonly] 
 **Name** | **string** | The name for this dashboard | 
 **ProjectId** | **string** | ID of the project to which the dashboard belongs | 
 **UserId** | **string** | ID of the user who owns the dashboard | 
+**Sequence** | Pointer to **NullableInt32** | The sequence of the. If not defined, the sequence is automatically incremented. | [optional] 
 
 ## Methods
 
@@ -53,6 +54,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *Dashboard) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *Dashboard) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *Dashboard) GetName() string`
@@ -113,6 +124,41 @@ and a boolean to check if the value has been set.
 SetUserId sets UserId field to given value.
 
 
+### GetSequence
+
+`func (o *Dashboard) GetSequence() int32`
+
+GetSequence returns the Sequence field if non-nil, zero value otherwise.
+
+### GetSequenceOk
+
+`func (o *Dashboard) GetSequenceOk() (*int32, bool)`
+
+GetSequenceOk returns a tuple with the Sequence field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSequence
+
+`func (o *Dashboard) SetSequence(v int32)`
+
+SetSequence sets Sequence field to given value.
+
+### HasSequence
+
+`func (o *Dashboard) HasSequence() bool`
+
+HasSequence returns a boolean if a field has been set.
+
+### SetSequenceNil
+
+`func (o *Dashboard) SetSequenceNil(b bool)`
+
+ SetSequenceNil sets the value for Sequence to be an explicit nil
+
+### UnsetSequence
+`func (o *Dashboard) UnsetSequence()`
+
+UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

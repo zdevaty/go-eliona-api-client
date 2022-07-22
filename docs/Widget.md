@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WidgetTypeName** | Pointer to **string** | The name for the type of this widget | [optional] 
+**WidgetTypeName** | **string** | The name for the type of this widget | 
 **Width** | **string** | The width of this widget on dashboard | 
-**Timespan** | Pointer to **int32** | The number of days if the widget type uses timespan | [optional] 
+**Timespan** | Pointer to **NullableInt32** | The number of days if the widget type uses timespan | [optional] 
 **Details** | Pointer to **map[string]interface{}** | Detailed configuration depending on the widget type | [optional] 
-**AssetId** | Pointer to **int32** | The master asset id of this widget | [optional] 
+**AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
 **Data** | Pointer to [**[]WidgetData**](WidgetData.md) | List of data for the elements of widget | [optional] 
 
 ## Methods
 
 ### NewWidget
 
-`func NewWidget(width string, ) *Widget`
+`func NewWidget(widgetTypeName string, width string, ) *Widget`
 
 NewWidget instantiates a new Widget object
 This constructor will assign default values to properties that have it defined,
@@ -49,11 +49,6 @@ and a boolean to check if the value has been set.
 
 SetWidgetTypeName sets WidgetTypeName field to given value.
 
-### HasWidgetTypeName
-
-`func (o *Widget) HasWidgetTypeName() bool`
-
-HasWidgetTypeName returns a boolean if a field has been set.
 
 ### GetWidth
 
@@ -100,6 +95,16 @@ SetTimespan sets Timespan field to given value.
 
 HasTimespan returns a boolean if a field has been set.
 
+### SetTimespanNil
+
+`func (o *Widget) SetTimespanNil(b bool)`
+
+ SetTimespanNil sets the value for Timespan to be an explicit nil
+
+### UnsetTimespan
+`func (o *Widget) UnsetTimespan()`
+
+UnsetTimespan ensures that no value is present for Timespan, not even an explicit nil
 ### GetDetails
 
 `func (o *Widget) GetDetails() map[string]interface{}`
@@ -125,6 +130,16 @@ SetDetails sets Details field to given value.
 
 HasDetails returns a boolean if a field has been set.
 
+### SetDetailsNil
+
+`func (o *Widget) SetDetailsNil(b bool)`
+
+ SetDetailsNil sets the value for Details to be an explicit nil
+
+### UnsetDetails
+`func (o *Widget) UnsetDetails()`
+
+UnsetDetails ensures that no value is present for Details, not even an explicit nil
 ### GetAssetId
 
 `func (o *Widget) GetAssetId() int32`
@@ -150,6 +165,16 @@ SetAssetId sets AssetId field to given value.
 
 HasAssetId returns a boolean if a field has been set.
 
+### SetAssetIdNil
+
+`func (o *Widget) SetAssetIdNil(b bool)`
+
+ SetAssetIdNil sets the value for AssetId to be an explicit nil
+
+### UnsetAssetId
+`func (o *Widget) UnsetAssetId()`
+
+UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetData
 
 `func (o *Widget) GetData() []WidgetData`
@@ -175,6 +200,16 @@ SetData sets Data field to given value.
 
 HasData returns a boolean if a field has been set.
 
+### SetDataNil
+
+`func (o *Widget) SetDataNil(b bool)`
+
+ SetDataNil sets the value for Data to be an explicit nil
+
+### UnsetData
+`func (o *Widget) UnsetData()`
+
+UnsetData ensures that no value is present for Data, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

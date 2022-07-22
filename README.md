@@ -78,36 +78,33 @@ All URIs are relative to *http://api.eliona.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AppApi* | [**ApplyPatchByName**](docs/AppApi.md#applypatchbyname) | **Put** /patch/{app-name}/{patch-name}/apply | Marks a patch in eliona as applied
-*AppApi* | [**GetAppByName**](docs/AppApi.md#getappbyname) | **Get** /app/{app-name} | Information about an app
-*AppApi* | [**GetPatchByName**](docs/AppApi.md#getpatchbyname) | **Get** /patch/{app-name}/{patch-name} | Information about a patch for an app
-*AppApi* | [**RegisterAppByName**](docs/AppApi.md#registerappbyname) | **Put** /app/{app-name}/register | Marks an app in eliona as registered
-*AssetApi* | [**GetAssetById**](docs/AssetApi.md#getassetbyid) | **Get** /asset/{asset-id} | Information about an Asset
-*AssetApi* | [**GetAssetChildren**](docs/AssetApi.md#getassetchildren) | **Get** /asset/{asset-id}/children | Get children for an asset
-*AssetApi* | [**GetAssetParents**](docs/AssetApi.md#getassetparents) | **Get** /asset/{asset-id}/parents | Get the parents for an asset
-*AssetApi* | [**PostAsset**](docs/AssetApi.md#postasset) | **Post** /asset | Create or update an asset
-*AssetApi* | [**SetAssetParents**](docs/AssetApi.md#setassetparents) | **Put** /asset/{asset-id}/parents | Set or replace parents for an asset
-*AssetTypeApi* | [**GetAssetTypes**](docs/AssetTypeApi.md#getassettypes) | **Get** /asset-type | List of asset types
-*AssetTypeApi* | [**PostAssetType**](docs/AssetTypeApi.md#postassettype) | **Post** /asset-type | Create or update an asset type
-*AssetTypeApi* | [**PostAssetTypeAttribute**](docs/AssetTypeApi.md#postassettypeattribute) | **Post** /asset-type-attribute | Create or update an asset type attribute
-*DashboardApi* | [**PostDashboard**](docs/DashboardApi.md#postdashboard) | **Post** /dashboard | Creates a new dashboard
-*DashboardApi* | [**PostWidgetType**](docs/DashboardApi.md#postwidgettype) | **Post** /widget-type | Adds a new widget type
-*DashboardApi* | [**PutDashboardWidget**](docs/DashboardApi.md#putdashboardwidget) | **Put** /dashboard/{dashboard-id}/widget | Adds widget to dashboard
-*HeapApi* | [**PostHeap**](docs/HeapApi.md#postheap) | **Post** /heap | Create or update heap data
+*AppsApi* | [**GetAppByName**](docs/AppsApi.md#getappbyname) | **Get** /apps/{app-name} | Information about an app
+*AppsApi* | [**GetPatchByName**](docs/AppsApi.md#getpatchbyname) | **Get** /apps/{app-name}/patches/{patch-name} | Information about a patch for an app
+*AppsApi* | [**PatchAppByName**](docs/AppsApi.md#patchappbyname) | **Patch** /apps/{app-name} | Update an app
+*AppsApi* | [**PatchPatchByName**](docs/AppsApi.md#patchpatchbyname) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
+*AssetTypesApi* | [**GetAssetTypes**](docs/AssetTypesApi.md#getassettypes) | **Get** /asset-types | List of asset types
+*AssetTypesApi* | [**PutAssetType**](docs/AssetTypesApi.md#putassettype) | **Put** /asset-types | Create or update an asset type
+*AssetTypesApi* | [**PutAssetTypeAttribute**](docs/AssetTypesApi.md#putassettypeattribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
+*AssetsApi* | [**GetAssetById**](docs/AssetsApi.md#getassetbyid) | **Get** /assets/{asset-id} | Information about an asset
+*AssetsApi* | [**GetAssets**](docs/AssetsApi.md#getassets) | **Get** /assets | Information about assets
+*AssetsApi* | [**PutAsset**](docs/AssetsApi.md#putasset) | **Put** /assets | Create or update an asset
+*DashboardsApi* | [**PostDashboard**](docs/DashboardsApi.md#postdashboard) | **Post** /dashboards | Creates a new dashboard
+*DashboardsApi* | [**PostDashboardWidget**](docs/DashboardsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
+*DashboardsApi* | [**PutWidgetType**](docs/DashboardsApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
+*HeapsApi* | [**PutHeap**](docs/HeapsApi.md#putheap) | **Put** /heaps | Create or update heap data
 
 
 ## Documentation For Models
 
  - [App](docs/App.md)
  - [Asset](docs/Asset.md)
- - [AssetRelation](docs/AssetRelation.md)
  - [AssetType](docs/AssetType.md)
- - [Attribute](docs/Attribute.md)
- - [AttributePipeline](docs/AttributePipeline.md)
+ - [AssetTypeAttribute](docs/AssetTypeAttribute.md)
  - [Dashboard](docs/Dashboard.md)
  - [Heap](docs/Heap.md)
  - [HeapSubtype](docs/HeapSubtype.md)
  - [Patch](docs/Patch.md)
+ - [Pipeline](docs/Pipeline.md)
  - [Translation](docs/Translation.md)
  - [Widget](docs/Widget.md)
  - [WidgetData](docs/WidgetData.md)

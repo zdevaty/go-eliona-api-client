@@ -49,15 +49,15 @@ type APIClient struct {
 
 	// API Services
 
-	AppApi *AppApiService
+	AppsApi *AppsApiService
 
-	AssetApi *AssetApiService
+	AssetTypesApi *AssetTypesApiService
 
-	AssetTypeApi *AssetTypeApiService
+	AssetsApi *AssetsApiService
 
-	DashboardApi *DashboardApiService
+	DashboardsApi *DashboardsApiService
 
-	HeapApi *HeapApiService
+	HeapsApi *HeapsApiService
 }
 
 type service struct {
@@ -76,11 +76,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AppApi = (*AppApiService)(&c.common)
-	c.AssetApi = (*AssetApiService)(&c.common)
-	c.AssetTypeApi = (*AssetTypeApiService)(&c.common)
-	c.DashboardApi = (*DashboardApiService)(&c.common)
-	c.HeapApi = (*HeapApiService)(&c.common)
+	c.AppsApi = (*AppsApiService)(&c.common)
+	c.AssetTypesApi = (*AssetTypesApiService)(&c.common)
+	c.AssetsApi = (*AssetsApiService)(&c.common)
+	c.DashboardsApi = (*DashboardsApiService)(&c.common)
+	c.HeapsApi = (*HeapsApiService)(&c.common)
 
 	return c
 }
@@ -116,7 +116,7 @@ func selectHeaderAccept(accepts []string) string {
 // contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
-		if strings.ToLower(a) == strings.ToLower(needle) {
+		if strings.EqualFold(a, needle) {
 			return true
 		}
 	}
@@ -202,9 +202,9 @@ func (c *APIClient) GetConfig() *Configuration {
 }
 
 type formFile struct {
-	fileBytes    []byte
-	fileName     string
-	formFileName string
+		fileBytes []byte
+		fileName string
+		formFileName string
 }
 
 // prepareRequest build the request
@@ -258,11 +258,11 @@ func (c *APIClient) prepareRequest(
 				w.Boundary()
 				part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 				if err != nil {
-					return nil, err
+						return nil, err
 				}
 				_, err = part.Write(formFile.fileBytes)
 				if err != nil {
-					return nil, err
+						return nil, err
 				}
 			}
 		}
@@ -414,11 +414,14 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 
 // Add a file to the multipart request
 func addFile(w *multipart.Writer, fieldName, path string) error {
-	file, err := os.Open(path)
+	file, err := os.Open(filepath.Clean(path))
 	if err != nil {
 		return err
 	}
-	defer file.Close()
+	err = file.Close()
+	if err != nil {
+		return err
+	}
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

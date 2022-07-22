@@ -17,13 +17,15 @@ import (
 // Dashboard A frontend dashboard
 type Dashboard struct {
 	// The internal Id of dashboard
-	Id *int32 `json:"id,omitempty"`
+	Id NullableInt32 `json:"Id,omitempty"`
 	// The name for this dashboard
 	Name string `json:"name"`
 	// ID of the project to which the dashboard belongs
 	ProjectId string `json:"projectId"`
 	// ID of the user who owns the dashboard
 	UserId string `json:"userId"`
+	// The sequence of the. If not defined, the sequence is automatically incremented.
+	Sequence NullableInt32 `json:"sequence,omitempty"`
 }
 
 // NewDashboard instantiates a new Dashboard object
@@ -46,36 +48,46 @@ func NewDashboardWithDefaults() *Dashboard {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || o.Id.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Id
+	return *o.Id.Get()
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Dashboard) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Id.Get(), o.Id.IsSet()
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Dashboard) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && o.Id.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
+// SetId gets a reference to the given NullableInt32 and assigns it to the Id field.
 func (o *Dashboard) SetId(v int32) {
-	o.Id = &v
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *Dashboard) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *Dashboard) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetName returns the Name field value
@@ -150,10 +162,52 @@ func (o *Dashboard) SetUserId(v string) {
 	o.UserId = v
 }
 
+// GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Dashboard) GetSequence() int32 {
+	if o == nil || o.Sequence.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Sequence.Get()
+}
+
+// GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetSequenceOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sequence.Get(), o.Sequence.IsSet()
+}
+
+// HasSequence returns a boolean if a field has been set.
+func (o *Dashboard) HasSequence() bool {
+	if o != nil && o.Sequence.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSequence gets a reference to the given NullableInt32 and assigns it to the Sequence field.
+func (o *Dashboard) SetSequence(v int32) {
+	o.Sequence.Set(&v)
+}
+// SetSequenceNil sets the value for Sequence to be an explicit nil
+func (o *Dashboard) SetSequenceNil() {
+	o.Sequence.Set(nil)
+}
+
+// UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
+func (o *Dashboard) UnsetSequence() {
+	o.Sequence.Unset()
+}
+
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
+	if o.Id.IsSet() {
+		toSerialize["Id"] = o.Id.Get()
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -163,6 +217,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["userId"] = o.UserId
+	}
+	if o.Sequence.IsSet() {
+		toSerialize["sequence"] = o.Sequence.Get()
 	}
 	return json.Marshal(toSerialize)
 }
@@ -202,3 +259,5 @@ func (v *NullableDashboard) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

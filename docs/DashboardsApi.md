@@ -1,12 +1,12 @@
-# \DashboardApi
+# \DashboardsApi
 
 All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PostDashboard**](DashboardApi.md#PostDashboard) | **Post** /dashboard | Creates a new dashboard
-[**PostWidgetType**](DashboardApi.md#PostWidgetType) | **Post** /widget-type | Adds a new widget type
-[**PutDashboardWidget**](DashboardApi.md#PutDashboardWidget) | **Put** /dashboard/{dashboard-id}/widget | Adds widget to dashboard
+[**PostDashboard**](DashboardsApi.md#PostDashboard) | **Post** /dashboards | Creates a new dashboard
+[**PostDashboardWidget**](DashboardsApi.md#PostDashboardWidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
+[**PutWidgetType**](DashboardsApi.md#PutWidgetType) | **Put** /widget-types | Create or update a widget type
 
 
 
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardApi.PostDashboard(context.Background()).Dashboard(dashboard).Execute()
+    resp, r, err := apiClient.DashboardsApi.PostDashboard(context.Background()).Dashboard(dashboard).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardApi.PostDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.PostDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostDashboard`: Dashboard
-    fmt.Fprintf(os.Stdout, "Response from `DashboardApi.PostDashboard`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsApi.PostDashboard`: %v\n", resp)
 }
 ```
 
@@ -76,73 +76,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## PostWidgetType
+## PostDashboardWidget
 
-> PostWidgetType(ctx).WidgetType(widgetType).Execute()
-
-Adds a new widget type
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    widgetType := *openapiclient.NewWidgetType("weather", false, *openapiclient.NewTranslation(), []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather", "Weather")}) // WidgetType | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardApi.PostWidgetType(context.Background()).WidgetType(widgetType).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardApi.PostWidgetType``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPostWidgetTypeRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **widgetType** | [**WidgetType**](WidgetType.md) |  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PutDashboardWidget
-
-> PutDashboardWidget(ctx, dashboardId).Widget(widget).Execute()
+> PostDashboardWidget(ctx, dashboardId).Widget(widget).Execute()
 
 Adds widget to dashboard
 
@@ -162,13 +98,13 @@ import (
 
 func main() {
     dashboardId := int32(4711) // int32 | The id of the dashboard
-    widget := *openapiclient.NewWidget("Width_example") // Widget | 
+    widget := *openapiclient.NewWidget("Weather", "Width_example") // Widget | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardApi.PutDashboardWidget(context.Background(), dashboardId).Widget(widget).Execute()
+    resp, r, err := apiClient.DashboardsApi.PostDashboardWidget(context.Background(), dashboardId).Widget(widget).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardApi.PutDashboardWidget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.PostDashboardWidget``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -184,13 +120,77 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPutDashboardWidgetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPostDashboardWidgetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **widget** | [**Widget**](Widget.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutWidgetType
+
+> PutWidgetType(ctx).WidgetType(widgetType).Execute()
+
+Create or update a widget type
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    widgetType := *openapiclient.NewWidgetType("weather", false, "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather", "Weather")}) // WidgetType | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DashboardsApi.PutWidgetType(context.Background()).WidgetType(widgetType).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.PutWidgetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutWidgetTypeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **widgetType** | [**WidgetType**](WidgetType.md) |  | 
 
 ### Return type
 

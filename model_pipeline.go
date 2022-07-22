@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// AttributePipeline struct for AttributePipeline
-type AttributePipeline struct {
+// Pipeline struct for Pipeline
+type Pipeline struct {
 	// Pipeline calculation mode
 	Mode *string `json:"mode,omitempty"`
 	// Pipeline calculation intervals
 	Raster []string `json:"raster,omitempty"`
 }
 
-// NewAttributePipeline instantiates a new AttributePipeline object
+// NewPipeline instantiates a new Pipeline object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAttributePipeline() *AttributePipeline {
-	this := AttributePipeline{}
+func NewPipeline() *Pipeline {
+	this := Pipeline{}
 	return &this
 }
 
-// NewAttributePipelineWithDefaults instantiates a new AttributePipeline object
+// NewPipelineWithDefaults instantiates a new Pipeline object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAttributePipelineWithDefaults() *AttributePipeline {
-	this := AttributePipeline{}
+func NewPipelineWithDefaults() *Pipeline {
+	this := Pipeline{}
 	return &this
 }
 
 // GetMode returns the Mode field value if set, zero value otherwise.
-func (o *AttributePipeline) GetMode() string {
+func (o *Pipeline) GetMode() string {
 	if o == nil || o.Mode == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *AttributePipeline) GetMode() string {
 
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AttributePipeline) GetModeOk() (*string, bool) {
+func (o *Pipeline) GetModeOk() (*string, bool) {
 	if o == nil || o.Mode == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *AttributePipeline) GetModeOk() (*string, bool) {
 }
 
 // HasMode returns a boolean if a field has been set.
-func (o *AttributePipeline) HasMode() bool {
+func (o *Pipeline) HasMode() bool {
 	if o != nil && o.Mode != nil {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *AttributePipeline) HasMode() bool {
 }
 
 // SetMode gets a reference to the given string and assigns it to the Mode field.
-func (o *AttributePipeline) SetMode(v string) {
+func (o *Pipeline) SetMode(v string) {
 	o.Mode = &v
 }
 
 // GetRaster returns the Raster field value if set, zero value otherwise.
-func (o *AttributePipeline) GetRaster() []string {
+func (o *Pipeline) GetRaster() []string {
 	if o == nil || o.Raster == nil {
 		var ret []string
 		return ret
@@ -82,7 +82,7 @@ func (o *AttributePipeline) GetRaster() []string {
 
 // GetRasterOk returns a tuple with the Raster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AttributePipeline) GetRasterOk() ([]string, bool) {
+func (o *Pipeline) GetRasterOk() ([]string, bool) {
 	if o == nil || o.Raster == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *AttributePipeline) GetRasterOk() ([]string, bool) {
 }
 
 // HasRaster returns a boolean if a field has been set.
-func (o *AttributePipeline) HasRaster() bool {
+func (o *Pipeline) HasRaster() bool {
 	if o != nil && o.Raster != nil {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *AttributePipeline) HasRaster() bool {
 }
 
 // SetRaster gets a reference to the given []string and assigns it to the Raster field.
-func (o *AttributePipeline) SetRaster(v []string) {
+func (o *Pipeline) SetRaster(v []string) {
 	o.Raster = v
 }
 
-func (o AttributePipeline) MarshalJSON() ([]byte, error) {
+func (o Pipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Mode != nil {
 		toSerialize["mode"] = o.Mode
@@ -114,38 +114,40 @@ func (o AttributePipeline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAttributePipeline struct {
-	value *AttributePipeline
+type NullablePipeline struct {
+	value *Pipeline
 	isSet bool
 }
 
-func (v NullableAttributePipeline) Get() *AttributePipeline {
+func (v NullablePipeline) Get() *Pipeline {
 	return v.value
 }
 
-func (v *NullableAttributePipeline) Set(val *AttributePipeline) {
+func (v *NullablePipeline) Set(val *Pipeline) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAttributePipeline) IsSet() bool {
+func (v NullablePipeline) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAttributePipeline) Unset() {
+func (v *NullablePipeline) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAttributePipeline(val *AttributePipeline) *NullableAttributePipeline {
-	return &NullableAttributePipeline{value: val, isSet: true}
+func NewNullablePipeline(val *Pipeline) *NullablePipeline {
+	return &NullablePipeline{value: val, isSet: true}
 }
 
-func (v NullableAttributePipeline) MarshalJSON() ([]byte, error) {
+func (v NullablePipeline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAttributePipeline) UnmarshalJSON(src []byte) error {
+func (v *NullablePipeline) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
