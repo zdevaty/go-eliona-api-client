@@ -1,4 +1,4 @@
-# AttributePipeline
+# Pipeline
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewAttributePipeline
+### NewPipeline
 
-`func NewAttributePipeline() *AttributePipeline`
+`func NewPipeline() *Pipeline`
 
-NewAttributePipeline instantiates a new AttributePipeline object
+NewPipeline instantiates a new Pipeline object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewAttributePipelineWithDefaults
+### NewPipelineWithDefaults
 
-`func NewAttributePipelineWithDefaults() *AttributePipeline`
+`func NewPipelineWithDefaults() *Pipeline`
 
-NewAttributePipelineWithDefaults instantiates a new AttributePipeline object
+NewPipelineWithDefaults instantiates a new Pipeline object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetMode
 
-`func (o *AttributePipeline) GetMode() string`
+`func (o *Pipeline) GetMode() string`
 
 GetMode returns the Mode field if non-nil, zero value otherwise.
 
 ### GetModeOk
 
-`func (o *AttributePipeline) GetModeOk() (*string, bool)`
+`func (o *Pipeline) GetModeOk() (*string, bool)`
 
 GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMode
 
-`func (o *AttributePipeline) SetMode(v string)`
+`func (o *Pipeline) SetMode(v string)`
 
 SetMode sets Mode field to given value.
 
 ### HasMode
 
-`func (o *AttributePipeline) HasMode() bool`
+`func (o *Pipeline) HasMode() bool`
 
 HasMode returns a boolean if a field has been set.
 
 ### GetRaster
 
-`func (o *AttributePipeline) GetRaster() []string`
+`func (o *Pipeline) GetRaster() []string`
 
 GetRaster returns the Raster field if non-nil, zero value otherwise.
 
 ### GetRasterOk
 
-`func (o *AttributePipeline) GetRasterOk() (*[]string, bool)`
+`func (o *Pipeline) GetRasterOk() (*[]string, bool)`
 
 GetRasterOk returns a tuple with the Raster field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRaster
 
-`func (o *AttributePipeline) SetRaster(v []string)`
+`func (o *Pipeline) SetRaster(v []string)`
 
 SetRaster sets Raster field to given value.
 
 ### HasRaster
 
-`func (o *AttributePipeline) HasRaster() bool`
+`func (o *Pipeline) HasRaster() bool`
 
 HasRaster returns a boolean if a field has been set.
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal Id of asset | [optional] [readonly] 
+**Id** | Pointer to **NullableInt32** | The internal Id of asset | [optional] [readonly] 
 **ProjectId** | **string** | ID of the project to which the asset belongs | 
 **GlobalAssetIdentifier** | **string** | Unique identifier for the asset | 
-**Name** | Pointer to **string** | Alternate text for the asset to display in frontend | [optional] 
+**Name** | Pointer to **NullableString** | Alternate text for the asset to display in frontend | [optional] 
 **AssetType** | **string** | Reference to asset type by name | 
-**Latitude** | Pointer to **float64** | Latitude coordinate (GPS) of the asset | [optional] 
-**Longitude** | Pointer to **float64** | Longitude coordinate (GPS) of the asset | [optional] 
-**Description** | Pointer to **string** | Textual description for this asset | [optional] 
-**ParentFunctionalAssetId** | Pointer to **int32** | The id of an asset which groups this asset as a functional child | [optional] 
-**ParentLocationalAssetId** | Pointer to **int32** | The id of an asset which groups this asset as a locational child | [optional] 
+**Latitude** | Pointer to **NullableFloat64** | Latitude coordinate (GPS) of the asset | [optional] 
+**Longitude** | Pointer to **NullableFloat64** | Longitude coordinate (GPS) of the asset | [optional] 
+**Description** | Pointer to **NullableString** | Textual description for this asset | [optional] 
+**ParentFunctionalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a functional child | [optional] 
+**ParentLocationalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a locational child | [optional] 
 **Tags** | Pointer to **[]string** | List of tags associated with asset | [optional] 
 **Children** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. This list is filled when the &#x60;withChildren&#x60; parameter is set. | [optional] [readonly] 
 
@@ -61,6 +61,16 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### SetIdNil
+
+`func (o *Asset) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *Asset) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetProjectId
 
 `func (o *Asset) GetProjectId() string`
@@ -126,6 +136,16 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### SetNameNil
+
+`func (o *Asset) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *Asset) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetAssetType
 
 `func (o *Asset) GetAssetType() string`
@@ -171,6 +191,16 @@ SetLatitude sets Latitude field to given value.
 
 HasLatitude returns a boolean if a field has been set.
 
+### SetLatitudeNil
+
+`func (o *Asset) SetLatitudeNil(b bool)`
+
+ SetLatitudeNil sets the value for Latitude to be an explicit nil
+
+### UnsetLatitude
+`func (o *Asset) UnsetLatitude()`
+
+UnsetLatitude ensures that no value is present for Latitude, not even an explicit nil
 ### GetLongitude
 
 `func (o *Asset) GetLongitude() float64`
@@ -196,6 +226,16 @@ SetLongitude sets Longitude field to given value.
 
 HasLongitude returns a boolean if a field has been set.
 
+### SetLongitudeNil
+
+`func (o *Asset) SetLongitudeNil(b bool)`
+
+ SetLongitudeNil sets the value for Longitude to be an explicit nil
+
+### UnsetLongitude
+`func (o *Asset) UnsetLongitude()`
+
+UnsetLongitude ensures that no value is present for Longitude, not even an explicit nil
 ### GetDescription
 
 `func (o *Asset) GetDescription() string`
@@ -221,6 +261,16 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### SetDescriptionNil
+
+`func (o *Asset) SetDescriptionNil(b bool)`
+
+ SetDescriptionNil sets the value for Description to be an explicit nil
+
+### UnsetDescription
+`func (o *Asset) UnsetDescription()`
+
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetParentFunctionalAssetId
 
 `func (o *Asset) GetParentFunctionalAssetId() int32`
@@ -246,6 +296,16 @@ SetParentFunctionalAssetId sets ParentFunctionalAssetId field to given value.
 
 HasParentFunctionalAssetId returns a boolean if a field has been set.
 
+### SetParentFunctionalAssetIdNil
+
+`func (o *Asset) SetParentFunctionalAssetIdNil(b bool)`
+
+ SetParentFunctionalAssetIdNil sets the value for ParentFunctionalAssetId to be an explicit nil
+
+### UnsetParentFunctionalAssetId
+`func (o *Asset) UnsetParentFunctionalAssetId()`
+
+UnsetParentFunctionalAssetId ensures that no value is present for ParentFunctionalAssetId, not even an explicit nil
 ### GetParentLocationalAssetId
 
 `func (o *Asset) GetParentLocationalAssetId() int32`
@@ -271,6 +331,16 @@ SetParentLocationalAssetId sets ParentLocationalAssetId field to given value.
 
 HasParentLocationalAssetId returns a boolean if a field has been set.
 
+### SetParentLocationalAssetIdNil
+
+`func (o *Asset) SetParentLocationalAssetIdNil(b bool)`
+
+ SetParentLocationalAssetIdNil sets the value for ParentLocationalAssetId to be an explicit nil
+
+### UnsetParentLocationalAssetId
+`func (o *Asset) UnsetParentLocationalAssetId()`
+
+UnsetParentLocationalAssetId ensures that no value is present for ParentLocationalAssetId, not even an explicit nil
 ### GetTags
 
 `func (o *Asset) GetTags() []string`
@@ -296,6 +366,16 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
+### SetTagsNil
+
+`func (o *Asset) SetTagsNil(b bool)`
+
+ SetTagsNil sets the value for Tags to be an explicit nil
+
+### UnsetTags
+`func (o *Asset) UnsetTags()`
+
+UnsetTags ensures that no value is present for Tags, not even an explicit nil
 ### GetChildren
 
 `func (o *Asset) GetChildren() []Asset`
@@ -321,6 +401,16 @@ SetChildren sets Children field to given value.
 
 HasChildren returns a boolean if a field has been set.
 
+### SetChildrenNil
+
+`func (o *Asset) SetChildrenNil(b bool)`
+
+ SetChildrenNil sets the value for Children to be an explicit nil
+
+### UnsetChildren
+`func (o *Asset) UnsetChildren()`
+
+UnsetChildren ensures that no value is present for Children, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

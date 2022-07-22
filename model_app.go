@@ -19,9 +19,9 @@ type App struct {
 	// Name of the app
 	Name string `json:"name"`
 	// Is the app active or inactive
-	Active *bool `json:"active,omitempty"`
+	Active NullableBool `json:"active,omitempty"`
 	// Is the app already registered or not
-	Registered *bool `json:"registered,omitempty"`
+	Registered NullableBool `json:"registered,omitempty"`
 }
 
 // NewApp instantiates a new App object
@@ -66,68 +66,88 @@ func (o *App) SetName(v string) {
 	o.Name = v
 }
 
-// GetActive returns the Active field value if set, zero value otherwise.
+// GetActive returns the Active field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *App) GetActive() bool {
-	if o == nil || o.Active == nil {
+	if o == nil || o.Active.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Active
+	return *o.Active.Get()
 }
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *App) GetActiveOk() (*bool, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Active, true
+	return o.Active.Get(), o.Active.IsSet()
 }
 
 // HasActive returns a boolean if a field has been set.
 func (o *App) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && o.Active.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetActive gets a reference to the given bool and assigns it to the Active field.
+// SetActive gets a reference to the given NullableBool and assigns it to the Active field.
 func (o *App) SetActive(v bool) {
-	o.Active = &v
+	o.Active.Set(&v)
+}
+// SetActiveNil sets the value for Active to be an explicit nil
+func (o *App) SetActiveNil() {
+	o.Active.Set(nil)
 }
 
-// GetRegistered returns the Registered field value if set, zero value otherwise.
+// UnsetActive ensures that no value is present for Active, not even an explicit nil
+func (o *App) UnsetActive() {
+	o.Active.Unset()
+}
+
+// GetRegistered returns the Registered field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *App) GetRegistered() bool {
-	if o == nil || o.Registered == nil {
+	if o == nil || o.Registered.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Registered
+	return *o.Registered.Get()
 }
 
 // GetRegisteredOk returns a tuple with the Registered field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *App) GetRegisteredOk() (*bool, bool) {
-	if o == nil || o.Registered == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Registered, true
+	return o.Registered.Get(), o.Registered.IsSet()
 }
 
 // HasRegistered returns a boolean if a field has been set.
 func (o *App) HasRegistered() bool {
-	if o != nil && o.Registered != nil {
+	if o != nil && o.Registered.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRegistered gets a reference to the given bool and assigns it to the Registered field.
+// SetRegistered gets a reference to the given NullableBool and assigns it to the Registered field.
 func (o *App) SetRegistered(v bool) {
-	o.Registered = &v
+	o.Registered.Set(&v)
+}
+// SetRegisteredNil sets the value for Registered to be an explicit nil
+func (o *App) SetRegisteredNil() {
+	o.Registered.Set(nil)
+}
+
+// UnsetRegistered ensures that no value is present for Registered, not even an explicit nil
+func (o *App) UnsetRegistered() {
+	o.Registered.Unset()
 }
 
 func (o App) MarshalJSON() ([]byte, error) {
@@ -135,11 +155,11 @@ func (o App) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Active != nil {
-		toSerialize["active"] = o.Active
+	if o.Active.IsSet() {
+		toSerialize["active"] = o.Active.Get()
 	}
-	if o.Registered != nil {
-		toSerialize["registered"] = o.Registered
+	if o.Registered.IsSet() {
+		toSerialize["registered"] = o.Registered.Get()
 	}
 	return json.Marshal(toSerialize)
 }

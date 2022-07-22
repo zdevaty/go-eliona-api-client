@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssetId** | **int32** | ID of the corresponding asset | 
 **Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to INPUT]
-**Timestamp** | Pointer to **time.Time** | Timestamp of the latest data change | [optional] 
+**Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
 **Data** | **map[string]interface{}** | Asset payload | 
 
 ## Methods
@@ -93,6 +93,16 @@ SetTimestamp sets Timestamp field to given value.
 
 HasTimestamp returns a boolean if a field has been set.
 
+### SetTimestampNil
+
+`func (o *Heap) SetTimestampNil(b bool)`
+
+ SetTimestampNil sets the value for Timestamp to be an explicit nil
+
+### UnsetTimestamp
+`func (o *Heap) UnsetTimestamp()`
+
+UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 ### GetData
 
 `func (o *Heap) GetData() map[string]interface{}`

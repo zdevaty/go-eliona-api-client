@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The unique name for this asset type | 
 **Custom** | **bool** | Is this a customer created type or not | [default to true]
-**Vendor** | Pointer to **string** | The vendor providing assets of this type | [optional] 
-**Model** | Pointer to **string** | The specific model of assets of this type | [optional] 
-**Translation** | Pointer to [**Translation**](Translation.md) |  | [optional] 
-**Urldoc** | Pointer to **string** | The url describing assets of this type | [optional] 
-**Icon** | Pointer to **string** | Icon name corresponding to assets of this type | [optional] 
+**Vendor** | Pointer to **NullableString** | The vendor providing assets of this type | [optional] 
+**Model** | Pointer to **NullableString** | The specific model of assets of this type | [optional] 
+**Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
+**Urldoc** | Pointer to **NullableString** | The url describing assets of this type | [optional] 
+**Icon** | Pointer to **NullableString** | Icon name corresponding to assets of this type | [optional] 
 **Attributes** | Pointer to [**[]AssetTypeAttribute**](AssetTypeAttribute.md) | List of named attributes | [optional] 
 
 ## Methods
@@ -97,6 +97,16 @@ SetVendor sets Vendor field to given value.
 
 HasVendor returns a boolean if a field has been set.
 
+### SetVendorNil
+
+`func (o *AssetType) SetVendorNil(b bool)`
+
+ SetVendorNil sets the value for Vendor to be an explicit nil
+
+### UnsetVendor
+`func (o *AssetType) UnsetVendor()`
+
+UnsetVendor ensures that no value is present for Vendor, not even an explicit nil
 ### GetModel
 
 `func (o *AssetType) GetModel() string`
@@ -122,6 +132,16 @@ SetModel sets Model field to given value.
 
 HasModel returns a boolean if a field has been set.
 
+### SetModelNil
+
+`func (o *AssetType) SetModelNil(b bool)`
+
+ SetModelNil sets the value for Model to be an explicit nil
+
+### UnsetModel
+`func (o *AssetType) UnsetModel()`
+
+UnsetModel ensures that no value is present for Model, not even an explicit nil
 ### GetTranslation
 
 `func (o *AssetType) GetTranslation() Translation`
@@ -147,6 +167,16 @@ SetTranslation sets Translation field to given value.
 
 HasTranslation returns a boolean if a field has been set.
 
+### SetTranslationNil
+
+`func (o *AssetType) SetTranslationNil(b bool)`
+
+ SetTranslationNil sets the value for Translation to be an explicit nil
+
+### UnsetTranslation
+`func (o *AssetType) UnsetTranslation()`
+
+UnsetTranslation ensures that no value is present for Translation, not even an explicit nil
 ### GetUrldoc
 
 `func (o *AssetType) GetUrldoc() string`
@@ -172,6 +202,16 @@ SetUrldoc sets Urldoc field to given value.
 
 HasUrldoc returns a boolean if a field has been set.
 
+### SetUrldocNil
+
+`func (o *AssetType) SetUrldocNil(b bool)`
+
+ SetUrldocNil sets the value for Urldoc to be an explicit nil
+
+### UnsetUrldoc
+`func (o *AssetType) UnsetUrldoc()`
+
+UnsetUrldoc ensures that no value is present for Urldoc, not even an explicit nil
 ### GetIcon
 
 `func (o *AssetType) GetIcon() string`
@@ -197,6 +237,16 @@ SetIcon sets Icon field to given value.
 
 HasIcon returns a boolean if a field has been set.
 
+### SetIconNil
+
+`func (o *AssetType) SetIconNil(b bool)`
+
+ SetIconNil sets the value for Icon to be an explicit nil
+
+### UnsetIcon
+`func (o *AssetType) UnsetIcon()`
+
+UnsetIcon ensures that no value is present for Icon, not even an explicit nil
 ### GetAttributes
 
 `func (o *AssetType) GetAttributes() []AssetTypeAttribute`
@@ -222,6 +272,16 @@ SetAttributes sets Attributes field to given value.
 
 HasAttributes returns a boolean if a field has been set.
 
+### SetAttributesNil
+
+`func (o *AssetType) SetAttributesNil(b bool)`
+
+ SetAttributesNil sets the value for Attributes to be an explicit nil
+
+### UnsetAttributes
+`func (o *AssetType) UnsetAttributes()`
+
+UnsetAttributes ensures that no value is present for Attributes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

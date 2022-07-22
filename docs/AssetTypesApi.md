@@ -1,18 +1,18 @@
-# \AssetTypeApi
+# \AssetTypesApi
 
 All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAssetTypes**](AssetTypeApi.md#GetAssetTypes) | **Get** /asset-type | List of asset types
-[**PostAssetType**](AssetTypeApi.md#PostAssetType) | **Post** /asset-type | Create or update an asset type
-[**PostAssetTypeAttribute**](AssetTypeApi.md#PostAssetTypeAttribute) | **Post** /asset-type-attribute | Create or update an asset type attribute
+[**GetAssetTypes**](AssetTypesApi.md#GetAssetTypes) | **Get** /asset-types | List of asset types
+[**PutAssetType**](AssetTypesApi.md#PutAssetType) | **Put** /asset-types | Create or update an asset type
+[**PutAssetTypeAttribute**](AssetTypesApi.md#PutAssetTypeAttribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
 
 
 
 ## GetAssetTypes
 
-> []AssetType GetAssetTypes(ctx).Limit(limit).Offset(offset).Execute()
+> []AssetType GetAssetTypes(ctx).WithAttributes(withAttributes).Execute()
 
 List of asset types
 
@@ -31,18 +31,17 @@ import (
 )
 
 func main() {
-    limit := int32(20) // int32 | Limits the number of items on a page (optional)
-    offset := int32(1) // int32 | Specifies the page number to be displayed (optional)
+    withAttributes := true // bool | Gets also the the list of attributes (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypeApi.GetAssetTypes(context.Background()).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.AssetTypesApi.GetAssetTypes(context.Background()).WithAttributes(withAttributes).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypeApi.GetAssetTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.GetAssetTypes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAssetTypes`: []AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypeApi.GetAssetTypes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.GetAssetTypes`: %v\n", resp)
 }
 ```
 
@@ -57,8 +56,7 @@ Other parameters are passed through a pointer to a apiGetAssetTypesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | Limits the number of items on a page | 
- **offset** | **int32** | Specifies the page number to be displayed | 
+ **withAttributes** | **bool** | Gets also the the list of attributes | [default to false]
 
 ### Return type
 
@@ -78,9 +76,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## PostAssetType
+## PutAssetType
 
-> PostAssetType(ctx).AssetType(assetType).Execute()
+> PutAssetType(ctx).AssetType(assetType).Execute()
 
 Create or update an asset type
 
@@ -103,9 +101,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypeApi.PostAssetType(context.Background()).AssetType(assetType).Execute()
+    resp, r, err := apiClient.AssetTypesApi.PutAssetType(context.Background()).AssetType(assetType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypeApi.PostAssetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -117,7 +115,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPostAssetTypeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPutAssetTypeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -142,9 +140,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## PostAssetTypeAttribute
+## PutAssetTypeAttribute
 
-> PostAssetTypeAttribute(ctx).Attribute(attribute).Execute()
+> PutAssetTypeAttribute(ctx, assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
 
 Create or update an asset type attribute
 
@@ -163,13 +161,14 @@ import (
 )
 
 func main() {
-    attribute := *openapiclient.NewAttribute("temperature", openapiclient.HeapSubtype("input")) // Attribute | 
+    assetTypeName := "weather_location" // string | The name of the asset type
+    assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.HeapSubtype("input")) // AssetTypeAttribute | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypeApi.PostAssetTypeAttribute(context.Background()).Attribute(attribute).Execute()
+    resp, r, err := apiClient.AssetTypesApi.PutAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypeApi.PostAssetTypeAttribute``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetTypeAttribute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -178,15 +177,20 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetTypeName** | **string** | The name of the asset type | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPostAssetTypeAttributeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPutAssetTypeAttributeRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attribute** | [**Attribute**](Attribute.md) |  | 
+
+ **assetTypeAttribute** | [**AssetTypeAttribute**](AssetTypeAttribute.md) |  | 
 
 ### Return type
 

@@ -1,90 +1,19 @@
-# \AppApi
+# \AppsApi
 
 All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ApplyPatchByName**](AppApi.md#ApplyPatchByName) | **Put** /patch/{app-name}/{patch-name}/apply | Marks a patch in eliona as applied
-[**GetAppByName**](AppApi.md#GetAppByName) | **Get** /app/{app-name} | Information about an app
-[**GetPatchByName**](AppApi.md#GetPatchByName) | **Get** /patch/{app-name}/{patch-name} | Information about a patch for an app
-[**RegisterAppByName**](AppApi.md#RegisterAppByName) | **Put** /app/{app-name}/register | Marks an app in eliona as registered
+[**GetAppByName**](AppsApi.md#GetAppByName) | **Get** /apps/{app-name} | Information about an app
+[**GetPatchByName**](AppsApi.md#GetPatchByName) | **Get** /apps/{app-name}/patches/{patch-name} | Information about a patch for an app
+[**PatchAppByName**](AppsApi.md#PatchAppByName) | **Patch** /apps/{app-name} | Update an app
+[**PatchPatchByName**](AppsApi.md#PatchPatchByName) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
 
-
-
-## ApplyPatchByName
-
-> ApplyPatchByName(ctx, appName, patchName).Execute()
-
-Marks a patch in eliona as applied
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    appName := "weather" // string | The name of the app
-    patchName := "2.0.0" // string | The name of the patch
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppApi.ApplyPatchByName(context.Background(), appName, patchName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppApi.ApplyPatchByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appName** | **string** | The name of the app | 
-**patchName** | **string** | The name of the patch | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiApplyPatchByNameRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## GetAppByName
 
-> string GetAppByName(ctx).Execute()
+> App GetAppByName(ctx, appName).Execute()
 
 Information about an app
 
@@ -103,31 +32,40 @@ import (
 )
 
 func main() {
+    appName := "weather" // string | The name of the app
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppApi.GetAppByName(context.Background()).Execute()
+    resp, r, err := apiClient.AppsApi.GetAppByName(context.Background(), appName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppApi.GetAppByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetAppByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetAppByName`: string
-    fmt.Fprintf(os.Stdout, "Response from `AppApi.GetAppByName`: %v\n", resp)
+    // response from `GetAppByName`: App
+    fmt.Fprintf(os.Stdout, "Response from `AppsApi.GetAppByName`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appName** | **string** | The name of the app | 
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetAppByNameRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 ### Return type
 
-**string**
+[**App**](App.md)
 
 ### Authorization
 
@@ -169,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppApi.GetPatchByName(context.Background(), appName, patchName).Execute()
+    resp, r, err := apiClient.AppsApi.GetPatchByName(context.Background(), appName, patchName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppApi.GetPatchByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetPatchByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPatchByName`: Patch
-    fmt.Fprintf(os.Stdout, "Response from `AppApi.GetPatchByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppsApi.GetPatchByName`: %v\n", resp)
 }
 ```
 
@@ -216,11 +154,11 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## RegisterAppByName
+## PatchAppByName
 
-> RegisterAppByName(ctx, appName).Execute()
+> PatchAppByName(ctx, appName).Registered(registered).Execute()
 
-Marks an app in eliona as registered
+Update an app
 
 
 
@@ -238,12 +176,13 @@ import (
 
 func main() {
     appName := "weather" // string | The name of the app
+    registered := true // bool | Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true } (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppApi.RegisterAppByName(context.Background(), appName).Execute()
+    resp, r, err := apiClient.AppsApi.PatchAppByName(context.Background(), appName).Registered(registered).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppApi.RegisterAppByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PatchAppByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -259,12 +198,86 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRegisterAppByNameRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPatchAppByNameRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **registered** | **bool** | Marks that the app is now initialized and installed. Further request to get app information returns { \&quot;registered\&quot;: true } | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchPatchByName
+
+> PatchPatchByName(ctx, appName, patchName).Apply(apply).Execute()
+
+Updates a patch
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    appName := "weather" // string | The name of the app
+    patchName := "2.0.0" // string | The name of the patch
+    apply := true // bool | Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true } (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.PatchPatchByName(context.Background(), appName, patchName).Apply(apply).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PatchPatchByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appName** | **string** | The name of the app | 
+**patchName** | **string** | The name of the patch | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchPatchByNameRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **apply** | **bool** | Marks that the patch is now applied. Further request to get patch information returns { \&quot;applied\&quot;: true } | 
 
 ### Return type
 

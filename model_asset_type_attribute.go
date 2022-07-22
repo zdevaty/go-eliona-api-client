@@ -17,32 +17,32 @@ import (
 // AssetTypeAttribute Named attribute to store data of assets
 type AssetTypeAttribute struct {
 	// The unique name for the asset type
-	AssetTypeName *string `json:"assetTypeName,omitempty"`
+	AssetTypeName NullableString `json:"assetTypeName,omitempty"`
 	// Unique key of asset heap data
 	Name string `json:"name"`
 	Subtype HeapSubtype `json:"subtype"`
 	// Name of the type for this attribute
-	Type *string `json:"type,omitempty"`
+	Type NullableString `json:"type,omitempty"`
 	// Is heap data active or not
-	Enable *bool `json:"enable,omitempty"`
-	Translation *Translation `json:"translation,omitempty"`
+	Enable NullableBool `json:"enable,omitempty"`
+	Translation NullableTranslation `json:"translation,omitempty"`
 	// Physical unit of numeric data
-	Unit *string `json:"unit,omitempty"`
+	Unit NullableString `json:"unit,omitempty"`
 	// Number of decimal places
-	Precision *int64 `json:"precision,omitempty"`
+	Precision NullableInt64 `json:"precision,omitempty"`
 	// Lower limit
-	Min *float64 `json:"min,omitempty"`
+	Min NullableFloat64 `json:"min,omitempty"`
 	// Upper limit
-	Max *float64 `json:"max,omitempty"`
-	Pipeline *Pipeline `json:"pipeline,omitempty"`
+	Max NullableFloat64 `json:"max,omitempty"`
+	Pipeline NullablePipeline `json:"pipeline,omitempty"`
 	// Should the attribute be displayed in viewer
-	Viewer *bool `json:"viewer,omitempty"`
+	Viewer NullableBool `json:"viewer,omitempty"`
 	// Should the attribute be displayed in AR
-	Ar *bool `json:"ar,omitempty"`
+	Ar NullableBool `json:"ar,omitempty"`
 	// Sequence in AR display
-	Sequence *int64 `json:"sequence,omitempty"`
+	Sequence NullableInt64 `json:"sequence,omitempty"`
 	// Is the attribute virtual or not
-	Virtual *bool `json:"virtual,omitempty"`
+	Virtual NullableBool `json:"virtual,omitempty"`
 }
 
 // NewAssetTypeAttribute instantiates a new AssetTypeAttribute object
@@ -54,11 +54,11 @@ func NewAssetTypeAttribute(name string, subtype HeapSubtype) *AssetTypeAttribute
 	this.Name = name
 	this.Subtype = subtype
 	var enable bool = true
-	this.Enable = &enable
+	this.Enable = *NewNullableBool(&enable)
 	var viewer bool = false
-	this.Viewer = &viewer
+	this.Viewer = *NewNullableBool(&viewer)
 	var ar bool = false
-	this.Ar = &ar
+	this.Ar = *NewNullableBool(&ar)
 	return &this
 }
 
@@ -70,44 +70,54 @@ func NewAssetTypeAttributeWithDefaults() *AssetTypeAttribute {
 	var subtype HeapSubtype = INPUT
 	this.Subtype = subtype
 	var enable bool = true
-	this.Enable = &enable
+	this.Enable = *NewNullableBool(&enable)
 	var viewer bool = false
-	this.Viewer = &viewer
+	this.Viewer = *NewNullableBool(&viewer)
 	var ar bool = false
-	this.Ar = &ar
+	this.Ar = *NewNullableBool(&ar)
 	return &this
 }
 
-// GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise.
+// GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetAssetTypeName() string {
-	if o == nil || o.AssetTypeName == nil {
+	if o == nil || o.AssetTypeName.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.AssetTypeName
+	return *o.AssetTypeName.Get()
 }
 
 // GetAssetTypeNameOk returns a tuple with the AssetTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetAssetTypeNameOk() (*string, bool) {
-	if o == nil || o.AssetTypeName == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.AssetTypeName, true
+	return o.AssetTypeName.Get(), o.AssetTypeName.IsSet()
 }
 
 // HasAssetTypeName returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasAssetTypeName() bool {
-	if o != nil && o.AssetTypeName != nil {
+	if o != nil && o.AssetTypeName.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAssetTypeName gets a reference to the given string and assigns it to the AssetTypeName field.
+// SetAssetTypeName gets a reference to the given NullableString and assigns it to the AssetTypeName field.
 func (o *AssetTypeAttribute) SetAssetTypeName(v string) {
-	o.AssetTypeName = &v
+	o.AssetTypeName.Set(&v)
+}
+// SetAssetTypeNameNil sets the value for AssetTypeName to be an explicit nil
+func (o *AssetTypeAttribute) SetAssetTypeNameNil() {
+	o.AssetTypeName.Set(nil)
+}
+
+// UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetAssetTypeName() {
+	o.AssetTypeName.Unset()
 }
 
 // GetName returns the Name field value
@@ -158,394 +168,514 @@ func (o *AssetTypeAttribute) SetSubtype(v HeapSubtype) {
 	o.Subtype = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || o.Type.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+	return *o.Type.Get()
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && o.Type.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType gets a reference to the given NullableString and assigns it to the Type field.
 func (o *AssetTypeAttribute) SetType(v string) {
-	o.Type = &v
+	o.Type.Set(&v)
+}
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *AssetTypeAttribute) SetTypeNil() {
+	o.Type.Set(nil)
 }
 
-// GetEnable returns the Enable field value if set, zero value otherwise.
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetType() {
+	o.Type.Unset()
+}
+
+// GetEnable returns the Enable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetEnable() bool {
-	if o == nil || o.Enable == nil {
+	if o == nil || o.Enable.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Enable
+	return *o.Enable.Get()
 }
 
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetEnableOk() (*bool, bool) {
-	if o == nil || o.Enable == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Enable, true
+	return o.Enable.Get(), o.Enable.IsSet()
 }
 
 // HasEnable returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasEnable() bool {
-	if o != nil && o.Enable != nil {
+	if o != nil && o.Enable.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetEnable gets a reference to the given bool and assigns it to the Enable field.
+// SetEnable gets a reference to the given NullableBool and assigns it to the Enable field.
 func (o *AssetTypeAttribute) SetEnable(v bool) {
-	o.Enable = &v
+	o.Enable.Set(&v)
+}
+// SetEnableNil sets the value for Enable to be an explicit nil
+func (o *AssetTypeAttribute) SetEnableNil() {
+	o.Enable.Set(nil)
 }
 
-// GetTranslation returns the Translation field value if set, zero value otherwise.
+// UnsetEnable ensures that no value is present for Enable, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetEnable() {
+	o.Enable.Unset()
+}
+
+// GetTranslation returns the Translation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetTranslation() Translation {
-	if o == nil || o.Translation == nil {
+	if o == nil || o.Translation.Get() == nil {
 		var ret Translation
 		return ret
 	}
-	return *o.Translation
+	return *o.Translation.Get()
 }
 
 // GetTranslationOk returns a tuple with the Translation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetTranslationOk() (*Translation, bool) {
-	if o == nil || o.Translation == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Translation, true
+	return o.Translation.Get(), o.Translation.IsSet()
 }
 
 // HasTranslation returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasTranslation() bool {
-	if o != nil && o.Translation != nil {
+	if o != nil && o.Translation.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTranslation gets a reference to the given Translation and assigns it to the Translation field.
+// SetTranslation gets a reference to the given NullableTranslation and assigns it to the Translation field.
 func (o *AssetTypeAttribute) SetTranslation(v Translation) {
-	o.Translation = &v
+	o.Translation.Set(&v)
+}
+// SetTranslationNil sets the value for Translation to be an explicit nil
+func (o *AssetTypeAttribute) SetTranslationNil() {
+	o.Translation.Set(nil)
 }
 
-// GetUnit returns the Unit field value if set, zero value otherwise.
+// UnsetTranslation ensures that no value is present for Translation, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetTranslation() {
+	o.Translation.Unset()
+}
+
+// GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetUnit() string {
-	if o == nil || o.Unit == nil {
+	if o == nil || o.Unit.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Unit
+	return *o.Unit.Get()
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetUnitOk() (*string, bool) {
-	if o == nil || o.Unit == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Unit, true
+	return o.Unit.Get(), o.Unit.IsSet()
 }
 
 // HasUnit returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasUnit() bool {
-	if o != nil && o.Unit != nil {
+	if o != nil && o.Unit.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUnit gets a reference to the given string and assigns it to the Unit field.
+// SetUnit gets a reference to the given NullableString and assigns it to the Unit field.
 func (o *AssetTypeAttribute) SetUnit(v string) {
-	o.Unit = &v
+	o.Unit.Set(&v)
+}
+// SetUnitNil sets the value for Unit to be an explicit nil
+func (o *AssetTypeAttribute) SetUnitNil() {
+	o.Unit.Set(nil)
 }
 
-// GetPrecision returns the Precision field value if set, zero value otherwise.
+// UnsetUnit ensures that no value is present for Unit, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetUnit() {
+	o.Unit.Unset()
+}
+
+// GetPrecision returns the Precision field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetPrecision() int64 {
-	if o == nil || o.Precision == nil {
+	if o == nil || o.Precision.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Precision
+	return *o.Precision.Get()
 }
 
 // GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetPrecisionOk() (*int64, bool) {
-	if o == nil || o.Precision == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Precision, true
+	return o.Precision.Get(), o.Precision.IsSet()
 }
 
 // HasPrecision returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasPrecision() bool {
-	if o != nil && o.Precision != nil {
+	if o != nil && o.Precision.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPrecision gets a reference to the given int64 and assigns it to the Precision field.
+// SetPrecision gets a reference to the given NullableInt64 and assigns it to the Precision field.
 func (o *AssetTypeAttribute) SetPrecision(v int64) {
-	o.Precision = &v
+	o.Precision.Set(&v)
+}
+// SetPrecisionNil sets the value for Precision to be an explicit nil
+func (o *AssetTypeAttribute) SetPrecisionNil() {
+	o.Precision.Set(nil)
 }
 
-// GetMin returns the Min field value if set, zero value otherwise.
+// UnsetPrecision ensures that no value is present for Precision, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetPrecision() {
+	o.Precision.Unset()
+}
+
+// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetMin() float64 {
-	if o == nil || o.Min == nil {
+	if o == nil || o.Min.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Min
+	return *o.Min.Get()
 }
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetMinOk() (*float64, bool) {
-	if o == nil || o.Min == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Min, true
+	return o.Min.Get(), o.Min.IsSet()
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasMin() bool {
-	if o != nil && o.Min != nil {
+	if o != nil && o.Min.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMin gets a reference to the given float64 and assigns it to the Min field.
+// SetMin gets a reference to the given NullableFloat64 and assigns it to the Min field.
 func (o *AssetTypeAttribute) SetMin(v float64) {
-	o.Min = &v
+	o.Min.Set(&v)
+}
+// SetMinNil sets the value for Min to be an explicit nil
+func (o *AssetTypeAttribute) SetMinNil() {
+	o.Min.Set(nil)
 }
 
-// GetMax returns the Max field value if set, zero value otherwise.
+// UnsetMin ensures that no value is present for Min, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetMin() {
+	o.Min.Unset()
+}
+
+// GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetMax() float64 {
-	if o == nil || o.Max == nil {
+	if o == nil || o.Max.Get() == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Max
+	return *o.Max.Get()
 }
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetMaxOk() (*float64, bool) {
-	if o == nil || o.Max == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Max, true
+	return o.Max.Get(), o.Max.IsSet()
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasMax() bool {
-	if o != nil && o.Max != nil {
+	if o != nil && o.Max.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMax gets a reference to the given float64 and assigns it to the Max field.
+// SetMax gets a reference to the given NullableFloat64 and assigns it to the Max field.
 func (o *AssetTypeAttribute) SetMax(v float64) {
-	o.Max = &v
+	o.Max.Set(&v)
+}
+// SetMaxNil sets the value for Max to be an explicit nil
+func (o *AssetTypeAttribute) SetMaxNil() {
+	o.Max.Set(nil)
 }
 
-// GetPipeline returns the Pipeline field value if set, zero value otherwise.
+// UnsetMax ensures that no value is present for Max, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetMax() {
+	o.Max.Unset()
+}
+
+// GetPipeline returns the Pipeline field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetPipeline() Pipeline {
-	if o == nil || o.Pipeline == nil {
+	if o == nil || o.Pipeline.Get() == nil {
 		var ret Pipeline
 		return ret
 	}
-	return *o.Pipeline
+	return *o.Pipeline.Get()
 }
 
 // GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetPipelineOk() (*Pipeline, bool) {
-	if o == nil || o.Pipeline == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Pipeline, true
+	return o.Pipeline.Get(), o.Pipeline.IsSet()
 }
 
 // HasPipeline returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasPipeline() bool {
-	if o != nil && o.Pipeline != nil {
+	if o != nil && o.Pipeline.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPipeline gets a reference to the given Pipeline and assigns it to the Pipeline field.
+// SetPipeline gets a reference to the given NullablePipeline and assigns it to the Pipeline field.
 func (o *AssetTypeAttribute) SetPipeline(v Pipeline) {
-	o.Pipeline = &v
+	o.Pipeline.Set(&v)
+}
+// SetPipelineNil sets the value for Pipeline to be an explicit nil
+func (o *AssetTypeAttribute) SetPipelineNil() {
+	o.Pipeline.Set(nil)
 }
 
-// GetViewer returns the Viewer field value if set, zero value otherwise.
+// UnsetPipeline ensures that no value is present for Pipeline, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetPipeline() {
+	o.Pipeline.Unset()
+}
+
+// GetViewer returns the Viewer field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetViewer() bool {
-	if o == nil || o.Viewer == nil {
+	if o == nil || o.Viewer.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Viewer
+	return *o.Viewer.Get()
 }
 
 // GetViewerOk returns a tuple with the Viewer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetViewerOk() (*bool, bool) {
-	if o == nil || o.Viewer == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Viewer, true
+	return o.Viewer.Get(), o.Viewer.IsSet()
 }
 
 // HasViewer returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasViewer() bool {
-	if o != nil && o.Viewer != nil {
+	if o != nil && o.Viewer.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetViewer gets a reference to the given bool and assigns it to the Viewer field.
+// SetViewer gets a reference to the given NullableBool and assigns it to the Viewer field.
 func (o *AssetTypeAttribute) SetViewer(v bool) {
-	o.Viewer = &v
+	o.Viewer.Set(&v)
+}
+// SetViewerNil sets the value for Viewer to be an explicit nil
+func (o *AssetTypeAttribute) SetViewerNil() {
+	o.Viewer.Set(nil)
 }
 
-// GetAr returns the Ar field value if set, zero value otherwise.
+// UnsetViewer ensures that no value is present for Viewer, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetViewer() {
+	o.Viewer.Unset()
+}
+
+// GetAr returns the Ar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetAr() bool {
-	if o == nil || o.Ar == nil {
+	if o == nil || o.Ar.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Ar
+	return *o.Ar.Get()
 }
 
 // GetArOk returns a tuple with the Ar field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetArOk() (*bool, bool) {
-	if o == nil || o.Ar == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Ar, true
+	return o.Ar.Get(), o.Ar.IsSet()
 }
 
 // HasAr returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasAr() bool {
-	if o != nil && o.Ar != nil {
+	if o != nil && o.Ar.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAr gets a reference to the given bool and assigns it to the Ar field.
+// SetAr gets a reference to the given NullableBool and assigns it to the Ar field.
 func (o *AssetTypeAttribute) SetAr(v bool) {
-	o.Ar = &v
+	o.Ar.Set(&v)
+}
+// SetArNil sets the value for Ar to be an explicit nil
+func (o *AssetTypeAttribute) SetArNil() {
+	o.Ar.Set(nil)
 }
 
-// GetSequence returns the Sequence field value if set, zero value otherwise.
+// UnsetAr ensures that no value is present for Ar, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetAr() {
+	o.Ar.Unset()
+}
+
+// GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetSequence() int64 {
-	if o == nil || o.Sequence == nil {
+	if o == nil || o.Sequence.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Sequence
+	return *o.Sequence.Get()
 }
 
 // GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetSequenceOk() (*int64, bool) {
-	if o == nil || o.Sequence == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Sequence, true
+	return o.Sequence.Get(), o.Sequence.IsSet()
 }
 
 // HasSequence returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasSequence() bool {
-	if o != nil && o.Sequence != nil {
+	if o != nil && o.Sequence.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetSequence gets a reference to the given int64 and assigns it to the Sequence field.
+// SetSequence gets a reference to the given NullableInt64 and assigns it to the Sequence field.
 func (o *AssetTypeAttribute) SetSequence(v int64) {
-	o.Sequence = &v
+	o.Sequence.Set(&v)
+}
+// SetSequenceNil sets the value for Sequence to be an explicit nil
+func (o *AssetTypeAttribute) SetSequenceNil() {
+	o.Sequence.Set(nil)
 }
 
-// GetVirtual returns the Virtual field value if set, zero value otherwise.
+// UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetSequence() {
+	o.Sequence.Unset()
+}
+
+// GetVirtual returns the Virtual field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetVirtual() bool {
-	if o == nil || o.Virtual == nil {
+	if o == nil || o.Virtual.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Virtual
+	return *o.Virtual.Get()
 }
 
 // GetVirtualOk returns a tuple with the Virtual field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetVirtualOk() (*bool, bool) {
-	if o == nil || o.Virtual == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Virtual, true
+	return o.Virtual.Get(), o.Virtual.IsSet()
 }
 
 // HasVirtual returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasVirtual() bool {
-	if o != nil && o.Virtual != nil {
+	if o != nil && o.Virtual.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVirtual gets a reference to the given bool and assigns it to the Virtual field.
+// SetVirtual gets a reference to the given NullableBool and assigns it to the Virtual field.
 func (o *AssetTypeAttribute) SetVirtual(v bool) {
-	o.Virtual = &v
+	o.Virtual.Set(&v)
+}
+// SetVirtualNil sets the value for Virtual to be an explicit nil
+func (o *AssetTypeAttribute) SetVirtualNil() {
+	o.Virtual.Set(nil)
+}
+
+// UnsetVirtual ensures that no value is present for Virtual, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetVirtual() {
+	o.Virtual.Unset()
 }
 
 func (o AssetTypeAttribute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AssetTypeName != nil {
-		toSerialize["assetTypeName"] = o.AssetTypeName
+	if o.AssetTypeName.IsSet() {
+		toSerialize["assetTypeName"] = o.AssetTypeName.Get()
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -553,41 +683,41 @@ func (o AssetTypeAttribute) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["subtype"] = o.Subtype
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
 	}
-	if o.Enable != nil {
-		toSerialize["enable"] = o.Enable
+	if o.Enable.IsSet() {
+		toSerialize["enable"] = o.Enable.Get()
 	}
-	if o.Translation != nil {
-		toSerialize["translation"] = o.Translation
+	if o.Translation.IsSet() {
+		toSerialize["translation"] = o.Translation.Get()
 	}
-	if o.Unit != nil {
-		toSerialize["unit"] = o.Unit
+	if o.Unit.IsSet() {
+		toSerialize["unit"] = o.Unit.Get()
 	}
-	if o.Precision != nil {
-		toSerialize["precision"] = o.Precision
+	if o.Precision.IsSet() {
+		toSerialize["precision"] = o.Precision.Get()
 	}
-	if o.Min != nil {
-		toSerialize["min"] = o.Min
+	if o.Min.IsSet() {
+		toSerialize["min"] = o.Min.Get()
 	}
-	if o.Max != nil {
-		toSerialize["max"] = o.Max
+	if o.Max.IsSet() {
+		toSerialize["max"] = o.Max.Get()
 	}
-	if o.Pipeline != nil {
-		toSerialize["pipeline"] = o.Pipeline
+	if o.Pipeline.IsSet() {
+		toSerialize["pipeline"] = o.Pipeline.Get()
 	}
-	if o.Viewer != nil {
-		toSerialize["viewer"] = o.Viewer
+	if o.Viewer.IsSet() {
+		toSerialize["viewer"] = o.Viewer.Get()
 	}
-	if o.Ar != nil {
-		toSerialize["ar"] = o.Ar
+	if o.Ar.IsSet() {
+		toSerialize["ar"] = o.Ar.Get()
 	}
-	if o.Sequence != nil {
-		toSerialize["sequence"] = o.Sequence
+	if o.Sequence.IsSet() {
+		toSerialize["sequence"] = o.Sequence.Get()
 	}
-	if o.Virtual != nil {
-		toSerialize["virtual"] = o.Virtual
+	if o.Virtual.IsSet() {
+		toSerialize["virtual"] = o.Virtual.Get()
 	}
 	return json.Marshal(toSerialize)
 }

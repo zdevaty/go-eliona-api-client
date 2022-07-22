@@ -91,9 +91,9 @@ func (o *WidgetTypeElement) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
+// GetConfig returns the Config field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetTypeElement) GetConfig() map[string]interface{} {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -102,6 +102,7 @@ func (o *WidgetTypeElement) GetConfig() map[string]interface{} {
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetTypeElement) GetConfigOk() (map[string]interface{}, bool) {
 	if o == nil || o.Config == nil {
 		return nil, false

@@ -21,14 +21,14 @@ type AssetType struct {
 	// Is this a customer created type or not
 	Custom bool `json:"custom"`
 	// The vendor providing assets of this type
-	Vendor *string `json:"vendor,omitempty"`
+	Vendor NullableString `json:"vendor,omitempty"`
 	// The specific model of assets of this type
-	Model *string `json:"model,omitempty"`
-	Translation *Translation `json:"translation,omitempty"`
+	Model NullableString `json:"model,omitempty"`
+	Translation NullableTranslation `json:"translation,omitempty"`
 	// The url describing assets of this type
-	Urldoc *string `json:"urldoc,omitempty"`
+	Urldoc NullableString `json:"urldoc,omitempty"`
 	// Icon name corresponding to assets of this type
-	Icon *string `json:"icon,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
 	// List of named attributes
 	Attributes []AssetTypeAttribute `json:"attributes,omitempty"`
 }
@@ -102,169 +102,219 @@ func (o *AssetType) SetCustom(v bool) {
 	o.Custom = v
 }
 
-// GetVendor returns the Vendor field value if set, zero value otherwise.
+// GetVendor returns the Vendor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetVendor() string {
-	if o == nil || o.Vendor == nil {
+	if o == nil || o.Vendor.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Vendor
+	return *o.Vendor.Get()
 }
 
 // GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetVendorOk() (*string, bool) {
-	if o == nil || o.Vendor == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Vendor, true
+	return o.Vendor.Get(), o.Vendor.IsSet()
 }
 
 // HasVendor returns a boolean if a field has been set.
 func (o *AssetType) HasVendor() bool {
-	if o != nil && o.Vendor != nil {
+	if o != nil && o.Vendor.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetVendor gets a reference to the given string and assigns it to the Vendor field.
+// SetVendor gets a reference to the given NullableString and assigns it to the Vendor field.
 func (o *AssetType) SetVendor(v string) {
-	o.Vendor = &v
+	o.Vendor.Set(&v)
+}
+// SetVendorNil sets the value for Vendor to be an explicit nil
+func (o *AssetType) SetVendorNil() {
+	o.Vendor.Set(nil)
 }
 
-// GetModel returns the Model field value if set, zero value otherwise.
+// UnsetVendor ensures that no value is present for Vendor, not even an explicit nil
+func (o *AssetType) UnsetVendor() {
+	o.Vendor.Unset()
+}
+
+// GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetModel() string {
-	if o == nil || o.Model == nil {
+	if o == nil || o.Model.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Model
+	return *o.Model.Get()
 }
 
 // GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetModelOk() (*string, bool) {
-	if o == nil || o.Model == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Model, true
+	return o.Model.Get(), o.Model.IsSet()
 }
 
 // HasModel returns a boolean if a field has been set.
 func (o *AssetType) HasModel() bool {
-	if o != nil && o.Model != nil {
+	if o != nil && o.Model.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetModel gets a reference to the given string and assigns it to the Model field.
+// SetModel gets a reference to the given NullableString and assigns it to the Model field.
 func (o *AssetType) SetModel(v string) {
-	o.Model = &v
+	o.Model.Set(&v)
+}
+// SetModelNil sets the value for Model to be an explicit nil
+func (o *AssetType) SetModelNil() {
+	o.Model.Set(nil)
 }
 
-// GetTranslation returns the Translation field value if set, zero value otherwise.
+// UnsetModel ensures that no value is present for Model, not even an explicit nil
+func (o *AssetType) UnsetModel() {
+	o.Model.Unset()
+}
+
+// GetTranslation returns the Translation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetTranslation() Translation {
-	if o == nil || o.Translation == nil {
+	if o == nil || o.Translation.Get() == nil {
 		var ret Translation
 		return ret
 	}
-	return *o.Translation
+	return *o.Translation.Get()
 }
 
 // GetTranslationOk returns a tuple with the Translation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetTranslationOk() (*Translation, bool) {
-	if o == nil || o.Translation == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Translation, true
+	return o.Translation.Get(), o.Translation.IsSet()
 }
 
 // HasTranslation returns a boolean if a field has been set.
 func (o *AssetType) HasTranslation() bool {
-	if o != nil && o.Translation != nil {
+	if o != nil && o.Translation.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetTranslation gets a reference to the given Translation and assigns it to the Translation field.
+// SetTranslation gets a reference to the given NullableTranslation and assigns it to the Translation field.
 func (o *AssetType) SetTranslation(v Translation) {
-	o.Translation = &v
+	o.Translation.Set(&v)
+}
+// SetTranslationNil sets the value for Translation to be an explicit nil
+func (o *AssetType) SetTranslationNil() {
+	o.Translation.Set(nil)
 }
 
-// GetUrldoc returns the Urldoc field value if set, zero value otherwise.
+// UnsetTranslation ensures that no value is present for Translation, not even an explicit nil
+func (o *AssetType) UnsetTranslation() {
+	o.Translation.Unset()
+}
+
+// GetUrldoc returns the Urldoc field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetUrldoc() string {
-	if o == nil || o.Urldoc == nil {
+	if o == nil || o.Urldoc.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Urldoc
+	return *o.Urldoc.Get()
 }
 
 // GetUrldocOk returns a tuple with the Urldoc field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetUrldocOk() (*string, bool) {
-	if o == nil || o.Urldoc == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Urldoc, true
+	return o.Urldoc.Get(), o.Urldoc.IsSet()
 }
 
 // HasUrldoc returns a boolean if a field has been set.
 func (o *AssetType) HasUrldoc() bool {
-	if o != nil && o.Urldoc != nil {
+	if o != nil && o.Urldoc.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetUrldoc gets a reference to the given string and assigns it to the Urldoc field.
+// SetUrldoc gets a reference to the given NullableString and assigns it to the Urldoc field.
 func (o *AssetType) SetUrldoc(v string) {
-	o.Urldoc = &v
+	o.Urldoc.Set(&v)
+}
+// SetUrldocNil sets the value for Urldoc to be an explicit nil
+func (o *AssetType) SetUrldocNil() {
+	o.Urldoc.Set(nil)
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// UnsetUrldoc ensures that no value is present for Urldoc, not even an explicit nil
+func (o *AssetType) UnsetUrldoc() {
+	o.Urldoc.Unset()
+}
+
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *AssetType) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *AssetType) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *AssetType) SetIconNil() {
+	o.Icon.Set(nil)
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *AssetType) UnsetIcon() {
+	o.Icon.Unset()
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetAttributes() []AssetTypeAttribute {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret []AssetTypeAttribute
 		return ret
 	}
@@ -273,6 +323,7 @@ func (o *AssetType) GetAttributes() []AssetTypeAttribute {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetAttributesOk() ([]AssetTypeAttribute, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
@@ -302,20 +353,20 @@ func (o AssetType) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["custom"] = o.Custom
 	}
-	if o.Vendor != nil {
-		toSerialize["vendor"] = o.Vendor
+	if o.Vendor.IsSet() {
+		toSerialize["vendor"] = o.Vendor.Get()
 	}
-	if o.Model != nil {
-		toSerialize["model"] = o.Model
+	if o.Model.IsSet() {
+		toSerialize["model"] = o.Model.Get()
 	}
-	if o.Translation != nil {
-		toSerialize["translation"] = o.Translation
+	if o.Translation.IsSet() {
+		toSerialize["translation"] = o.Translation.Get()
 	}
-	if o.Urldoc != nil {
-		toSerialize["urldoc"] = o.Urldoc
+	if o.Urldoc.IsSet() {
+		toSerialize["urldoc"] = o.Urldoc.Get()
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes

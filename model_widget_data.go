@@ -19,14 +19,14 @@ type WidgetData struct {
 	// Position of the element in widget type
 	ElementSequence int32 `json:"elementSequence"`
 	// Key for the data
-	Key *string `json:"key,omitempty"`
+	Key NullableString `json:"key,omitempty"`
 	// The master asset id of this widget
-	AssetId *int32 `json:"assetId,omitempty"`
+	AssetId NullableInt32 `json:"assetId,omitempty"`
 	Subtype *HeapSubtype `json:"subtype,omitempty"`
 	// Attribute of the asset type, which heap data should be used
-	Attribute *string `json:"attribute,omitempty"`
+	Attribute NullableString `json:"attribute,omitempty"`
 	// Text for frontend
-	Description *string `json:"description,omitempty"`
+	Description NullableString `json:"description,omitempty"`
 }
 
 // NewWidgetData instantiates a new WidgetData object
@@ -75,68 +75,88 @@ func (o *WidgetData) SetElementSequence(v int32) {
 	o.ElementSequence = v
 }
 
-// GetKey returns the Key field value if set, zero value otherwise.
+// GetKey returns the Key field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetKey() string {
-	if o == nil || o.Key == nil {
+	if o == nil || o.Key.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Key
+	return *o.Key.Get()
 }
 
 // GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetData) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Key, true
+	return o.Key.Get(), o.Key.IsSet()
 }
 
 // HasKey returns a boolean if a field has been set.
 func (o *WidgetData) HasKey() bool {
-	if o != nil && o.Key != nil {
+	if o != nil && o.Key.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetKey gets a reference to the given string and assigns it to the Key field.
+// SetKey gets a reference to the given NullableString and assigns it to the Key field.
 func (o *WidgetData) SetKey(v string) {
-	o.Key = &v
+	o.Key.Set(&v)
+}
+// SetKeyNil sets the value for Key to be an explicit nil
+func (o *WidgetData) SetKeyNil() {
+	o.Key.Set(nil)
 }
 
-// GetAssetId returns the AssetId field value if set, zero value otherwise.
+// UnsetKey ensures that no value is present for Key, not even an explicit nil
+func (o *WidgetData) UnsetKey() {
+	o.Key.Unset()
+}
+
+// GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetAssetId() int32 {
-	if o == nil || o.AssetId == nil {
+	if o == nil || o.AssetId.Get() == nil {
 		var ret int32
 		return ret
 	}
-	return *o.AssetId
+	return *o.AssetId.Get()
 }
 
 // GetAssetIdOk returns a tuple with the AssetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetData) GetAssetIdOk() (*int32, bool) {
-	if o == nil || o.AssetId == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.AssetId, true
+	return o.AssetId.Get(), o.AssetId.IsSet()
 }
 
 // HasAssetId returns a boolean if a field has been set.
 func (o *WidgetData) HasAssetId() bool {
-	if o != nil && o.AssetId != nil {
+	if o != nil && o.AssetId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAssetId gets a reference to the given int32 and assigns it to the AssetId field.
+// SetAssetId gets a reference to the given NullableInt32 and assigns it to the AssetId field.
 func (o *WidgetData) SetAssetId(v int32) {
-	o.AssetId = &v
+	o.AssetId.Set(&v)
+}
+// SetAssetIdNil sets the value for AssetId to be an explicit nil
+func (o *WidgetData) SetAssetIdNil() {
+	o.AssetId.Set(nil)
+}
+
+// UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
+func (o *WidgetData) UnsetAssetId() {
+	o.AssetId.Unset()
 }
 
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
@@ -171,68 +191,88 @@ func (o *WidgetData) SetSubtype(v HeapSubtype) {
 	o.Subtype = &v
 }
 
-// GetAttribute returns the Attribute field value if set, zero value otherwise.
+// GetAttribute returns the Attribute field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetAttribute() string {
-	if o == nil || o.Attribute == nil {
+	if o == nil || o.Attribute.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Attribute
+	return *o.Attribute.Get()
 }
 
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetData) GetAttributeOk() (*string, bool) {
-	if o == nil || o.Attribute == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attribute, true
+	return o.Attribute.Get(), o.Attribute.IsSet()
 }
 
 // HasAttribute returns a boolean if a field has been set.
 func (o *WidgetData) HasAttribute() bool {
-	if o != nil && o.Attribute != nil {
+	if o != nil && o.Attribute.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAttribute gets a reference to the given string and assigns it to the Attribute field.
+// SetAttribute gets a reference to the given NullableString and assigns it to the Attribute field.
 func (o *WidgetData) SetAttribute(v string) {
-	o.Attribute = &v
+	o.Attribute.Set(&v)
+}
+// SetAttributeNil sets the value for Attribute to be an explicit nil
+func (o *WidgetData) SetAttributeNil() {
+	o.Attribute.Set(nil)
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// UnsetAttribute ensures that no value is present for Attribute, not even an explicit nil
+func (o *WidgetData) UnsetAttribute() {
+	o.Attribute.Unset()
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || o.Description.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Description.Get()
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetData) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *WidgetData) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
 func (o *WidgetData) SetDescription(v string) {
-	o.Description = &v
+	o.Description.Set(&v)
+}
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *WidgetData) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *WidgetData) UnsetDescription() {
+	o.Description.Unset()
 }
 
 func (o WidgetData) MarshalJSON() ([]byte, error) {
@@ -240,20 +280,20 @@ func (o WidgetData) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["elementSequence"] = o.ElementSequence
 	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
+	if o.Key.IsSet() {
+		toSerialize["key"] = o.Key.Get()
 	}
-	if o.AssetId != nil {
-		toSerialize["assetId"] = o.AssetId
+	if o.AssetId.IsSet() {
+		toSerialize["assetId"] = o.AssetId.Get()
 	}
 	if o.Subtype != nil {
 		toSerialize["subtype"] = o.Subtype
 	}
-	if o.Attribute != nil {
-		toSerialize["attribute"] = o.Attribute
+	if o.Attribute.IsSet() {
+		toSerialize["attribute"] = o.Attribute.Get()
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
 	}
 	return json.Marshal(toSerialize)
 }

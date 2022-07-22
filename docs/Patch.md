@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AppName** | **string** | Name of the app | 
 **Name** | **string** | Name of the patch | 
-**Active** | Pointer to **bool** | Is the app active or inactive | [optional] 
-**Applied** | Pointer to **bool** | Is the app already applied or not | [optional] 
+**Active** | Pointer to **NullableBool** | Is the app active or inactive | [optional] 
+**Applied** | Pointer to **NullableBool** | Is the app already applied or not | [optional] 
 
 ## Methods
 
@@ -93,6 +93,16 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
+### SetActiveNil
+
+`func (o *Patch) SetActiveNil(b bool)`
+
+ SetActiveNil sets the value for Active to be an explicit nil
+
+### UnsetActive
+`func (o *Patch) UnsetActive()`
+
+UnsetActive ensures that no value is present for Active, not even an explicit nil
 ### GetApplied
 
 `func (o *Patch) GetApplied() bool`
@@ -118,6 +128,16 @@ SetApplied sets Applied field to given value.
 
 HasApplied returns a boolean if a field has been set.
 
+### SetAppliedNil
+
+`func (o *Patch) SetAppliedNil(b bool)`
+
+ SetAppliedNil sets the value for Applied to be an explicit nil
+
+### UnsetApplied
+`func (o *Patch) UnsetApplied()`
+
+UnsetApplied ensures that no value is present for Applied, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,13 +20,13 @@ type WidgetType struct {
 	Name string `json:"name"`
 	// Is this a customer created type or not
 	Custom bool `json:"custom"`
-	Translation Translation `json:"translation"`
+	Translation NullableTranslation `json:"translation"`
 	// Icon name corresponding to assets used in this widget
-	Icon *string `json:"icon,omitempty"`
+	Icon NullableString `json:"icon,omitempty"`
 	// Show alarms in widget
-	WithAlarm *bool `json:"withAlarm,omitempty"`
+	WithAlarm NullableBool `json:"withAlarm,omitempty"`
 	// Show selection for timespan in widget
-	WithTimespan *bool `json:"withTimespan,omitempty"`
+	WithTimespan NullableBool `json:"withTimespan,omitempty"`
 	// A list of elements for this widget
 	Elements []WidgetTypeElement `json:"elements"`
 }
@@ -35,15 +35,15 @@ type WidgetType struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetType(name string, custom bool, translation Translation, elements []WidgetTypeElement) *WidgetType {
+func NewWidgetType(name string, custom bool, translation NullableTranslation, elements []WidgetTypeElement) *WidgetType {
 	this := WidgetType{}
 	this.Name = name
 	this.Custom = custom
 	this.Translation = translation
 	var withAlarm bool = false
-	this.WithAlarm = &withAlarm
+	this.WithAlarm = *NewNullableBool(&withAlarm)
 	var withTimespan bool = false
-	this.WithTimespan = &withTimespan
+	this.WithTimespan = *NewNullableBool(&withTimespan)
 	this.Elements = elements
 	return &this
 }
@@ -56,9 +56,9 @@ func NewWidgetTypeWithDefaults() *WidgetType {
 	var custom bool = true
 	this.Custom = custom
 	var withAlarm bool = false
-	this.WithAlarm = &withAlarm
+	this.WithAlarm = *NewNullableBool(&withAlarm)
 	var withTimespan bool = false
-	this.WithTimespan = &withTimespan
+	this.WithTimespan = *NewNullableBool(&withTimespan)
 	return &this
 }
 
@@ -111,123 +111,155 @@ func (o *WidgetType) SetCustom(v bool) {
 }
 
 // GetTranslation returns the Translation field value
+// If the value is explicit nil, the zero value for Translation will be returned
 func (o *WidgetType) GetTranslation() Translation {
-	if o == nil {
+	if o == nil || o.Translation.Get() == nil {
 		var ret Translation
 		return ret
 	}
 
-	return o.Translation
+	return *o.Translation.Get()
 }
 
 // GetTranslationOk returns a tuple with the Translation field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetType) GetTranslationOk() (*Translation, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Translation, true
+	return o.Translation.Get(), o.Translation.IsSet()
 }
 
 // SetTranslation sets field value
 func (o *WidgetType) SetTranslation(v Translation) {
-	o.Translation = v
+	o.Translation.Set(&v)
 }
 
-// GetIcon returns the Icon field value if set, zero value otherwise.
+// GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetIcon() string {
-	if o == nil || o.Icon == nil {
+	if o == nil || o.Icon.Get() == nil {
 		var ret string
 		return ret
 	}
-	return *o.Icon
+	return *o.Icon.Get()
 }
 
 // GetIconOk returns a tuple with the Icon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetType) GetIconOk() (*string, bool) {
-	if o == nil || o.Icon == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Icon, true
+	return o.Icon.Get(), o.Icon.IsSet()
 }
 
 // HasIcon returns a boolean if a field has been set.
 func (o *WidgetType) HasIcon() bool {
-	if o != nil && o.Icon != nil {
+	if o != nil && o.Icon.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetIcon gets a reference to the given string and assigns it to the Icon field.
+// SetIcon gets a reference to the given NullableString and assigns it to the Icon field.
 func (o *WidgetType) SetIcon(v string) {
-	o.Icon = &v
+	o.Icon.Set(&v)
+}
+// SetIconNil sets the value for Icon to be an explicit nil
+func (o *WidgetType) SetIconNil() {
+	o.Icon.Set(nil)
 }
 
-// GetWithAlarm returns the WithAlarm field value if set, zero value otherwise.
+// UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+func (o *WidgetType) UnsetIcon() {
+	o.Icon.Unset()
+}
+
+// GetWithAlarm returns the WithAlarm field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetWithAlarm() bool {
-	if o == nil || o.WithAlarm == nil {
+	if o == nil || o.WithAlarm.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.WithAlarm
+	return *o.WithAlarm.Get()
 }
 
 // GetWithAlarmOk returns a tuple with the WithAlarm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetType) GetWithAlarmOk() (*bool, bool) {
-	if o == nil || o.WithAlarm == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.WithAlarm, true
+	return o.WithAlarm.Get(), o.WithAlarm.IsSet()
 }
 
 // HasWithAlarm returns a boolean if a field has been set.
 func (o *WidgetType) HasWithAlarm() bool {
-	if o != nil && o.WithAlarm != nil {
+	if o != nil && o.WithAlarm.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWithAlarm gets a reference to the given bool and assigns it to the WithAlarm field.
+// SetWithAlarm gets a reference to the given NullableBool and assigns it to the WithAlarm field.
 func (o *WidgetType) SetWithAlarm(v bool) {
-	o.WithAlarm = &v
+	o.WithAlarm.Set(&v)
+}
+// SetWithAlarmNil sets the value for WithAlarm to be an explicit nil
+func (o *WidgetType) SetWithAlarmNil() {
+	o.WithAlarm.Set(nil)
 }
 
-// GetWithTimespan returns the WithTimespan field value if set, zero value otherwise.
+// UnsetWithAlarm ensures that no value is present for WithAlarm, not even an explicit nil
+func (o *WidgetType) UnsetWithAlarm() {
+	o.WithAlarm.Unset()
+}
+
+// GetWithTimespan returns the WithTimespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetWithTimespan() bool {
-	if o == nil || o.WithTimespan == nil {
+	if o == nil || o.WithTimespan.Get() == nil {
 		var ret bool
 		return ret
 	}
-	return *o.WithTimespan
+	return *o.WithTimespan.Get()
 }
 
 // GetWithTimespanOk returns a tuple with the WithTimespan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetType) GetWithTimespanOk() (*bool, bool) {
-	if o == nil || o.WithTimespan == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.WithTimespan, true
+	return o.WithTimespan.Get(), o.WithTimespan.IsSet()
 }
 
 // HasWithTimespan returns a boolean if a field has been set.
 func (o *WidgetType) HasWithTimespan() bool {
-	if o != nil && o.WithTimespan != nil {
+	if o != nil && o.WithTimespan.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetWithTimespan gets a reference to the given bool and assigns it to the WithTimespan field.
+// SetWithTimespan gets a reference to the given NullableBool and assigns it to the WithTimespan field.
 func (o *WidgetType) SetWithTimespan(v bool) {
-	o.WithTimespan = &v
+	o.WithTimespan.Set(&v)
+}
+// SetWithTimespanNil sets the value for WithTimespan to be an explicit nil
+func (o *WidgetType) SetWithTimespanNil() {
+	o.WithTimespan.Set(nil)
+}
+
+// UnsetWithTimespan ensures that no value is present for WithTimespan, not even an explicit nil
+func (o *WidgetType) UnsetWithTimespan() {
+	o.WithTimespan.Unset()
 }
 
 // GetElements returns the Elements field value
@@ -263,16 +295,16 @@ func (o WidgetType) MarshalJSON() ([]byte, error) {
 		toSerialize["custom"] = o.Custom
 	}
 	if true {
-		toSerialize["translation"] = o.Translation
+		toSerialize["translation"] = o.Translation.Get()
 	}
-	if o.Icon != nil {
-		toSerialize["icon"] = o.Icon
+	if o.Icon.IsSet() {
+		toSerialize["icon"] = o.Icon.Get()
 	}
-	if o.WithAlarm != nil {
-		toSerialize["withAlarm"] = o.WithAlarm
+	if o.WithAlarm.IsSet() {
+		toSerialize["withAlarm"] = o.WithAlarm.Get()
 	}
-	if o.WithTimespan != nil {
-		toSerialize["withTimespan"] = o.WithTimespan
+	if o.WithTimespan.IsSet() {
+		toSerialize["withTimespan"] = o.WithTimespan.Get()
 	}
 	if true {
 		toSerialize["elements"] = o.Elements
