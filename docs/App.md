@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name of the app | 
-**Active** | Pointer to **bool** | Is the app active or inactive | [optional] 
-**Registered** | Pointer to **bool** | Is the app already registered or not | [optional] 
+**Active** | Pointer to **NullableBool** | Is the app active or inactive | [optional] 
+**Registered** | Pointer to **NullableBool** | Is the app already registered or not | [optional] 
 
 ## Methods
 
@@ -72,6 +72,16 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
+### SetActiveNil
+
+`func (o *App) SetActiveNil(b bool)`
+
+ SetActiveNil sets the value for Active to be an explicit nil
+
+### UnsetActive
+`func (o *App) UnsetActive()`
+
+UnsetActive ensures that no value is present for Active, not even an explicit nil
 ### GetRegistered
 
 `func (o *App) GetRegistered() bool`
@@ -97,6 +107,16 @@ SetRegistered sets Registered field to given value.
 
 HasRegistered returns a boolean if a field has been set.
 
+### SetRegisteredNil
+
+`func (o *App) SetRegisteredNil(b bool)`
+
+ SetRegisteredNil sets the value for Registered to be an explicit nil
+
+### UnsetRegistered
+`func (o *App) UnsetRegistered()`
+
+UnsetRegistered ensures that no value is present for Registered, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

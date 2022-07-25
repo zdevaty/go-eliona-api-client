@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The name for this dashboard | 
 **ProjectId** | **string** | ID of the project to which the dashboard belongs | 
 **UserId** | **string** | ID of the user who owns the dashboard | 
-**Sequence** | Pointer to **NullableInt32** | The sequence of the. If not defined, the sequence is automatically incremented. | [optional] 
+**Sequence** | Pointer to **NullableInt32** | The sequence of the dashboard | [optional] [default to 0]
 
 ## Methods
 
