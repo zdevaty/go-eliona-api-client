@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mode** | Pointer to **string** | Pipeline calculation mode | [optional] 
+**Mode** | Pointer to **NullableString** | Pipeline calculation mode | [optional] 
 **Raster** | Pointer to **[]string** | Pipeline calculation intervals | [optional] 
 
 ## Methods
@@ -51,6 +51,16 @@ SetMode sets Mode field to given value.
 
 HasMode returns a boolean if a field has been set.
 
+### SetModeNil
+
+`func (o *Pipeline) SetModeNil(b bool)`
+
+ SetModeNil sets the value for Mode to be an explicit nil
+
+### UnsetMode
+`func (o *Pipeline) UnsetMode()`
+
+UnsetMode ensures that no value is present for Mode, not even an explicit nil
 ### GetRaster
 
 `func (o *Pipeline) GetRaster() []string`

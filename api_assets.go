@@ -78,10 +78,11 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.withChildren != nil {
-		localVarQueryParams.Add("withChildren", parameterToString(*r.withChildren, ""))
+	if r.withChildren == nil {
+		return localVarReturnValue, nil, reportError("withChildren is required and must be specified")
 	}
+
+	localVarQueryParams.Add("withChildren", parameterToString(*r.withChildren, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

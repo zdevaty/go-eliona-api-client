@@ -32,7 +32,7 @@ import (
 
 func main() {
     assetId := int32(4711) // int32 | The id of the asset
-    withChildren := true // bool | Gets also the the children hierarchy (optional) (default to false)
+    withChildren := true // bool | Gets also the the children hierarchy (default to false)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

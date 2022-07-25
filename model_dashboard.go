@@ -24,7 +24,7 @@ type Dashboard struct {
 	ProjectId string `json:"projectId"`
 	// ID of the user who owns the dashboard
 	UserId string `json:"userId"`
-	// The sequence of the. If not defined, the sequence is automatically incremented.
+	// The sequence of the dashboard
 	Sequence NullableInt32 `json:"sequence,omitempty"`
 }
 
@@ -37,6 +37,8 @@ func NewDashboard(name string, projectId string, userId string) *Dashboard {
 	this.Name = name
 	this.ProjectId = projectId
 	this.UserId = userId
+	var sequence int32 = 0
+	this.Sequence = *NewNullableInt32(&sequence)
 	return &this
 }
 
@@ -45,6 +47,8 @@ func NewDashboard(name string, projectId string, userId string) *Dashboard {
 // but it doesn't guarantee that properties required by API are set
 func NewDashboardWithDefaults() *Dashboard {
 	this := Dashboard{}
+	var sequence int32 = 0
+	this.Sequence = *NewNullableInt32(&sequence)
 	return &this
 }
 
