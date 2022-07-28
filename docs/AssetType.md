@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The unique name for this asset type | 
-**Custom** | **bool** | Is this a customer created type or not | [default to true]
+**Custom** | Pointer to **bool** | Is this a customer created type or not | [optional] [default to true]
 **Vendor** | Pointer to **NullableString** | The vendor providing assets of this type | [optional] 
 **Model** | Pointer to **NullableString** | The specific model of assets of this type | [optional] 
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewAssetType
 
-`func NewAssetType(name string, custom bool, ) *AssetType`
+`func NewAssetType(name string, ) *AssetType`
 
 NewAssetType instantiates a new AssetType object
 This constructor will assign default values to properties that have it defined,
@@ -71,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetCustom sets Custom field to given value.
 
+### HasCustom
+
+`func (o *AssetType) HasCustom() bool`
+
+HasCustom returns a boolean if a field has been set.
 
 ### GetVendor
 

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **ElementSequence** | **int32** | Position of the element in widget type | 
 **Key** | Pointer to **NullableString** | Key for the data | [optional] 
 **AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
-**Subtype** | Pointer to [**HeapSubtype**](HeapSubtype.md) |  | [optional] [default to INPUT]
-**Attribute** | Pointer to **NullableString** | Attribute of the asset type, which heap data should be used | [optional] 
+**Subtype** | Pointer to [**HeapSubtype**](HeapSubtype.md) |  | [optional] [default to SUBTYPE_INPUT]
+**Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] 
 **Description** | Pointer to **NullableString** | Text for frontend | [optional] 
 
 ## Methods

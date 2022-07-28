@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssetId** | **int32** | ID of the corresponding asset | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to INPUT]
+**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
 **Data** | **map[string]interface{}** | Asset payload | 
 

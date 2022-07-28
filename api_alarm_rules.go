@@ -20,60 +20,60 @@ import (
 )
 
 
-// AssetsApiService AssetsApi service
-type AssetsApiService service
+// AlarmRulesApiService AlarmRulesApi service
+type AlarmRulesApiService service
 
-type ApiGetAssetByIdRequest struct {
+type ApiGetAlarmRuleByIdRequest struct {
 	ctx context.Context
-	ApiService *AssetsApiService
-	assetId int32
+	ApiService *AlarmRulesApiService
+	alarmRuleId int32
 	expansions *[]string
 }
 
 // List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetAssetByIdRequest) Expansions(expansions []string) ApiGetAssetByIdRequest {
+func (r ApiGetAlarmRuleByIdRequest) Expansions(expansions []string) ApiGetAlarmRuleByIdRequest {
 	r.expansions = &expansions
 	return r
 }
 
-func (r ApiGetAssetByIdRequest) Execute() (*Asset, *http.Response, error) {
-	return r.ApiService.GetAssetByIdExecute(r)
+func (r ApiGetAlarmRuleByIdRequest) Execute() (*AlarmRule, *http.Response, error) {
+	return r.ApiService.GetAlarmRuleByIdExecute(r)
 }
 
 /*
-GetAssetById Information about an asset
+GetAlarmRuleById Information about an alarm rule
 
-Gets information about an asset.
+Gets information about an alarm rule.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetId The id of the asset
- @return ApiGetAssetByIdRequest
+ @param alarmRuleId The id of the alarm rule
+ @return ApiGetAlarmRuleByIdRequest
 */
-func (a *AssetsApiService) GetAssetById(ctx context.Context, assetId int32) ApiGetAssetByIdRequest {
-	return ApiGetAssetByIdRequest{
+func (a *AlarmRulesApiService) GetAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiGetAlarmRuleByIdRequest {
+	return ApiGetAlarmRuleByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		assetId: assetId,
+		alarmRuleId: alarmRuleId,
 	}
 }
 
 // Execute executes the request
-//  @return Asset
-func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset, *http.Response, error) {
+//  @return AlarmRule
+func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Asset
+		localVarReturnValue  *AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.GetAssetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.GetAlarmRuleById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/assets/{asset-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"asset-id"+"}", url.PathEscape(parameterToString(r.assetId, "")), -1)
+	localVarPath := localBasePath + "/alarm-rules/{alarm-rule-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"alarm-rule-id"+"}", url.PathEscape(parameterToString(r.alarmRuleId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -136,51 +136,61 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAssetsRequest struct {
+type ApiGetAlarmRulesRequest struct {
 	ctx context.Context
-	ApiService *AssetsApiService
+	ApiService *AlarmRulesApiService
+	expansions *[]string
 }
 
-func (r ApiGetAssetsRequest) Execute() ([]Asset, *http.Response, error) {
-	return r.ApiService.GetAssetsExecute(r)
+// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiGetAlarmRulesRequest) Expansions(expansions []string) ApiGetAlarmRulesRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiGetAlarmRulesRequest) Execute() ([]AlarmRule, *http.Response, error) {
+	return r.ApiService.GetAlarmRulesExecute(r)
 }
 
 /*
-GetAssets Information about assets
+GetAlarmRules Information about alarm rules
 
-Gets a list of assets
+Gets information about alarm rules.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAssetsRequest
+ @return ApiGetAlarmRulesRequest
 */
-func (a *AssetsApiService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
-	return ApiGetAssetsRequest{
+func (a *AlarmRulesApiService) GetAlarmRules(ctx context.Context) ApiGetAlarmRulesRequest {
+	return ApiGetAlarmRulesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []Asset
-func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *http.Response, error) {
+//  @return []AlarmRule
+func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) ([]AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Asset
+		localVarReturnValue  []AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.GetAssets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.GetAlarmRules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/assets"
+	localVarPath := localBasePath + "/alarm-rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.expansions != nil {
+		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -235,58 +245,56 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPutAssetRequest struct {
+type ApiPutAlarmRuleRequest struct {
 	ctx context.Context
-	ApiService *AssetsApiService
-	asset *Asset
+	ApiService *AlarmRulesApiService
+	alarmRule *AlarmRule
 }
 
-func (r ApiPutAssetRequest) Asset(asset Asset) ApiPutAssetRequest {
-	r.asset = &asset
+func (r ApiPutAlarmRuleRequest) AlarmRule(alarmRule AlarmRule) ApiPutAlarmRuleRequest {
+	r.alarmRule = &alarmRule
 	return r
 }
 
-func (r ApiPutAssetRequest) Execute() (*Asset, *http.Response, error) {
-	return r.ApiService.PutAssetExecute(r)
+func (r ApiPutAlarmRuleRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutAlarmRuleExecute(r)
 }
 
 /*
-PutAsset Create or update an asset
+PutAlarmRule Create or update an alarm rule
 
-Creates an asset if no asset with the same projectId and globalAssetIdentifier already exists. If there is such an asset, the asset is updated.
+Create a new alarm rule or update an alarm rule if already exists
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAssetRequest
+ @return ApiPutAlarmRuleRequest
 */
-func (a *AssetsApiService) PutAsset(ctx context.Context) ApiPutAssetRequest {
-	return ApiPutAssetRequest{
+func (a *AlarmRulesApiService) PutAlarmRule(ctx context.Context) ApiPutAlarmRuleRequest {
+	return ApiPutAlarmRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Asset
-func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.Response, error) {
+func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.PutAsset")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.PutAlarmRule")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/assets"
+	localVarPath := localBasePath + "/alarm-rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.asset == nil {
-		return localVarReturnValue, nil, reportError("asset is required and must be specified")
+	if r.alarmRule == nil {
+		return nil, reportError("alarmRule is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -299,7 +307,7 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -307,22 +315,22 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.asset
+	localVarPostBody = r.alarmRule
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -330,17 +338,8 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }

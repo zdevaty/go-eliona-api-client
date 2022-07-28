@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **Description** | Pointer to **NullableString** | Textual description for this asset | [optional] 
 **ParentFunctionalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a functional child | [optional] 
 **ParentLocationalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a locational child | [optional] 
-**Tags** | Pointer to **[]string** | List of tags associated with asset | [optional] 
-**Children** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. This list is filled when the &#x60;withChildren&#x60; parameter is set. | [optional] [readonly] 
+**Tags** | Pointer to **[]string** | List of associated tags | [optional] 
+**ChildrenInfo** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. | [optional] [readonly] 
 
 ## Methods
 
@@ -376,41 +376,41 @@ HasTags returns a boolean if a field has been set.
 `func (o *Asset) UnsetTags()`
 
 UnsetTags ensures that no value is present for Tags, not even an explicit nil
-### GetChildren
+### GetChildrenInfo
 
-`func (o *Asset) GetChildren() []Asset`
+`func (o *Asset) GetChildrenInfo() []Asset`
 
-GetChildren returns the Children field if non-nil, zero value otherwise.
+GetChildrenInfo returns the ChildrenInfo field if non-nil, zero value otherwise.
 
-### GetChildrenOk
+### GetChildrenInfoOk
 
-`func (o *Asset) GetChildrenOk() (*[]Asset, bool)`
+`func (o *Asset) GetChildrenInfoOk() (*[]Asset, bool)`
 
-GetChildrenOk returns a tuple with the Children field if it's non-nil, zero value otherwise
+GetChildrenInfoOk returns a tuple with the ChildrenInfo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetChildren
+### SetChildrenInfo
 
-`func (o *Asset) SetChildren(v []Asset)`
+`func (o *Asset) SetChildrenInfo(v []Asset)`
 
-SetChildren sets Children field to given value.
+SetChildrenInfo sets ChildrenInfo field to given value.
 
-### HasChildren
+### HasChildrenInfo
 
-`func (o *Asset) HasChildren() bool`
+`func (o *Asset) HasChildrenInfo() bool`
 
-HasChildren returns a boolean if a field has been set.
+HasChildrenInfo returns a boolean if a field has been set.
 
-### SetChildrenNil
+### SetChildrenInfoNil
 
-`func (o *Asset) SetChildrenNil(b bool)`
+`func (o *Asset) SetChildrenInfoNil(b bool)`
 
- SetChildrenNil sets the value for Children to be an explicit nil
+ SetChildrenInfoNil sets the value for ChildrenInfo to be an explicit nil
 
-### UnsetChildren
-`func (o *Asset) UnsetChildren()`
+### UnsetChildrenInfo
+`func (o *Asset) UnsetChildrenInfo()`
 
-UnsetChildren ensures that no value is present for Children, not even an explicit nil
+UnsetChildrenInfo ensures that no value is present for ChildrenInfo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
