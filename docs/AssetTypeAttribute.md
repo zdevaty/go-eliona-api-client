@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] [readonly] 
 **Name** | **string** | Unique key of asset heap data | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to INPUT]
+**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Type** | Pointer to **NullableString** | Name of the type for this attribute | [optional] 
 **Enable** | Pointer to **NullableBool** | Is heap data active or not | [optional] [default to true]
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 

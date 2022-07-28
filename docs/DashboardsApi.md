@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-    widgetType := *openapiclient.NewWidgetType("weather", false, "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather", "Weather")}) // WidgetType | 
+    widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather", "Weather")}) // WidgetType | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GetAssetTypes
 
-> []AssetType GetAssetTypes(ctx).WithAttributes(withAttributes).Execute()
+> []AssetType GetAssetTypes(ctx).Expansions(expansions).Execute()
 
 List of asset types
 
@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-    withAttributes := true // bool | Gets also the the list of attributes (optional) (default to false)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.GetAssetTypes(context.Background()).WithAttributes(withAttributes).Execute()
+    resp, r, err := apiClient.AssetTypesApi.GetAssetTypes(context.Background()).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.GetAssetTypes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiGetAssetTypesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **withAttributes** | **bool** | Gets also the the list of attributes | [default to false]
+ **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -97,7 +97,7 @@ import (
 )
 
 func main() {
-    assetType := *openapiclient.NewAssetType("weather_location", false) // AssetType | 
+    assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

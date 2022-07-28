@@ -1,15 +1,13 @@
-# HeapSubtype
+# AlarmPriority
 
 ## Enum
 
 
-* `SUBTYPE_INPUT` (value: `"input"`)
+* `ALARM_PRIORITY_LOW` (value: `1`)
 
-* `SUBTYPE_INFO` (value: `"info"`)
+* `ALARM_PRIORITY_MEDIUM` (value: `2`)
 
-* `SUBTYPE_STATUS` (value: `"status"`)
-
-* `SUBTYPE_OUTPUT` (value: `"output"`)
+* `ALARM_PRIORITY_HEIGHT` (value: `3`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | The unique name for this widget type | 
-**Custom** | **bool** | Is this a customer created type or not | [default to true]
+**Custom** | Pointer to **bool** | Is this a customer created type or not | [optional] [default to true]
 **Translation** | [**NullableTranslation**](Translation.md) |  | 
 **Icon** | Pointer to **NullableString** | Icon name corresponding to assets used in this widget | [optional] 
 **WithAlarm** | Pointer to **NullableBool** | Show alarms in widget | [optional] [default to false]
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewWidgetType
 
-`func NewWidgetType(name string, custom bool, translation NullableTranslation, elements []WidgetTypeElement, ) *WidgetType`
+`func NewWidgetType(name string, translation NullableTranslation, elements []WidgetTypeElement, ) *WidgetType`
 
 NewWidgetType instantiates a new WidgetType object
 This constructor will assign default values to properties that have it defined,
@@ -70,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetCustom sets Custom field to given value.
 
+### HasCustom
+
+`func (o *WidgetType) HasCustom() bool`
+
+HasCustom returns a boolean if a field has been set.
 
 ### GetTranslation
 
