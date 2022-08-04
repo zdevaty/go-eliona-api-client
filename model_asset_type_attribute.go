@@ -24,7 +24,7 @@ type AssetTypeAttribute struct {
 	// Name of the type for this attribute
 	Type NullableString `json:"type,omitempty"`
 	// Is heap data active or not
-	Enable NullableBool `json:"enable,omitempty"`
+	Enable *bool `json:"enable,omitempty"`
 	Translation NullableTranslation `json:"translation,omitempty"`
 	// Physical unit of numeric data
 	Unit NullableString `json:"unit,omitempty"`
@@ -54,7 +54,7 @@ func NewAssetTypeAttribute(name string, subtype HeapSubtype) *AssetTypeAttribute
 	this.Name = name
 	this.Subtype = subtype
 	var enable bool = true
-	this.Enable = *NewNullableBool(&enable)
+	this.Enable = &enable
 	var viewer bool = false
 	this.Viewer = *NewNullableBool(&viewer)
 	var ar bool = false
@@ -70,7 +70,7 @@ func NewAssetTypeAttributeWithDefaults() *AssetTypeAttribute {
 	var subtype HeapSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var enable bool = true
-	this.Enable = *NewNullableBool(&enable)
+	this.Enable = &enable
 	var viewer bool = false
 	this.Viewer = *NewNullableBool(&viewer)
 	var ar bool = false
@@ -210,46 +210,36 @@ func (o *AssetTypeAttribute) UnsetType() {
 	o.Type.Unset()
 }
 
-// GetEnable returns the Enable field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *AssetTypeAttribute) GetEnable() bool {
-	if o == nil || o.Enable.Get() == nil {
+	if o == nil || o.Enable == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Enable.Get()
+	return *o.Enable
 }
 
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetEnableOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.Enable == nil {
 		return nil, false
 	}
-	return o.Enable.Get(), o.Enable.IsSet()
+	return o.Enable, true
 }
 
 // HasEnable returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasEnable() bool {
-	if o != nil && o.Enable.IsSet() {
+	if o != nil && o.Enable != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetEnable gets a reference to the given NullableBool and assigns it to the Enable field.
+// SetEnable gets a reference to the given bool and assigns it to the Enable field.
 func (o *AssetTypeAttribute) SetEnable(v bool) {
-	o.Enable.Set(&v)
-}
-// SetEnableNil sets the value for Enable to be an explicit nil
-func (o *AssetTypeAttribute) SetEnableNil() {
-	o.Enable.Set(nil)
-}
-
-// UnsetEnable ensures that no value is present for Enable, not even an explicit nil
-func (o *AssetTypeAttribute) UnsetEnable() {
-	o.Enable.Unset()
+	o.Enable = &v
 }
 
 // GetTranslation returns the Translation field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -686,8 +676,8 @@ func (o AssetTypeAttribute) MarshalJSON() ([]byte, error) {
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
-	if o.Enable.IsSet() {
-		toSerialize["enable"] = o.Enable.Get()
+	if o.Enable != nil {
+		toSerialize["enable"] = o.Enable
 	}
 	if o.Translation.IsSet() {
 		toSerialize["translation"] = o.Translation.Get()

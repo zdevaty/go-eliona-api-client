@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableInt32** | The id of the rule | [optional] 
+**Id** | Pointer to **NullableInt32** | The id of the rule | [optional] [readonly] 
 **AssetId** | **int32** | ID of the corresponding asset | 
 **Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | **string** | Name of the attribute of the asset type | 

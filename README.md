@@ -78,6 +78,13 @@ All URIs are relative to *http://api.eliona.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AgentsApi* | [**GetAgentDeviceMappingsById**](docs/AgentsApi.md#getagentdevicemappingsbyid) | **Get** /agent-devices/{agent-class}/{agent-device-id}/mappings | Information about agent device mappings
+*AgentsApi* | [**GetAgentDevicesById**](docs/AgentsApi.md#getagentdevicesbyid) | **Get** /agents/{agent-class}/{agent-id}/devices | Information about agent devices
+*AgentsApi* | [**GetAgents**](docs/AgentsApi.md#getagents) | **Get** /agents | Information about agents
+*AgentsApi* | [**GetAgentsByClass**](docs/AgentsApi.md#getagentsbyclass) | **Get** /agents/{agent-class} | Information about agents for a specific class
+*AgentsApi* | [**PutAgentByClass**](docs/AgentsApi.md#putagentbyclass) | **Put** /agents/{agent-class} | Create or update an agent for a specific class
+*AgentsApi* | [**PutAgentDeviceById**](docs/AgentsApi.md#putagentdevicebyid) | **Put** /agents/{agent-class}/{agent-id}/devices | Create or update an agent device
+*AgentsApi* | [**PutAgentDeviceMappingById**](docs/AgentsApi.md#putagentdevicemappingbyid) | **Put** /agent-devices/{agent-class}/{agent-device-id}/mappings | Create or update an agent device mapping
 *AlarmRulesApi* | [**GetAlarmRuleById**](docs/AlarmRulesApi.md#getalarmrulebyid) | **Get** /alarm-rules/{alarm-rule-id} | Information about an alarm rule
 *AlarmRulesApi* | [**GetAlarmRules**](docs/AlarmRulesApi.md#getalarmrules) | **Get** /alarm-rules | Information about alarm rules
 *AlarmRulesApi* | [**PutAlarmRule**](docs/AlarmRulesApi.md#putalarmrule) | **Put** /alarm-rules | Create or update an alarm rule
@@ -101,10 +108,19 @@ Class | Method | HTTP request | Description
 *DashboardsApi* | [**PostDashboardWidget**](docs/DashboardsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
 *DashboardsApi* | [**PutWidgetType**](docs/DashboardsApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
 *HeapsApi* | [**PutHeap**](docs/HeapsApi.md#putheap) | **Put** /heaps | Create or update heap data
+*NodesApi* | [**GetNodeByIdent**](docs/NodesApi.md#getnodebyident) | **Get** /nodes/{node-ident} | Information about a node
+*NodesApi* | [**GetNodes**](docs/NodesApi.md#getnodes) | **Get** /nodes | Information about nodes
+*NodesApi* | [**PutNode**](docs/NodesApi.md#putnode) | **Put** /nodes | Create or update a node
 
 
 ## Documentation For Models
 
+ - [Agent](docs/Agent.md)
+ - [AgentClass](docs/AgentClass.md)
+ - [AgentDevice](docs/AgentDevice.md)
+ - [AgentDeviceGeneral](docs/AgentDeviceGeneral.md)
+ - [AgentDeviceMapping](docs/AgentDeviceMapping.md)
+ - [AgentDeviceMappingGeneral](docs/AgentDeviceMappingGeneral.md)
  - [Alarm](docs/Alarm.md)
  - [AlarmPriority](docs/AlarmPriority.md)
  - [AlarmRule](docs/AlarmRule.md)
@@ -115,6 +131,15 @@ Class | Method | HTTP request | Description
  - [Dashboard](docs/Dashboard.md)
  - [Heap](docs/Heap.md)
  - [HeapSubtype](docs/HeapSubtype.md)
+ - [IosysAgentDevice](docs/IosysAgentDevice.md)
+ - [IosysAgentDeviceMapping](docs/IosysAgentDeviceMapping.md)
+ - [IosysAgentDeviceMappingSpecific](docs/IosysAgentDeviceMappingSpecific.md)
+ - [IosysAgentDeviceSpecific](docs/IosysAgentDeviceSpecific.md)
+ - [MbusAgentDevice](docs/MbusAgentDevice.md)
+ - [MbusAgentDeviceMapping](docs/MbusAgentDeviceMapping.md)
+ - [MbusAgentDeviceMappingSpecific](docs/MbusAgentDeviceMappingSpecific.md)
+ - [MbusAgentDeviceSpecific](docs/MbusAgentDeviceSpecific.md)
+ - [Node](docs/Node.md)
  - [Patch](docs/Patch.md)
  - [Pipeline](docs/Pipeline.md)
  - [Translation](docs/Translation.md)

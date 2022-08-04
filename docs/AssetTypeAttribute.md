@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] [readonly] 
+**AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] 
 **Name** | **string** | Unique key of asset heap data | 
 **Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Type** | Pointer to **NullableString** | Name of the type for this attribute | [optional] 
-**Enable** | Pointer to **NullableBool** | Is heap data active or not | [optional] [default to true]
+**Enable** | Pointer to **bool** | Is heap data active or not | [optional] [default to true]
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Unit** | Pointer to **NullableString** | Physical unit of numeric data | [optional] 
 **Precision** | Pointer to **NullableInt64** | Number of decimal places | [optional] 
@@ -174,16 +174,6 @@ SetEnable sets Enable field to given value.
 
 HasEnable returns a boolean if a field has been set.
 
-### SetEnableNil
-
-`func (o *AssetTypeAttribute) SetEnableNil(b bool)`
-
- SetEnableNil sets the value for Enable to be an explicit nil
-
-### UnsetEnable
-`func (o *AssetTypeAttribute) UnsetEnable()`
-
-UnsetEnable ensures that no value is present for Enable, not even an explicit nil
 ### GetTranslation
 
 `func (o *AssetTypeAttribute) GetTranslation() Translation`
