@@ -25,7 +25,7 @@ type MbusAgentDeviceMapping struct {
 	Enable *bool `json:"enable,omitempty"`
 	// ID of the corresponding asset
 	AssetId NullableInt32 `json:"assetId,omitempty"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute to map
 	Attribute string `json:"attribute"`
 	Field NullableInt32 `json:"field,omitempty"`
@@ -37,7 +37,7 @@ type MbusAgentDeviceMapping struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMbusAgentDeviceMapping(subtype HeapSubtype, attribute string) *MbusAgentDeviceMapping {
+func NewMbusAgentDeviceMapping(subtype DataSubtype, attribute string) *MbusAgentDeviceMapping {
 	this := MbusAgentDeviceMapping{}
 	var enable bool = true
 	this.Enable = &enable
@@ -53,7 +53,7 @@ func NewMbusAgentDeviceMappingWithDefaults() *MbusAgentDeviceMapping {
 	this := MbusAgentDeviceMapping{}
 	var enable bool = true
 	this.Enable = &enable
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	return &this
 }
@@ -259,9 +259,9 @@ func (o *MbusAgentDeviceMapping) UnsetAssetId() {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *MbusAgentDeviceMapping) GetSubtype() HeapSubtype {
+func (o *MbusAgentDeviceMapping) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -270,7 +270,7 @@ func (o *MbusAgentDeviceMapping) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *MbusAgentDeviceMapping) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *MbusAgentDeviceMapping) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -278,7 +278,7 @@ func (o *MbusAgentDeviceMapping) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *MbusAgentDeviceMapping) SetSubtype(v HeapSubtype) {
+func (o *MbusAgentDeviceMapping) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

@@ -107,7 +107,7 @@ Class | Method | HTTP request | Description
 *DashboardsApi* | [**PostDashboard**](docs/DashboardsApi.md#postdashboard) | **Post** /dashboards | Creates a new dashboard
 *DashboardsApi* | [**PostDashboardWidget**](docs/DashboardsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
 *DashboardsApi* | [**PutWidgetType**](docs/DashboardsApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
-*HeapsApi* | [**PutHeap**](docs/HeapsApi.md#putheap) | **Put** /heaps | Create or update heap data
+*DataApi* | [**PutData**](docs/DataApi.md#putdata) | **Put** /data | Create or update asset data
 *NodesApi* | [**GetNodeByIdent**](docs/NodesApi.md#getnodebyident) | **Get** /nodes/{node-ident} | Information about a node
 *NodesApi* | [**GetNodes**](docs/NodesApi.md#getnodes) | **Get** /nodes | Information about nodes
 *NodesApi* | [**PutNode**](docs/NodesApi.md#putnode) | **Put** /nodes | Create or update a node
@@ -129,8 +129,8 @@ Class | Method | HTTP request | Description
  - [AssetType](docs/AssetType.md)
  - [AssetTypeAttribute](docs/AssetTypeAttribute.md)
  - [Dashboard](docs/Dashboard.md)
- - [Heap](docs/Heap.md)
- - [HeapSubtype](docs/HeapSubtype.md)
+ - [Data](docs/Data.md)
+ - [DataSubtype](docs/DataSubtype.md)
  - [IosysAgentDevice](docs/IosysAgentDevice.md)
  - [IosysAgentDeviceMapping](docs/IosysAgentDeviceMapping.md)
  - [IosysAgentDeviceMappingSpecific](docs/IosysAgentDeviceMappingSpecific.md)

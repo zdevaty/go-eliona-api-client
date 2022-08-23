@@ -63,7 +63,7 @@ type APIClient struct {
 
 	DashboardsApi *DashboardsApiService
 
-	HeapsApi *HeapsApiService
+	DataApi *DataApiService
 
 	NodesApi *NodesApiService
 }
@@ -91,7 +91,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AssetTypesApi = (*AssetTypesApiService)(&c.common)
 	c.AssetsApi = (*AssetsApiService)(&c.common)
 	c.DashboardsApi = (*DashboardsApiService)(&c.common)
-	c.HeapsApi = (*HeapsApiService)(&c.common)
+	c.DataApi = (*DataApiService)(&c.common)
 	c.NodesApi = (*NodesApiService)(&c.common)
 
 	return c

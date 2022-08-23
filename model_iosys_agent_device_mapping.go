@@ -25,7 +25,7 @@ type IosysAgentDeviceMapping struct {
 	Enable *bool `json:"enable,omitempty"`
 	// ID of the corresponding asset
 	AssetId NullableInt32 `json:"assetId,omitempty"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute to map
 	Attribute string `json:"attribute"`
 	IosVar NullableString `json:"iosVar,omitempty"`
@@ -45,7 +45,7 @@ type IosysAgentDeviceMapping struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIosysAgentDeviceMapping(subtype HeapSubtype, attribute string) *IosysAgentDeviceMapping {
+func NewIosysAgentDeviceMapping(subtype DataSubtype, attribute string) *IosysAgentDeviceMapping {
 	this := IosysAgentDeviceMapping{}
 	var enable bool = true
 	this.Enable = &enable
@@ -63,7 +63,7 @@ func NewIosysAgentDeviceMappingWithDefaults() *IosysAgentDeviceMapping {
 	this := IosysAgentDeviceMapping{}
 	var enable bool = true
 	this.Enable = &enable
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var down bool = false
 	this.Down = *NewNullableBool(&down)
@@ -271,9 +271,9 @@ func (o *IosysAgentDeviceMapping) UnsetAssetId() {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *IosysAgentDeviceMapping) GetSubtype() HeapSubtype {
+func (o *IosysAgentDeviceMapping) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -282,7 +282,7 @@ func (o *IosysAgentDeviceMapping) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *IosysAgentDeviceMapping) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *IosysAgentDeviceMapping) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -290,7 +290,7 @@ func (o *IosysAgentDeviceMapping) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *IosysAgentDeviceMapping) SetSubtype(v HeapSubtype) {
+func (o *IosysAgentDeviceMapping) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DeviceId** | Pointer to **NullableInt32** | The id of the device the mapping belongs to | [optional] [readonly] 
 **Enable** | Pointer to **bool** | Is the mapping enabled or not | [optional] [default to true]
 **AssetId** | Pointer to **NullableInt32** | ID of the corresponding asset | [optional] 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | **string** | Name of the attribute to map | 
 **Field** | Pointer to **NullableInt32** |  | [optional] 
 **Scale** | Pointer to **NullableFloat64** |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewMbusAgentDeviceMapping
 
-`func NewMbusAgentDeviceMapping(subtype HeapSubtype, attribute string, ) *MbusAgentDeviceMapping`
+`func NewMbusAgentDeviceMapping(subtype DataSubtype, attribute string, ) *MbusAgentDeviceMapping`
 
 NewMbusAgentDeviceMapping instantiates a new MbusAgentDeviceMapping object
 This constructor will assign default values to properties that have it defined,
@@ -201,20 +201,20 @@ HasAssetId returns a boolean if a field has been set.
 UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetSubtype
 
-`func (o *MbusAgentDeviceMapping) GetSubtype() HeapSubtype`
+`func (o *MbusAgentDeviceMapping) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *MbusAgentDeviceMapping) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *MbusAgentDeviceMapping) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *MbusAgentDeviceMapping) SetSubtype(v HeapSubtype)`
+`func (o *MbusAgentDeviceMapping) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 

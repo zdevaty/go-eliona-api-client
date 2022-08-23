@@ -22,7 +22,7 @@ type WidgetData struct {
 	Key NullableString `json:"key,omitempty"`
 	// The master asset id of this widget
 	AssetId NullableInt32 `json:"assetId,omitempty"`
-	Subtype *HeapSubtype `json:"subtype,omitempty"`
+	Subtype *DataSubtype `json:"subtype,omitempty"`
 	// Name of the attribute of the asset type
 	Attribute NullableString `json:"attribute,omitempty"`
 	// Text for frontend
@@ -36,7 +36,7 @@ type WidgetData struct {
 func NewWidgetData(elementSequence int32) *WidgetData {
 	this := WidgetData{}
 	this.ElementSequence = elementSequence
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = &subtype
 	return &this
 }
@@ -46,7 +46,7 @@ func NewWidgetData(elementSequence int32) *WidgetData {
 // but it doesn't guarantee that properties required by API are set
 func NewWidgetDataWithDefaults() *WidgetData {
 	this := WidgetData{}
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = &subtype
 	return &this
 }
@@ -160,9 +160,9 @@ func (o *WidgetData) UnsetAssetId() {
 }
 
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
-func (o *WidgetData) GetSubtype() HeapSubtype {
+func (o *WidgetData) GetSubtype() DataSubtype {
 	if o == nil || o.Subtype == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 	return *o.Subtype
@@ -170,7 +170,7 @@ func (o *WidgetData) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetData) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *WidgetData) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil || o.Subtype == nil {
 		return nil, false
 	}
@@ -186,8 +186,8 @@ func (o *WidgetData) HasSubtype() bool {
 	return false
 }
 
-// SetSubtype gets a reference to the given HeapSubtype and assigns it to the Subtype field.
-func (o *WidgetData) SetSubtype(v HeapSubtype) {
+// SetSubtype gets a reference to the given DataSubtype and assigns it to the Subtype field.
+func (o *WidgetData) SetSubtype(v DataSubtype) {
 	o.Subtype = &v
 }
 

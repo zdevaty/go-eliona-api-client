@@ -457,7 +457,7 @@ import (
 func main() {
     agentClass := "iosys" // string | The class of an agent
     agentDeviceId := int32(4711) // int32 | The id of the device
-    agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.HeapSubtype("input"), "temperature") // AgentDeviceMapping | 
+    agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

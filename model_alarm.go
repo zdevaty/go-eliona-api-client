@@ -21,7 +21,7 @@ type Alarm struct {
 	RuleId NullableInt32 `json:"ruleId,omitempty"`
 	// ID of the corresponding asset
 	AssetId int32 `json:"assetId"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute of the asset type
 	Attribute NullableString `json:"attribute,omitempty"`
 	Priority AlarmPriority `json:"priority"`
@@ -51,7 +51,7 @@ type Alarm struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlarm(assetId int32, subtype HeapSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32) *Alarm {
+func NewAlarm(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32) *Alarm {
 	this := Alarm{}
 	this.AssetId = assetId
 	this.Subtype = subtype
@@ -68,7 +68,7 @@ func NewAlarm(assetId int32, subtype HeapSubtype, priority AlarmPriority, timest
 // but it doesn't guarantee that properties required by API are set
 func NewAlarmWithDefaults() *Alarm {
 	this := Alarm{}
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var requiresAcknowledge bool = false
 	this.RequiresAcknowledge = &requiresAcknowledge
@@ -142,9 +142,9 @@ func (o *Alarm) SetAssetId(v int32) {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *Alarm) GetSubtype() HeapSubtype {
+func (o *Alarm) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -153,7 +153,7 @@ func (o *Alarm) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *Alarm) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *Alarm) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *Alarm) SetSubtype(v HeapSubtype) {
+func (o *Alarm) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

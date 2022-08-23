@@ -162,7 +162,7 @@ import (
 
 func main() {
     assetTypeName := "weather_location" // string | The name of the asset type
-    assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.HeapSubtype("input")) // AssetTypeAttribute | 
+    assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.DataSubtype("input")) // AssetTypeAttribute | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

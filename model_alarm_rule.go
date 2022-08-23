@@ -20,7 +20,7 @@ type AlarmRule struct {
 	Id NullableInt32 `json:"id,omitempty"`
 	// ID of the corresponding asset
 	AssetId int32 `json:"assetId"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute of the asset type
 	Attribute string `json:"attribute"`
 	// Rule enabled or not
@@ -53,7 +53,7 @@ type AlarmRule struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlarmRule(assetId int32, subtype HeapSubtype, attribute string, priority AlarmPriority) *AlarmRule {
+func NewAlarmRule(assetId int32, subtype DataSubtype, attribute string, priority AlarmPriority) *AlarmRule {
 	this := AlarmRule{}
 	this.AssetId = assetId
 	this.Subtype = subtype
@@ -73,7 +73,7 @@ func NewAlarmRule(assetId int32, subtype HeapSubtype, attribute string, priority
 // but it doesn't guarantee that properties required by API are set
 func NewAlarmRuleWithDefaults() *AlarmRule {
 	this := AlarmRule{}
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var enable bool = true
 	this.Enable = &enable
@@ -151,9 +151,9 @@ func (o *AlarmRule) SetAssetId(v int32) {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *AlarmRule) GetSubtype() HeapSubtype {
+func (o *AlarmRule) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -162,7 +162,7 @@ func (o *AlarmRule) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *AlarmRule) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *AlarmRule) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *AlarmRule) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *AlarmRule) SetSubtype(v HeapSubtype) {
+func (o *AlarmRule) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

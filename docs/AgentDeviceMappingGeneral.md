@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **DeviceId** | Pointer to **NullableInt32** | The id of the device the mapping belongs to | [optional] [readonly] 
 **Enable** | Pointer to **bool** | Is the mapping enabled or not | [optional] [default to true]
 **AssetId** | Pointer to **NullableInt32** | ID of the corresponding asset | [optional] 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | **string** | Name of the attribute to map | 
 
 ## Methods
 
 ### NewAgentDeviceMappingGeneral
 
-`func NewAgentDeviceMappingGeneral(subtype HeapSubtype, attribute string, ) *AgentDeviceMappingGeneral`
+`func NewAgentDeviceMappingGeneral(subtype DataSubtype, attribute string, ) *AgentDeviceMappingGeneral`
 
 NewAgentDeviceMappingGeneral instantiates a new AgentDeviceMappingGeneral object
 This constructor will assign default values to properties that have it defined,
@@ -198,20 +198,20 @@ HasAssetId returns a boolean if a field has been set.
 UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetSubtype
 
-`func (o *AgentDeviceMappingGeneral) GetSubtype() HeapSubtype`
+`func (o *AgentDeviceMappingGeneral) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *AgentDeviceMappingGeneral) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *AgentDeviceMappingGeneral) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *AgentDeviceMappingGeneral) SetSubtype(v HeapSubtype)`
+`func (o *AgentDeviceMappingGeneral) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 

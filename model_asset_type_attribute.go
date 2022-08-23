@@ -18,12 +18,12 @@ import (
 type AssetTypeAttribute struct {
 	// The unique name for the asset type
 	AssetTypeName NullableString `json:"assetTypeName,omitempty"`
-	// Unique key of asset heap data
+	// Unique key of asset data
 	Name string `json:"name"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the type for this attribute
 	Type NullableString `json:"type,omitempty"`
-	// Is heap data active or not
+	// Is data active or not
 	Enable *bool `json:"enable,omitempty"`
 	Translation NullableTranslation `json:"translation,omitempty"`
 	// Physical unit of numeric data
@@ -49,7 +49,7 @@ type AssetTypeAttribute struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAssetTypeAttribute(name string, subtype HeapSubtype) *AssetTypeAttribute {
+func NewAssetTypeAttribute(name string, subtype DataSubtype) *AssetTypeAttribute {
 	this := AssetTypeAttribute{}
 	this.Name = name
 	this.Subtype = subtype
@@ -67,7 +67,7 @@ func NewAssetTypeAttribute(name string, subtype HeapSubtype) *AssetTypeAttribute
 // but it doesn't guarantee that properties required by API are set
 func NewAssetTypeAttributeWithDefaults() *AssetTypeAttribute {
 	this := AssetTypeAttribute{}
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var enable bool = true
 	this.Enable = &enable
@@ -145,9 +145,9 @@ func (o *AssetTypeAttribute) SetName(v string) {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *AssetTypeAttribute) GetSubtype() HeapSubtype {
+func (o *AssetTypeAttribute) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -156,7 +156,7 @@ func (o *AssetTypeAttribute) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *AssetTypeAttribute) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *AssetTypeAttribute) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *AssetTypeAttribute) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *AssetTypeAttribute) SetSubtype(v HeapSubtype) {
+func (o *AssetTypeAttribute) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

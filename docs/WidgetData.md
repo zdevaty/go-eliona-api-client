@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ElementSequence** | **int32** | Position of the element in widget type | 
 **Key** | Pointer to **NullableString** | Key for the data | [optional] 
 **AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
-**Subtype** | Pointer to [**HeapSubtype**](HeapSubtype.md) |  | [optional] [default to SUBTYPE_INPUT]
+**Subtype** | Pointer to [**DataSubtype**](DataSubtype.md) |  | [optional] [default to SUBTYPE_INPUT]
 **Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] 
 **Description** | Pointer to **NullableString** | Text for frontend | [optional] 
 
@@ -122,20 +122,20 @@ HasAssetId returns a boolean if a field has been set.
 UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetSubtype
 
-`func (o *WidgetData) GetSubtype() HeapSubtype`
+`func (o *WidgetData) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *WidgetData) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *WidgetData) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *WidgetData) SetSubtype(v HeapSubtype)`
+`func (o *WidgetData) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 

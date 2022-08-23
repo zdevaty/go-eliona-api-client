@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] 
-**Name** | **string** | Unique key of asset heap data | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Name** | **string** | Unique key of asset data | 
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Type** | Pointer to **NullableString** | Name of the type for this attribute | [optional] 
-**Enable** | Pointer to **bool** | Is heap data active or not | [optional] [default to true]
+**Enable** | Pointer to **bool** | Is data active or not | [optional] [default to true]
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Unit** | Pointer to **NullableString** | Physical unit of numeric data | [optional] 
 **Precision** | Pointer to **NullableInt64** | Number of decimal places | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewAssetTypeAttribute
 
-`func NewAssetTypeAttribute(name string, subtype HeapSubtype, ) *AssetTypeAttribute`
+`func NewAssetTypeAttribute(name string, subtype DataSubtype, ) *AssetTypeAttribute`
 
 NewAssetTypeAttribute instantiates a new AssetTypeAttribute object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +96,20 @@ SetName sets Name field to given value.
 
 ### GetSubtype
 
-`func (o *AssetTypeAttribute) GetSubtype() HeapSubtype`
+`func (o *AssetTypeAttribute) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *AssetTypeAttribute) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *AssetTypeAttribute) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *AssetTypeAttribute) SetSubtype(v HeapSubtype)`
+`func (o *AssetTypeAttribute) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 

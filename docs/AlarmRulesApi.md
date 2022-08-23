@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.HeapSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

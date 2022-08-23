@@ -25,7 +25,7 @@ type AgentDeviceMappingGeneral struct {
 	Enable *bool `json:"enable,omitempty"`
 	// ID of the corresponding asset
 	AssetId NullableInt32 `json:"assetId,omitempty"`
-	Subtype HeapSubtype `json:"subtype"`
+	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute to map
 	Attribute string `json:"attribute"`
 }
@@ -34,7 +34,7 @@ type AgentDeviceMappingGeneral struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAgentDeviceMappingGeneral(subtype HeapSubtype, attribute string) *AgentDeviceMappingGeneral {
+func NewAgentDeviceMappingGeneral(subtype DataSubtype, attribute string) *AgentDeviceMappingGeneral {
 	this := AgentDeviceMappingGeneral{}
 	var enable bool = true
 	this.Enable = &enable
@@ -50,7 +50,7 @@ func NewAgentDeviceMappingGeneralWithDefaults() *AgentDeviceMappingGeneral {
 	this := AgentDeviceMappingGeneral{}
 	var enable bool = true
 	this.Enable = &enable
-	var subtype HeapSubtype = SUBTYPE_INPUT
+	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	return &this
 }
@@ -256,9 +256,9 @@ func (o *AgentDeviceMappingGeneral) UnsetAssetId() {
 }
 
 // GetSubtype returns the Subtype field value
-func (o *AgentDeviceMappingGeneral) GetSubtype() HeapSubtype {
+func (o *AgentDeviceMappingGeneral) GetSubtype() DataSubtype {
 	if o == nil {
-		var ret HeapSubtype
+		var ret DataSubtype
 		return ret
 	}
 
@@ -267,7 +267,7 @@ func (o *AgentDeviceMappingGeneral) GetSubtype() HeapSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *AgentDeviceMappingGeneral) GetSubtypeOk() (*HeapSubtype, bool) {
+func (o *AgentDeviceMappingGeneral) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -275,7 +275,7 @@ func (o *AgentDeviceMappingGeneral) GetSubtypeOk() (*HeapSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *AgentDeviceMappingGeneral) SetSubtype(v HeapSubtype) {
+func (o *AgentDeviceMappingGeneral) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 

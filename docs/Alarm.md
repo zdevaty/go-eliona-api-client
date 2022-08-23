@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RuleId** | Pointer to **NullableInt32** | The id of the corresponding rule | [optional] 
 **AssetId** | **int32** | ID of the corresponding asset | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] 
 **Priority** | [**AlarmPriority**](AlarmPriority.md) |  | 
 **RequiresAcknowledge** | Pointer to **bool** | Requires the alarm an acknowledgment | [optional] [default to false]
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewAlarm
 
-`func NewAlarm(assetId int32, subtype HeapSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32, ) *Alarm`
+`func NewAlarm(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32, ) *Alarm`
 
 NewAlarm instantiates a new Alarm object
 This constructor will assign default values to properties that have it defined,
@@ -97,20 +97,20 @@ SetAssetId sets AssetId field to given value.
 
 ### GetSubtype
 
-`func (o *Alarm) GetSubtype() HeapSubtype`
+`func (o *Alarm) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *Alarm) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *Alarm) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *Alarm) SetSubtype(v HeapSubtype)`
+`func (o *Alarm) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 
