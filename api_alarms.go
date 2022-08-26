@@ -30,7 +30,7 @@ type ApiGetAlarmByIdRequest struct {
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmByIdRequest) Expansions(expansions []string) ApiGetAlarmByIdRequest {
 	r.expansions = &expansions
 	return r
@@ -157,7 +157,7 @@ type ApiGetAlarmHistoryByIdRequest struct {
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmHistoryByIdRequest) Expansions(expansions []string) ApiGetAlarmHistoryByIdRequest {
 	r.expansions = &expansions
 	return r
@@ -284,13 +284,13 @@ type ApiGetAlarmsRequest struct {
 	expansions *[]string
 }
 
-// Filters for a specific project
+// Filter for a specific project
 func (r ApiGetAlarmsRequest) ProjectId(projectId string) ApiGetAlarmsRequest {
 	r.projectId = &projectId
 	return r
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmsRequest) Expansions(expansions []string) ApiGetAlarmsRequest {
 	r.expansions = &expansions
 	return r
@@ -417,13 +417,13 @@ type ApiGetAlarmsHistoryRequest struct {
 	expansions *[]string
 }
 
-// Filters for a specific project
+// Filter for a specific project
 func (r ApiGetAlarmsHistoryRequest) ProjectId(projectId string) ApiGetAlarmsHistoryRequest {
 	r.projectId = &projectId
 	return r
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmsHistoryRequest) Expansions(expansions []string) ApiGetAlarmsHistoryRequest {
 	r.expansions = &expansions
 	return r
@@ -550,13 +550,13 @@ type ApiGetHighestAlarmsRequest struct {
 	expansions *[]string
 }
 
-// Filters for a specific project
+// Filter for a specific project
 func (r ApiGetHighestAlarmsRequest) ProjectId(projectId string) ApiGetHighestAlarmsRequest {
 	r.projectId = &projectId
 	return r
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetHighestAlarmsRequest) Expansions(expansions []string) ApiGetHighestAlarmsRequest {
 	r.expansions = &expansions
 	return r

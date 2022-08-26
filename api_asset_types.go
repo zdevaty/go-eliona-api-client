@@ -23,13 +23,119 @@ import (
 // AssetTypesApiService AssetTypesApi service
 type AssetTypesApiService service
 
+type ApiDeleteAssetTypeRequest struct {
+	ctx context.Context
+	ApiService *AssetTypesApiService
+	assetTypeName string
+}
+
+func (r ApiDeleteAssetTypeRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAssetTypeExecute(r)
+}
+
+/*
+DeleteAssetType Delete an asset type
+
+Deletes an asset type and the attributes for this asset type
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param assetTypeName The name of the asset type
+ @return ApiDeleteAssetTypeRequest
+*/
+func (a *AssetTypesApiService) DeleteAssetType(ctx context.Context, assetTypeName string) ApiDeleteAssetTypeRequest {
+	return ApiDeleteAssetTypeRequest{
+		ApiService: a,
+		ctx: ctx,
+		assetTypeName: assetTypeName,
+	}
+}
+
+// Execute executes the request
+func (a *AssetTypesApiService) DeleteAssetTypeExecute(r ApiDeleteAssetTypeRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.DeleteAssetType")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/asset-types/{asset-type-name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiGetAssetTypesRequest struct {
 	ctx context.Context
 	ApiService *AssetTypesApiService
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAssetTypesRequest) Expansions(expansions []string) ApiGetAssetTypesRequest {
 	r.expansions = &expansions
 	return r
@@ -150,10 +256,17 @@ type ApiPutAssetTypeRequest struct {
 	ctx context.Context
 	ApiService *AssetTypesApiService
 	assetType *AssetType
+	expansions *[]string
 }
 
 func (r ApiPutAssetTypeRequest) AssetType(assetType AssetType) ApiPutAssetTypeRequest {
 	r.assetType = &assetType
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPutAssetTypeRequest) Expansions(expansions []string) ApiPutAssetTypeRequest {
+	r.expansions = &expansions
 	return r
 }
 
@@ -198,6 +311,9 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*h
 		return nil, reportError("assetType is required and must be specified")
 	}
 
+	if r.expansions != nil {
+		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

@@ -4,10 +4,79 @@ All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteAssetType**](AssetTypesApi.md#DeleteAssetType) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
 [**GetAssetTypes**](AssetTypesApi.md#GetAssetTypes) | **Get** /asset-types | List of asset types
 [**PutAssetType**](AssetTypesApi.md#PutAssetType) | **Put** /asset-types | Create or update an asset type
 [**PutAssetTypeAttribute**](AssetTypesApi.md#PutAssetTypeAttribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
 
+
+
+## DeleteAssetType
+
+> DeleteAssetType(ctx, assetTypeName).Execute()
+
+Delete an asset type
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    assetTypeName := "weather_location" // string | The name of the asset type
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetTypesApi.DeleteAssetType(context.Background(), assetTypeName).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.DeleteAssetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetTypeName** | **string** | The name of the asset type | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAssetTypeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetAssetTypes
@@ -31,7 +100,7 @@ import (
 )
 
 func main() {
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +125,7 @@ Other parameters are passed through a pointer to a apiGetAssetTypesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -78,7 +147,7 @@ Name | Type | Description  | Notes
 
 ## PutAssetType
 
-> PutAssetType(ctx).AssetType(assetType).Execute()
+> PutAssetType(ctx).AssetType(assetType).Expansions(expansions).Execute()
 
 Create or update an asset type
 
@@ -98,10 +167,11 @@ import (
 
 func main() {
     assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PutAssetType(context.Background()).AssetType(assetType).Execute()
+    resp, r, err := apiClient.AssetTypesApi.PutAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,6 +191,7 @@ Other parameters are passed through a pointer to a apiPutAssetTypeRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **assetType** | [**AssetType**](AssetType.md) |  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 

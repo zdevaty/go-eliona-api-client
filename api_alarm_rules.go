@@ -30,7 +30,7 @@ type ApiGetAlarmRuleByIdRequest struct {
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmRuleByIdRequest) Expansions(expansions []string) ApiGetAlarmRuleByIdRequest {
 	r.expansions = &expansions
 	return r
@@ -156,7 +156,7 @@ type ApiGetAlarmRulesRequest struct {
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAlarmRulesRequest) Expansions(expansions []string) ApiGetAlarmRulesRequest {
 	r.expansions = &expansions
 	return r

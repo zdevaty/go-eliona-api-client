@@ -35,7 +35,7 @@ import (
 
 func main() {
     alarmRuleId := int32(4711) // int32 | The id of the alarm rule
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -65,7 +65,7 @@ Other parameters are passed through a pointer to a apiGetAlarmByIdRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -107,7 +107,7 @@ import (
 
 func main() {
     alarmRuleId := int32(4711) // int32 | The id of the alarm rule
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -137,7 +137,7 @@ Other parameters are passed through a pointer to a apiGetAlarmHistoryByIdRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -178,8 +178,8 @@ import (
 )
 
 func main() {
-    projectId := "projectId_example" // string | Filters for a specific project (optional)
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    projectId := "projectId_example" // string | Filter for a specific project (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,8 +204,8 @@ Other parameters are passed through a pointer to a apiGetAlarmsRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Filters for a specific project | 
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **projectId** | **string** | Filter for a specific project | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -246,8 +246,8 @@ import (
 )
 
 func main() {
-    projectId := "projectId_example" // string | Filters for a specific project (optional)
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    projectId := "projectId_example" // string | Filter for a specific project (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -272,8 +272,8 @@ Other parameters are passed through a pointer to a apiGetAlarmsHistoryRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Filters for a specific project | 
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **projectId** | **string** | Filter for a specific project | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -314,8 +314,8 @@ import (
 )
 
 func main() {
-    projectId := "projectId_example" // string | Filters for a specific project (optional)
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+    projectId := "projectId_example" // string | Filter for a specific project (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -340,8 +340,8 @@ Other parameters are passed through a pointer to a apiGetHighestAlarmsRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **projectId** | **string** | Filters for a specific project | 
- **expansions** | **[]string** | List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+ **projectId** | **string** | Filter for a specific project | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 

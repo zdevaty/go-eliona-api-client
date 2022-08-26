@@ -30,7 +30,7 @@ type ApiGetAssetByIdRequest struct {
 	expansions *[]string
 }
 
-// List of referenced data to load. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
 func (r ApiGetAssetByIdRequest) Expansions(expansions []string) ApiGetAssetByIdRequest {
 	r.expansions = &expansions
 	return r

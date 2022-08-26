@@ -22,6 +22,282 @@ import (
 // DataApiService DataApi service
 type DataApiService service
 
+type ApiGetDataRequest struct {
+	ctx context.Context
+	ApiService *DataApiService
+	assetId *int32
+	dataSubtype *string
+	assetTypeName *string
+}
+
+// Filter for a specific asset id
+func (r ApiGetDataRequest) AssetId(assetId int32) ApiGetDataRequest {
+	r.assetId = &assetId
+	return r
+}
+
+// Filter for a specific type of asset data
+func (r ApiGetDataRequest) DataSubtype(dataSubtype string) ApiGetDataRequest {
+	r.dataSubtype = &dataSubtype
+	return r
+}
+
+// Filter the name of the asset type
+func (r ApiGetDataRequest) AssetTypeName(assetTypeName string) ApiGetDataRequest {
+	r.assetTypeName = &assetTypeName
+	return r
+}
+
+func (r ApiGetDataRequest) Execute() ([]Data, *http.Response, error) {
+	return r.ApiService.GetDataExecute(r)
+}
+
+/*
+GetData Gets all data
+
+Gets information about data for assets.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetDataRequest
+*/
+func (a *DataApiService) GetData(ctx context.Context) ApiGetDataRequest {
+	return ApiGetDataRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []Data
+func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []Data
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetData")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/data"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.assetId != nil {
+		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
+	}
+	if r.dataSubtype != nil {
+		localVarQueryParams.Add("dataSubtype", parameterToString(*r.dataSubtype, ""))
+	}
+	if r.assetTypeName != nil {
+		localVarQueryParams.Add("assetTypeName", parameterToString(*r.assetTypeName, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiListenDataRequest struct {
+	ctx context.Context
+	ApiService *DataApiService
+	assetId *int32
+	dataSubtype *string
+}
+
+// Filter for a specific asset id
+func (r ApiListenDataRequest) AssetId(assetId int32) ApiListenDataRequest {
+	r.assetId = &assetId
+	return r
+}
+
+// Filter for a specific type of asset data
+func (r ApiListenDataRequest) DataSubtype(dataSubtype string) ApiListenDataRequest {
+	r.dataSubtype = &dataSubtype
+	return r
+}
+
+func (r ApiListenDataRequest) Execute() (*Data, *http.Response, error) {
+	return r.ApiService.ListenDataExecute(r)
+}
+
+/*
+ListenData WebSocket connection for asset data changes
+
+Open a WebSocket connection to get informed when new asset data is written or anything changes.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListenDataRequest
+*/
+func (a *DataApiService) ListenData(ctx context.Context) ApiListenDataRequest {
+	return ApiListenDataRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return Data
+func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Data
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.ListenData")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/data-listener"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.assetId != nil {
+		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
+	}
+	if r.dataSubtype != nil {
+		localVarQueryParams.Add("dataSubtype", parameterToString(*r.dataSubtype, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiPutDataRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
@@ -40,7 +316,7 @@ func (r ApiPutDataRequest) Execute() (*http.Response, error) {
 /*
 PutData Create or update asset data
 
-Create new asset data or update data if already exists
+Create new asset data or update data if already exists.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutDataRequest

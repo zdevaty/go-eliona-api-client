@@ -98,6 +98,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**GetPatchByName**](docs/AppsApi.md#getpatchbyname) | **Get** /apps/{app-name}/patches/{patch-name} | Information about a patch for an app
 *AppsApi* | [**PatchAppByName**](docs/AppsApi.md#patchappbyname) | **Patch** /apps/{app-name} | Update an app
 *AppsApi* | [**PatchPatchByName**](docs/AppsApi.md#patchpatchbyname) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
+*AssetTypesApi* | [**DeleteAssetType**](docs/AssetTypesApi.md#deleteassettype) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
 *AssetTypesApi* | [**GetAssetTypes**](docs/AssetTypesApi.md#getassettypes) | **Get** /asset-types | List of asset types
 *AssetTypesApi* | [**PutAssetType**](docs/AssetTypesApi.md#putassettype) | **Put** /asset-types | Create or update an asset type
 *AssetTypesApi* | [**PutAssetTypeAttribute**](docs/AssetTypesApi.md#putassettypeattribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
@@ -107,6 +108,8 @@ Class | Method | HTTP request | Description
 *DashboardsApi* | [**PostDashboard**](docs/DashboardsApi.md#postdashboard) | **Post** /dashboards | Creates a new dashboard
 *DashboardsApi* | [**PostDashboardWidget**](docs/DashboardsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
 *DashboardsApi* | [**PutWidgetType**](docs/DashboardsApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
+*DataApi* | [**GetData**](docs/DataApi.md#getdata) | **Get** /data | Gets all data
+*DataApi* | [**ListenData**](docs/DataApi.md#listendata) | **Get** /data-listener | WebSocket connection for asset data changes
 *DataApi* | [**PutData**](docs/DataApi.md#putdata) | **Put** /data | Create or update asset data
 *NodesApi* | [**GetNodeByIdent**](docs/NodesApi.md#getnodebyident) | **Get** /nodes/{node-ident} | Information about a node
 *NodesApi* | [**GetNodes**](docs/NodesApi.md#getnodes) | **Get** /nodes | Information about nodes
