@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Mode** | Pointer to **NullableString** | Pipeline calculation mode | [optional] 
-**Raster** | Pointer to **[]string** | Pipeline calculation intervals | [optional] 
+**Raster** | Pointer to [**[]PipelineRaster**](PipelineRaster.md) |  | [optional] 
 
 ## Methods
 
@@ -63,20 +63,20 @@ HasMode returns a boolean if a field has been set.
 UnsetMode ensures that no value is present for Mode, not even an explicit nil
 ### GetRaster
 
-`func (o *Pipeline) GetRaster() []string`
+`func (o *Pipeline) GetRaster() []PipelineRaster`
 
 GetRaster returns the Raster field if non-nil, zero value otherwise.
 
 ### GetRasterOk
 
-`func (o *Pipeline) GetRasterOk() (*[]string, bool)`
+`func (o *Pipeline) GetRasterOk() (*[]PipelineRaster, bool)`
 
 GetRasterOk returns a tuple with the Raster field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRaster
 
-`func (o *Pipeline) SetRaster(v []string)`
+`func (o *Pipeline) SetRaster(v []PipelineRaster)`
 
 SetRaster sets Raster field to given value.
 

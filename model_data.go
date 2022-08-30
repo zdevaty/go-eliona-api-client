@@ -24,6 +24,8 @@ type Data struct {
 	Timestamp NullableTime `json:"timestamp,omitempty"`
 	// Asset payload
 	Data map[string]interface{} `json:"data"`
+	// The name of the corresponding asset type
+	AssetTypeName NullableString `json:"assetTypeName,omitempty"`
 }
 
 // NewData instantiates a new Data object
@@ -162,6 +164,48 @@ func (o *Data) SetData(v map[string]interface{}) {
 	o.Data = v
 }
 
+// GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Data) GetAssetTypeName() string {
+	if o == nil || o.AssetTypeName.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.AssetTypeName.Get()
+}
+
+// GetAssetTypeNameOk returns a tuple with the AssetTypeName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Data) GetAssetTypeNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AssetTypeName.Get(), o.AssetTypeName.IsSet()
+}
+
+// HasAssetTypeName returns a boolean if a field has been set.
+func (o *Data) HasAssetTypeName() bool {
+	if o != nil && o.AssetTypeName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAssetTypeName gets a reference to the given NullableString and assigns it to the AssetTypeName field.
+func (o *Data) SetAssetTypeName(v string) {
+	o.AssetTypeName.Set(&v)
+}
+// SetAssetTypeNameNil sets the value for AssetTypeName to be an explicit nil
+func (o *Data) SetAssetTypeNameNil() {
+	o.AssetTypeName.Set(nil)
+}
+
+// UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
+func (o *Data) UnsetAssetTypeName() {
+	o.AssetTypeName.Unset()
+}
+
 func (o Data) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -175,6 +219,9 @@ func (o Data) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["data"] = o.Data
+	}
+	if o.AssetTypeName.IsSet() {
+		toSerialize["assetTypeName"] = o.AssetTypeName.Get()
 	}
 	return json.Marshal(toSerialize)
 }

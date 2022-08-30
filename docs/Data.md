@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
 **Data** | **map[string]interface{}** | Asset payload | 
+**AssetTypeName** | Pointer to **NullableString** | The name of the corresponding asset type | [optional] [readonly] 
 
 ## Methods
 
@@ -123,6 +124,41 @@ and a boolean to check if the value has been set.
 SetData sets Data field to given value.
 
 
+### GetAssetTypeName
+
+`func (o *Data) GetAssetTypeName() string`
+
+GetAssetTypeName returns the AssetTypeName field if non-nil, zero value otherwise.
+
+### GetAssetTypeNameOk
+
+`func (o *Data) GetAssetTypeNameOk() (*string, bool)`
+
+GetAssetTypeNameOk returns a tuple with the AssetTypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssetTypeName
+
+`func (o *Data) SetAssetTypeName(v string)`
+
+SetAssetTypeName sets AssetTypeName field to given value.
+
+### HasAssetTypeName
+
+`func (o *Data) HasAssetTypeName() bool`
+
+HasAssetTypeName returns a boolean if a field has been set.
+
+### SetAssetTypeNameNil
+
+`func (o *Data) SetAssetTypeNameNil(b bool)`
+
+ SetAssetTypeNameNil sets the value for AssetTypeName to be an explicit nil
+
+### UnsetAssetTypeName
+`func (o *Data) UnsetAssetTypeName()`
+
+UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
