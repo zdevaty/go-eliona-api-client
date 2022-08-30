@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## GetAggregatedData
 
-> []AggregatedData GetAggregatedData(ctx).From(from).Until(until).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+> []AggregatedData GetAggregatedData(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
 
 Get aggregated data
 
@@ -34,15 +34,15 @@ import (
 )
 
 func main() {
-    from := time.Now() // time.Time | Filter by lower date time limit (optional)
-    until := time.Now() // time.Time | Filter by upper date time limit (optional)
+    fromDate := time.Now() // time.Time | Filter by lower date time limit inclusive (optional)
+    toDate := time.Now() // time.Time | Filter by upper date time limit exclusive (optional)
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetAggregatedData(context.Background()).From(from).Until(until).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataApi.GetAggregatedData(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetAggregatedData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,8 +63,8 @@ Other parameters are passed through a pointer to a apiGetAggregatedDataRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **time.Time** | Filter by lower date time limit | 
- **until** | **time.Time** | Filter by upper date time limit | 
+ **fromDate** | **time.Time** | Filter by lower date time limit inclusive | 
+ **toDate** | **time.Time** | Filter by upper date time limit exclusive | 
  **assetId** | **int32** | Filter for a specific asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 
 ## GetDataTrends
 
-> []Data GetDataTrends(ctx).From(from).Until(until).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+> []Data GetDataTrends(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
 
 Get trend of historical data
 
@@ -179,15 +179,15 @@ import (
 )
 
 func main() {
-    from := time.Now() // time.Time | Filter by lower date time limit (optional)
-    until := time.Now() // time.Time | Filter by upper date time limit (optional)
+    fromDate := time.Now() // time.Time | Filter by lower date time limit inclusive (optional)
+    toDate := time.Now() // time.Time | Filter by upper date time limit exclusive (optional)
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetDataTrends(context.Background()).From(from).Until(until).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataApi.GetDataTrends(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetDataTrends``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -208,8 +208,8 @@ Other parameters are passed through a pointer to a apiGetDataTrendsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **time.Time** | Filter by lower date time limit | 
- **until** | **time.Time** | Filter by upper date time limit | 
+ **fromDate** | **time.Time** | Filter by lower date time limit inclusive | 
+ **toDate** | **time.Time** | Filter by upper date time limit exclusive | 
  **assetId** | **int32** | Filter for a specific asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 

@@ -26,22 +26,22 @@ type DataApiService service
 type ApiGetAggregatedDataRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
-	from *time.Time
-	until *time.Time
+	fromDate *time.Time
+	toDate *time.Time
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
-// Filter by lower date time limit
-func (r ApiGetAggregatedDataRequest) From(from time.Time) ApiGetAggregatedDataRequest {
-	r.from = &from
+// Filter by lower date time limit inclusive
+func (r ApiGetAggregatedDataRequest) FromDate(fromDate time.Time) ApiGetAggregatedDataRequest {
+	r.fromDate = &fromDate
 	return r
 }
 
-// Filter by upper date time limit
-func (r ApiGetAggregatedDataRequest) Until(until time.Time) ApiGetAggregatedDataRequest {
-	r.until = &until
+// Filter by upper date time limit exclusive
+func (r ApiGetAggregatedDataRequest) ToDate(toDate time.Time) ApiGetAggregatedDataRequest {
+	r.toDate = &toDate
 	return r
 }
 
@@ -103,11 +103,11 @@ func (a *DataApiService) GetAggregatedDataExecute(r ApiGetAggregatedDataRequest)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	if r.fromDate != nil {
+		localVarQueryParams.Add("fromDate", parameterToString(*r.fromDate, ""))
 	}
-	if r.until != nil {
-		localVarQueryParams.Add("until", parameterToString(*r.until, ""))
+	if r.toDate != nil {
+		localVarQueryParams.Add("toDate", parameterToString(*r.toDate, ""))
 	}
 	if r.assetId != nil {
 		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
@@ -332,22 +332,22 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 type ApiGetDataTrendsRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
-	from *time.Time
-	until *time.Time
+	fromDate *time.Time
+	toDate *time.Time
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
-// Filter by lower date time limit
-func (r ApiGetDataTrendsRequest) From(from time.Time) ApiGetDataTrendsRequest {
-	r.from = &from
+// Filter by lower date time limit inclusive
+func (r ApiGetDataTrendsRequest) FromDate(fromDate time.Time) ApiGetDataTrendsRequest {
+	r.fromDate = &fromDate
 	return r
 }
 
-// Filter by upper date time limit
-func (r ApiGetDataTrendsRequest) Until(until time.Time) ApiGetDataTrendsRequest {
-	r.until = &until
+// Filter by upper date time limit exclusive
+func (r ApiGetDataTrendsRequest) ToDate(toDate time.Time) ApiGetDataTrendsRequest {
+	r.toDate = &toDate
 	return r
 }
 
@@ -409,11 +409,11 @@ func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.from != nil {
-		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	if r.fromDate != nil {
+		localVarQueryParams.Add("fromDate", parameterToString(*r.fromDate, ""))
 	}
-	if r.until != nil {
-		localVarQueryParams.Add("until", parameterToString(*r.until, ""))
+	if r.toDate != nil {
+		localVarQueryParams.Add("toDate", parameterToString(*r.toDate, ""))
 	}
 	if r.assetId != nil {
 		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
