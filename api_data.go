@@ -16,7 +16,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 
@@ -26,21 +25,21 @@ type DataApiService service
 type ApiGetAggregatedDataRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
-	fromDate *time.Time
-	toDate *time.Time
+	fromDate *string
+	toDate *string
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
-// Filter by lower date time limit inclusive
-func (r ApiGetAggregatedDataRequest) FromDate(fromDate time.Time) ApiGetAggregatedDataRequest {
+// Filter by lower date time (RFC3339) limit inclusive
+func (r ApiGetAggregatedDataRequest) FromDate(fromDate string) ApiGetAggregatedDataRequest {
 	r.fromDate = &fromDate
 	return r
 }
 
-// Filter by upper date time limit exclusive
-func (r ApiGetAggregatedDataRequest) ToDate(toDate time.Time) ApiGetAggregatedDataRequest {
+// Filter by upper date time (RFC3339) limit exclusive
+func (r ApiGetAggregatedDataRequest) ToDate(toDate string) ApiGetAggregatedDataRequest {
 	r.toDate = &toDate
 	return r
 }
@@ -332,21 +331,21 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 type ApiGetDataTrendsRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
-	fromDate *time.Time
-	toDate *time.Time
+	fromDate *string
+	toDate *string
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
-// Filter by lower date time limit inclusive
-func (r ApiGetDataTrendsRequest) FromDate(fromDate time.Time) ApiGetDataTrendsRequest {
+// Filter by lower date time (RFC3339) limit inclusive
+func (r ApiGetDataTrendsRequest) FromDate(fromDate string) ApiGetDataTrendsRequest {
 	r.fromDate = &fromDate
 	return r
 }
 
-// Filter by upper date time limit exclusive
-func (r ApiGetDataTrendsRequest) ToDate(toDate time.Time) ApiGetDataTrendsRequest {
+// Filter by upper date time (RFC3339) limit exclusive
+func (r ApiGetDataTrendsRequest) ToDate(toDate string) ApiGetDataTrendsRequest {
 	r.toDate = &toDate
 	return r
 }

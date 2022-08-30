@@ -29,13 +29,12 @@ import (
     "context"
     "fmt"
     "os"
-    "time"
     openapiclient "./openapi"
 )
 
 func main() {
-    fromDate := time.Now() // time.Time | Filter by lower date time limit inclusive (optional)
-    toDate := time.Now() // time.Time | Filter by upper date time limit exclusive (optional)
+    fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
+    toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
@@ -63,8 +62,8 @@ Other parameters are passed through a pointer to a apiGetAggregatedDataRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fromDate** | **time.Time** | Filter by lower date time limit inclusive | 
- **toDate** | **time.Time** | Filter by upper date time limit exclusive | 
+ **fromDate** | **string** | Filter by lower date time (RFC3339) limit inclusive | 
+ **toDate** | **string** | Filter by upper date time (RFC3339) limit exclusive | 
  **assetId** | **int32** | Filter for a specific asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
@@ -174,13 +173,12 @@ import (
     "context"
     "fmt"
     "os"
-    "time"
     openapiclient "./openapi"
 )
 
 func main() {
-    fromDate := time.Now() // time.Time | Filter by lower date time limit inclusive (optional)
-    toDate := time.Now() // time.Time | Filter by upper date time limit exclusive (optional)
+    fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
+    toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
@@ -208,8 +206,8 @@ Other parameters are passed through a pointer to a apiGetDataTrendsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fromDate** | **time.Time** | Filter by lower date time limit inclusive | 
- **toDate** | **time.Time** | Filter by upper date time limit exclusive | 
+ **fromDate** | **string** | Filter by lower date time (RFC3339) limit inclusive | 
+ **toDate** | **string** | Filter by upper date time (RFC3339) limit exclusive | 
  **assetId** | **int32** | Filter for a specific asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
