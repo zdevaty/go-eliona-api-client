@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**PatchAppByName**](docs/AppsApi.md#patchappbyname) | **Patch** /apps/{app-name} | Update an app
 *AppsApi* | [**PatchPatchByName**](docs/AppsApi.md#patchpatchbyname) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
 *AssetTypesApi* | [**DeleteAssetType**](docs/AssetTypesApi.md#deleteassettype) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
+*AssetTypesApi* | [**GetAssetTypeByName**](docs/AssetTypesApi.md#getassettypebyname) | **Get** /asset-types/{asset-type-name} | Information about an asset type
 *AssetTypesApi* | [**GetAssetTypes**](docs/AssetTypesApi.md#getassettypes) | **Get** /asset-types | List of asset types
 *AssetTypesApi* | [**PutAssetType**](docs/AssetTypesApi.md#putassettype) | **Put** /asset-types | Create or update an asset type
 *AssetTypesApi* | [**PutAssetTypeAttribute**](docs/AssetTypesApi.md#putassettypeattribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
@@ -148,7 +149,6 @@ Class | Method | HTTP request | Description
  - [Node](docs/Node.md)
  - [Patch](docs/Patch.md)
  - [Pipeline](docs/Pipeline.md)
- - [PipelineRaster](docs/PipelineRaster.md)
  - [Translation](docs/Translation.md)
  - [Widget](docs/Widget.md)
  - [WidgetData](docs/WidgetData.md)

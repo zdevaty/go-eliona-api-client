@@ -24,7 +24,8 @@ type AggregatedData struct {
 	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute which holds the data points
 	Attribute *string `json:"attribute,omitempty"`
-	Raster PipelineRaster `json:"raster"`
+	// Pipeline calculation intervals.
+	Raster string `json:"raster"`
 	// Timestamp of this aggregated data set
 	Timestamp NullableTime `json:"timestamp,omitempty"`
 	// Count of data points in this aggregated data set
@@ -51,7 +52,7 @@ type AggregatedData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggregatedData(id int32, assetId int32, subtype DataSubtype, raster PipelineRaster) *AggregatedData {
+func NewAggregatedData(id int32, assetId int32, subtype DataSubtype, raster string) *AggregatedData {
 	this := AggregatedData{}
 	this.Id = id
 	this.AssetId = assetId
@@ -175,9 +176,9 @@ func (o *AggregatedData) SetAttribute(v string) {
 }
 
 // GetRaster returns the Raster field value
-func (o *AggregatedData) GetRaster() PipelineRaster {
+func (o *AggregatedData) GetRaster() string {
 	if o == nil {
-		var ret PipelineRaster
+		var ret string
 		return ret
 	}
 
@@ -186,7 +187,7 @@ func (o *AggregatedData) GetRaster() PipelineRaster {
 
 // GetRasterOk returns a tuple with the Raster field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetRasterOk() (*PipelineRaster, bool) {
+func (o *AggregatedData) GetRasterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +195,7 @@ func (o *AggregatedData) GetRasterOk() (*PipelineRaster, bool) {
 }
 
 // SetRaster sets field value
-func (o *AggregatedData) SetRaster(v PipelineRaster) {
+func (o *AggregatedData) SetRaster(v string) {
 	o.Raster = v
 }
 

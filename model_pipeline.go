@@ -18,7 +18,7 @@ import (
 type Pipeline struct {
 	// Pipeline calculation mode
 	Mode NullableString `json:"mode,omitempty"`
-	Raster []PipelineRaster `json:"raster,omitempty"`
+	Raster []string `json:"raster,omitempty"`
 }
 
 // NewPipeline instantiates a new Pipeline object
@@ -81,9 +81,9 @@ func (o *Pipeline) UnsetMode() {
 }
 
 // GetRaster returns the Raster field value if set, zero value otherwise.
-func (o *Pipeline) GetRaster() []PipelineRaster {
+func (o *Pipeline) GetRaster() []string {
 	if o == nil || o.Raster == nil {
-		var ret []PipelineRaster
+		var ret []string
 		return ret
 	}
 	return o.Raster
@@ -91,7 +91,7 @@ func (o *Pipeline) GetRaster() []PipelineRaster {
 
 // GetRasterOk returns a tuple with the Raster field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Pipeline) GetRasterOk() ([]PipelineRaster, bool) {
+func (o *Pipeline) GetRasterOk() ([]string, bool) {
 	if o == nil || o.Raster == nil {
 		return nil, false
 	}
@@ -107,8 +107,8 @@ func (o *Pipeline) HasRaster() bool {
 	return false
 }
 
-// SetRaster gets a reference to the given []PipelineRaster and assigns it to the Raster field.
-func (o *Pipeline) SetRaster(v []PipelineRaster) {
+// SetRaster gets a reference to the given []string and assigns it to the Raster field.
+func (o *Pipeline) SetRaster(v []string) {
 	o.Raster = v
 }
 

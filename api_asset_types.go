@@ -129,6 +129,133 @@ func (a *AssetTypesApiService) DeleteAssetTypeExecute(r ApiDeleteAssetTypeReques
 	return localVarHTTPResponse, nil
 }
 
+type ApiGetAssetTypeByNameRequest struct {
+	ctx context.Context
+	ApiService *AssetTypesApiService
+	assetTypeName string
+	expansions *[]string
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiGetAssetTypeByNameRequest) Expansions(expansions []string) ApiGetAssetTypeByNameRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiGetAssetTypeByNameRequest) Execute() (*AssetType, *http.Response, error) {
+	return r.ApiService.GetAssetTypeByNameExecute(r)
+}
+
+/*
+GetAssetTypeByName Information about an asset type
+
+Gets information about an asset type.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param assetTypeName The name of the asset type
+ @return ApiGetAssetTypeByNameRequest
+*/
+func (a *AssetTypesApiService) GetAssetTypeByName(ctx context.Context, assetTypeName string) ApiGetAssetTypeByNameRequest {
+	return ApiGetAssetTypeByNameRequest{
+		ApiService: a,
+		ctx: ctx,
+		assetTypeName: assetTypeName,
+	}
+}
+
+// Execute executes the request
+//  @return AssetType
+func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *AssetType
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypeByName")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/asset-types/{asset-type-name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.expansions != nil {
+		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetAssetTypesRequest struct {
 	ctx context.Context
 	ApiService *AssetTypesApiService
@@ -270,7 +397,7 @@ func (r ApiPutAssetTypeRequest) Expansions(expansions []string) ApiPutAssetTypeR
 	return r
 }
 
-func (r ApiPutAssetTypeRequest) Execute() (*http.Response, error) {
+func (r ApiPutAssetTypeRequest) Execute() (*AssetType, *http.Response, error) {
 	return r.ApiService.PutAssetTypeExecute(r)
 }
 
@@ -290,16 +417,18 @@ func (a *AssetTypesApiService) PutAssetType(ctx context.Context) ApiPutAssetType
 }
 
 // Execute executes the request
-func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*http.Response, error) {
+//  @return AssetType
+func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *AssetType
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetType")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/asset-types"
@@ -308,7 +437,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*h
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.assetType == nil {
-		return nil, reportError("assetType is required and must be specified")
+		return localVarReturnValue, nil, reportError("assetType is required and must be specified")
 	}
 
 	if r.expansions != nil {
@@ -324,7 +453,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*h
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -349,19 +478,19 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*h
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -369,10 +498,19 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*h
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiPutAssetTypeAttributeRequest struct {

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **AssetId** | **int32** | ID of the corresponding asset | 
 **Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | Pointer to **string** | Name of the attribute which holds the data points | [optional] 
-**Raster** | [**PipelineRaster**](PipelineRaster.md) |  | 
+**Raster** | **string** | Pipeline calculation intervals. | 
 **Timestamp** | Pointer to **NullableTime** | Timestamp of this aggregated data set | [optional] 
 **Count** | Pointer to **NullableFloat64** | Count of data points in this aggregated data set | [optional] 
 **Average** | Pointer to **NullableFloat64** | Average of all data points for this aggregated data set | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewAggregatedData
 
-`func NewAggregatedData(id int32, assetId int32, subtype DataSubtype, raster PipelineRaster, ) *AggregatedData`
+`func NewAggregatedData(id int32, assetId int32, subtype DataSubtype, raster string, ) *AggregatedData`
 
 NewAggregatedData instantiates a new AggregatedData object
 This constructor will assign default values to properties that have it defined,
@@ -126,20 +126,20 @@ HasAttribute returns a boolean if a field has been set.
 
 ### GetRaster
 
-`func (o *AggregatedData) GetRaster() PipelineRaster`
+`func (o *AggregatedData) GetRaster() string`
 
 GetRaster returns the Raster field if non-nil, zero value otherwise.
 
 ### GetRasterOk
 
-`func (o *AggregatedData) GetRasterOk() (*PipelineRaster, bool)`
+`func (o *AggregatedData) GetRasterOk() (*string, bool)`
 
 GetRasterOk returns a tuple with the Raster field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRaster
 
-`func (o *AggregatedData) SetRaster(v PipelineRaster)`
+`func (o *AggregatedData) SetRaster(v string)`
 
 SetRaster sets Raster field to given value.
 
