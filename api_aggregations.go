@@ -359,31 +359,31 @@ func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostAggregationRequest struct {
+type ApiPutAggregationRequest struct {
 	ctx context.Context
 	ApiService *AggregationsApiService
 	aggregation *Aggregation
 }
 
-func (r ApiPostAggregationRequest) Aggregation(aggregation Aggregation) ApiPostAggregationRequest {
+func (r ApiPutAggregationRequest) Aggregation(aggregation Aggregation) ApiPutAggregationRequest {
 	r.aggregation = &aggregation
 	return r
 }
 
-func (r ApiPostAggregationRequest) Execute() (*Aggregation, *http.Response, error) {
-	return r.ApiService.PostAggregationExecute(r)
+func (r ApiPutAggregationRequest) Execute() (*Aggregation, *http.Response, error) {
+	return r.ApiService.PutAggregationExecute(r)
 }
 
 /*
-PostAggregation Creates an aggregation
+PutAggregation Creates or updates an aggregation
 
-Creates an aggregation
+Creates an aggregation or updates if already exists
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostAggregationRequest
+ @return ApiPutAggregationRequest
 */
-func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
-	return ApiPostAggregationRequest{
+func (a *AggregationsApiService) PutAggregation(ctx context.Context) ApiPutAggregationRequest {
+	return ApiPutAggregationRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -391,15 +391,15 @@ func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAgg
 
 // Execute executes the request
 //  @return Aggregation
-func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
+func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PostAggregation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PutAggregation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

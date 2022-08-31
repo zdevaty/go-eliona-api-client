@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**DeleteAggregationById**](AggregationsApi.md#DeleteAggregationById) | **Delete** /aggregations/{aggregation-id} | Delete an aggregation
 [**GetAggregationById**](AggregationsApi.md#GetAggregationById) | **Get** /aggregations/{aggregation-id} | Information about an aggregation
 [**GetAggregations**](AggregationsApi.md#GetAggregations) | **Get** /aggregations | Information about aggregations
-[**PostAggregation**](AggregationsApi.md#PostAggregation) | **Post** /aggregations | Creates an aggregation
+[**PutAggregation**](AggregationsApi.md#PutAggregation) | **Put** /aggregations | Creates or updates an aggregation
 
 
 
@@ -210,11 +210,11 @@ Other parameters are passed through a pointer to a apiGetAggregationsRequest str
 [[Back to README]](../README.md)
 
 
-## PostAggregation
+## PutAggregation
 
-> Aggregation PostAggregation(ctx).Aggregation(aggregation).Execute()
+> Aggregation PutAggregation(ctx).Aggregation(aggregation).Execute()
 
-Creates an aggregation
+Creates or updates an aggregation
 
 
 
@@ -235,13 +235,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsApi.PostAggregation(context.Background()).Aggregation(aggregation).Execute()
+    resp, r, err := apiClient.AggregationsApi.PutAggregation(context.Background()).Aggregation(aggregation).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsApi.PostAggregation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsApi.PutAggregation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PostAggregation`: Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsApi.PostAggregation`: %v\n", resp)
+    // response from `PutAggregation`: Aggregation
+    fmt.Fprintf(os.Stdout, "Response from `AggregationsApi.PutAggregation`: %v\n", resp)
 }
 ```
 
@@ -251,7 +251,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPostAggregationRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPutAggregationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

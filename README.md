@@ -88,7 +88,7 @@ Class | Method | HTTP request | Description
 *AggregationsApi* | [**DeleteAggregationById**](docs/AggregationsApi.md#deleteaggregationbyid) | **Delete** /aggregations/{aggregation-id} | Delete an aggregation
 *AggregationsApi* | [**GetAggregationById**](docs/AggregationsApi.md#getaggregationbyid) | **Get** /aggregations/{aggregation-id} | Information about an aggregation
 *AggregationsApi* | [**GetAggregations**](docs/AggregationsApi.md#getaggregations) | **Get** /aggregations | Information about aggregations
-*AggregationsApi* | [**PostAggregation**](docs/AggregationsApi.md#postaggregation) | **Post** /aggregations | Creates an aggregation
+*AggregationsApi* | [**PutAggregation**](docs/AggregationsApi.md#putaggregation) | **Put** /aggregations | Creates or updates an aggregation
 *AlarmRulesApi* | [**GetAlarmRuleById**](docs/AlarmRulesApi.md#getalarmrulebyid) | **Get** /alarm-rules/{alarm-rule-id} | Information about an alarm rule
 *AlarmRulesApi* | [**GetAlarmRules**](docs/AlarmRulesApi.md#getalarmrules) | **Get** /alarm-rules | Information about alarm rules
 *AlarmRulesApi* | [**PutAlarmRule**](docs/AlarmRulesApi.md#putalarmrule) | **Put** /alarm-rules | Create or update an alarm rule
