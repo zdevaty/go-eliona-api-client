@@ -20,51 +20,51 @@ import (
 )
 
 
-// AssetTypesApiService AssetTypesApi service
-type AssetTypesApiService service
+// AggregationsApiService AggregationsApi service
+type AggregationsApiService service
 
-type ApiDeleteAssetTypeByNameRequest struct {
+type ApiDeleteAggregationByIdRequest struct {
 	ctx context.Context
-	ApiService *AssetTypesApiService
-	assetTypeName string
+	ApiService *AggregationsApiService
+	aggregationId int32
 }
 
-func (r ApiDeleteAssetTypeByNameRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteAssetTypeByNameExecute(r)
+func (r ApiDeleteAggregationByIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAggregationByIdExecute(r)
 }
 
 /*
-DeleteAssetTypeByName Delete an asset type
+DeleteAggregationById Delete an aggregation
 
-Deletes an asset type and the attributes for this asset type.
+Deletes an aggregation by the given id.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiDeleteAssetTypeByNameRequest
+ @param aggregationId The id of the aggregation
+ @return ApiDeleteAggregationByIdRequest
 */
-func (a *AssetTypesApiService) DeleteAssetTypeByName(ctx context.Context, assetTypeName string) ApiDeleteAssetTypeByNameRequest {
-	return ApiDeleteAssetTypeByNameRequest{
+func (a *AggregationsApiService) DeleteAggregationById(ctx context.Context, aggregationId int32) ApiDeleteAggregationByIdRequest {
+	return ApiDeleteAggregationByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		assetTypeName: assetTypeName,
+		aggregationId: aggregationId,
 	}
 }
 
 // Execute executes the request
-func (a *AssetTypesApiService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetTypeByNameRequest) (*http.Response, error) {
+func (a *AggregationsApiService) DeleteAggregationByIdExecute(r ApiDeleteAggregationByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.DeleteAssetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.DeleteAggregationById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/asset-types/{asset-type-name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
+	localVarPath := localBasePath + "/aggregations/{aggregation-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"aggregation-id"+"}", url.PathEscape(parameterToString(r.aggregationId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -129,65 +129,55 @@ func (a *AssetTypesApiService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetType
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetAssetTypeByNameRequest struct {
+type ApiGetAggregationByIdRequest struct {
 	ctx context.Context
-	ApiService *AssetTypesApiService
-	assetTypeName string
-	expansions *[]string
+	ApiService *AggregationsApiService
+	aggregationId int32
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetAssetTypeByNameRequest) Expansions(expansions []string) ApiGetAssetTypeByNameRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiGetAssetTypeByNameRequest) Execute() (*AssetType, *http.Response, error) {
-	return r.ApiService.GetAssetTypeByNameExecute(r)
+func (r ApiGetAggregationByIdRequest) Execute() (*Aggregation, *http.Response, error) {
+	return r.ApiService.GetAggregationByIdExecute(r)
 }
 
 /*
-GetAssetTypeByName Information about an asset type
+GetAggregationById Information about an aggregation
 
-Gets information about an asset type.
+Gets information about an aggregation by the given id.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiGetAssetTypeByNameRequest
+ @param aggregationId The id of the aggregation
+ @return ApiGetAggregationByIdRequest
 */
-func (a *AssetTypesApiService) GetAssetTypeByName(ctx context.Context, assetTypeName string) ApiGetAssetTypeByNameRequest {
-	return ApiGetAssetTypeByNameRequest{
+func (a *AggregationsApiService) GetAggregationById(ctx context.Context, aggregationId int32) ApiGetAggregationByIdRequest {
+	return ApiGetAggregationByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		assetTypeName: assetTypeName,
+		aggregationId: aggregationId,
 	}
 }
 
 // Execute executes the request
-//  @return AssetType
-func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
+//  @return Aggregation
+func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AssetType
+		localVarReturnValue  *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.GetAggregationById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/asset-types/{asset-type-name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
+	localVarPath := localBasePath + "/aggregations/{aggregation-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"aggregation-id"+"}", url.PathEscape(parameterToString(r.aggregationId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.expansions != nil {
-		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -256,61 +246,51 @@ func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAssetTypesRequest struct {
+type ApiGetAggregationsRequest struct {
 	ctx context.Context
-	ApiService *AssetTypesApiService
-	expansions *[]string
+	ApiService *AggregationsApiService
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetAssetTypesRequest) Expansions(expansions []string) ApiGetAssetTypesRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiGetAssetTypesRequest) Execute() ([]AssetType, *http.Response, error) {
-	return r.ApiService.GetAssetTypesExecute(r)
+func (r ApiGetAggregationsRequest) Execute() ([]Aggregation, *http.Response, error) {
+	return r.ApiService.GetAggregationsExecute(r)
 }
 
 /*
-GetAssetTypes List of asset types
+GetAggregations Information about aggregations
 
-Returns a list of asset types
+Gets a list of aggregations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAssetTypesRequest
+ @return ApiGetAggregationsRequest
 */
-func (a *AssetTypesApiService) GetAssetTypes(ctx context.Context) ApiGetAssetTypesRequest {
-	return ApiGetAssetTypesRequest{
+func (a *AggregationsApiService) GetAggregations(ctx context.Context) ApiGetAggregationsRequest {
+	return ApiGetAggregationsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []AssetType
-func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) ([]AssetType, *http.Response, error) {
+//  @return []Aggregation
+func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequest) ([]Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []AssetType
+		localVarReturnValue  []Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.GetAggregations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/asset-types"
+	localVarPath := localBasePath + "/aggregations"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.expansions != nil {
-		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -379,70 +359,60 @@ func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPutAssetTypeRequest struct {
+type ApiPostAggregationRequest struct {
 	ctx context.Context
-	ApiService *AssetTypesApiService
-	assetType *AssetType
-	expansions *[]string
+	ApiService *AggregationsApiService
+	aggregation *Aggregation
 }
 
-func (r ApiPutAssetTypeRequest) AssetType(assetType AssetType) ApiPutAssetTypeRequest {
-	r.assetType = &assetType
+func (r ApiPostAggregationRequest) Aggregation(aggregation Aggregation) ApiPostAggregationRequest {
+	r.aggregation = &aggregation
 	return r
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiPutAssetTypeRequest) Expansions(expansions []string) ApiPutAssetTypeRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiPutAssetTypeRequest) Execute() (*AssetType, *http.Response, error) {
-	return r.ApiService.PutAssetTypeExecute(r)
+func (r ApiPostAggregationRequest) Execute() (*Aggregation, *http.Response, error) {
+	return r.ApiService.PostAggregationExecute(r)
 }
 
 /*
-PutAssetType Create or update an asset type
+PostAggregation Creates an aggregation
 
-Create a new asset type or update an asset type if already exists
+Creates an aggregation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAssetTypeRequest
+ @return ApiPostAggregationRequest
 */
-func (a *AssetTypesApiService) PutAssetType(ctx context.Context) ApiPutAssetTypeRequest {
-	return ApiPutAssetTypeRequest{
+func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
+	return ApiPostAggregationRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return AssetType
-func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*AssetType, *http.Response, error) {
+//  @return Aggregation
+func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *AssetType
+		localVarReturnValue  *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PostAggregation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/asset-types"
+	localVarPath := localBasePath + "/aggregations"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.assetType == nil {
-		return localVarReturnValue, nil, reportError("assetType is required and must be specified")
+	if r.aggregation == nil {
+		return localVarReturnValue, nil, reportError("aggregation is required and must be specified")
 	}
 
-	if r.expansions != nil {
-		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -461,7 +431,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.assetType
+	localVarPostBody = r.aggregation
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -511,121 +481,4 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPutAssetTypeAttributeRequest struct {
-	ctx context.Context
-	ApiService *AssetTypesApiService
-	assetTypeName string
-	assetTypeAttribute *AssetTypeAttribute
-}
-
-func (r ApiPutAssetTypeAttributeRequest) AssetTypeAttribute(assetTypeAttribute AssetTypeAttribute) ApiPutAssetTypeAttributeRequest {
-	r.assetTypeAttribute = &assetTypeAttribute
-	return r
-}
-
-func (r ApiPutAssetTypeAttributeRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PutAssetTypeAttributeExecute(r)
-}
-
-/*
-PutAssetTypeAttribute Create or update an asset type attribute
-
-Create a new asset type attribute or update an asset type attribute if already exists
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiPutAssetTypeAttributeRequest
-*/
-func (a *AssetTypesApiService) PutAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPutAssetTypeAttributeRequest {
-	return ApiPutAssetTypeAttributeRequest{
-		ApiService: a,
-		ctx: ctx,
-		assetTypeName: assetTypeName,
-	}
-}
-
-// Execute executes the request
-func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAttributeRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetTypeAttribute")
-	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/asset-types/{asset-type-name}/attributes"
-	localVarPath = strings.Replace(localVarPath, "{"+"asset-type-name"+"}", url.PathEscape(parameterToString(r.assetTypeName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.assetTypeAttribute == nil {
-		return nil, reportError("assetTypeAttribute is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.assetTypeAttribute
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-Key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
 }

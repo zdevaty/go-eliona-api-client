@@ -22,92 +22,72 @@ import (
 // DataApiService DataApi service
 type DataApiService service
 
-type ApiGetAggregatedDataRequest struct {
+type ApiGetDataRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
-	fromDate *string
-	toDate *string
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
-// Filter by lower date time (RFC3339) limit inclusive
-func (r ApiGetAggregatedDataRequest) FromDate(fromDate string) ApiGetAggregatedDataRequest {
-	r.fromDate = &fromDate
-	return r
-}
-
-// Filter by upper date time (RFC3339) limit exclusive
-func (r ApiGetAggregatedDataRequest) ToDate(toDate string) ApiGetAggregatedDataRequest {
-	r.toDate = &toDate
-	return r
-}
-
 // Filter for a specific asset id
-func (r ApiGetAggregatedDataRequest) AssetId(assetId int32) ApiGetAggregatedDataRequest {
+func (r ApiGetDataRequest) AssetId(assetId int32) ApiGetDataRequest {
 	r.assetId = &assetId
 	return r
 }
 
 // Filter for a specific type of asset data
-func (r ApiGetAggregatedDataRequest) DataSubtype(dataSubtype string) ApiGetAggregatedDataRequest {
+func (r ApiGetDataRequest) DataSubtype(dataSubtype string) ApiGetDataRequest {
 	r.dataSubtype = &dataSubtype
 	return r
 }
 
 // Filter the name of the asset type
-func (r ApiGetAggregatedDataRequest) AssetTypeName(assetTypeName string) ApiGetAggregatedDataRequest {
+func (r ApiGetDataRequest) AssetTypeName(assetTypeName string) ApiGetDataRequest {
 	r.assetTypeName = &assetTypeName
 	return r
 }
 
-func (r ApiGetAggregatedDataRequest) Execute() ([]AggregatedData, *http.Response, error) {
-	return r.ApiService.GetAggregatedDataExecute(r)
+func (r ApiGetDataRequest) Execute() ([]Data, *http.Response, error) {
+	return r.ApiService.GetDataExecute(r)
 }
 
 /*
-GetAggregatedData Get aggregated data
+GetData Gets all data
 
-Gets aggregated data sets which combines a set of data points for a defined periodical raster
+Gets information about data for assets.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAggregatedDataRequest
+ @return ApiGetDataRequest
 */
-func (a *DataApiService) GetAggregatedData(ctx context.Context) ApiGetAggregatedDataRequest {
-	return ApiGetAggregatedDataRequest{
+func (a *DataApiService) GetData(ctx context.Context) ApiGetDataRequest {
+	return ApiGetDataRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []AggregatedData
-func (a *DataApiService) GetAggregatedDataExecute(r ApiGetAggregatedDataRequest) ([]AggregatedData, *http.Response, error) {
+//  @return []Data
+func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []AggregatedData
+		localVarReturnValue  []Data
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetAggregatedData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetData")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/aggregated-data"
+	localVarPath := localBasePath + "/data"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.fromDate != nil {
-		localVarQueryParams.Add("fromDate", parameterToString(*r.fromDate, ""))
-	}
-	if r.toDate != nil {
-		localVarQueryParams.Add("toDate", parameterToString(*r.toDate, ""))
-	}
 	if r.assetId != nil {
 		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
 	}
@@ -185,72 +165,92 @@ func (a *DataApiService) GetAggregatedDataExecute(r ApiGetAggregatedDataRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetDataRequest struct {
+type ApiGetDataAggregatedRequest struct {
 	ctx context.Context
 	ApiService *DataApiService
+	fromDate *string
+	toDate *string
 	assetId *int32
 	dataSubtype *string
 	assetTypeName *string
 }
 
+// Filter by lower date time (RFC3339) limit inclusive
+func (r ApiGetDataAggregatedRequest) FromDate(fromDate string) ApiGetDataAggregatedRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// Filter by upper date time (RFC3339) limit exclusive
+func (r ApiGetDataAggregatedRequest) ToDate(toDate string) ApiGetDataAggregatedRequest {
+	r.toDate = &toDate
+	return r
+}
+
 // Filter for a specific asset id
-func (r ApiGetDataRequest) AssetId(assetId int32) ApiGetDataRequest {
+func (r ApiGetDataAggregatedRequest) AssetId(assetId int32) ApiGetDataAggregatedRequest {
 	r.assetId = &assetId
 	return r
 }
 
 // Filter for a specific type of asset data
-func (r ApiGetDataRequest) DataSubtype(dataSubtype string) ApiGetDataRequest {
+func (r ApiGetDataAggregatedRequest) DataSubtype(dataSubtype string) ApiGetDataAggregatedRequest {
 	r.dataSubtype = &dataSubtype
 	return r
 }
 
 // Filter the name of the asset type
-func (r ApiGetDataRequest) AssetTypeName(assetTypeName string) ApiGetDataRequest {
+func (r ApiGetDataAggregatedRequest) AssetTypeName(assetTypeName string) ApiGetDataAggregatedRequest {
 	r.assetTypeName = &assetTypeName
 	return r
 }
 
-func (r ApiGetDataRequest) Execute() ([]Data, *http.Response, error) {
-	return r.ApiService.GetDataExecute(r)
+func (r ApiGetDataAggregatedRequest) Execute() ([]DataAggregated, *http.Response, error) {
+	return r.ApiService.GetDataAggregatedExecute(r)
 }
 
 /*
-GetData Gets all data
+GetDataAggregated Get aggregated data
 
-Gets information about data for assets.
+Gets aggregated data sets which combines a set of data points for a defined periodical raster
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDataRequest
+ @return ApiGetDataAggregatedRequest
 */
-func (a *DataApiService) GetData(ctx context.Context) ApiGetDataRequest {
-	return ApiGetDataRequest{
+func (a *DataApiService) GetDataAggregated(ctx context.Context) ApiGetDataAggregatedRequest {
+	return ApiGetDataAggregatedRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []Data
-func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
+//  @return []DataAggregated
+func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest) ([]DataAggregated, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Data
+		localVarReturnValue  []DataAggregated
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetDataAggregated")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data"
+	localVarPath := localBasePath + "/data-aggregated"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fromDate != nil {
+		localVarQueryParams.Add("fromDate", parameterToString(*r.fromDate, ""))
+	}
+	if r.toDate != nil {
+		localVarQueryParams.Add("toDate", parameterToString(*r.toDate, ""))
+	}
 	if r.assetId != nil {
 		localVarQueryParams.Add("assetId", parameterToString(*r.assetId, ""))
 	}

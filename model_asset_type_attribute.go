@@ -34,7 +34,9 @@ type AssetTypeAttribute struct {
 	Min NullableFloat64 `json:"min,omitempty"`
 	// Upper limit
 	Max NullableFloat64 `json:"max,omitempty"`
-	Pipeline NullablePipeline `json:"pipeline,omitempty"`
+	// Aggregation calculation mode
+	AggregationMode NullableString `json:"aggregationMode,omitempty"`
+	AggregationRasters []string `json:"aggregationRasters,omitempty"`
 	// Should the attribute be displayed in viewer
 	Viewer NullableBool `json:"viewer,omitempty"`
 	// Should the attribute be displayed in AR
@@ -452,46 +454,78 @@ func (o *AssetTypeAttribute) UnsetMax() {
 	o.Max.Unset()
 }
 
-// GetPipeline returns the Pipeline field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AssetTypeAttribute) GetPipeline() Pipeline {
-	if o == nil || o.Pipeline.Get() == nil {
-		var ret Pipeline
+// GetAggregationMode returns the AggregationMode field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssetTypeAttribute) GetAggregationMode() string {
+	if o == nil || o.AggregationMode.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.Pipeline.Get()
+	return *o.AggregationMode.Get()
 }
 
-// GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
+// GetAggregationModeOk returns a tuple with the AggregationMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AssetTypeAttribute) GetPipelineOk() (*Pipeline, bool) {
+func (o *AssetTypeAttribute) GetAggregationModeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Pipeline.Get(), o.Pipeline.IsSet()
+	return o.AggregationMode.Get(), o.AggregationMode.IsSet()
 }
 
-// HasPipeline returns a boolean if a field has been set.
-func (o *AssetTypeAttribute) HasPipeline() bool {
-	if o != nil && o.Pipeline.IsSet() {
+// HasAggregationMode returns a boolean if a field has been set.
+func (o *AssetTypeAttribute) HasAggregationMode() bool {
+	if o != nil && o.AggregationMode.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPipeline gets a reference to the given NullablePipeline and assigns it to the Pipeline field.
-func (o *AssetTypeAttribute) SetPipeline(v Pipeline) {
-	o.Pipeline.Set(&v)
+// SetAggregationMode gets a reference to the given NullableString and assigns it to the AggregationMode field.
+func (o *AssetTypeAttribute) SetAggregationMode(v string) {
+	o.AggregationMode.Set(&v)
 }
-// SetPipelineNil sets the value for Pipeline to be an explicit nil
-func (o *AssetTypeAttribute) SetPipelineNil() {
-	o.Pipeline.Set(nil)
+// SetAggregationModeNil sets the value for AggregationMode to be an explicit nil
+func (o *AssetTypeAttribute) SetAggregationModeNil() {
+	o.AggregationMode.Set(nil)
 }
 
-// UnsetPipeline ensures that no value is present for Pipeline, not even an explicit nil
-func (o *AssetTypeAttribute) UnsetPipeline() {
-	o.Pipeline.Unset()
+// UnsetAggregationMode ensures that no value is present for AggregationMode, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetAggregationMode() {
+	o.AggregationMode.Unset()
+}
+
+// GetAggregationRasters returns the AggregationRasters field value if set, zero value otherwise.
+func (o *AssetTypeAttribute) GetAggregationRasters() []string {
+	if o == nil || o.AggregationRasters == nil {
+		var ret []string
+		return ret
+	}
+	return o.AggregationRasters
+}
+
+// GetAggregationRastersOk returns a tuple with the AggregationRasters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssetTypeAttribute) GetAggregationRastersOk() ([]string, bool) {
+	if o == nil || o.AggregationRasters == nil {
+		return nil, false
+	}
+	return o.AggregationRasters, true
+}
+
+// HasAggregationRasters returns a boolean if a field has been set.
+func (o *AssetTypeAttribute) HasAggregationRasters() bool {
+	if o != nil && o.AggregationRasters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregationRasters gets a reference to the given []string and assigns it to the AggregationRasters field.
+func (o *AssetTypeAttribute) SetAggregationRasters(v []string) {
+	o.AggregationRasters = v
 }
 
 // GetViewer returns the Viewer field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -694,8 +728,11 @@ func (o AssetTypeAttribute) MarshalJSON() ([]byte, error) {
 	if o.Max.IsSet() {
 		toSerialize["max"] = o.Max.Get()
 	}
-	if o.Pipeline.IsSet() {
-		toSerialize["pipeline"] = o.Pipeline.Get()
+	if o.AggregationMode.IsSet() {
+		toSerialize["aggregationMode"] = o.AggregationMode.Get()
+	}
+	if o.AggregationRasters != nil {
+		toSerialize["aggregationRasters"] = o.AggregationRasters
 	}
 	if o.Viewer.IsSet() {
 		toSerialize["viewer"] = o.Viewer.Get()

@@ -4,7 +4,7 @@ All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteAssetType**](AssetTypesApi.md#DeleteAssetType) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
+[**DeleteAssetTypeByName**](AssetTypesApi.md#DeleteAssetTypeByName) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
 [**GetAssetTypeByName**](AssetTypesApi.md#GetAssetTypeByName) | **Get** /asset-types/{asset-type-name} | Information about an asset type
 [**GetAssetTypes**](AssetTypesApi.md#GetAssetTypes) | **Get** /asset-types | List of asset types
 [**PutAssetType**](AssetTypesApi.md#PutAssetType) | **Put** /asset-types | Create or update an asset type
@@ -12,9 +12,9 @@ Method | HTTP request | Description
 
 
 
-## DeleteAssetType
+## DeleteAssetTypeByName
 
-> DeleteAssetType(ctx, assetTypeName).Execute()
+> DeleteAssetTypeByName(ctx, assetTypeName).Execute()
 
 Delete an asset type
 
@@ -37,9 +37,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.DeleteAssetType(context.Background(), assetTypeName).Execute()
+    resp, r, err := apiClient.AssetTypesApi.DeleteAssetTypeByName(context.Background(), assetTypeName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.DeleteAssetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.DeleteAssetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteAssetTypeRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteAssetTypeByNameRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

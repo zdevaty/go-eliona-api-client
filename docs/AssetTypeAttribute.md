@@ -14,7 +14,8 @@ Name | Type | Description | Notes
 **Precision** | Pointer to **NullableInt64** | Number of decimal places | [optional] 
 **Min** | Pointer to **NullableFloat64** | Lower limit | [optional] 
 **Max** | Pointer to **NullableFloat64** | Upper limit | [optional] 
-**Pipeline** | Pointer to [**NullablePipeline**](Pipeline.md) |  | [optional] 
+**AggregationMode** | Pointer to **NullableString** | Aggregation calculation mode | [optional] 
+**AggregationRasters** | Pointer to **[]string** |  | [optional] 
 **Viewer** | Pointer to **NullableBool** | Should the attribute be displayed in viewer | [optional] [default to false]
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
 **Sequence** | Pointer to **NullableInt64** | Sequence in AR display | [optional] 
@@ -349,41 +350,66 @@ HasMax returns a boolean if a field has been set.
 `func (o *AssetTypeAttribute) UnsetMax()`
 
 UnsetMax ensures that no value is present for Max, not even an explicit nil
-### GetPipeline
+### GetAggregationMode
 
-`func (o *AssetTypeAttribute) GetPipeline() Pipeline`
+`func (o *AssetTypeAttribute) GetAggregationMode() string`
 
-GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
+GetAggregationMode returns the AggregationMode field if non-nil, zero value otherwise.
 
-### GetPipelineOk
+### GetAggregationModeOk
 
-`func (o *AssetTypeAttribute) GetPipelineOk() (*Pipeline, bool)`
+`func (o *AssetTypeAttribute) GetAggregationModeOk() (*string, bool)`
 
-GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
+GetAggregationModeOk returns a tuple with the AggregationMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPipeline
+### SetAggregationMode
 
-`func (o *AssetTypeAttribute) SetPipeline(v Pipeline)`
+`func (o *AssetTypeAttribute) SetAggregationMode(v string)`
 
-SetPipeline sets Pipeline field to given value.
+SetAggregationMode sets AggregationMode field to given value.
 
-### HasPipeline
+### HasAggregationMode
 
-`func (o *AssetTypeAttribute) HasPipeline() bool`
+`func (o *AssetTypeAttribute) HasAggregationMode() bool`
 
-HasPipeline returns a boolean if a field has been set.
+HasAggregationMode returns a boolean if a field has been set.
 
-### SetPipelineNil
+### SetAggregationModeNil
 
-`func (o *AssetTypeAttribute) SetPipelineNil(b bool)`
+`func (o *AssetTypeAttribute) SetAggregationModeNil(b bool)`
 
- SetPipelineNil sets the value for Pipeline to be an explicit nil
+ SetAggregationModeNil sets the value for AggregationMode to be an explicit nil
 
-### UnsetPipeline
-`func (o *AssetTypeAttribute) UnsetPipeline()`
+### UnsetAggregationMode
+`func (o *AssetTypeAttribute) UnsetAggregationMode()`
 
-UnsetPipeline ensures that no value is present for Pipeline, not even an explicit nil
+UnsetAggregationMode ensures that no value is present for AggregationMode, not even an explicit nil
+### GetAggregationRasters
+
+`func (o *AssetTypeAttribute) GetAggregationRasters() []string`
+
+GetAggregationRasters returns the AggregationRasters field if non-nil, zero value otherwise.
+
+### GetAggregationRastersOk
+
+`func (o *AssetTypeAttribute) GetAggregationRastersOk() (*[]string, bool)`
+
+GetAggregationRastersOk returns a tuple with the AggregationRasters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregationRasters
+
+`func (o *AssetTypeAttribute) SetAggregationRasters(v []string)`
+
+SetAggregationRasters sets AggregationRasters field to given value.
+
+### HasAggregationRasters
+
+`func (o *AssetTypeAttribute) HasAggregationRasters() bool`
+
+HasAggregationRasters returns a boolean if a field has been set.
+
 ### GetViewer
 
 `func (o *AssetTypeAttribute) GetViewer() bool`

@@ -17,7 +17,7 @@ import (
 // Asset An asset
 type Asset struct {
 	// The internal Id of asset
-	Id NullableInt32 `json:"Id,omitempty"`
+	Id NullableInt32 `json:"id,omitempty"`
 	// ID of the project to which the asset belongs
 	ProjectId string `json:"projectId"`
 	// Unique identifier for the asset
@@ -497,7 +497,7 @@ func (o *Asset) SetChildrenInfo(v []Asset) {
 func (o Asset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id.IsSet() {
-		toSerialize["Id"] = o.Id.Get()
+		toSerialize["id"] = o.Id.Get()
 	}
 	if true {
 		toSerialize["projectId"] = o.ProjectId

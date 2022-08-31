@@ -15,16 +15,16 @@ import (
 	"time"
 )
 
-// AggregatedData Aggregated data combines multiple data points for a periodical raster
-type AggregatedData struct {
-	// ID of this aggregated data set
-	Id int32 `json:"id"`
+// DataAggregated Aggregated data combines multiple data points for a periodical raster
+type DataAggregated struct {
+	// ID of the aggregation
+	AggregationId *int32 `json:"aggregationId,omitempty"`
 	// ID of the corresponding asset
 	AssetId int32 `json:"assetId"`
 	Subtype DataSubtype `json:"subtype"`
 	// Name of the attribute which holds the data points
 	Attribute *string `json:"attribute,omitempty"`
-	// Pipeline calculation intervals.
+	// Calculation intervals.
 	Raster string `json:"raster"`
 	// Timestamp of this aggregated data set
 	Timestamp NullableTime `json:"timestamp,omitempty"`
@@ -48,55 +48,62 @@ type AggregatedData struct {
 	AssetTypeName NullableString `json:"assetTypeName,omitempty"`
 }
 
-// NewAggregatedData instantiates a new AggregatedData object
+// NewDataAggregated instantiates a new DataAggregated object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggregatedData(id int32, assetId int32, subtype DataSubtype, raster string) *AggregatedData {
-	this := AggregatedData{}
-	this.Id = id
+func NewDataAggregated(assetId int32, subtype DataSubtype, raster string) *DataAggregated {
+	this := DataAggregated{}
 	this.AssetId = assetId
 	this.Subtype = subtype
 	this.Raster = raster
 	return &this
 }
 
-// NewAggregatedDataWithDefaults instantiates a new AggregatedData object
+// NewDataAggregatedWithDefaults instantiates a new DataAggregated object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAggregatedDataWithDefaults() *AggregatedData {
-	this := AggregatedData{}
+func NewDataAggregatedWithDefaults() *DataAggregated {
+	this := DataAggregated{}
 	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *AggregatedData) GetId() int32 {
-	if o == nil {
+// GetAggregationId returns the AggregationId field value if set, zero value otherwise.
+func (o *DataAggregated) GetAggregationId() int32 {
+	if o == nil || o.AggregationId == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.AggregationId
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetAggregationIdOk returns a tuple with the AggregationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetIdOk() (*int32, bool) {
-	if o == nil {
+func (o *DataAggregated) GetAggregationIdOk() (*int32, bool) {
+	if o == nil || o.AggregationId == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.AggregationId, true
 }
 
-// SetId sets field value
-func (o *AggregatedData) SetId(v int32) {
-	o.Id = v
+// HasAggregationId returns a boolean if a field has been set.
+func (o *DataAggregated) HasAggregationId() bool {
+	if o != nil && o.AggregationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregationId gets a reference to the given int32 and assigns it to the AggregationId field.
+func (o *DataAggregated) SetAggregationId(v int32) {
+	o.AggregationId = &v
 }
 
 // GetAssetId returns the AssetId field value
-func (o *AggregatedData) GetAssetId() int32 {
+func (o *DataAggregated) GetAssetId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -107,7 +114,7 @@ func (o *AggregatedData) GetAssetId() int32 {
 
 // GetAssetIdOk returns a tuple with the AssetId field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetAssetIdOk() (*int32, bool) {
+func (o *DataAggregated) GetAssetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -115,12 +122,12 @@ func (o *AggregatedData) GetAssetIdOk() (*int32, bool) {
 }
 
 // SetAssetId sets field value
-func (o *AggregatedData) SetAssetId(v int32) {
+func (o *DataAggregated) SetAssetId(v int32) {
 	o.AssetId = v
 }
 
 // GetSubtype returns the Subtype field value
-func (o *AggregatedData) GetSubtype() DataSubtype {
+func (o *DataAggregated) GetSubtype() DataSubtype {
 	if o == nil {
 		var ret DataSubtype
 		return ret
@@ -131,7 +138,7 @@ func (o *AggregatedData) GetSubtype() DataSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetSubtypeOk() (*DataSubtype, bool) {
+func (o *DataAggregated) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -139,12 +146,12 @@ func (o *AggregatedData) GetSubtypeOk() (*DataSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *AggregatedData) SetSubtype(v DataSubtype) {
+func (o *DataAggregated) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise.
-func (o *AggregatedData) GetAttribute() string {
+func (o *DataAggregated) GetAttribute() string {
 	if o == nil || o.Attribute == nil {
 		var ret string
 		return ret
@@ -154,7 +161,7 @@ func (o *AggregatedData) GetAttribute() string {
 
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetAttributeOk() (*string, bool) {
+func (o *DataAggregated) GetAttributeOk() (*string, bool) {
 	if o == nil || o.Attribute == nil {
 		return nil, false
 	}
@@ -162,7 +169,7 @@ func (o *AggregatedData) GetAttributeOk() (*string, bool) {
 }
 
 // HasAttribute returns a boolean if a field has been set.
-func (o *AggregatedData) HasAttribute() bool {
+func (o *DataAggregated) HasAttribute() bool {
 	if o != nil && o.Attribute != nil {
 		return true
 	}
@@ -171,12 +178,12 @@ func (o *AggregatedData) HasAttribute() bool {
 }
 
 // SetAttribute gets a reference to the given string and assigns it to the Attribute field.
-func (o *AggregatedData) SetAttribute(v string) {
+func (o *DataAggregated) SetAttribute(v string) {
 	o.Attribute = &v
 }
 
 // GetRaster returns the Raster field value
-func (o *AggregatedData) GetRaster() string {
+func (o *DataAggregated) GetRaster() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -187,7 +194,7 @@ func (o *AggregatedData) GetRaster() string {
 
 // GetRasterOk returns a tuple with the Raster field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedData) GetRasterOk() (*string, bool) {
+func (o *DataAggregated) GetRasterOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -195,12 +202,12 @@ func (o *AggregatedData) GetRasterOk() (*string, bool) {
 }
 
 // SetRaster sets field value
-func (o *AggregatedData) SetRaster(v string) {
+func (o *DataAggregated) SetRaster(v string) {
 	o.Raster = v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetTimestamp() time.Time {
+func (o *DataAggregated) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp.Get() == nil {
 		var ret time.Time
 		return ret
@@ -211,7 +218,7 @@ func (o *AggregatedData) GetTimestamp() time.Time {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetTimestampOk() (*time.Time, bool) {
+func (o *DataAggregated) GetTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -219,7 +226,7 @@ func (o *AggregatedData) GetTimestampOk() (*time.Time, bool) {
 }
 
 // HasTimestamp returns a boolean if a field has been set.
-func (o *AggregatedData) HasTimestamp() bool {
+func (o *DataAggregated) HasTimestamp() bool {
 	if o != nil && o.Timestamp.IsSet() {
 		return true
 	}
@@ -228,21 +235,21 @@ func (o *AggregatedData) HasTimestamp() bool {
 }
 
 // SetTimestamp gets a reference to the given NullableTime and assigns it to the Timestamp field.
-func (o *AggregatedData) SetTimestamp(v time.Time) {
+func (o *DataAggregated) SetTimestamp(v time.Time) {
 	o.Timestamp.Set(&v)
 }
 // SetTimestampNil sets the value for Timestamp to be an explicit nil
-func (o *AggregatedData) SetTimestampNil() {
+func (o *DataAggregated) SetTimestampNil() {
 	o.Timestamp.Set(nil)
 }
 
 // UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
-func (o *AggregatedData) UnsetTimestamp() {
+func (o *DataAggregated) UnsetTimestamp() {
 	o.Timestamp.Unset()
 }
 
 // GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetCount() float64 {
+func (o *DataAggregated) GetCount() float64 {
 	if o == nil || o.Count.Get() == nil {
 		var ret float64
 		return ret
@@ -253,7 +260,7 @@ func (o *AggregatedData) GetCount() float64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetCountOk() (*float64, bool) {
+func (o *DataAggregated) GetCountOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -261,7 +268,7 @@ func (o *AggregatedData) GetCountOk() (*float64, bool) {
 }
 
 // HasCount returns a boolean if a field has been set.
-func (o *AggregatedData) HasCount() bool {
+func (o *DataAggregated) HasCount() bool {
 	if o != nil && o.Count.IsSet() {
 		return true
 	}
@@ -270,21 +277,21 @@ func (o *AggregatedData) HasCount() bool {
 }
 
 // SetCount gets a reference to the given NullableFloat64 and assigns it to the Count field.
-func (o *AggregatedData) SetCount(v float64) {
+func (o *DataAggregated) SetCount(v float64) {
 	o.Count.Set(&v)
 }
 // SetCountNil sets the value for Count to be an explicit nil
-func (o *AggregatedData) SetCountNil() {
+func (o *DataAggregated) SetCountNil() {
 	o.Count.Set(nil)
 }
 
 // UnsetCount ensures that no value is present for Count, not even an explicit nil
-func (o *AggregatedData) UnsetCount() {
+func (o *DataAggregated) UnsetCount() {
 	o.Count.Unset()
 }
 
 // GetAverage returns the Average field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetAverage() float64 {
+func (o *DataAggregated) GetAverage() float64 {
 	if o == nil || o.Average.Get() == nil {
 		var ret float64
 		return ret
@@ -295,7 +302,7 @@ func (o *AggregatedData) GetAverage() float64 {
 // GetAverageOk returns a tuple with the Average field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetAverageOk() (*float64, bool) {
+func (o *DataAggregated) GetAverageOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -303,7 +310,7 @@ func (o *AggregatedData) GetAverageOk() (*float64, bool) {
 }
 
 // HasAverage returns a boolean if a field has been set.
-func (o *AggregatedData) HasAverage() bool {
+func (o *DataAggregated) HasAverage() bool {
 	if o != nil && o.Average.IsSet() {
 		return true
 	}
@@ -312,21 +319,21 @@ func (o *AggregatedData) HasAverage() bool {
 }
 
 // SetAverage gets a reference to the given NullableFloat64 and assigns it to the Average field.
-func (o *AggregatedData) SetAverage(v float64) {
+func (o *DataAggregated) SetAverage(v float64) {
 	o.Average.Set(&v)
 }
 // SetAverageNil sets the value for Average to be an explicit nil
-func (o *AggregatedData) SetAverageNil() {
+func (o *DataAggregated) SetAverageNil() {
 	o.Average.Set(nil)
 }
 
 // UnsetAverage ensures that no value is present for Average, not even an explicit nil
-func (o *AggregatedData) UnsetAverage() {
+func (o *DataAggregated) UnsetAverage() {
 	o.Average.Unset()
 }
 
 // GetSum returns the Sum field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetSum() float64 {
+func (o *DataAggregated) GetSum() float64 {
 	if o == nil || o.Sum.Get() == nil {
 		var ret float64
 		return ret
@@ -337,7 +344,7 @@ func (o *AggregatedData) GetSum() float64 {
 // GetSumOk returns a tuple with the Sum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetSumOk() (*float64, bool) {
+func (o *DataAggregated) GetSumOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -345,7 +352,7 @@ func (o *AggregatedData) GetSumOk() (*float64, bool) {
 }
 
 // HasSum returns a boolean if a field has been set.
-func (o *AggregatedData) HasSum() bool {
+func (o *DataAggregated) HasSum() bool {
 	if o != nil && o.Sum.IsSet() {
 		return true
 	}
@@ -354,21 +361,21 @@ func (o *AggregatedData) HasSum() bool {
 }
 
 // SetSum gets a reference to the given NullableFloat64 and assigns it to the Sum field.
-func (o *AggregatedData) SetSum(v float64) {
+func (o *DataAggregated) SetSum(v float64) {
 	o.Sum.Set(&v)
 }
 // SetSumNil sets the value for Sum to be an explicit nil
-func (o *AggregatedData) SetSumNil() {
+func (o *DataAggregated) SetSumNil() {
 	o.Sum.Set(nil)
 }
 
 // UnsetSum ensures that no value is present for Sum, not even an explicit nil
-func (o *AggregatedData) UnsetSum() {
+func (o *DataAggregated) UnsetSum() {
 	o.Sum.Unset()
 }
 
 // GetFirst returns the First field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetFirst() float64 {
+func (o *DataAggregated) GetFirst() float64 {
 	if o == nil || o.First.Get() == nil {
 		var ret float64
 		return ret
@@ -379,7 +386,7 @@ func (o *AggregatedData) GetFirst() float64 {
 // GetFirstOk returns a tuple with the First field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetFirstOk() (*float64, bool) {
+func (o *DataAggregated) GetFirstOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -387,7 +394,7 @@ func (o *AggregatedData) GetFirstOk() (*float64, bool) {
 }
 
 // HasFirst returns a boolean if a field has been set.
-func (o *AggregatedData) HasFirst() bool {
+func (o *DataAggregated) HasFirst() bool {
 	if o != nil && o.First.IsSet() {
 		return true
 	}
@@ -396,21 +403,21 @@ func (o *AggregatedData) HasFirst() bool {
 }
 
 // SetFirst gets a reference to the given NullableFloat64 and assigns it to the First field.
-func (o *AggregatedData) SetFirst(v float64) {
+func (o *DataAggregated) SetFirst(v float64) {
 	o.First.Set(&v)
 }
 // SetFirstNil sets the value for First to be an explicit nil
-func (o *AggregatedData) SetFirstNil() {
+func (o *DataAggregated) SetFirstNil() {
 	o.First.Set(nil)
 }
 
 // UnsetFirst ensures that no value is present for First, not even an explicit nil
-func (o *AggregatedData) UnsetFirst() {
+func (o *DataAggregated) UnsetFirst() {
 	o.First.Unset()
 }
 
 // GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetMin() float64 {
+func (o *DataAggregated) GetMin() float64 {
 	if o == nil || o.Min.Get() == nil {
 		var ret float64
 		return ret
@@ -421,7 +428,7 @@ func (o *AggregatedData) GetMin() float64 {
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetMinOk() (*float64, bool) {
+func (o *DataAggregated) GetMinOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -429,7 +436,7 @@ func (o *AggregatedData) GetMinOk() (*float64, bool) {
 }
 
 // HasMin returns a boolean if a field has been set.
-func (o *AggregatedData) HasMin() bool {
+func (o *DataAggregated) HasMin() bool {
 	if o != nil && o.Min.IsSet() {
 		return true
 	}
@@ -438,21 +445,21 @@ func (o *AggregatedData) HasMin() bool {
 }
 
 // SetMin gets a reference to the given NullableFloat64 and assigns it to the Min field.
-func (o *AggregatedData) SetMin(v float64) {
+func (o *DataAggregated) SetMin(v float64) {
 	o.Min.Set(&v)
 }
 // SetMinNil sets the value for Min to be an explicit nil
-func (o *AggregatedData) SetMinNil() {
+func (o *DataAggregated) SetMinNil() {
 	o.Min.Set(nil)
 }
 
 // UnsetMin ensures that no value is present for Min, not even an explicit nil
-func (o *AggregatedData) UnsetMin() {
+func (o *DataAggregated) UnsetMin() {
 	o.Min.Unset()
 }
 
 // GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetMax() float64 {
+func (o *DataAggregated) GetMax() float64 {
 	if o == nil || o.Max.Get() == nil {
 		var ret float64
 		return ret
@@ -463,7 +470,7 @@ func (o *AggregatedData) GetMax() float64 {
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetMaxOk() (*float64, bool) {
+func (o *DataAggregated) GetMaxOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -471,7 +478,7 @@ func (o *AggregatedData) GetMaxOk() (*float64, bool) {
 }
 
 // HasMax returns a boolean if a field has been set.
-func (o *AggregatedData) HasMax() bool {
+func (o *DataAggregated) HasMax() bool {
 	if o != nil && o.Max.IsSet() {
 		return true
 	}
@@ -480,21 +487,21 @@ func (o *AggregatedData) HasMax() bool {
 }
 
 // SetMax gets a reference to the given NullableFloat64 and assigns it to the Max field.
-func (o *AggregatedData) SetMax(v float64) {
+func (o *DataAggregated) SetMax(v float64) {
 	o.Max.Set(&v)
 }
 // SetMaxNil sets the value for Max to be an explicit nil
-func (o *AggregatedData) SetMaxNil() {
+func (o *DataAggregated) SetMaxNil() {
 	o.Max.Set(nil)
 }
 
 // UnsetMax ensures that no value is present for Max, not even an explicit nil
-func (o *AggregatedData) UnsetMax() {
+func (o *DataAggregated) UnsetMax() {
 	o.Max.Unset()
 }
 
 // GetLast returns the Last field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetLast() float64 {
+func (o *DataAggregated) GetLast() float64 {
 	if o == nil || o.Last.Get() == nil {
 		var ret float64
 		return ret
@@ -505,7 +512,7 @@ func (o *AggregatedData) GetLast() float64 {
 // GetLastOk returns a tuple with the Last field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetLastOk() (*float64, bool) {
+func (o *DataAggregated) GetLastOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -513,7 +520,7 @@ func (o *AggregatedData) GetLastOk() (*float64, bool) {
 }
 
 // HasLast returns a boolean if a field has been set.
-func (o *AggregatedData) HasLast() bool {
+func (o *DataAggregated) HasLast() bool {
 	if o != nil && o.Last.IsSet() {
 		return true
 	}
@@ -522,21 +529,21 @@ func (o *AggregatedData) HasLast() bool {
 }
 
 // SetLast gets a reference to the given NullableFloat64 and assigns it to the Last field.
-func (o *AggregatedData) SetLast(v float64) {
+func (o *DataAggregated) SetLast(v float64) {
 	o.Last.Set(&v)
 }
 // SetLastNil sets the value for Last to be an explicit nil
-func (o *AggregatedData) SetLastNil() {
+func (o *DataAggregated) SetLastNil() {
 	o.Last.Set(nil)
 }
 
 // UnsetLast ensures that no value is present for Last, not even an explicit nil
-func (o *AggregatedData) UnsetLast() {
+func (o *DataAggregated) UnsetLast() {
 	o.Last.Unset()
 }
 
 // GetLastTimestamp returns the LastTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetLastTimestamp() time.Time {
+func (o *DataAggregated) GetLastTimestamp() time.Time {
 	if o == nil || o.LastTimestamp.Get() == nil {
 		var ret time.Time
 		return ret
@@ -547,7 +554,7 @@ func (o *AggregatedData) GetLastTimestamp() time.Time {
 // GetLastTimestampOk returns a tuple with the LastTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetLastTimestampOk() (*time.Time, bool) {
+func (o *DataAggregated) GetLastTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -555,7 +562,7 @@ func (o *AggregatedData) GetLastTimestampOk() (*time.Time, bool) {
 }
 
 // HasLastTimestamp returns a boolean if a field has been set.
-func (o *AggregatedData) HasLastTimestamp() bool {
+func (o *DataAggregated) HasLastTimestamp() bool {
 	if o != nil && o.LastTimestamp.IsSet() {
 		return true
 	}
@@ -564,21 +571,21 @@ func (o *AggregatedData) HasLastTimestamp() bool {
 }
 
 // SetLastTimestamp gets a reference to the given NullableTime and assigns it to the LastTimestamp field.
-func (o *AggregatedData) SetLastTimestamp(v time.Time) {
+func (o *DataAggregated) SetLastTimestamp(v time.Time) {
 	o.LastTimestamp.Set(&v)
 }
 // SetLastTimestampNil sets the value for LastTimestamp to be an explicit nil
-func (o *AggregatedData) SetLastTimestampNil() {
+func (o *DataAggregated) SetLastTimestampNil() {
 	o.LastTimestamp.Set(nil)
 }
 
 // UnsetLastTimestamp ensures that no value is present for LastTimestamp, not even an explicit nil
-func (o *AggregatedData) UnsetLastTimestamp() {
+func (o *DataAggregated) UnsetLastTimestamp() {
 	o.LastTimestamp.Unset()
 }
 
 // GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AggregatedData) GetAssetTypeName() string {
+func (o *DataAggregated) GetAssetTypeName() string {
 	if o == nil || o.AssetTypeName.Get() == nil {
 		var ret string
 		return ret
@@ -589,7 +596,7 @@ func (o *AggregatedData) GetAssetTypeName() string {
 // GetAssetTypeNameOk returns a tuple with the AssetTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AggregatedData) GetAssetTypeNameOk() (*string, bool) {
+func (o *DataAggregated) GetAssetTypeNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -597,7 +604,7 @@ func (o *AggregatedData) GetAssetTypeNameOk() (*string, bool) {
 }
 
 // HasAssetTypeName returns a boolean if a field has been set.
-func (o *AggregatedData) HasAssetTypeName() bool {
+func (o *DataAggregated) HasAssetTypeName() bool {
 	if o != nil && o.AssetTypeName.IsSet() {
 		return true
 	}
@@ -606,23 +613,23 @@ func (o *AggregatedData) HasAssetTypeName() bool {
 }
 
 // SetAssetTypeName gets a reference to the given NullableString and assigns it to the AssetTypeName field.
-func (o *AggregatedData) SetAssetTypeName(v string) {
+func (o *DataAggregated) SetAssetTypeName(v string) {
 	o.AssetTypeName.Set(&v)
 }
 // SetAssetTypeNameNil sets the value for AssetTypeName to be an explicit nil
-func (o *AggregatedData) SetAssetTypeNameNil() {
+func (o *DataAggregated) SetAssetTypeNameNil() {
 	o.AssetTypeName.Set(nil)
 }
 
 // UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
-func (o *AggregatedData) UnsetAssetTypeName() {
+func (o *DataAggregated) UnsetAssetTypeName() {
 	o.AssetTypeName.Unset()
 }
 
-func (o AggregatedData) MarshalJSON() ([]byte, error) {
+func (o DataAggregated) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
+	if o.AggregationId != nil {
+		toSerialize["aggregationId"] = o.AggregationId
 	}
 	if true {
 		toSerialize["assetId"] = o.AssetId
@@ -669,38 +676,38 @@ func (o AggregatedData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableAggregatedData struct {
-	value *AggregatedData
+type NullableDataAggregated struct {
+	value *DataAggregated
 	isSet bool
 }
 
-func (v NullableAggregatedData) Get() *AggregatedData {
+func (v NullableDataAggregated) Get() *DataAggregated {
 	return v.value
 }
 
-func (v *NullableAggregatedData) Set(val *AggregatedData) {
+func (v *NullableDataAggregated) Set(val *DataAggregated) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAggregatedData) IsSet() bool {
+func (v NullableDataAggregated) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAggregatedData) Unset() {
+func (v *NullableDataAggregated) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAggregatedData(val *AggregatedData) *NullableAggregatedData {
-	return &NullableAggregatedData{value: val, isSet: true}
+func NewNullableDataAggregated(val *DataAggregated) *NullableDataAggregated {
+	return &NullableDataAggregated{value: val, isSet: true}
 }
 
-func (v NullableAggregatedData) MarshalJSON() ([]byte, error) {
+func (v NullableDataAggregated) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAggregatedData) UnmarshalJSON(src []byte) error {
+func (v *NullableDataAggregated) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
