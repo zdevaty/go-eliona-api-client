@@ -231,7 +231,7 @@ import (
 )
 
 func main() {
-    aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "DAY") // Aggregation | 
+    aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

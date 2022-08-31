@@ -24,20 +24,20 @@ type Aggregation struct {
 	// Name of the attribute which holds the data points
 	Attribute *string `json:"attribute,omitempty"`
 	// Calculation mode
-	Mode NullableString `json:"mode,omitempty"`
+	Mode string `json:"mode"`
 	// calculation interval
-	Raster string `json:"raster"`
+	Raster NullableString `json:"raster,omitempty"`
 }
 
 // NewAggregation instantiates a new Aggregation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAggregation(assetId int32, subtype DataSubtype, raster string) *Aggregation {
+func NewAggregation(assetId int32, subtype DataSubtype, mode string) *Aggregation {
 	this := Aggregation{}
 	this.AssetId = assetId
 	this.Subtype = subtype
-	this.Raster = raster
+	this.Mode = mode
 	return &this
 }
 
@@ -173,70 +173,70 @@ func (o *Aggregation) SetAttribute(v string) {
 	o.Attribute = &v
 }
 
-// GetMode returns the Mode field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMode returns the Mode field value
 func (o *Aggregation) GetMode() string {
-	if o == nil || o.Mode.Get() == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Mode.Get()
+
+	return o.Mode
 }
 
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
+// GetModeOk returns a tuple with the Mode field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Aggregation) GetModeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Mode.Get(), o.Mode.IsSet()
+	return &o.Mode, true
 }
 
-// HasMode returns a boolean if a field has been set.
-func (o *Aggregation) HasMode() bool {
-	if o != nil && o.Mode.IsSet() {
+// SetMode sets field value
+func (o *Aggregation) SetMode(v string) {
+	o.Mode = v
+}
+
+// GetRaster returns the Raster field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Aggregation) GetRaster() string {
+	if o == nil || o.Raster.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Raster.Get()
+}
+
+// GetRasterOk returns a tuple with the Raster field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Aggregation) GetRasterOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Raster.Get(), o.Raster.IsSet()
+}
+
+// HasRaster returns a boolean if a field has been set.
+func (o *Aggregation) HasRaster() bool {
+	if o != nil && o.Raster.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMode gets a reference to the given NullableString and assigns it to the Mode field.
-func (o *Aggregation) SetMode(v string) {
-	o.Mode.Set(&v)
-}
-// SetModeNil sets the value for Mode to be an explicit nil
-func (o *Aggregation) SetModeNil() {
-	o.Mode.Set(nil)
-}
-
-// UnsetMode ensures that no value is present for Mode, not even an explicit nil
-func (o *Aggregation) UnsetMode() {
-	o.Mode.Unset()
-}
-
-// GetRaster returns the Raster field value
-func (o *Aggregation) GetRaster() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Raster
-}
-
-// GetRasterOk returns a tuple with the Raster field value
-// and a boolean to check if the value has been set.
-func (o *Aggregation) GetRasterOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Raster, true
-}
-
-// SetRaster sets field value
+// SetRaster gets a reference to the given NullableString and assigns it to the Raster field.
 func (o *Aggregation) SetRaster(v string) {
-	o.Raster = v
+	o.Raster.Set(&v)
+}
+// SetRasterNil sets the value for Raster to be an explicit nil
+func (o *Aggregation) SetRasterNil() {
+	o.Raster.Set(nil)
+}
+
+// UnsetRaster ensures that no value is present for Raster, not even an explicit nil
+func (o *Aggregation) UnsetRaster() {
+	o.Raster.Unset()
 }
 
 func (o Aggregation) MarshalJSON() ([]byte, error) {
@@ -253,11 +253,11 @@ func (o Aggregation) MarshalJSON() ([]byte, error) {
 	if o.Attribute != nil {
 		toSerialize["attribute"] = o.Attribute
 	}
-	if o.Mode.IsSet() {
-		toSerialize["mode"] = o.Mode.Get()
-	}
 	if true {
-		toSerialize["raster"] = o.Raster
+		toSerialize["mode"] = o.Mode
+	}
+	if o.Raster.IsSet() {
+		toSerialize["raster"] = o.Raster.Get()
 	}
 	return json.Marshal(toSerialize)
 }

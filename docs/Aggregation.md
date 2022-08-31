@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **AssetId** | **int32** | ID of the corresponding asset | 
 **Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | Pointer to **string** | Name of the attribute which holds the data points | [optional] 
-**Mode** | Pointer to **NullableString** | Calculation mode | [optional] 
-**Raster** | **string** | calculation interval | 
+**Mode** | **string** | Calculation mode | 
+**Raster** | Pointer to **NullableString** | calculation interval | [optional] 
 
 ## Methods
 
 ### NewAggregation
 
-`func NewAggregation(assetId int32, subtype DataSubtype, raster string, ) *Aggregation`
+`func NewAggregation(assetId int32, subtype DataSubtype, mode string, ) *Aggregation`
 
 NewAggregation instantiates a new Aggregation object
 This constructor will assign default values to properties that have it defined,
@@ -149,22 +149,7 @@ and a boolean to check if the value has been set.
 
 SetMode sets Mode field to given value.
 
-### HasMode
 
-`func (o *Aggregation) HasMode() bool`
-
-HasMode returns a boolean if a field has been set.
-
-### SetModeNil
-
-`func (o *Aggregation) SetModeNil(b bool)`
-
- SetModeNil sets the value for Mode to be an explicit nil
-
-### UnsetMode
-`func (o *Aggregation) UnsetMode()`
-
-UnsetMode ensures that no value is present for Mode, not even an explicit nil
 ### GetRaster
 
 `func (o *Aggregation) GetRaster() string`
@@ -184,7 +169,22 @@ and a boolean to check if the value has been set.
 
 SetRaster sets Raster field to given value.
 
+### HasRaster
 
+`func (o *Aggregation) HasRaster() bool`
+
+HasRaster returns a boolean if a field has been set.
+
+### SetRasterNil
+
+`func (o *Aggregation) SetRasterNil(b bool)`
+
+ SetRasterNil sets the value for Raster to be an explicit nil
+
+### UnsetRaster
+`func (o *Aggregation) UnsetRaster()`
+
+UnsetRaster ensures that no value is present for Raster, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
