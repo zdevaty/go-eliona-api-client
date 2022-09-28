@@ -17,7 +17,7 @@ import (
 // Dashboard A frontend dashboard
 type Dashboard struct {
 	// The internal Id of dashboard
-	Id NullableInt32 `json:"Id,omitempty"`
+	Id NullableInt32 `json:"id,omitempty"`
 	// The name for this dashboard
 	Name string `json:"name"`
 	// ID of the project to which the dashboard belongs
@@ -26,6 +26,8 @@ type Dashboard struct {
 	UserId string `json:"userId"`
 	// The sequence of the dashboard
 	Sequence NullableInt32 `json:"sequence,omitempty"`
+	// List of widgets on this dashboard (order matches the order of widgets on the dashboard)
+	Widgets []Widget `json:"widgets,omitempty"`
 }
 
 // NewDashboard instantiates a new Dashboard object
@@ -208,10 +210,43 @@ func (o *Dashboard) UnsetSequence() {
 	o.Sequence.Unset()
 }
 
+// GetWidgets returns the Widgets field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Dashboard) GetWidgets() []Widget {
+	if o == nil {
+		var ret []Widget
+		return ret
+	}
+	return o.Widgets
+}
+
+// GetWidgetsOk returns a tuple with the Widgets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetWidgetsOk() ([]Widget, bool) {
+	if o == nil || o.Widgets == nil {
+		return nil, false
+	}
+	return o.Widgets, true
+}
+
+// HasWidgets returns a boolean if a field has been set.
+func (o *Dashboard) HasWidgets() bool {
+	if o != nil && o.Widgets != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWidgets gets a reference to the given []Widget and assigns it to the Widgets field.
+func (o *Dashboard) SetWidgets(v []Widget) {
+	o.Widgets = v
+}
+
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id.IsSet() {
-		toSerialize["Id"] = o.Id.Get()
+		toSerialize["id"] = o.Id.Get()
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -224,6 +259,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	}
 	if o.Sequence.IsSet() {
 		toSerialize["sequence"] = o.Sequence.Get()
+	}
+	if o.Widgets != nil {
+		toSerialize["widgets"] = o.Widgets
 	}
 	return json.Marshal(toSerialize)
 }

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **NullableInt32** | The internal Id of widget | [optional] [readonly] 
 **WidgetTypeName** | **string** | The name for the type of this widget | 
-**Width** | **string** | The width of this widget on dashboard | 
-**Timespan** | Pointer to **NullableInt32** | The number of days if the widget type uses timespan | [optional] 
 **Details** | Pointer to **map[string]interface{}** | Detailed configuration depending on the widget type | [optional] 
 **AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
+**Sequence** | Pointer to **NullableInt32** | Placement order on dashboard; if not set the index in array is taken | [optional] 
 **Data** | Pointer to [**[]WidgetData**](WidgetData.md) | List of data for the elements of widget | [optional] 
 
 ## Methods
 
 ### NewWidget
 
-`func NewWidget(widgetTypeName string, width string, ) *Widget`
+`func NewWidget(widgetTypeName string, ) *Widget`
 
 NewWidget instantiates a new Widget object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +30,41 @@ NewWidgetWithDefaults instantiates a new Widget object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *Widget) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Widget) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Widget) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Widget) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *Widget) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *Widget) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetWidgetTypeName
 
 `func (o *Widget) GetWidgetTypeName() string`
@@ -50,61 +85,6 @@ and a boolean to check if the value has been set.
 SetWidgetTypeName sets WidgetTypeName field to given value.
 
 
-### GetWidth
-
-`func (o *Widget) GetWidth() string`
-
-GetWidth returns the Width field if non-nil, zero value otherwise.
-
-### GetWidthOk
-
-`func (o *Widget) GetWidthOk() (*string, bool)`
-
-GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWidth
-
-`func (o *Widget) SetWidth(v string)`
-
-SetWidth sets Width field to given value.
-
-
-### GetTimespan
-
-`func (o *Widget) GetTimespan() int32`
-
-GetTimespan returns the Timespan field if non-nil, zero value otherwise.
-
-### GetTimespanOk
-
-`func (o *Widget) GetTimespanOk() (*int32, bool)`
-
-GetTimespanOk returns a tuple with the Timespan field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimespan
-
-`func (o *Widget) SetTimespan(v int32)`
-
-SetTimespan sets Timespan field to given value.
-
-### HasTimespan
-
-`func (o *Widget) HasTimespan() bool`
-
-HasTimespan returns a boolean if a field has been set.
-
-### SetTimespanNil
-
-`func (o *Widget) SetTimespanNil(b bool)`
-
- SetTimespanNil sets the value for Timespan to be an explicit nil
-
-### UnsetTimespan
-`func (o *Widget) UnsetTimespan()`
-
-UnsetTimespan ensures that no value is present for Timespan, not even an explicit nil
 ### GetDetails
 
 `func (o *Widget) GetDetails() map[string]interface{}`
@@ -175,6 +155,41 @@ HasAssetId returns a boolean if a field has been set.
 `func (o *Widget) UnsetAssetId()`
 
 UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
+### GetSequence
+
+`func (o *Widget) GetSequence() int32`
+
+GetSequence returns the Sequence field if non-nil, zero value otherwise.
+
+### GetSequenceOk
+
+`func (o *Widget) GetSequenceOk() (*int32, bool)`
+
+GetSequenceOk returns a tuple with the Sequence field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSequence
+
+`func (o *Widget) SetSequence(v int32)`
+
+SetSequence sets Sequence field to given value.
+
+### HasSequence
+
+`func (o *Widget) HasSequence() bool`
+
+HasSequence returns a boolean if a field has been set.
+
+### SetSequenceNil
+
+`func (o *Widget) SetSequenceNil(b bool)`
+
+ SetSequenceNil sets the value for Sequence to be an explicit nil
+
+### UnsetSequence
+`func (o *Widget) UnsetSequence()`
+
+UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
 ### GetData
 
 `func (o *Widget) GetData() []WidgetData`

@@ -16,6 +16,8 @@ import (
 
 // WidgetType A frontend widget
 type WidgetType struct {
+	// The internal Id of widget type
+	Id NullableInt32 `json:"id,omitempty"`
 	// The unique name for this widget type
 	Name string `json:"name"`
 	// Is this a customer created type or not
@@ -27,7 +29,7 @@ type WidgetType struct {
 	WithAlarm NullableBool `json:"withAlarm,omitempty"`
 	// Show selection for timespan in widget
 	WithTimespan NullableBool `json:"withTimespan,omitempty"`
-	// A list of elements for this widget
+	// A list of elements for this widget (order matches the order of elements for this type)
 	Elements []WidgetTypeElement `json:"elements"`
 }
 
@@ -61,6 +63,48 @@ func NewWidgetTypeWithDefaults() *WidgetType {
 	var withTimespan bool = false
 	this.WithTimespan = *NewNullableBool(&withTimespan)
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WidgetType) GetId() int32 {
+	if o == nil || o.Id.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id.Get()
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WidgetType) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id.Get(), o.Id.IsSet()
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *WidgetType) HasId() bool {
+	if o != nil && o.Id.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given NullableInt32 and assigns it to the Id field.
+func (o *WidgetType) SetId(v int32) {
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *WidgetType) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *WidgetType) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetName returns the Name field value
@@ -297,6 +341,9 @@ func (o *WidgetType) SetElements(v []WidgetTypeElement) {
 
 func (o WidgetType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
+	}
 	if true {
 		toSerialize["name"] = o.Name
 	}

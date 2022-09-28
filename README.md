@@ -61,7 +61,7 @@ Each operation can use different server URL defined using `OperationServers` map
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), api.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -110,9 +110,9 @@ Class | Method | HTTP request | Description
 *AssetsApi* | [**GetAssetById**](docs/AssetsApi.md#getassetbyid) | **Get** /assets/{asset-id} | Information about an asset
 *AssetsApi* | [**GetAssets**](docs/AssetsApi.md#getassets) | **Get** /assets | Information about assets
 *AssetsApi* | [**PutAsset**](docs/AssetsApi.md#putasset) | **Put** /assets | Create or update an asset
+*DashboardsApi* | [**GetDashboardById**](docs/DashboardsApi.md#getdashboardbyid) | **Get** /dashboards/{dashboard-id} | Information about a dashboard
+*DashboardsApi* | [**GetDashboards**](docs/DashboardsApi.md#getdashboards) | **Get** /dashboards | Information about dashboards
 *DashboardsApi* | [**PostDashboard**](docs/DashboardsApi.md#postdashboard) | **Post** /dashboards | Creates a new dashboard
-*DashboardsApi* | [**PostDashboardWidget**](docs/DashboardsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
-*DashboardsApi* | [**PutWidgetType**](docs/DashboardsApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
 *DataApi* | [**GetData**](docs/DataApi.md#getdata) | **Get** /data | Gets all data
 *DataApi* | [**GetDataAggregated**](docs/DataApi.md#getdataaggregated) | **Get** /data-aggregated | Get aggregated data
 *DataApi* | [**GetDataTrends**](docs/DataApi.md#getdatatrends) | **Get** /data-trends | Get trend of historical data
@@ -121,6 +121,12 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**GetNodeByIdent**](docs/NodesApi.md#getnodebyident) | **Get** /nodes/{node-ident} | Information about a node
 *NodesApi* | [**GetNodes**](docs/NodesApi.md#getnodes) | **Get** /nodes | Information about nodes
 *NodesApi* | [**PutNode**](docs/NodesApi.md#putnode) | **Put** /nodes | Create or update a node
+*WidgetsApi* | [**GetDashboardWidgets**](docs/WidgetsApi.md#getdashboardwidgets) | **Get** /dashboards/{dashboard-id}/widgets | Information about widgets on dashboard
+*WidgetsApi* | [**PostDashboardWidget**](docs/WidgetsApi.md#postdashboardwidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
+*WidgetsTypesApi* | [**DeleteWidgetTypeByName**](docs/WidgetsTypesApi.md#deletewidgettypebyname) | **Delete** /widget-types/{widget-type-name} | Delete a widget type
+*WidgetsTypesApi* | [**GetWidgetTypeByName**](docs/WidgetsTypesApi.md#getwidgettypebyname) | **Get** /widget-types/{widget-type-name} | Information about a widget type
+*WidgetsTypesApi* | [**GetWidgetTypes**](docs/WidgetsTypesApi.md#getwidgettypes) | **Get** /widget-types | List of widget types
+*WidgetsTypesApi* | [**PutWidgetType**](docs/WidgetsTypesApi.md#putwidgettype) | **Put** /widget-types | Create or update a widget type
 
 
 ## Documentation For Models

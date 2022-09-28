@@ -16,10 +16,12 @@ import (
 
 // WidgetTypeElement An element for widget types
 type WidgetTypeElement struct {
+	// The internal Id of widget element
+	Id NullableInt32 `json:"id,omitempty"`
 	// The category for this element
 	Category string `json:"category"`
-	// description text for this element
-	Description string `json:"description"`
+	// sequence of element in widget; if not defined the index in array is taken
+	Sequence NullableInt32 `json:"sequence,omitempty"`
 	// individual config parameters depending on category
 	Config map[string]interface{} `json:"config,omitempty"`
 }
@@ -28,10 +30,9 @@ type WidgetTypeElement struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidgetTypeElement(category string, description string) *WidgetTypeElement {
+func NewWidgetTypeElement(category string) *WidgetTypeElement {
 	this := WidgetTypeElement{}
 	this.Category = category
-	this.Description = description
 	return &this
 }
 
@@ -41,6 +42,48 @@ func NewWidgetTypeElement(category string, description string) *WidgetTypeElemen
 func NewWidgetTypeElementWithDefaults() *WidgetTypeElement {
 	this := WidgetTypeElement{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WidgetTypeElement) GetId() int32 {
+	if o == nil || o.Id.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id.Get()
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WidgetTypeElement) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id.Get(), o.Id.IsSet()
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *WidgetTypeElement) HasId() bool {
+	if o != nil && o.Id.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given NullableInt32 and assigns it to the Id field.
+func (o *WidgetTypeElement) SetId(v int32) {
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *WidgetTypeElement) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *WidgetTypeElement) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetCategory returns the Category field value
@@ -67,28 +110,46 @@ func (o *WidgetTypeElement) SetCategory(v string) {
 	o.Category = v
 }
 
-// GetDescription returns the Description field value
-func (o *WidgetTypeElement) GetDescription() string {
-	if o == nil {
-		var ret string
+// GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WidgetTypeElement) GetSequence() int32 {
+	if o == nil || o.Sequence.Get() == nil {
+		var ret int32
 		return ret
 	}
-
-	return o.Description
+	return *o.Sequence.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WidgetTypeElement) GetDescriptionOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WidgetTypeElement) GetSequenceOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Sequence.Get(), o.Sequence.IsSet()
 }
 
-// SetDescription sets field value
-func (o *WidgetTypeElement) SetDescription(v string) {
-	o.Description = v
+// HasSequence returns a boolean if a field has been set.
+func (o *WidgetTypeElement) HasSequence() bool {
+	if o != nil && o.Sequence.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSequence gets a reference to the given NullableInt32 and assigns it to the Sequence field.
+func (o *WidgetTypeElement) SetSequence(v int32) {
+	o.Sequence.Set(&v)
+}
+// SetSequenceNil sets the value for Sequence to be an explicit nil
+func (o *WidgetTypeElement) SetSequenceNil() {
+	o.Sequence.Set(nil)
+}
+
+// UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
+func (o *WidgetTypeElement) UnsetSequence() {
+	o.Sequence.Unset()
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -126,11 +187,14 @@ func (o *WidgetTypeElement) SetConfig(v map[string]interface{}) {
 
 func (o WidgetTypeElement) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
+	}
 	if true {
 		toSerialize["category"] = o.Category
 	}
-	if true {
-		toSerialize["description"] = o.Description
+	if o.Sequence.IsSet() {
+		toSerialize["sequence"] = o.Sequence.Get()
 	}
 	if o.Config != nil {
 		toSerialize["config"] = o.Config

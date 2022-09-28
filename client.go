@@ -68,6 +68,10 @@ type APIClient struct {
 	DataApi *DataApiService
 
 	NodesApi *NodesApiService
+
+	WidgetsApi *WidgetsApiService
+
+	WidgetsTypesApi *WidgetsTypesApiService
 }
 
 type service struct {
@@ -96,6 +100,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DashboardsApi = (*DashboardsApiService)(&c.common)
 	c.DataApi = (*DataApiService)(&c.common)
 	c.NodesApi = (*NodesApiService)(&c.common)
+	c.WidgetsApi = (*WidgetsApiService)(&c.common)
+	c.WidgetsTypesApi = (*WidgetsTypesApiService)(&c.common)
 
 	return c
 }

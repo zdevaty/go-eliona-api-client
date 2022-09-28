@@ -16,16 +16,16 @@ import (
 
 // Widget A widget on a frontend dashboard
 type Widget struct {
+	// The internal Id of widget
+	Id NullableInt32 `json:"id,omitempty"`
 	// The name for the type of this widget
 	WidgetTypeName string `json:"widgetTypeName"`
-	// The width of this widget on dashboard
-	Width string `json:"width"`
-	// The number of days if the widget type uses timespan
-	Timespan NullableInt32 `json:"timespan,omitempty"`
 	// Detailed configuration depending on the widget type
 	Details map[string]interface{} `json:"details,omitempty"`
 	// The master asset id of this widget
 	AssetId NullableInt32 `json:"assetId,omitempty"`
+	// Placement order on dashboard; if not set the index in array is taken
+	Sequence NullableInt32 `json:"sequence,omitempty"`
 	// List of data for the elements of widget
 	Data []WidgetData `json:"data,omitempty"`
 }
@@ -34,10 +34,9 @@ type Widget struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWidget(widgetTypeName string, width string) *Widget {
+func NewWidget(widgetTypeName string) *Widget {
 	this := Widget{}
 	this.WidgetTypeName = widgetTypeName
-	this.Width = width
 	return &this
 }
 
@@ -47,6 +46,48 @@ func NewWidget(widgetTypeName string, width string) *Widget {
 func NewWidgetWithDefaults() *Widget {
 	this := Widget{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Widget) GetId() int32 {
+	if o == nil || o.Id.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Id.Get()
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Widget) GetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Id.Get(), o.Id.IsSet()
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Widget) HasId() bool {
+	if o != nil && o.Id.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given NullableInt32 and assigns it to the Id field.
+func (o *Widget) SetId(v int32) {
+	o.Id.Set(&v)
+}
+// SetIdNil sets the value for Id to be an explicit nil
+func (o *Widget) SetIdNil() {
+	o.Id.Set(nil)
+}
+
+// UnsetId ensures that no value is present for Id, not even an explicit nil
+func (o *Widget) UnsetId() {
+	o.Id.Unset()
 }
 
 // GetWidgetTypeName returns the WidgetTypeName field value
@@ -71,72 +112,6 @@ func (o *Widget) GetWidgetTypeNameOk() (*string, bool) {
 // SetWidgetTypeName sets field value
 func (o *Widget) SetWidgetTypeName(v string) {
 	o.WidgetTypeName = v
-}
-
-// GetWidth returns the Width field value
-func (o *Widget) GetWidth() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Width
-}
-
-// GetWidthOk returns a tuple with the Width field value
-// and a boolean to check if the value has been set.
-func (o *Widget) GetWidthOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Width, true
-}
-
-// SetWidth sets field value
-func (o *Widget) SetWidth(v string) {
-	o.Width = v
-}
-
-// GetTimespan returns the Timespan field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Widget) GetTimespan() int32 {
-	if o == nil || o.Timespan.Get() == nil {
-		var ret int32
-		return ret
-	}
-	return *o.Timespan.Get()
-}
-
-// GetTimespanOk returns a tuple with the Timespan field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Widget) GetTimespanOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Timespan.Get(), o.Timespan.IsSet()
-}
-
-// HasTimespan returns a boolean if a field has been set.
-func (o *Widget) HasTimespan() bool {
-	if o != nil && o.Timespan.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetTimespan gets a reference to the given NullableInt32 and assigns it to the Timespan field.
-func (o *Widget) SetTimespan(v int32) {
-	o.Timespan.Set(&v)
-}
-// SetTimespanNil sets the value for Timespan to be an explicit nil
-func (o *Widget) SetTimespanNil() {
-	o.Timespan.Set(nil)
-}
-
-// UnsetTimespan ensures that no value is present for Timespan, not even an explicit nil
-func (o *Widget) UnsetTimespan() {
-	o.Timespan.Unset()
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -214,6 +189,48 @@ func (o *Widget) UnsetAssetId() {
 	o.AssetId.Unset()
 }
 
+// GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Widget) GetSequence() int32 {
+	if o == nil || o.Sequence.Get() == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Sequence.Get()
+}
+
+// GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Widget) GetSequenceOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Sequence.Get(), o.Sequence.IsSet()
+}
+
+// HasSequence returns a boolean if a field has been set.
+func (o *Widget) HasSequence() bool {
+	if o != nil && o.Sequence.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSequence gets a reference to the given NullableInt32 and assigns it to the Sequence field.
+func (o *Widget) SetSequence(v int32) {
+	o.Sequence.Set(&v)
+}
+// SetSequenceNil sets the value for Sequence to be an explicit nil
+func (o *Widget) SetSequenceNil() {
+	o.Sequence.Set(nil)
+}
+
+// UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
+func (o *Widget) UnsetSequence() {
+	o.Sequence.Unset()
+}
+
 // GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Widget) GetData() []WidgetData {
 	if o == nil {
@@ -249,20 +266,20 @@ func (o *Widget) SetData(v []WidgetData) {
 
 func (o Widget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id.IsSet() {
+		toSerialize["id"] = o.Id.Get()
+	}
 	if true {
 		toSerialize["widgetTypeName"] = o.WidgetTypeName
-	}
-	if true {
-		toSerialize["width"] = o.Width
-	}
-	if o.Timespan.IsSet() {
-		toSerialize["timespan"] = o.Timespan.Get()
 	}
 	if o.Details != nil {
 		toSerialize["details"] = o.Details
 	}
 	if o.AssetId.IsSet() {
 		toSerialize["assetId"] = o.AssetId.Get()
+	}
+	if o.Sequence.IsSet() {
+		toSerialize["sequence"] = o.Sequence.Get()
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
