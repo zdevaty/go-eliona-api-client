@@ -153,6 +153,20 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 type ApiGetAssetsRequest struct {
 	ctx context.Context
 	ApiService *AssetsApiService
+	assetTypeName *string
+	expansions *[]string
+}
+
+// Filter the name of the asset type
+func (r ApiGetAssetsRequest) AssetTypeName(assetTypeName string) ApiGetAssetsRequest {
+	r.assetTypeName = &assetTypeName
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiGetAssetsRequest) Expansions(expansions []string) ApiGetAssetsRequest {
+	r.expansions = &expansions
+	return r
 }
 
 func (r ApiGetAssetsRequest) Execute() ([]Asset, *http.Response, error) {
@@ -195,6 +209,12 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.assetTypeName != nil {
+		localVarQueryParams.Add("assetTypeName", parameterToString(*r.assetTypeName, ""))
+	}
+	if r.expansions != nil {
+		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

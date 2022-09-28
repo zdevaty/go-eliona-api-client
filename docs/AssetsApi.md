@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## GetAssets
 
-> []Asset GetAssets(ctx).Execute()
+> []Asset GetAssets(ctx).AssetTypeName(assetTypeName).Expansions(expansions).Execute()
 
 Information about assets
 
@@ -103,10 +103,12 @@ import (
 )
 
 func main() {
+    assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.GetAssets(context.Background()).Execute()
+    resp, r, err := apiClient.AssetsApi.GetAssets(context.Background()).AssetTypeName(assetTypeName).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.GetAssets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -118,12 +120,17 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetAssetsRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetTypeName** | **string** | Filter the name of the asset type | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
