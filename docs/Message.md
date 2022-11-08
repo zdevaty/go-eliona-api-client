@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **CopyRecipients** | Pointer to **[]string** | A list of recipient addresses to receive this message as copy | [optional] 
 **BlindCopyRecipients** | Pointer to **[]string** | A list of recipient addresses to receive this message as blind copy without any other recipient information | [optional] 
 **Subject** | Pointer to **string** | The subject for this message | [optional] 
-**Template** | Pointer to **NullableString** | The template used for message content | [optional] [default to "eliona"]
 **Content** | **string** | The content of the message. If template is used, the content is embedded in the template. | 
 **Attachments** | Pointer to [**[]Attachment**](Attachment.md) | A list of files attached to the message | [optional] 
 
@@ -182,41 +181,6 @@ SetSubject sets Subject field to given value.
 
 HasSubject returns a boolean if a field has been set.
 
-### GetTemplate
-
-`func (o *Message) GetTemplate() string`
-
-GetTemplate returns the Template field if non-nil, zero value otherwise.
-
-### GetTemplateOk
-
-`func (o *Message) GetTemplateOk() (*string, bool)`
-
-GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTemplate
-
-`func (o *Message) SetTemplate(v string)`
-
-SetTemplate sets Template field to given value.
-
-### HasTemplate
-
-`func (o *Message) HasTemplate() bool`
-
-HasTemplate returns a boolean if a field has been set.
-
-### SetTemplateNil
-
-`func (o *Message) SetTemplateNil(b bool)`
-
- SetTemplateNil sets the value for Template to be an explicit nil
-
-### UnsetTemplate
-`func (o *Message) UnsetTemplate()`
-
-UnsetTemplate ensures that no value is present for Template, not even an explicit nil
 ### GetContent
 
 `func (o *Message) GetContent() string`
