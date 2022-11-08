@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAssetById**](AssetsApi.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
 [**GetAssets**](AssetsApi.md#GetAssets) | **Get** /assets | Information about assets
+[**PostAsset**](AssetsApi.md#PostAsset) | **Post** /assets | Create an asset
 [**PutAsset**](AssetsApi.md#PutAsset) | **Put** /assets | Create or update an asset
+[**PutAssetById**](AssetsApi.md#PutAssetById) | **Put** /assets/{asset-id} | Update an asset
 
 
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -138,11 +140,77 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostAsset
+
+> Asset PostAsset(ctx).Asset(asset).Execute()
+
+Create an asset
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsApi.PostAsset(context.Background()).Asset(asset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PostAsset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostAsset`: Asset
+    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.PostAsset`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostAssetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | [**Asset**](Asset.md) |  | 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -204,7 +272,79 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutAssetById
+
+> Asset PutAssetById(ctx, assetId).Asset(asset).Execute()
+
+Update an asset
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    assetId := int32(4711) // int32 | The id of the asset
+    asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsApi.PutAssetById(context.Background(), assetId).Asset(asset).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PutAssetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutAssetById`: Asset
+    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.PutAssetById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **int32** | The id of the asset | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutAssetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **asset** | [**Asset**](Asset.md) |  | 
+
+### Return type
+
+[**Asset**](Asset.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

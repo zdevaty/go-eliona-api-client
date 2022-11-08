@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetNodeByIdent**](NodesApi.md#GetNodeByIdent) | **Get** /nodes/{node-ident} | Information about a node
 [**GetNodes**](NodesApi.md#GetNodes) | **Get** /nodes | Information about nodes
+[**PostNode**](NodesApi.md#PostNode) | **Post** /nodes | Create a node
 [**PutNode**](NodesApi.md#PutNode) | **Put** /nodes | Create or update a node
+[**PutNodeByIdent**](NodesApi.md#PutNodeByIdent) | **Put** /nodes/{node-ident} | Update a node
 
 
 
@@ -68,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -129,11 +131,77 @@ Other parameters are passed through a pointer to a apiGetNodesRequest struct via
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostNode
+
+> Node PostNode(ctx).Node(node).Execute()
+
+Create a node
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    node := *openapiclient.NewNode() // Node | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.NodesApi.PostNode(context.Background()).Node(node).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.PostNode``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostNode`: Node
+    fmt.Fprintf(os.Stdout, "Response from `NodesApi.PostNode`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostNodeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **node** | [**Node**](Node.md) |  | 
+
+### Return type
+
+[**Node**](Node.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -195,7 +263,79 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutNodeByIdent
+
+> Node PutNodeByIdent(ctx, nodeIdent).Node(node).Execute()
+
+Update a node
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    nodeIdent := "4711" // string | The UUID identifier of the node
+    node := *openapiclient.NewNode() // Node | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.NodesApi.PutNodeByIdent(context.Background(), nodeIdent).Node(node).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.PutNodeByIdent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutNodeByIdent`: Node
+    fmt.Fprintf(os.Stdout, "Response from `NodesApi.PutNodeByIdent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**nodeIdent** | **string** | The UUID identifier of the node | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutNodeByIdentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **node** | [**Node**](Node.md) |  | 
+
+### Return type
+
+[**Node**](Node.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

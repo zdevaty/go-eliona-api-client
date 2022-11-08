@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## GetDataAggregated
 
-> []DataAggregated GetDataAggregated(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+> []DataAggregated GetDataAggregated(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
 
 Get aggregated data
 
@@ -108,10 +108,11 @@ func main() {
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+    aggregationId := int32(0815) // int32 | Filter for a specific aggregation id (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataApi.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetDataAggregated``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,6 +138,7 @@ Name | Type | Description  | Notes
  **assetId** | **int32** | Filter for a specific asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
+ **aggregationId** | **int32** | Filter for a specific aggregation id | 
 
 ### Return type
 
@@ -144,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -218,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -286,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -319,7 +321,7 @@ import (
 )
 
 func main() {
-    data := *openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}(123)) // Data | 
+    data := *openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({})) // Data | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -350,7 +352,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 

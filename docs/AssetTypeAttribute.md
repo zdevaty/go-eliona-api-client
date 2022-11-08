@@ -20,6 +20,11 @@ Name | Type | Description | Notes
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
 **Sequence** | Pointer to **NullableInt64** | Sequence in AR display | [optional] 
 **Virtual** | Pointer to **NullableBool** | Is the attribute virtual or not | [optional] 
+**Scale** | Pointer to **NullableFloat32** | value scale | [optional] 
+**Zero** | Pointer to **NullableFloat32** | value scale | [optional] 
+**Map** | Pointer to **map[string]interface{}** | custom map | [optional] 
+**SourcePath** | Pointer to **[]string** | source path for attribute value | [optional] 
+**IsDigital** | Pointer to **NullableBool** | is attribute digital | [optional] 
 
 ## Methods
 
@@ -550,6 +555,181 @@ HasVirtual returns a boolean if a field has been set.
 `func (o *AssetTypeAttribute) UnsetVirtual()`
 
 UnsetVirtual ensures that no value is present for Virtual, not even an explicit nil
+### GetScale
+
+`func (o *AssetTypeAttribute) GetScale() float32`
+
+GetScale returns the Scale field if non-nil, zero value otherwise.
+
+### GetScaleOk
+
+`func (o *AssetTypeAttribute) GetScaleOk() (*float32, bool)`
+
+GetScaleOk returns a tuple with the Scale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScale
+
+`func (o *AssetTypeAttribute) SetScale(v float32)`
+
+SetScale sets Scale field to given value.
+
+### HasScale
+
+`func (o *AssetTypeAttribute) HasScale() bool`
+
+HasScale returns a boolean if a field has been set.
+
+### SetScaleNil
+
+`func (o *AssetTypeAttribute) SetScaleNil(b bool)`
+
+ SetScaleNil sets the value for Scale to be an explicit nil
+
+### UnsetScale
+`func (o *AssetTypeAttribute) UnsetScale()`
+
+UnsetScale ensures that no value is present for Scale, not even an explicit nil
+### GetZero
+
+`func (o *AssetTypeAttribute) GetZero() float32`
+
+GetZero returns the Zero field if non-nil, zero value otherwise.
+
+### GetZeroOk
+
+`func (o *AssetTypeAttribute) GetZeroOk() (*float32, bool)`
+
+GetZeroOk returns a tuple with the Zero field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZero
+
+`func (o *AssetTypeAttribute) SetZero(v float32)`
+
+SetZero sets Zero field to given value.
+
+### HasZero
+
+`func (o *AssetTypeAttribute) HasZero() bool`
+
+HasZero returns a boolean if a field has been set.
+
+### SetZeroNil
+
+`func (o *AssetTypeAttribute) SetZeroNil(b bool)`
+
+ SetZeroNil sets the value for Zero to be an explicit nil
+
+### UnsetZero
+`func (o *AssetTypeAttribute) UnsetZero()`
+
+UnsetZero ensures that no value is present for Zero, not even an explicit nil
+### GetMap
+
+`func (o *AssetTypeAttribute) GetMap() map[string]interface{}`
+
+GetMap returns the Map field if non-nil, zero value otherwise.
+
+### GetMapOk
+
+`func (o *AssetTypeAttribute) GetMapOk() (*map[string]interface{}, bool)`
+
+GetMapOk returns a tuple with the Map field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMap
+
+`func (o *AssetTypeAttribute) SetMap(v map[string]interface{})`
+
+SetMap sets Map field to given value.
+
+### HasMap
+
+`func (o *AssetTypeAttribute) HasMap() bool`
+
+HasMap returns a boolean if a field has been set.
+
+### SetMapNil
+
+`func (o *AssetTypeAttribute) SetMapNil(b bool)`
+
+ SetMapNil sets the value for Map to be an explicit nil
+
+### UnsetMap
+`func (o *AssetTypeAttribute) UnsetMap()`
+
+UnsetMap ensures that no value is present for Map, not even an explicit nil
+### GetSourcePath
+
+`func (o *AssetTypeAttribute) GetSourcePath() []string`
+
+GetSourcePath returns the SourcePath field if non-nil, zero value otherwise.
+
+### GetSourcePathOk
+
+`func (o *AssetTypeAttribute) GetSourcePathOk() (*[]string, bool)`
+
+GetSourcePathOk returns a tuple with the SourcePath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourcePath
+
+`func (o *AssetTypeAttribute) SetSourcePath(v []string)`
+
+SetSourcePath sets SourcePath field to given value.
+
+### HasSourcePath
+
+`func (o *AssetTypeAttribute) HasSourcePath() bool`
+
+HasSourcePath returns a boolean if a field has been set.
+
+### SetSourcePathNil
+
+`func (o *AssetTypeAttribute) SetSourcePathNil(b bool)`
+
+ SetSourcePathNil sets the value for SourcePath to be an explicit nil
+
+### UnsetSourcePath
+`func (o *AssetTypeAttribute) UnsetSourcePath()`
+
+UnsetSourcePath ensures that no value is present for SourcePath, not even an explicit nil
+### GetIsDigital
+
+`func (o *AssetTypeAttribute) GetIsDigital() bool`
+
+GetIsDigital returns the IsDigital field if non-nil, zero value otherwise.
+
+### GetIsDigitalOk
+
+`func (o *AssetTypeAttribute) GetIsDigitalOk() (*bool, bool)`
+
+GetIsDigitalOk returns a tuple with the IsDigital field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDigital
+
+`func (o *AssetTypeAttribute) SetIsDigital(v bool)`
+
+SetIsDigital sets IsDigital field to given value.
+
+### HasIsDigital
+
+`func (o *AssetTypeAttribute) HasIsDigital() bool`
+
+HasIsDigital returns a boolean if a field has been set.
+
+### SetIsDigitalNil
+
+`func (o *AssetTypeAttribute) SetIsDigitalNil(b bool)`
+
+ SetIsDigitalNil sets the value for IsDigital to be an explicit nil
+
+### UnsetIsDigital
+`func (o *AssetTypeAttribute) UnsetIsDigital()`
+
+UnsetIsDigital ensures that no value is present for IsDigital, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

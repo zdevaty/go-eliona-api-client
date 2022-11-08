@@ -6,7 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAlarmRuleById**](AlarmRulesApi.md#GetAlarmRuleById) | **Get** /alarm-rules/{alarm-rule-id} | Information about an alarm rule
 [**GetAlarmRules**](AlarmRulesApi.md#GetAlarmRules) | **Get** /alarm-rules | Information about alarm rules
+[**PostAlarmRule**](AlarmRulesApi.md#PostAlarmRule) | **Post** /alarm-rules | Create an alarm rule
 [**PutAlarmRule**](AlarmRulesApi.md#PutAlarmRule) | **Put** /alarm-rules | Create or update an alarm rule
+[**PutAlarmRuleById**](AlarmRulesApi.md#PutAlarmRuleById) | **Put** /alarm-rules/{alarm-rule-id} | Update an alarm rule
 
 
 
@@ -70,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -136,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -148,9 +150,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PostAlarmRule
+
+> AlarmRule PostAlarmRule(ctx).AlarmRule(alarmRule).Execute()
+
+Create an alarm rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AlarmRulesApi.PostAlarmRule(context.Background()).AlarmRule(alarmRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesApi.PostAlarmRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostAlarmRule`: AlarmRule
+    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesApi.PostAlarmRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostAlarmRuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **alarmRule** | [**AlarmRule**](AlarmRule.md) |  | 
+
+### Return type
+
+[**AlarmRule**](AlarmRule.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PutAlarmRule
 
-> PutAlarmRule(ctx).AlarmRule(alarmRule).Execute()
+> AlarmRule PutAlarmRule(ctx).AlarmRule(alarmRule).Execute()
 
 Create or update an alarm rule
 
@@ -178,6 +246,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesApi.PutAlarmRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `PutAlarmRule`: AlarmRule
+    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesApi.PutAlarmRule`: %v\n", resp)
 }
 ```
 
@@ -196,16 +266,88 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**AlarmRule**](AlarmRule.md)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutAlarmRuleById
+
+> AlarmRule PutAlarmRuleById(ctx, alarmRuleId).AlarmRule(alarmRule).Execute()
+
+Update an alarm rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AlarmRulesApi.PutAlarmRuleById(context.Background(), alarmRuleId).AlarmRule(alarmRule).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesApi.PutAlarmRuleById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutAlarmRuleById`: AlarmRule
+    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesApi.PutAlarmRuleById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**alarmRuleId** | **int32** | The id of the alarm rule | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutAlarmRuleByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **alarmRule** | [**AlarmRule**](AlarmRule.md) |  | 
+
+### Return type
+
+[**AlarmRule**](AlarmRule.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

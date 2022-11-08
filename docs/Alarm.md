@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Occurrences** | **int32** | How often this alarm is triggered | 
 **AcknowledgeText** | Pointer to **NullableString** | Text of acknowledgement | [optional] 
 **AcknowledgeUserId** | Pointer to **NullableString** | User who acknowledged the alarm | [optional] 
-**Message** | Pointer to **map[string]interface{}** | Message texts for alarm | [optional] 
+**Message** | Pointer to **map[string]interface{}** | Message.yaml texts for alarm | [optional] 
 **AssetInfo** | Pointer to [**NullableAsset**](Asset.md) |  | [optional] 
 **RuleInfo** | Pointer to [**NullableAlarmRule**](AlarmRule.md) |  | [optional] 
 

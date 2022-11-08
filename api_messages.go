@@ -20,68 +20,58 @@ import (
 )
 
 
-// WidgetsApiService WidgetsApi service
-type WidgetsApiService service
+// MessagesApiService MessagesApi service
+type MessagesApiService service
 
-type ApiGetDashboardWidgetsRequest struct {
+type ApiGetMessageReceiptByIdRequest struct {
 	ctx context.Context
-	ApiService *WidgetsApiService
-	dashboardId int32
-	expansions *[]string
+	ApiService *MessagesApiService
+	messageId string
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetDashboardWidgetsRequest) Expansions(expansions []string) ApiGetDashboardWidgetsRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiGetDashboardWidgetsRequest) Execute() (*Widget, *http.Response, error) {
-	return r.ApiService.GetDashboardWidgetsExecute(r)
+func (r ApiGetMessageReceiptByIdRequest) Execute() (*MessageReceipt, *http.Response, error) {
+	return r.ApiService.GetMessageReceiptByIdExecute(r)
 }
 
 /*
-GetDashboardWidgets Information about widgets on dashboard
+GetMessageReceiptById Information about a message
 
-Gets information about widgets on a dashboard.
+Gets receipt information for a message.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiGetDashboardWidgetsRequest
+ @param messageId The id of the message
+ @return ApiGetMessageReceiptByIdRequest
 */
-func (a *WidgetsApiService) GetDashboardWidgets(ctx context.Context, dashboardId int32) ApiGetDashboardWidgetsRequest {
-	return ApiGetDashboardWidgetsRequest{
+func (a *MessagesApiService) GetMessageReceiptById(ctx context.Context, messageId string) ApiGetMessageReceiptByIdRequest {
+	return ApiGetMessageReceiptByIdRequest{
 		ApiService: a,
 		ctx: ctx,
-		dashboardId: dashboardId,
+		messageId: messageId,
 	}
 }
 
 // Execute executes the request
-//  @return Widget
-func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsRequest) (*Widget, *http.Response, error) {
+//  @return MessageReceipt
+func (a *MessagesApiService) GetMessageReceiptByIdExecute(r ApiGetMessageReceiptByIdRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Widget
+		localVarReturnValue  *MessageReceipt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsApiService.GetDashboardWidgets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MessagesApiService.GetMessageReceiptById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/dashboards/{dashboard-id}/widgets"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard-id"+"}", url.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath := localBasePath + "/message-receipts/{message-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"message-id"+"}", url.PathEscape(parameterToString(r.messageId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.expansions != nil {
-		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -150,72 +140,60 @@ func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostDashboardWidgetRequest struct {
+type ApiPostMailRequest struct {
 	ctx context.Context
-	ApiService *WidgetsApiService
-	dashboardId int32
-	widget *Widget
-	expansions *[]string
+	ApiService *MessagesApiService
+	message *Message
 }
 
-func (r ApiPostDashboardWidgetRequest) Widget(widget Widget) ApiPostDashboardWidgetRequest {
-	r.widget = &widget
+func (r ApiPostMailRequest) Message(message Message) ApiPostMailRequest {
+	r.message = &message
 	return r
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiPostDashboardWidgetRequest) Expansions(expansions []string) ApiPostDashboardWidgetRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiPostDashboardWidgetRequest) Execute() (*http.Response, error) {
-	return r.ApiService.PostDashboardWidgetExecute(r)
+func (r ApiPostMailRequest) Execute() (*MessageReceipt, *http.Response, error) {
+	return r.ApiService.PostMailExecute(r)
 }
 
 /*
-PostDashboardWidget Adds widget to dashboard
+PostMail Send e-mail
 
-Create a new widget and add this to a dashboard
+Sends an e-mail to recipients
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiPostDashboardWidgetRequest
+ @return ApiPostMailRequest
 */
-func (a *WidgetsApiService) PostDashboardWidget(ctx context.Context, dashboardId int32) ApiPostDashboardWidgetRequest {
-	return ApiPostDashboardWidgetRequest{
+func (a *MessagesApiService) PostMail(ctx context.Context) ApiPostMailRequest {
+	return ApiPostMailRequest{
 		ApiService: a,
 		ctx: ctx,
-		dashboardId: dashboardId,
 	}
 }
 
 // Execute executes the request
-func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetRequest) (*http.Response, error) {
+//  @return MessageReceipt
+func (a *MessagesApiService) PostMailExecute(r ApiPostMailRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *MessageReceipt
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsApiService.PostDashboardWidget")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MessagesApiService.PostMail")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/dashboards/{dashboard-id}/widgets"
-	localVarPath = strings.Replace(localVarPath, "{"+"dashboard-id"+"}", url.PathEscape(parameterToString(r.dashboardId, "")), -1)
+	localVarPath := localBasePath + "/send-mail"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.widget == nil {
-		return nil, reportError("widget is required and must be specified")
+	if r.message == nil {
+		return localVarReturnValue, nil, reportError("message is required and must be specified")
 	}
 
-	if r.expansions != nil {
-		localVarQueryParams.Add("expansions", parameterToString(*r.expansions, "csv"))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -226,7 +204,7 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -234,7 +212,7 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.widget
+	localVarPostBody = r.message
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -251,19 +229,19 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -271,8 +249,17 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

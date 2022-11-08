@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Equal** | Pointer to **NullableFloat64** | Triggers alarm if attribute value equals this value | [optional] 
 **Low** | Pointer to **NullableFloat64** | Triggers alarm if attribute value is less than value | [optional] 
 **High** | Pointer to **NullableFloat64** | Triggers alarm if attribute value is greater than value | [optional] 
-**Message** | Pointer to **map[string]interface{}** | Message texts for alarm | [optional] 
+**Message** | Pointer to **map[string]interface{}** | Texts for alarm | [optional] 
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **Subject** | Pointer to **NullableString** | The subject for the alarm | [optional] 
 **Urldoc** | Pointer to **NullableString** | The url describing the alarm | [optional] 

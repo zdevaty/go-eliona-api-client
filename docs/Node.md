@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **AssetId** | Pointer to **NullableInt32** | ID of the corresponding asset | [optional] 
 **Vendor** | Pointer to **NullableString** | Vendor name | [optional] 
 **Model** | Pointer to **NullableString** | Model name | [optional] 
-**Description** | Pointer to **NullableString** | Descriptive text fpr the edge node | [optional] 
+**Description** | Pointer to **NullableString** | Descriptive text for the edge node | [optional] 
 **Enable** | Pointer to **bool** | Is the node enabled or not | [optional] [default to false]
 
 ## Methods
