@@ -4,27 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] [readonly] 
-**Name** | **string** | Unique key of asset heap data | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] 
+**Name** | **string** | Unique key of asset data | 
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Type** | Pointer to **NullableString** | Name of the type for this attribute | [optional] 
-**Enable** | Pointer to **NullableBool** | Is heap data active or not | [optional] [default to true]
+**Enable** | Pointer to **bool** | Is data active or not | [optional] [default to true]
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Unit** | Pointer to **NullableString** | Physical unit of numeric data | [optional] 
 **Precision** | Pointer to **NullableInt64** | Number of decimal places | [optional] 
 **Min** | Pointer to **NullableFloat64** | Lower limit | [optional] 
 **Max** | Pointer to **NullableFloat64** | Upper limit | [optional] 
-**Pipeline** | Pointer to [**NullablePipeline**](Pipeline.md) |  | [optional] 
+**AggregationMode** | Pointer to **NullableString** | Aggregation calculation mode | [optional] 
+**AggregationRasters** | Pointer to **[]string** |  | [optional] 
 **Viewer** | Pointer to **NullableBool** | Should the attribute be displayed in viewer | [optional] [default to false]
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
 **Sequence** | Pointer to **NullableInt64** | Sequence in AR display | [optional] 
 **Virtual** | Pointer to **NullableBool** | Is the attribute virtual or not | [optional] 
+**Scale** | Pointer to **NullableFloat32** | value scale | [optional] 
+**Zero** | Pointer to **NullableFloat32** | value scale | [optional] 
+**Map** | Pointer to **map[string]interface{}** | custom map | [optional] 
+**SourcePath** | Pointer to **[]string** | source path for attribute value | [optional] 
+**IsDigital** | Pointer to **NullableBool** | is attribute digital | [optional] 
 
 ## Methods
 
 ### NewAssetTypeAttribute
 
-`func NewAssetTypeAttribute(name string, subtype HeapSubtype, ) *AssetTypeAttribute`
+`func NewAssetTypeAttribute(name string, subtype DataSubtype, ) *AssetTypeAttribute`
 
 NewAssetTypeAttribute instantiates a new AssetTypeAttribute object
 This constructor will assign default values to properties that have it defined,
@@ -96,20 +102,20 @@ SetName sets Name field to given value.
 
 ### GetSubtype
 
-`func (o *AssetTypeAttribute) GetSubtype() HeapSubtype`
+`func (o *AssetTypeAttribute) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *AssetTypeAttribute) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *AssetTypeAttribute) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *AssetTypeAttribute) SetSubtype(v HeapSubtype)`
+`func (o *AssetTypeAttribute) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 
@@ -174,16 +180,6 @@ SetEnable sets Enable field to given value.
 
 HasEnable returns a boolean if a field has been set.
 
-### SetEnableNil
-
-`func (o *AssetTypeAttribute) SetEnableNil(b bool)`
-
- SetEnableNil sets the value for Enable to be an explicit nil
-
-### UnsetEnable
-`func (o *AssetTypeAttribute) UnsetEnable()`
-
-UnsetEnable ensures that no value is present for Enable, not even an explicit nil
 ### GetTranslation
 
 `func (o *AssetTypeAttribute) GetTranslation() Translation`
@@ -359,41 +355,66 @@ HasMax returns a boolean if a field has been set.
 `func (o *AssetTypeAttribute) UnsetMax()`
 
 UnsetMax ensures that no value is present for Max, not even an explicit nil
-### GetPipeline
+### GetAggregationMode
 
-`func (o *AssetTypeAttribute) GetPipeline() Pipeline`
+`func (o *AssetTypeAttribute) GetAggregationMode() string`
 
-GetPipeline returns the Pipeline field if non-nil, zero value otherwise.
+GetAggregationMode returns the AggregationMode field if non-nil, zero value otherwise.
 
-### GetPipelineOk
+### GetAggregationModeOk
 
-`func (o *AssetTypeAttribute) GetPipelineOk() (*Pipeline, bool)`
+`func (o *AssetTypeAttribute) GetAggregationModeOk() (*string, bool)`
 
-GetPipelineOk returns a tuple with the Pipeline field if it's non-nil, zero value otherwise
+GetAggregationModeOk returns a tuple with the AggregationMode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPipeline
+### SetAggregationMode
 
-`func (o *AssetTypeAttribute) SetPipeline(v Pipeline)`
+`func (o *AssetTypeAttribute) SetAggregationMode(v string)`
 
-SetPipeline sets Pipeline field to given value.
+SetAggregationMode sets AggregationMode field to given value.
 
-### HasPipeline
+### HasAggregationMode
 
-`func (o *AssetTypeAttribute) HasPipeline() bool`
+`func (o *AssetTypeAttribute) HasAggregationMode() bool`
 
-HasPipeline returns a boolean if a field has been set.
+HasAggregationMode returns a boolean if a field has been set.
 
-### SetPipelineNil
+### SetAggregationModeNil
 
-`func (o *AssetTypeAttribute) SetPipelineNil(b bool)`
+`func (o *AssetTypeAttribute) SetAggregationModeNil(b bool)`
 
- SetPipelineNil sets the value for Pipeline to be an explicit nil
+ SetAggregationModeNil sets the value for AggregationMode to be an explicit nil
 
-### UnsetPipeline
-`func (o *AssetTypeAttribute) UnsetPipeline()`
+### UnsetAggregationMode
+`func (o *AssetTypeAttribute) UnsetAggregationMode()`
 
-UnsetPipeline ensures that no value is present for Pipeline, not even an explicit nil
+UnsetAggregationMode ensures that no value is present for AggregationMode, not even an explicit nil
+### GetAggregationRasters
+
+`func (o *AssetTypeAttribute) GetAggregationRasters() []string`
+
+GetAggregationRasters returns the AggregationRasters field if non-nil, zero value otherwise.
+
+### GetAggregationRastersOk
+
+`func (o *AssetTypeAttribute) GetAggregationRastersOk() (*[]string, bool)`
+
+GetAggregationRastersOk returns a tuple with the AggregationRasters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAggregationRasters
+
+`func (o *AssetTypeAttribute) SetAggregationRasters(v []string)`
+
+SetAggregationRasters sets AggregationRasters field to given value.
+
+### HasAggregationRasters
+
+`func (o *AssetTypeAttribute) HasAggregationRasters() bool`
+
+HasAggregationRasters returns a boolean if a field has been set.
+
 ### GetViewer
 
 `func (o *AssetTypeAttribute) GetViewer() bool`
@@ -534,6 +555,181 @@ HasVirtual returns a boolean if a field has been set.
 `func (o *AssetTypeAttribute) UnsetVirtual()`
 
 UnsetVirtual ensures that no value is present for Virtual, not even an explicit nil
+### GetScale
+
+`func (o *AssetTypeAttribute) GetScale() float32`
+
+GetScale returns the Scale field if non-nil, zero value otherwise.
+
+### GetScaleOk
+
+`func (o *AssetTypeAttribute) GetScaleOk() (*float32, bool)`
+
+GetScaleOk returns a tuple with the Scale field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScale
+
+`func (o *AssetTypeAttribute) SetScale(v float32)`
+
+SetScale sets Scale field to given value.
+
+### HasScale
+
+`func (o *AssetTypeAttribute) HasScale() bool`
+
+HasScale returns a boolean if a field has been set.
+
+### SetScaleNil
+
+`func (o *AssetTypeAttribute) SetScaleNil(b bool)`
+
+ SetScaleNil sets the value for Scale to be an explicit nil
+
+### UnsetScale
+`func (o *AssetTypeAttribute) UnsetScale()`
+
+UnsetScale ensures that no value is present for Scale, not even an explicit nil
+### GetZero
+
+`func (o *AssetTypeAttribute) GetZero() float32`
+
+GetZero returns the Zero field if non-nil, zero value otherwise.
+
+### GetZeroOk
+
+`func (o *AssetTypeAttribute) GetZeroOk() (*float32, bool)`
+
+GetZeroOk returns a tuple with the Zero field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetZero
+
+`func (o *AssetTypeAttribute) SetZero(v float32)`
+
+SetZero sets Zero field to given value.
+
+### HasZero
+
+`func (o *AssetTypeAttribute) HasZero() bool`
+
+HasZero returns a boolean if a field has been set.
+
+### SetZeroNil
+
+`func (o *AssetTypeAttribute) SetZeroNil(b bool)`
+
+ SetZeroNil sets the value for Zero to be an explicit nil
+
+### UnsetZero
+`func (o *AssetTypeAttribute) UnsetZero()`
+
+UnsetZero ensures that no value is present for Zero, not even an explicit nil
+### GetMap
+
+`func (o *AssetTypeAttribute) GetMap() map[string]interface{}`
+
+GetMap returns the Map field if non-nil, zero value otherwise.
+
+### GetMapOk
+
+`func (o *AssetTypeAttribute) GetMapOk() (*map[string]interface{}, bool)`
+
+GetMapOk returns a tuple with the Map field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMap
+
+`func (o *AssetTypeAttribute) SetMap(v map[string]interface{})`
+
+SetMap sets Map field to given value.
+
+### HasMap
+
+`func (o *AssetTypeAttribute) HasMap() bool`
+
+HasMap returns a boolean if a field has been set.
+
+### SetMapNil
+
+`func (o *AssetTypeAttribute) SetMapNil(b bool)`
+
+ SetMapNil sets the value for Map to be an explicit nil
+
+### UnsetMap
+`func (o *AssetTypeAttribute) UnsetMap()`
+
+UnsetMap ensures that no value is present for Map, not even an explicit nil
+### GetSourcePath
+
+`func (o *AssetTypeAttribute) GetSourcePath() []string`
+
+GetSourcePath returns the SourcePath field if non-nil, zero value otherwise.
+
+### GetSourcePathOk
+
+`func (o *AssetTypeAttribute) GetSourcePathOk() (*[]string, bool)`
+
+GetSourcePathOk returns a tuple with the SourcePath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourcePath
+
+`func (o *AssetTypeAttribute) SetSourcePath(v []string)`
+
+SetSourcePath sets SourcePath field to given value.
+
+### HasSourcePath
+
+`func (o *AssetTypeAttribute) HasSourcePath() bool`
+
+HasSourcePath returns a boolean if a field has been set.
+
+### SetSourcePathNil
+
+`func (o *AssetTypeAttribute) SetSourcePathNil(b bool)`
+
+ SetSourcePathNil sets the value for SourcePath to be an explicit nil
+
+### UnsetSourcePath
+`func (o *AssetTypeAttribute) UnsetSourcePath()`
+
+UnsetSourcePath ensures that no value is present for SourcePath, not even an explicit nil
+### GetIsDigital
+
+`func (o *AssetTypeAttribute) GetIsDigital() bool`
+
+GetIsDigital returns the IsDigital field if non-nil, zero value otherwise.
+
+### GetIsDigitalOk
+
+`func (o *AssetTypeAttribute) GetIsDigitalOk() (*bool, bool)`
+
+GetIsDigitalOk returns a tuple with the IsDigital field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDigital
+
+`func (o *AssetTypeAttribute) SetIsDigital(v bool)`
+
+SetIsDigital sets IsDigital field to given value.
+
+### HasIsDigital
+
+`func (o *AssetTypeAttribute) HasIsDigital() bool`
+
+HasIsDigital returns a boolean if a field has been set.
+
+### SetIsDigitalNil
+
+`func (o *AssetTypeAttribute) SetIsDigitalNil(b bool)`
+
+ SetIsDigitalNil sets the value for IsDigital to be an explicit nil
+
+### UnsetIsDigital
+`func (o *AssetTypeAttribute) UnsetIsDigital()`
+
+UnsetIsDigital ensures that no value is present for IsDigital, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

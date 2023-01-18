@@ -1,18 +1,18 @@
-# \HeapsApi
+# \VersionApi
 
 All URIs are relative to *http://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PutHeap**](HeapsApi.md#PutHeap) | **Put** /heaps | Create or update heap data
+[**GetVersion**](VersionApi.md#GetVersion) | **Get** /version | Version of the API
 
 
 
-## PutHeap
+## GetVersion
 
-> PutHeap(ctx).Heap(heap).Execute()
+> map[string]interface{} GetVersion(ctx).Execute()
 
-Create or update heap data
+Version of the API
 
 
 
@@ -29,34 +29,31 @@ import (
 )
 
 func main() {
-    heap := *openapiclient.NewHeap(int32(4711), openapiclient.HeapSubtype("input"), map[string]interface{}(123)) // Heap | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.HeapsApi.PutHeap(context.Background()).Heap(heap).Execute()
+    resp, r, err := apiClient.VersionApi.GetVersion(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `HeapsApi.PutHeap``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VersionApi.GetVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `GetVersion`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `VersionApi.GetVersion`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPutHeapRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetVersionRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **heap** | [**Heap**](Heap.md) |  | 
 
 ### Return type
 
- (empty response body)
+**map[string]interface{}**
 
 ### Authorization
 
@@ -64,8 +61,8 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

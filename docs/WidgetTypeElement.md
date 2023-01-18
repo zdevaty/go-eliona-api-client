@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **NullableInt32** | The internal Id of widget element | [optional] [readonly] 
 **Category** | **string** | The category for this element | 
-**Description** | **string** | description text for this element | 
+**Sequence** | Pointer to **NullableInt32** | sequence of element in widget; if not defined the index in array is taken | [optional] 
 **Config** | Pointer to **map[string]interface{}** | individual config parameters depending on category | [optional] 
 
 ## Methods
 
 ### NewWidgetTypeElement
 
-`func NewWidgetTypeElement(category string, description string, ) *WidgetTypeElement`
+`func NewWidgetTypeElement(category string, ) *WidgetTypeElement`
 
 NewWidgetTypeElement instantiates a new WidgetTypeElement object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +28,41 @@ NewWidgetTypeElementWithDefaults instantiates a new WidgetTypeElement object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *WidgetTypeElement) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *WidgetTypeElement) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *WidgetTypeElement) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *WidgetTypeElement) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *WidgetTypeElement) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *WidgetTypeElement) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetCategory
 
 `func (o *WidgetTypeElement) GetCategory() string`
@@ -47,26 +83,41 @@ and a boolean to check if the value has been set.
 SetCategory sets Category field to given value.
 
 
-### GetDescription
+### GetSequence
 
-`func (o *WidgetTypeElement) GetDescription() string`
+`func (o *WidgetTypeElement) GetSequence() int32`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetSequence returns the Sequence field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetSequenceOk
 
-`func (o *WidgetTypeElement) GetDescriptionOk() (*string, bool)`
+`func (o *WidgetTypeElement) GetSequenceOk() (*int32, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetSequenceOk returns a tuple with the Sequence field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetSequence
 
-`func (o *WidgetTypeElement) SetDescription(v string)`
+`func (o *WidgetTypeElement) SetSequence(v int32)`
 
-SetDescription sets Description field to given value.
+SetSequence sets Sequence field to given value.
 
+### HasSequence
 
+`func (o *WidgetTypeElement) HasSequence() bool`
+
+HasSequence returns a boolean if a field has been set.
+
+### SetSequenceNil
+
+`func (o *WidgetTypeElement) SetSequenceNil(b bool)`
+
+ SetSequenceNil sets the value for Sequence to be an explicit nil
+
+### UnsetSequence
+`func (o *WidgetTypeElement) UnsetSequence()`
+
+UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
 ### GetConfig
 
 `func (o *WidgetTypeElement) GetConfig() map[string]interface{}`

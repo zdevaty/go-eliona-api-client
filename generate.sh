@@ -1,10 +1,9 @@
 docker run --rm \
      -v "${PWD}:/local" \
-    openapitools/openapi-generator-cli:v6.0.1 \
-    generate \
+    openapitools/openapi-generator-cli:v6.2.1 generate \
     -g go \
     --git-user-id eliona-smart-building-assistant \
-    --git-repo-id python-eliona-api-client \
+    --git-repo-id python-eliona-api-client/v2 \
     -i https://raw.githubusercontent.com/eliona-smart-building-assistant/eliona-api/develop/openapi.yaml \
     -o /local \
-    --additional-properties="packageName=api,packageVersion=1.0.0"
+    --additional-properties="packageName=api"

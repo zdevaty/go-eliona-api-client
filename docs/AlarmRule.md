@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **NullableInt32** | The id of the rule | [optional] 
+**Id** | Pointer to **NullableInt32** | The id of the rule | [optional] [readonly] 
 **AssetId** | **int32** | ID of the corresponding asset | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | **string** | Name of the attribute of the asset type | 
 **Enable** | Pointer to **bool** | Rule enabled or not | [optional] [default to true]
 **Priority** | [**AlarmPriority**](AlarmPriority.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Equal** | Pointer to **NullableFloat64** | Triggers alarm if attribute value equals this value | [optional] 
 **Low** | Pointer to **NullableFloat64** | Triggers alarm if attribute value is less than value | [optional] 
 **High** | Pointer to **NullableFloat64** | Triggers alarm if attribute value is greater than value | [optional] 
-**Message** | Pointer to **map[string]interface{}** | Message texts for alarm | [optional] 
+**Message** | Pointer to **map[string]interface{}** | Texts for alarm | [optional] 
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **Subject** | Pointer to **NullableString** | The subject for the alarm | [optional] 
 **Urldoc** | Pointer to **NullableString** | The url describing the alarm | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 
 ### NewAlarmRule
 
-`func NewAlarmRule(assetId int32, subtype HeapSubtype, attribute string, priority AlarmPriority, ) *AlarmRule`
+`func NewAlarmRule(assetId int32, subtype DataSubtype, attribute string, priority AlarmPriority, ) *AlarmRule`
 
 NewAlarmRule instantiates a new AlarmRule object
 This constructor will assign default values to properties that have it defined,
@@ -98,20 +98,20 @@ SetAssetId sets AssetId field to given value.
 
 ### GetSubtype
 
-`func (o *AlarmRule) GetSubtype() HeapSubtype`
+`func (o *AlarmRule) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *AlarmRule) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *AlarmRule) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *AlarmRule) SetSubtype(v HeapSubtype)`
+`func (o *AlarmRule) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 

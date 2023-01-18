@@ -4,18 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ElementSequence** | **int32** | Position of the element in widget type | 
-**Key** | Pointer to **NullableString** | Key for the data | [optional] 
+**Id** | Pointer to **NullableInt32** | The internal Id of widget data | [optional] [readonly] 
+**ElementSequence** | Pointer to **NullableInt32** | Position of the element in widget type | [optional] 
 **AssetId** | Pointer to **NullableInt32** | The master asset id of this widget | [optional] 
-**Subtype** | Pointer to [**HeapSubtype**](HeapSubtype.md) |  | [optional] [default to SUBTYPE_INPUT]
-**Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] 
-**Description** | Pointer to **NullableString** | Text for frontend | [optional] 
+**Data** | Pointer to **map[string]interface{}** | individual config parameters depending on category | [optional] 
 
 ## Methods
 
 ### NewWidgetData
 
-`func NewWidgetData(elementSequence int32, ) *WidgetData`
+`func NewWidgetData() *WidgetData`
 
 NewWidgetData instantiates a new WidgetData object
 This constructor will assign default values to properties that have it defined,
@@ -30,6 +28,41 @@ NewWidgetDataWithDefaults instantiates a new WidgetData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *WidgetData) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *WidgetData) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *WidgetData) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *WidgetData) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *WidgetData) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *WidgetData) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetElementSequence
 
 `func (o *WidgetData) GetElementSequence() int32`
@@ -49,42 +82,22 @@ and a boolean to check if the value has been set.
 
 SetElementSequence sets ElementSequence field to given value.
 
+### HasElementSequence
 
-### GetKey
+`func (o *WidgetData) HasElementSequence() bool`
 
-`func (o *WidgetData) GetKey() string`
+HasElementSequence returns a boolean if a field has been set.
 
-GetKey returns the Key field if non-nil, zero value otherwise.
+### SetElementSequenceNil
 
-### GetKeyOk
+`func (o *WidgetData) SetElementSequenceNil(b bool)`
 
-`func (o *WidgetData) GetKeyOk() (*string, bool)`
+ SetElementSequenceNil sets the value for ElementSequence to be an explicit nil
 
-GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetElementSequence
+`func (o *WidgetData) UnsetElementSequence()`
 
-### SetKey
-
-`func (o *WidgetData) SetKey(v string)`
-
-SetKey sets Key field to given value.
-
-### HasKey
-
-`func (o *WidgetData) HasKey() bool`
-
-HasKey returns a boolean if a field has been set.
-
-### SetKeyNil
-
-`func (o *WidgetData) SetKeyNil(b bool)`
-
- SetKeyNil sets the value for Key to be an explicit nil
-
-### UnsetKey
-`func (o *WidgetData) UnsetKey()`
-
-UnsetKey ensures that no value is present for Key, not even an explicit nil
+UnsetElementSequence ensures that no value is present for ElementSequence, not even an explicit nil
 ### GetAssetId
 
 `func (o *WidgetData) GetAssetId() int32`
@@ -120,101 +133,41 @@ HasAssetId returns a boolean if a field has been set.
 `func (o *WidgetData) UnsetAssetId()`
 
 UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
-### GetSubtype
+### GetData
 
-`func (o *WidgetData) GetSubtype() HeapSubtype`
+`func (o *WidgetData) GetData() map[string]interface{}`
 
-GetSubtype returns the Subtype field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetSubtypeOk
+### GetDataOk
 
-`func (o *WidgetData) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *WidgetData) GetDataOk() (*map[string]interface{}, bool)`
 
-GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSubtype
+### SetData
 
-`func (o *WidgetData) SetSubtype(v HeapSubtype)`
+`func (o *WidgetData) SetData(v map[string]interface{})`
 
-SetSubtype sets Subtype field to given value.
+SetData sets Data field to given value.
 
-### HasSubtype
+### HasData
 
-`func (o *WidgetData) HasSubtype() bool`
+`func (o *WidgetData) HasData() bool`
 
-HasSubtype returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### GetAttribute
+### SetDataNil
 
-`func (o *WidgetData) GetAttribute() string`
+`func (o *WidgetData) SetDataNil(b bool)`
 
-GetAttribute returns the Attribute field if non-nil, zero value otherwise.
+ SetDataNil sets the value for Data to be an explicit nil
 
-### GetAttributeOk
+### UnsetData
+`func (o *WidgetData) UnsetData()`
 
-`func (o *WidgetData) GetAttributeOk() (*string, bool)`
-
-GetAttributeOk returns a tuple with the Attribute field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAttribute
-
-`func (o *WidgetData) SetAttribute(v string)`
-
-SetAttribute sets Attribute field to given value.
-
-### HasAttribute
-
-`func (o *WidgetData) HasAttribute() bool`
-
-HasAttribute returns a boolean if a field has been set.
-
-### SetAttributeNil
-
-`func (o *WidgetData) SetAttributeNil(b bool)`
-
- SetAttributeNil sets the value for Attribute to be an explicit nil
-
-### UnsetAttribute
-`func (o *WidgetData) UnsetAttribute()`
-
-UnsetAttribute ensures that no value is present for Attribute, not even an explicit nil
-### GetDescription
-
-`func (o *WidgetData) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *WidgetData) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *WidgetData) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *WidgetData) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescriptionNil
-
-`func (o *WidgetData) SetDescriptionNil(b bool)`
-
- SetDescriptionNil sets the value for Description to be an explicit nil
-
-### UnsetDescription
-`func (o *WidgetData) UnsetDescription()`
-
-UnsetDescription ensures that no value is present for Description, not even an explicit nil
+UnsetData ensures that no value is present for Data, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

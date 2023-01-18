@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Urldoc** | Pointer to **NullableString** | The url describing assets of this type | [optional] 
 **Icon** | Pointer to **NullableString** | Icon name corresponding to assets of this type | [optional] 
+**PayloadFunction** | Pointer to **NullableString** | Asset types payload function | [optional] 
+**AllowedInactivity** | Pointer to **NullableString** |  | [optional] 
 **Attributes** | Pointer to [**[]AssetTypeAttribute**](AssetTypeAttribute.md) | List of named attributes | [optional] 
 
 ## Methods
@@ -252,6 +254,76 @@ HasIcon returns a boolean if a field has been set.
 `func (o *AssetType) UnsetIcon()`
 
 UnsetIcon ensures that no value is present for Icon, not even an explicit nil
+### GetPayloadFunction
+
+`func (o *AssetType) GetPayloadFunction() string`
+
+GetPayloadFunction returns the PayloadFunction field if non-nil, zero value otherwise.
+
+### GetPayloadFunctionOk
+
+`func (o *AssetType) GetPayloadFunctionOk() (*string, bool)`
+
+GetPayloadFunctionOk returns a tuple with the PayloadFunction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPayloadFunction
+
+`func (o *AssetType) SetPayloadFunction(v string)`
+
+SetPayloadFunction sets PayloadFunction field to given value.
+
+### HasPayloadFunction
+
+`func (o *AssetType) HasPayloadFunction() bool`
+
+HasPayloadFunction returns a boolean if a field has been set.
+
+### SetPayloadFunctionNil
+
+`func (o *AssetType) SetPayloadFunctionNil(b bool)`
+
+ SetPayloadFunctionNil sets the value for PayloadFunction to be an explicit nil
+
+### UnsetPayloadFunction
+`func (o *AssetType) UnsetPayloadFunction()`
+
+UnsetPayloadFunction ensures that no value is present for PayloadFunction, not even an explicit nil
+### GetAllowedInactivity
+
+`func (o *AssetType) GetAllowedInactivity() string`
+
+GetAllowedInactivity returns the AllowedInactivity field if non-nil, zero value otherwise.
+
+### GetAllowedInactivityOk
+
+`func (o *AssetType) GetAllowedInactivityOk() (*string, bool)`
+
+GetAllowedInactivityOk returns a tuple with the AllowedInactivity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowedInactivity
+
+`func (o *AssetType) SetAllowedInactivity(v string)`
+
+SetAllowedInactivity sets AllowedInactivity field to given value.
+
+### HasAllowedInactivity
+
+`func (o *AssetType) HasAllowedInactivity() bool`
+
+HasAllowedInactivity returns a boolean if a field has been set.
+
+### SetAllowedInactivityNil
+
+`func (o *AssetType) SetAllowedInactivityNil(b bool)`
+
+ SetAllowedInactivityNil sets the value for AllowedInactivity to be an explicit nil
+
+### UnsetAllowedInactivity
+`func (o *AssetType) UnsetAllowedInactivity()`
+
+UnsetAllowedInactivity ensures that no value is present for AllowedInactivity, not even an explicit nil
 ### GetAttributes
 
 `func (o *AssetType) GetAttributes() []AssetTypeAttribute`

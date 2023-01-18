@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **NullableInt32** | The internal Id of widget type | [optional] [readonly] 
 **Name** | **string** | The unique name for this widget type | 
 **Custom** | Pointer to **bool** | Is this a customer created type or not | [optional] [default to true]
 **Translation** | [**NullableTranslation**](Translation.md) |  | 
 **Icon** | Pointer to **NullableString** | Icon name corresponding to assets used in this widget | [optional] 
 **WithAlarm** | Pointer to **NullableBool** | Show alarms in widget | [optional] [default to false]
 **WithTimespan** | Pointer to **NullableBool** | Show selection for timespan in widget | [optional] [default to false]
-**Elements** | [**[]WidgetTypeElement**](WidgetTypeElement.md) | A list of elements for this widget | 
+**Elements** | [**[]WidgetTypeElement**](WidgetTypeElement.md) | A list of elements for this widget (order matches the order of elements for this type) | 
 
 ## Methods
 
@@ -31,6 +32,41 @@ NewWidgetTypeWithDefaults instantiates a new WidgetType object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *WidgetType) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *WidgetType) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *WidgetType) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *WidgetType) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetIdNil
+
+`func (o *WidgetType) SetIdNil(b bool)`
+
+ SetIdNil sets the value for Id to be an explicit nil
+
+### UnsetId
+`func (o *WidgetType) UnsetId()`
+
+UnsetId ensures that no value is present for Id, not even an explicit nil
 ### GetName
 
 `func (o *WidgetType) GetName() string`

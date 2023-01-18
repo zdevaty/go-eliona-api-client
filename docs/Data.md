@@ -1,128 +1,164 @@
-# Heap
+# Data
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssetId** | **int32** | ID of the corresponding asset | 
-**Subtype** | [**HeapSubtype**](HeapSubtype.md) |  | [default to SUBTYPE_INPUT]
+**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
 **Data** | **map[string]interface{}** | Asset payload | 
+**AssetTypeName** | Pointer to **NullableString** | The name of the corresponding asset type | [optional] [readonly] 
 
 ## Methods
 
-### NewHeap
+### NewData
 
-`func NewHeap(assetId int32, subtype HeapSubtype, data map[string]interface{}, ) *Heap`
+`func NewData(assetId int32, subtype DataSubtype, data map[string]interface{}, ) *Data`
 
-NewHeap instantiates a new Heap object
+NewData instantiates a new Data object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewHeapWithDefaults
+### NewDataWithDefaults
 
-`func NewHeapWithDefaults() *Heap`
+`func NewDataWithDefaults() *Data`
 
-NewHeapWithDefaults instantiates a new Heap object
+NewDataWithDefaults instantiates a new Data object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetAssetId
 
-`func (o *Heap) GetAssetId() int32`
+`func (o *Data) GetAssetId() int32`
 
 GetAssetId returns the AssetId field if non-nil, zero value otherwise.
 
 ### GetAssetIdOk
 
-`func (o *Heap) GetAssetIdOk() (*int32, bool)`
+`func (o *Data) GetAssetIdOk() (*int32, bool)`
 
 GetAssetIdOk returns a tuple with the AssetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAssetId
 
-`func (o *Heap) SetAssetId(v int32)`
+`func (o *Data) SetAssetId(v int32)`
 
 SetAssetId sets AssetId field to given value.
 
 
 ### GetSubtype
 
-`func (o *Heap) GetSubtype() HeapSubtype`
+`func (o *Data) GetSubtype() DataSubtype`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *Heap) GetSubtypeOk() (*HeapSubtype, bool)`
+`func (o *Data) GetSubtypeOk() (*DataSubtype, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *Heap) SetSubtype(v HeapSubtype)`
+`func (o *Data) SetSubtype(v DataSubtype)`
 
 SetSubtype sets Subtype field to given value.
 
 
 ### GetTimestamp
 
-`func (o *Heap) GetTimestamp() time.Time`
+`func (o *Data) GetTimestamp() time.Time`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *Heap) GetTimestampOk() (*time.Time, bool)`
+`func (o *Data) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *Heap) SetTimestamp(v time.Time)`
+`func (o *Data) SetTimestamp(v time.Time)`
 
 SetTimestamp sets Timestamp field to given value.
 
 ### HasTimestamp
 
-`func (o *Heap) HasTimestamp() bool`
+`func (o *Data) HasTimestamp() bool`
 
 HasTimestamp returns a boolean if a field has been set.
 
 ### SetTimestampNil
 
-`func (o *Heap) SetTimestampNil(b bool)`
+`func (o *Data) SetTimestampNil(b bool)`
 
  SetTimestampNil sets the value for Timestamp to be an explicit nil
 
 ### UnsetTimestamp
-`func (o *Heap) UnsetTimestamp()`
+`func (o *Data) UnsetTimestamp()`
 
 UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 ### GetData
 
-`func (o *Heap) GetData() map[string]interface{}`
+`func (o *Data) GetData() map[string]interface{}`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *Heap) GetDataOk() (*map[string]interface{}, bool)`
+`func (o *Data) GetDataOk() (*map[string]interface{}, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *Heap) SetData(v map[string]interface{})`
+`func (o *Data) SetData(v map[string]interface{})`
 
 SetData sets Data field to given value.
 
 
+### GetAssetTypeName
+
+`func (o *Data) GetAssetTypeName() string`
+
+GetAssetTypeName returns the AssetTypeName field if non-nil, zero value otherwise.
+
+### GetAssetTypeNameOk
+
+`func (o *Data) GetAssetTypeNameOk() (*string, bool)`
+
+GetAssetTypeNameOk returns a tuple with the AssetTypeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssetTypeName
+
+`func (o *Data) SetAssetTypeName(v string)`
+
+SetAssetTypeName sets AssetTypeName field to given value.
+
+### HasAssetTypeName
+
+`func (o *Data) HasAssetTypeName() bool`
+
+HasAssetTypeName returns a boolean if a field has been set.
+
+### SetAssetTypeNameNil
+
+`func (o *Data) SetAssetTypeNameNil(b bool)`
+
+ SetAssetTypeNameNil sets the value for AssetTypeName to be an explicit nil
+
+### UnsetAssetTypeName
+`func (o *Data) UnsetAssetTypeName()`
+
+UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

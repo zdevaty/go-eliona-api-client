@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ProjectId** | **string** | ID of the project to which the dashboard belongs | 
 **UserId** | **string** | ID of the user who owns the dashboard | 
 **Sequence** | Pointer to **NullableInt32** | The sequence of the dashboard | [optional] [default to 0]
+**Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widgets on this dashboard (order matches the order of widgets on the dashboard) | [optional] 
 
 ## Methods
 
@@ -159,6 +160,41 @@ HasSequence returns a boolean if a field has been set.
 `func (o *Dashboard) UnsetSequence()`
 
 UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
+### GetWidgets
+
+`func (o *Dashboard) GetWidgets() []Widget`
+
+GetWidgets returns the Widgets field if non-nil, zero value otherwise.
+
+### GetWidgetsOk
+
+`func (o *Dashboard) GetWidgetsOk() (*[]Widget, bool)`
+
+GetWidgetsOk returns a tuple with the Widgets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWidgets
+
+`func (o *Dashboard) SetWidgets(v []Widget)`
+
+SetWidgets sets Widgets field to given value.
+
+### HasWidgets
+
+`func (o *Dashboard) HasWidgets() bool`
+
+HasWidgets returns a boolean if a field has been set.
+
+### SetWidgetsNil
+
+`func (o *Dashboard) SetWidgetsNil(b bool)`
+
+ SetWidgetsNil sets the value for Widgets to be an explicit nil
+
+### UnsetWidgets
+`func (o *Dashboard) UnsetWidgets()`
+
+UnsetWidgets ensures that no value is present for Widgets, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
