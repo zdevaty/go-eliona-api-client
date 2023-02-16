@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Name** | **string** | Name of the app | 
 **Active** | Pointer to **NullableBool** | Is the app active or inactive | [optional] 
 **Registered** | Pointer to **NullableBool** | Is the app already registered or not | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Delivers the apps metadata to handle it in the app store | [optional] 
+**Version** | Pointer to **NullableString** | the apps version | [optional] 
 
 ## Methods
 
@@ -117,6 +119,76 @@ HasRegistered returns a boolean if a field has been set.
 `func (o *App) UnsetRegistered()`
 
 UnsetRegistered ensures that no value is present for Registered, not even an explicit nil
+### GetMetadata
+
+`func (o *App) GetMetadata() map[string]interface{}`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *App) GetMetadataOk() (*map[string]interface{}, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *App) SetMetadata(v map[string]interface{})`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *App) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *App) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *App) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
+### GetVersion
+
+`func (o *App) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *App) GetVersionOk() (*string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *App) SetVersion(v string)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *App) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersionNil
+
+`func (o *App) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *App) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

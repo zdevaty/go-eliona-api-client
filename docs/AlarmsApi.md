@@ -1,6 +1,6 @@
 # \AlarmsApi
 
-All URIs are relative to *http://api.eliona.io/v2*
+All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetAlarms**](AlarmsApi.md#GetAlarms) | **Get** /alarms | Information about alarms
 [**GetAlarmsHistory**](AlarmsApi.md#GetAlarmsHistory) | **Get** /alarms-history | Information about alarms history
 [**GetHighestAlarms**](AlarmsApi.md#GetHighestAlarms) | **Get** /alarms-highest | Information about most prioritized alarms
+[**ListenAlarm**](AlarmsApi.md#ListenAlarm) | **Get** /alarm-listener | WebSocket connection for alarm changes
 [**PatchAlarmById**](AlarmsApi.md#PatchAlarmById) | **Patch** /alarms/{alarm-rule-id} | Update alarm
 
 
@@ -346,6 +347,67 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]Alarm**](Alarm.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListenAlarm
+
+> Alarm ListenAlarm(ctx).Execute()
+
+WebSocket connection for alarm changes
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AlarmsApi.ListenAlarm(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.ListenAlarm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListenAlarm`: Alarm
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.ListenAlarm`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListenAlarmRequest struct via the builder pattern
+
+
+### Return type
+
+[**Alarm**](Alarm.md)
 
 ### Authorization
 

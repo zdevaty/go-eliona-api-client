@@ -1,11 +1,71 @@
 # \VersionApi
 
-All URIs are relative to *http://api.eliona.io/v2*
+All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**GetOpenAPI**](VersionApi.md#GetOpenAPI) | **Get** /version/openapi.json | OpenAPI specification for this API version
 [**GetVersion**](VersionApi.md#GetVersion) | **Get** /version | Version of the API
 
+
+
+## GetOpenAPI
+
+> GetOpenAPI(ctx).Execute()
+
+OpenAPI specification for this API version
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.VersionApi.GetOpenAPI(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `VersionApi.GetOpenAPI``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOpenAPIRequest struct via the builder pattern
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetVersion

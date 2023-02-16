@@ -1,6 +1,6 @@
 # \AggregationsApi
 
-All URIs are relative to *http://api.eliona.io/v2*
+All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

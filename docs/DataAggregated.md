@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
 **Attribute** | Pointer to **string** | Name of the attribute which holds the data points | [optional] 
 **Raster** | **string** | Calculation intervals. | 
-**Timestamp** | Pointer to **NullableTime** | Timestamp of this aggregated data set | [optional] 
+**Timestamp** | Pointer to **NullableTime** | Timestamp of this aggregated data set. The timestamp when the timeslot based on raster starts. | [optional] 
 **Count** | Pointer to **NullableFloat64** | Count of data points in this aggregated data set | [optional] 
 **Average** | Pointer to **NullableFloat64** | Average of all data points for this aggregated data set | [optional] 
 **Sum** | Pointer to **NullableFloat64** | Sum of all data points for this aggregated data set | [optional] 
