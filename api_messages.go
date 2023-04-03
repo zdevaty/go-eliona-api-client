@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.11
+API version: 2.4.12
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetMessageReceiptById Information about a message
 
 Gets receipt information for a message.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param messageId The id of the message
- @return ApiGetMessageReceiptByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param messageId The id of the message
+	@return ApiGetMessageReceiptByIdRequest
 */
 func (a *MessagesApiService) GetMessageReceiptById(ctx context.Context, messageId string) ApiGetMessageReceiptByIdRequest {
 	return ApiGetMessageReceiptByIdRequest{
@@ -51,7 +51,8 @@ func (a *MessagesApiService) GetMessageReceiptById(ctx context.Context, messageI
 }
 
 // Execute executes the request
-//  @return MessageReceipt
+//
+//	@return MessageReceipt
 func (a *MessagesApiService) GetMessageReceiptByIdExecute(r ApiGetMessageReceiptByIdRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -160,8 +161,8 @@ PostMail Send e-mail
 
 Sends an e-mail to recipients
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostMailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostMailRequest
 */
 func (a *MessagesApiService) PostMail(ctx context.Context) ApiPostMailRequest {
 	return ApiPostMailRequest{
@@ -171,7 +172,8 @@ func (a *MessagesApiService) PostMail(ctx context.Context) ApiPostMailRequest {
 }
 
 // Execute executes the request
-//  @return MessageReceipt
+//
+//	@return MessageReceipt
 func (a *MessagesApiService) PostMailExecute(r ApiPostMailRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

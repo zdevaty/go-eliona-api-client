@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.11
+API version: 2.4.12
 Contact: hello@eliona.io
 */
 
@@ -45,9 +45,9 @@ GetDashboardById Information about a dashboard
 
 Gets information about a dashboard.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiGetDashboardByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId The id of the dashboard
+	@return ApiGetDashboardByIdRequest
 */
 func (a *DashboardsApiService) GetDashboardById(ctx context.Context, dashboardId int32) ApiGetDashboardByIdRequest {
 	return ApiGetDashboardByIdRequest{
@@ -58,7 +58,8 @@ func (a *DashboardsApiService) GetDashboardById(ctx context.Context, dashboardId
 }
 
 // Execute executes the request
-//  @return Dashboard
+//
+//	@return Dashboard
 func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequest) (*Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -171,8 +172,8 @@ GetDashboards Information about dashboards
 
 Gets a list of dashboards
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDashboardsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDashboardsRequest
 */
 func (a *DashboardsApiService) GetDashboards(ctx context.Context) ApiGetDashboardsRequest {
 	return ApiGetDashboardsRequest{
@@ -182,7 +183,8 @@ func (a *DashboardsApiService) GetDashboards(ctx context.Context) ApiGetDashboar
 }
 
 // Execute executes the request
-//  @return []Dashboard
+//
+//	@return []Dashboard
 func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) ([]Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -300,8 +302,8 @@ PostDashboard Creates a new dashboard
 
 Create a new dashboard for frontend
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostDashboardRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostDashboardRequest
 */
 func (a *DashboardsApiService) PostDashboard(ctx context.Context) ApiPostDashboardRequest {
 	return ApiPostDashboardRequest{
@@ -311,7 +313,8 @@ func (a *DashboardsApiService) PostDashboard(ctx context.Context) ApiPostDashboa
 }
 
 // Execute executes the request
-//  @return Dashboard
+//
+//	@return Dashboard
 func (a *DashboardsApiService) PostDashboardExecute(r ApiPostDashboardRequest) (*Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

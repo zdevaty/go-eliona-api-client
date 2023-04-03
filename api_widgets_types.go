@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.11
+API version: 2.4.12
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ DeleteWidgetTypeByName Delete a widget type
 
 Deletes a widget type and the elements for this widget type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param widgetTypeName The name of the widget type
- @return ApiDeleteWidgetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param widgetTypeName The name of the widget type
+	@return ApiDeleteWidgetTypeByNameRequest
 */
 func (a *WidgetsTypesApiService) DeleteWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiDeleteWidgetTypeByNameRequest {
 	return ApiDeleteWidgetTypeByNameRequest{
@@ -151,9 +151,9 @@ GetWidgetTypeByName Information about a widget type
 
 Gets information about a widget type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param widgetTypeName The name of the widget type
- @return ApiGetWidgetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param widgetTypeName The name of the widget type
+	@return ApiGetWidgetTypeByNameRequest
 */
 func (a *WidgetsTypesApiService) GetWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiGetWidgetTypeByNameRequest {
 	return ApiGetWidgetTypeByNameRequest{
@@ -164,7 +164,8 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByName(ctx context.Context, widget
 }
 
 // Execute executes the request
-//  @return WidgetType
+//
+//	@return WidgetType
 func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -277,8 +278,8 @@ GetWidgetTypes List of widget types
 
 Returns a list of widget types
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetWidgetTypesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetWidgetTypesRequest
 */
 func (a *WidgetsTypesApiService) GetWidgetTypes(ctx context.Context) ApiGetWidgetTypesRequest {
 	return ApiGetWidgetTypesRequest{
@@ -288,7 +289,8 @@ func (a *WidgetsTypesApiService) GetWidgetTypes(ctx context.Context) ApiGetWidge
 }
 
 // Execute executes the request
-//  @return []WidgetType
+//
+//	@return []WidgetType
 func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesRequest) ([]WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -406,8 +408,8 @@ PostWidgetType Create a widget type
 
 Create a new widget type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostWidgetTypeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostWidgetTypeRequest
 */
 func (a *WidgetsTypesApiService) PostWidgetType(ctx context.Context) ApiPostWidgetTypeRequest {
 	return ApiPostWidgetTypeRequest{
@@ -417,7 +419,8 @@ func (a *WidgetsTypesApiService) PostWidgetType(ctx context.Context) ApiPostWidg
 }
 
 // Execute executes the request
-//  @return WidgetType
+//
+//	@return WidgetType
 func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -540,8 +543,8 @@ PutWidgetType Create or update a widget type
 
 Create a new widget type or update it if already exists. Uses the unique widget type name for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutWidgetTypeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutWidgetTypeRequest
 */
 func (a *WidgetsTypesApiService) PutWidgetType(ctx context.Context) ApiPutWidgetTypeRequest {
 	return ApiPutWidgetTypeRequest{
@@ -551,7 +554,8 @@ func (a *WidgetsTypesApiService) PutWidgetType(ctx context.Context) ApiPutWidget
 }
 
 // Execute executes the request
-//  @return WidgetType
+//
+//	@return WidgetType
 func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -675,9 +679,9 @@ PutWidgetTypeByName Update a widget type
 
 Update a widget type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param widgetTypeName The name of the widget type
- @return ApiPutWidgetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param widgetTypeName The name of the widget type
+	@return ApiPutWidgetTypeByNameRequest
 */
 func (a *WidgetsTypesApiService) PutWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiPutWidgetTypeByNameRequest {
 	return ApiPutWidgetTypeByNameRequest{
@@ -688,7 +692,8 @@ func (a *WidgetsTypesApiService) PutWidgetTypeByName(ctx context.Context, widget
 }
 
 // Execute executes the request
-//  @return WidgetType
+//
+//	@return WidgetType
 func (a *WidgetsTypesApiService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

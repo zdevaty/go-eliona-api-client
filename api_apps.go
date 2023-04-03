@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.11
+API version: 2.4.12
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetAppByName Information about an app
 
 Gets information about an app.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appName The name of the app
- @return ApiGetAppByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param appName The name of the app
+	@return ApiGetAppByNameRequest
 */
 func (a *AppsApiService) GetAppByName(ctx context.Context, appName string) ApiGetAppByNameRequest {
 	return ApiGetAppByNameRequest{
@@ -51,7 +51,8 @@ func (a *AppsApiService) GetAppByName(ctx context.Context, appName string) ApiGe
 }
 
 // Execute executes the request
-//  @return App
+//
+//	@return App
 func (a *AppsApiService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -156,10 +157,10 @@ GetPatchByName Information about a patch for an app
 
 Gets information about a patch for an app.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appName The name of the app
- @param patchName The name of the patch
- @return ApiGetPatchByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param appName The name of the app
+	@param patchName The name of the patch
+	@return ApiGetPatchByNameRequest
 */
 func (a *AppsApiService) GetPatchByName(ctx context.Context, appName string, patchName string) ApiGetPatchByNameRequest {
 	return ApiGetPatchByNameRequest{
@@ -171,7 +172,8 @@ func (a *AppsApiService) GetPatchByName(ctx context.Context, appName string, pat
 }
 
 // Execute executes the request
-//  @return Patch
+//
+//	@return Patch
 func (a *AppsApiService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Patch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -283,9 +285,9 @@ PatchAppByName Update an app
 
 Update properties of an app.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appName The name of the app
- @return ApiPatchAppByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param appName The name of the app
+	@return ApiPatchAppByNameRequest
 */
 func (a *AppsApiService) PatchAppByName(ctx context.Context, appName string) ApiPatchAppByNameRequest {
 	return ApiPatchAppByNameRequest{
@@ -400,10 +402,10 @@ PatchPatchByName Updates a patch
 
 Updates properties of a patch for an app.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param appName The name of the app
- @param patchName The name of the patch
- @return ApiPatchPatchByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param appName The name of the app
+	@param patchName The name of the patch
+	@return ApiPatchPatchByNameRequest
 */
 func (a *AppsApiService) PatchPatchByName(ctx context.Context, appName string, patchName string) ApiPatchPatchByNameRequest {
 	return ApiPatchPatchByNameRequest{

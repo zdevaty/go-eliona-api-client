@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.11
+API version: 2.4.12
 Contact: hello@eliona.io
 */
 
@@ -45,9 +45,9 @@ GetAlarmRuleById Information about an alarm rule
 
 Gets information about an alarm rule.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alarmRuleId The id of the alarm rule
- @return ApiGetAlarmRuleByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alarmRuleId The id of the alarm rule
+	@return ApiGetAlarmRuleByIdRequest
 */
 func (a *AlarmRulesApiService) GetAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiGetAlarmRuleByIdRequest {
 	return ApiGetAlarmRuleByIdRequest{
@@ -58,7 +58,8 @@ func (a *AlarmRulesApiService) GetAlarmRuleById(ctx context.Context, alarmRuleId
 }
 
 // Execute executes the request
-//  @return AlarmRule
+//
+//	@return AlarmRule
 func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -171,8 +172,8 @@ GetAlarmRules Information about alarm rules
 
 Gets information about alarm rules.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAlarmRulesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAlarmRulesRequest
 */
 func (a *AlarmRulesApiService) GetAlarmRules(ctx context.Context) ApiGetAlarmRulesRequest {
 	return ApiGetAlarmRulesRequest{
@@ -182,7 +183,8 @@ func (a *AlarmRulesApiService) GetAlarmRules(ctx context.Context) ApiGetAlarmRul
 }
 
 // Execute executes the request
-//  @return []AlarmRule
+//
+//	@return []AlarmRule
 func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) ([]AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -293,8 +295,8 @@ PostAlarmRule Create an alarm rule
 
 Create a new alarm rule.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostAlarmRuleRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostAlarmRuleRequest
 */
 func (a *AlarmRulesApiService) PostAlarmRule(ctx context.Context) ApiPostAlarmRuleRequest {
 	return ApiPostAlarmRuleRequest{
@@ -304,7 +306,8 @@ func (a *AlarmRulesApiService) PostAlarmRule(ctx context.Context) ApiPostAlarmRu
 }
 
 // Execute executes the request
-//  @return AlarmRule
+//
+//	@return AlarmRule
 func (a *AlarmRulesApiService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -417,8 +420,8 @@ PutAlarmRule Create or update an alarm rule
 
 Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id} to update
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAlarmRuleRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutAlarmRuleRequest
 
 Deprecated
 */
@@ -430,7 +433,9 @@ func (a *AlarmRulesApiService) PutAlarmRule(ctx context.Context) ApiPutAlarmRule
 }
 
 // Execute executes the request
-//  @return AlarmRule
+//
+//	@return AlarmRule
+//
 // Deprecated
 func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
 	var (
@@ -545,9 +550,9 @@ PutAlarmRuleById Update an alarm rule
 
 Update an alarm rule.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alarmRuleId The id of the alarm rule
- @return ApiPutAlarmRuleByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alarmRuleId The id of the alarm rule
+	@return ApiPutAlarmRuleByIdRequest
 */
 func (a *AlarmRulesApiService) PutAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiPutAlarmRuleByIdRequest {
 	return ApiPutAlarmRuleByIdRequest{
@@ -558,7 +563,8 @@ func (a *AlarmRulesApiService) PutAlarmRuleById(ctx context.Context, alarmRuleId
 }
 
 // Execute executes the request
-//  @return AlarmRule
+//
+//	@return AlarmRule
 func (a *AlarmRulesApiService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
