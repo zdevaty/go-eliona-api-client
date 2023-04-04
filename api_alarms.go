@@ -45,9 +45,9 @@ GetAlarmById Information about alarm
 
 Gets information about alarm.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiGetAlarmByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param alarmRuleId The id of the alarm rule
+ @return ApiGetAlarmByIdRequest
 */
 func (a *AlarmsApiService) GetAlarmById(ctx context.Context, alarmRuleId int32) ApiGetAlarmByIdRequest {
 	return ApiGetAlarmByIdRequest{
@@ -58,8 +58,7 @@ func (a *AlarmsApiService) GetAlarmById(ctx context.Context, alarmRuleId int32) 
 }
 
 // Execute executes the request
-//
-//	@return Alarm
+//  @return Alarm
 func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -173,9 +172,9 @@ GetAlarmHistoryById Information about alarm history
 
 Gets information about alarm over the entire time. This includes current alarm and history.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiGetAlarmHistoryByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param alarmRuleId The id of the alarm rule
+ @return ApiGetAlarmHistoryByIdRequest
 */
 func (a *AlarmsApiService) GetAlarmHistoryById(ctx context.Context, alarmRuleId int32) ApiGetAlarmHistoryByIdRequest {
 	return ApiGetAlarmHistoryByIdRequest{
@@ -186,8 +185,7 @@ func (a *AlarmsApiService) GetAlarmHistoryById(ctx context.Context, alarmRuleId 
 }
 
 // Execute executes the request
-//
-//	@return []Alarm
+//  @return []Alarm
 func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -307,8 +305,8 @@ GetAlarms Information about alarms
 
 Gets information about alarms
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAlarmsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAlarmsRequest
 */
 func (a *AlarmsApiService) GetAlarms(ctx context.Context) ApiGetAlarmsRequest {
 	return ApiGetAlarmsRequest{
@@ -318,8 +316,7 @@ func (a *AlarmsApiService) GetAlarms(ctx context.Context) ApiGetAlarmsRequest {
 }
 
 // Execute executes the request
-//
-//	@return []Alarm
+//  @return []Alarm
 func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -441,8 +438,8 @@ GetAlarmsHistory Information about alarms history
 
 Gets information about alarms over the entire time. This includes current alarms and alarms, which are already processed.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAlarmsHistoryRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAlarmsHistoryRequest
 */
 func (a *AlarmsApiService) GetAlarmsHistory(ctx context.Context) ApiGetAlarmsHistoryRequest {
 	return ApiGetAlarmsHistoryRequest{
@@ -452,8 +449,7 @@ func (a *AlarmsApiService) GetAlarmsHistory(ctx context.Context) ApiGetAlarmsHis
 }
 
 // Execute executes the request
-//
-//	@return []Alarm
+//  @return []Alarm
 func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -575,8 +571,8 @@ GetHighestAlarms Information about most prioritized alarms
 
 Gets information about an alarms with the highest priority for each asset.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetHighestAlarmsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetHighestAlarmsRequest
 */
 func (a *AlarmsApiService) GetHighestAlarms(ctx context.Context) ApiGetHighestAlarmsRequest {
 	return ApiGetHighestAlarmsRequest{
@@ -586,8 +582,7 @@ func (a *AlarmsApiService) GetHighestAlarms(ctx context.Context) ApiGetHighestAl
 }
 
 // Execute executes the request
-//
-//	@return []Alarm
+//  @return []Alarm
 func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -695,8 +690,8 @@ ListenAlarm WebSocket connection for alarm changes
 
 Open a WebSocket connection to get informed when new alarm data is written or anything changes.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListenAlarmRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListenAlarmRequest
 */
 func (a *AlarmsApiService) ListenAlarm(ctx context.Context) ApiListenAlarmRequest {
 	return ApiListenAlarmRequest{
@@ -706,8 +701,7 @@ func (a *AlarmsApiService) ListenAlarm(ctx context.Context) ApiListenAlarmReques
 }
 
 // Execute executes the request
-//
-//	@return Alarm
+//  @return Alarm
 func (a *AlarmsApiService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -824,9 +818,9 @@ PatchAlarmById Update alarm
 
 Update properties of alarm for given id.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiPatchAlarmByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param alarmRuleId The id of the alarm rule
+ @return ApiPatchAlarmByIdRequest
 */
 func (a *AlarmsApiService) PatchAlarmById(ctx context.Context, alarmRuleId int32) ApiPatchAlarmByIdRequest {
 	return ApiPatchAlarmByIdRequest{

@@ -36,8 +36,8 @@ GetOpenAPI OpenAPI specification for this API version
 
 Gets specification for this API version as an openapi.json file.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetOpenAPIRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetOpenAPIRequest
 */
 func (a *VersionApiService) GetOpenAPI(ctx context.Context) ApiGetOpenAPIRequest {
 	return ApiGetOpenAPIRequest{
@@ -124,8 +124,8 @@ GetVersion Version of the API
 
 Gets information about the APIs version.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetVersionRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetVersionRequest
 */
 func (a *VersionApiService) GetVersion(ctx context.Context) ApiGetVersionRequest {
 	return ApiGetVersionRequest{
@@ -135,8 +135,7 @@ func (a *VersionApiService) GetVersion(ctx context.Context) ApiGetVersionRequest
 }
 
 // Execute executes the request
-//
-//	@return map[string]interface{}
+//  @return map[string]interface{}
 func (a *VersionApiService) GetVersionExecute(r ApiGetVersionRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

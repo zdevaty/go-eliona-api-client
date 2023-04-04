@@ -38,9 +38,9 @@ GetNodeByIdent Information about a node
 
 Gets information about a node.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param nodeIdent The UUID identifier of the node
-	@return ApiGetNodeByIdentRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param nodeIdent The UUID identifier of the node
+ @return ApiGetNodeByIdentRequest
 */
 func (a *NodesApiService) GetNodeByIdent(ctx context.Context, nodeIdent string) ApiGetNodeByIdentRequest {
 	return ApiGetNodeByIdentRequest{
@@ -51,8 +51,7 @@ func (a *NodesApiService) GetNodeByIdent(ctx context.Context, nodeIdent string) 
 }
 
 // Execute executes the request
-//
-//	@return Node
+//  @return Node
 func (a *NodesApiService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -155,8 +154,8 @@ GetNodes Information about nodes
 
 Gets information about nodes.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetNodesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetNodesRequest
 */
 func (a *NodesApiService) GetNodes(ctx context.Context) ApiGetNodesRequest {
 	return ApiGetNodesRequest{
@@ -166,8 +165,7 @@ func (a *NodesApiService) GetNodes(ctx context.Context) ApiGetNodesRequest {
 }
 
 // Execute executes the request
-//
-//	@return []Node
+//  @return []Node
 func (a *NodesApiService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -275,8 +273,8 @@ PostNode Create a node
 
 Create a new node.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostNodeRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostNodeRequest
 */
 func (a *NodesApiService) PostNode(ctx context.Context) ApiPostNodeRequest {
 	return ApiPostNodeRequest{
@@ -286,8 +284,7 @@ func (a *NodesApiService) PostNode(ctx context.Context) ApiPostNodeRequest {
 }
 
 // Execute executes the request
-//
-//	@return Node
+//  @return Node
 func (a *NodesApiService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -400,8 +397,8 @@ PutNode Create or update a node
 
 Deprecated - Use POST /nodes to create PUT /nodes/{node-ident} to update.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutNodeRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutNodeRequest
 
 Deprecated
 */
@@ -413,9 +410,7 @@ func (a *NodesApiService) PutNode(ctx context.Context) ApiPutNodeRequest {
 }
 
 // Execute executes the request
-//
-//	@return Node
-//
+//  @return Node
 // Deprecated
 func (a *NodesApiService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Response, error) {
 	var (
@@ -530,9 +525,9 @@ PutNodeByIdent Update a node
 
 Update a node.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param nodeIdent The UUID identifier of the node
-	@return ApiPutNodeByIdentRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param nodeIdent The UUID identifier of the node
+ @return ApiPutNodeByIdentRequest
 */
 func (a *NodesApiService) PutNodeByIdent(ctx context.Context, nodeIdent string) ApiPutNodeByIdentRequest {
 	return ApiPutNodeByIdentRequest{
@@ -543,8 +538,7 @@ func (a *NodesApiService) PutNodeByIdent(ctx context.Context, nodeIdent string) 
 }
 
 // Execute executes the request
-//
-//	@return Node
+//  @return Node
 func (a *NodesApiService) PutNodeByIdentExecute(r ApiPutNodeByIdentRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

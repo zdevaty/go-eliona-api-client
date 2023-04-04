@@ -38,9 +38,9 @@ DeleteAggregationById Delete an aggregation
 
 Deletes an aggregation by the given id.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param aggregationId The id of the aggregation
-	@return ApiDeleteAggregationByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param aggregationId The id of the aggregation
+ @return ApiDeleteAggregationByIdRequest
 */
 func (a *AggregationsApiService) DeleteAggregationById(ctx context.Context, aggregationId int32) ApiDeleteAggregationByIdRequest {
 	return ApiDeleteAggregationByIdRequest{
@@ -144,9 +144,9 @@ GetAggregationById Information about an aggregation
 
 Gets information about an aggregation by the given id.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param aggregationId The id of the aggregation
-	@return ApiGetAggregationByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param aggregationId The id of the aggregation
+ @return ApiGetAggregationByIdRequest
 */
 func (a *AggregationsApiService) GetAggregationById(ctx context.Context, aggregationId int32) ApiGetAggregationByIdRequest {
 	return ApiGetAggregationByIdRequest{
@@ -157,8 +157,7 @@ func (a *AggregationsApiService) GetAggregationById(ctx context.Context, aggrega
 }
 
 // Execute executes the request
-//
-//	@return Aggregation
+//  @return Aggregation
 func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -261,8 +260,8 @@ GetAggregations Information about aggregations
 
 Gets a list of aggregations
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAggregationsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAggregationsRequest
 */
 func (a *AggregationsApiService) GetAggregations(ctx context.Context) ApiGetAggregationsRequest {
 	return ApiGetAggregationsRequest{
@@ -272,8 +271,7 @@ func (a *AggregationsApiService) GetAggregations(ctx context.Context) ApiGetAggr
 }
 
 // Execute executes the request
-//
-//	@return []Aggregation
+//  @return []Aggregation
 func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequest) ([]Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -381,8 +379,8 @@ PostAggregation Creates an aggregation
 
 Creates a new aggregation.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostAggregationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostAggregationRequest
 */
 func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
 	return ApiPostAggregationRequest{
@@ -392,8 +390,7 @@ func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAgg
 }
 
 // Execute executes the request
-//
-//	@return Aggregation
+//  @return Aggregation
 func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -506,8 +503,8 @@ PutAggregation Creates or updates an aggregation
 
 Creates an aggregation or updates if already exists. Uses the unique combination of asset id, subtype, attribute and raster for updating.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutAggregationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutAggregationRequest
 */
 func (a *AggregationsApiService) PutAggregation(ctx context.Context) ApiPutAggregationRequest {
 	return ApiPutAggregationRequest{
@@ -517,8 +514,7 @@ func (a *AggregationsApiService) PutAggregation(ctx context.Context) ApiPutAggre
 }
 
 // Execute executes the request
-//
-//	@return Aggregation
+//  @return Aggregation
 func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -632,9 +628,9 @@ PutAggregationById Updates an aggregation
 
 Updates an aggregation.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param aggregationId The id of the aggregation
-	@return ApiPutAggregationByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param aggregationId The id of the aggregation
+ @return ApiPutAggregationByIdRequest
 */
 func (a *AggregationsApiService) PutAggregationById(ctx context.Context, aggregationId int32) ApiPutAggregationByIdRequest {
 	return ApiPutAggregationByIdRequest{
@@ -645,8 +641,7 @@ func (a *AggregationsApiService) PutAggregationById(ctx context.Context, aggrega
 }
 
 // Execute executes the request
-//
-//	@return Aggregation
+//  @return Aggregation
 func (a *AggregationsApiService) PutAggregationByIdExecute(r ApiPutAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

@@ -45,9 +45,9 @@ GetAssetById Information about an asset
 
 Gets information about an asset.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param assetId The id of the asset
-	@return ApiGetAssetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param assetId The id of the asset
+ @return ApiGetAssetByIdRequest
 */
 func (a *AssetsApiService) GetAssetById(ctx context.Context, assetId int32) ApiGetAssetByIdRequest {
 	return ApiGetAssetByIdRequest{
@@ -58,8 +58,7 @@ func (a *AssetsApiService) GetAssetById(ctx context.Context, assetId int32) ApiG
 }
 
 // Execute executes the request
-//
-//	@return Asset
+//  @return Asset
 func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -186,8 +185,8 @@ GetAssets Information about assets
 
 Gets a list of assets
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAssetsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAssetsRequest
 */
 func (a *AssetsApiService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 	return ApiGetAssetsRequest{
@@ -197,8 +196,7 @@ func (a *AssetsApiService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 }
 
 // Execute executes the request
-//
-//	@return []Asset
+//  @return []Asset
 func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -315,8 +313,8 @@ PostAsset Create an asset
 
 Creates a new asset.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostAssetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostAssetRequest
 */
 func (a *AssetsApiService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 	return ApiPostAssetRequest{
@@ -326,8 +324,7 @@ func (a *AssetsApiService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 }
 
 // Execute executes the request
-//
-//	@return Asset
+//  @return Asset
 func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -440,8 +437,8 @@ PutAsset Create or update an asset
 
 Creates an asset if no asset  or updating it if already exists. Uses the unique combination of project id and global asset id for updating.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutAssetRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutAssetRequest
 */
 func (a *AssetsApiService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 	return ApiPutAssetRequest{
@@ -451,8 +448,7 @@ func (a *AssetsApiService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 }
 
 // Execute executes the request
-//
-//	@return Asset
+//  @return Asset
 func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -566,9 +562,9 @@ PutAssetById Update an asset
 
 Update an asset.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param assetId The id of the asset
-	@return ApiPutAssetByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param assetId The id of the asset
+ @return ApiPutAssetByIdRequest
 */
 func (a *AssetsApiService) PutAssetById(ctx context.Context, assetId int32) ApiPutAssetByIdRequest {
 	return ApiPutAssetByIdRequest{
@@ -579,8 +575,7 @@ func (a *AssetsApiService) PutAssetById(ctx context.Context, assetId int32) ApiP
 }
 
 // Execute executes the request
-//
-//	@return Asset
+//  @return Asset
 func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
