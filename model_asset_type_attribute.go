@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.12
+API version: 2.4.14
 Contact: hello@eliona.io
 */
 
@@ -53,8 +53,8 @@ type AssetTypeAttribute struct {
 	Scale NullableFloat32 `json:"scale,omitempty"`
 	// value scale
 	Zero NullableFloat32 `json:"zero,omitempty"`
-	// custom map
-	Map map[string]interface{} `json:"map,omitempty"`
+	// list of mappings between integer values and custom translated strings
+	Map []map[string]interface{} `json:"map,omitempty"`
 	// source path for attribute value
 	SourcePath []string `json:"sourcePath,omitempty"`
 	// is attribute digital
@@ -809,9 +809,9 @@ func (o *AssetTypeAttribute) UnsetZero() {
 }
 
 // GetMap returns the Map field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AssetTypeAttribute) GetMap() map[string]interface{} {
+func (o *AssetTypeAttribute) GetMap() []map[string]interface{} {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Map
@@ -820,9 +820,9 @@ func (o *AssetTypeAttribute) GetMap() map[string]interface{} {
 // GetMapOk returns a tuple with the Map field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AssetTypeAttribute) GetMapOk() (map[string]interface{}, bool) {
+func (o *AssetTypeAttribute) GetMapOk() ([]map[string]interface{}, bool) {
 	if o == nil || isNil(o.Map) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Map, true
 }
@@ -836,8 +836,8 @@ func (o *AssetTypeAttribute) HasMap() bool {
 	return false
 }
 
-// SetMap gets a reference to the given map[string]interface{} and assigns it to the Map field.
-func (o *AssetTypeAttribute) SetMap(v map[string]interface{}) {
+// SetMap gets a reference to the given []map[string]interface{} and assigns it to the Map field.
+func (o *AssetTypeAttribute) SetMap(v []map[string]interface{}) {
 	o.Map = v
 }
 
