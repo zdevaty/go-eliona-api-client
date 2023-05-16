@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.14
+API version: 2.4.20
 Contact: hello@eliona.io
 */
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Eliona REST API API v2.4.14
+// APIClient manages communication with the Eliona REST API API v2.4.20
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -71,6 +71,8 @@ type APIClient struct {
 	MessagesApi *MessagesApiService
 
 	NodesApi *NodesApiService
+
+	QRCodesApi *QRCodesApiService
 
 	VersionApi *VersionApiService
 
@@ -106,6 +108,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DataApi = (*DataApiService)(&c.common)
 	c.MessagesApi = (*MessagesApiService)(&c.common)
 	c.NodesApi = (*NodesApiService)(&c.common)
+	c.QRCodesApi = (*QRCodesApiService)(&c.common)
 	c.VersionApi = (*VersionApiService)(&c.common)
 	c.WidgetsApi = (*WidgetsApiService)(&c.common)
 	c.WidgetsTypesApi = (*WidgetsTypesApiService)(&c.common)

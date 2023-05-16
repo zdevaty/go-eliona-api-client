@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.14
+API version: 2.4.20
 Contact: hello@eliona.io
 */
 
@@ -22,6 +22,112 @@ import (
 
 // AlarmRulesApiService AlarmRulesApi service
 type AlarmRulesApiService service
+
+type ApiDeleteAlarmRuleByIdRequest struct {
+	ctx         context.Context
+	ApiService  *AlarmRulesApiService
+	alarmRuleId int32
+}
+
+func (r ApiDeleteAlarmRuleByIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAlarmRuleByIdExecute(r)
+}
+
+/*
+DeleteAlarmRuleById Delete an alarm rule
+
+Deletes an alarm rule.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param alarmRuleId The id of the alarm rule
+ @return ApiDeleteAlarmRuleByIdRequest
+*/
+func (a *AlarmRulesApiService) DeleteAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiDeleteAlarmRuleByIdRequest {
+	return ApiDeleteAlarmRuleByIdRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		alarmRuleId: alarmRuleId,
+	}
+}
+
+// Execute executes the request
+func (a *AlarmRulesApiService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleByIdRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.DeleteAlarmRuleById")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/alarm-rules/{alarm-rule-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"alarm-rule-id"+"}", url.PathEscape(parameterValueToString(r.alarmRuleId, "alarmRuleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
 
 type ApiGetAlarmRuleByIdRequest struct {
 	ctx         context.Context

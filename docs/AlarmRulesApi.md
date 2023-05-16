@@ -4,12 +4,81 @@ All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteAlarmRuleById**](AlarmRulesApi.md#DeleteAlarmRuleById) | **Delete** /alarm-rules/{alarm-rule-id} | Delete an alarm rule
 [**GetAlarmRuleById**](AlarmRulesApi.md#GetAlarmRuleById) | **Get** /alarm-rules/{alarm-rule-id} | Information about an alarm rule
 [**GetAlarmRules**](AlarmRulesApi.md#GetAlarmRules) | **Get** /alarm-rules | Information about alarm rules
 [**PostAlarmRule**](AlarmRulesApi.md#PostAlarmRule) | **Post** /alarm-rules | Create an alarm rule
 [**PutAlarmRule**](AlarmRulesApi.md#PutAlarmRule) | **Put** /alarm-rules | Create or update an alarm rule
 [**PutAlarmRuleById**](AlarmRulesApi.md#PutAlarmRuleById) | **Put** /alarm-rules/{alarm-rule-id} | Update an alarm rule
 
+
+
+## DeleteAlarmRuleById
+
+> DeleteAlarmRuleById(ctx, alarmRuleId).Execute()
+
+Delete an alarm rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AlarmRulesApi.DeleteAlarmRuleById(context.Background(), alarmRuleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesApi.DeleteAlarmRuleById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**alarmRuleId** | **int32** | The id of the alarm rule | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAlarmRuleByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetAlarmRuleById

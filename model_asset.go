@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.14
+API version: 2.4.20
 Contact: hello@eliona.io
 */
 
@@ -34,6 +34,8 @@ type Asset struct {
 	Latitude NullableFloat64 `json:"latitude,omitempty"`
 	// Longitude coordinate (GPS) of the asset
 	Longitude NullableFloat64 `json:"longitude,omitempty"`
+	// Does the asset function as a tracker and capture its position by itself
+	IsTracker NullableBool `json:"isTracker,omitempty"`
 	// Textual description for this asset
 	Description NullableString `json:"description,omitempty"`
 	// The id of an asset which groups this asset as a functional child
@@ -44,6 +46,8 @@ type Asset struct {
 	Tags []string `json:"tags,omitempty"`
 	// List of children for this asset.
 	ChildrenInfo []Asset `json:"childrenInfo,omitempty"`
+	// A list of files attached to the asset
+	Attachments []Attachment `json:"attachments,omitempty"`
 }
 
 // NewAsset instantiates a new Asset object
@@ -55,6 +59,8 @@ func NewAsset(projectId string, globalAssetIdentifier string, assetType string) 
 	this.ProjectId = projectId
 	this.GlobalAssetIdentifier = globalAssetIdentifier
 	this.AssetType = assetType
+	var isTracker bool = false
+	this.IsTracker = *NewNullableBool(&isTracker)
 	return &this
 }
 
@@ -63,6 +69,8 @@ func NewAsset(projectId string, globalAssetIdentifier string, assetType string) 
 // but it doesn't guarantee that properties required by API are set
 func NewAssetWithDefaults() *Asset {
 	this := Asset{}
+	var isTracker bool = false
+	this.IsTracker = *NewNullableBool(&isTracker)
 	return &this
 }
 
@@ -310,6 +318,49 @@ func (o *Asset) UnsetLongitude() {
 	o.Longitude.Unset()
 }
 
+// GetIsTracker returns the IsTracker field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetIsTracker() bool {
+	if o == nil || isNil(o.IsTracker.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IsTracker.Get()
+}
+
+// GetIsTrackerOk returns a tuple with the IsTracker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetIsTrackerOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsTracker.Get(), o.IsTracker.IsSet()
+}
+
+// HasIsTracker returns a boolean if a field has been set.
+func (o *Asset) HasIsTracker() bool {
+	if o != nil && o.IsTracker.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsTracker gets a reference to the given NullableBool and assigns it to the IsTracker field.
+func (o *Asset) SetIsTracker(v bool) {
+	o.IsTracker.Set(&v)
+}
+
+// SetIsTrackerNil sets the value for IsTracker to be an explicit nil
+func (o *Asset) SetIsTrackerNil() {
+	o.IsTracker.Set(nil)
+}
+
+// UnsetIsTracker ensures that no value is present for IsTracker, not even an explicit nil
+func (o *Asset) UnsetIsTracker() {
+	o.IsTracker.Unset()
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetDescription() string {
 	if o == nil || isNil(o.Description.Get()) {
@@ -505,6 +556,39 @@ func (o *Asset) SetChildrenInfo(v []Asset) {
 	o.ChildrenInfo = v
 }
 
+// GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetAttachments() []Attachment {
+	if o == nil {
+		var ret []Attachment
+		return ret
+	}
+	return o.Attachments
+}
+
+// GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetAttachmentsOk() ([]Attachment, bool) {
+	if o == nil || isNil(o.Attachments) {
+		return nil, false
+	}
+	return o.Attachments, true
+}
+
+// HasAttachments returns a boolean if a field has been set.
+func (o *Asset) HasAttachments() bool {
+	if o != nil && isNil(o.Attachments) {
+		return true
+	}
+
+	return false
+}
+
+// SetAttachments gets a reference to the given []Attachment and assigns it to the Attachments field.
+func (o *Asset) SetAttachments(v []Attachment) {
+	o.Attachments = v
+}
+
 func (o Asset) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -530,6 +614,9 @@ func (o Asset) ToMap() (map[string]interface{}, error) {
 	if o.Longitude.IsSet() {
 		toSerialize["longitude"] = o.Longitude.Get()
 	}
+	if o.IsTracker.IsSet() {
+		toSerialize["isTracker"] = o.IsTracker.Get()
+	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -544,6 +631,9 @@ func (o Asset) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ChildrenInfo != nil {
 		toSerialize["childrenInfo"] = o.ChildrenInfo
+	}
+	if o.Attachments != nil {
+		toSerialize["attachments"] = o.Attachments
 	}
 	return toSerialize, nil
 }

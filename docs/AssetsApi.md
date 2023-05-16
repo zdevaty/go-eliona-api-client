@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ## PostAsset
 
-> Asset PostAsset(ctx).Asset(asset).Execute()
+> Asset PostAsset(ctx).Asset(asset).Expansions(expansions).Execute()
 
 Create an asset
 
@@ -176,10 +176,11 @@ import (
 
 func main() {
     asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PostAsset(context.Background()).Asset(asset).Execute()
+    resp, r, err := apiClient.AssetsApi.PostAsset(context.Background()).Asset(asset).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PostAsset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,6 +202,7 @@ Other parameters are passed through a pointer to a apiPostAssetRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**Asset**](Asset.md) |  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -222,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## PutAsset
 
-> Asset PutAsset(ctx).Asset(asset).Execute()
+> Asset PutAsset(ctx).Asset(asset).Expansions(expansions).Execute()
 
 Create or update an asset
 
@@ -242,10 +244,11 @@ import (
 
 func main() {
     asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PutAsset(context.Background()).Asset(asset).Execute()
+    resp, r, err := apiClient.AssetsApi.PutAsset(context.Background()).Asset(asset).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PutAsset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,6 +270,7 @@ Other parameters are passed through a pointer to a apiPutAssetRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**Asset**](Asset.md) |  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 
@@ -288,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## PutAssetById
 
-> Asset PutAssetById(ctx, assetId).Asset(asset).Execute()
+> Asset PutAssetById(ctx, assetId).Asset(asset).Expansions(expansions).Execute()
 
 Update an asset
 
@@ -309,10 +313,11 @@ import (
 func main() {
     assetId := int32(4711) // int32 | The id of the asset
     asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PutAssetById(context.Background(), assetId).Asset(asset).Execute()
+    resp, r, err := apiClient.AssetsApi.PutAssetById(context.Background(), assetId).Asset(asset).Expansions(expansions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PutAssetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -339,6 +344,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **asset** | [**Asset**](Asset.md) |  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
 

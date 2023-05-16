@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.14
+API version: 2.4.20
 Contact: hello@eliona.io
 */
 
@@ -18,7 +18,7 @@ import (
 // checks if the Attachment type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Attachment{}
 
-// Attachment A binary attachment for messages
+// Attachment A binary attachment
 type Attachment struct {
 	// The name for the attachment, e.g. the filename
 	Name string `json:"name"`

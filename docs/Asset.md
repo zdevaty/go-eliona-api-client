@@ -11,11 +11,13 @@ Name | Type | Description | Notes
 **AssetType** | **string** | Reference to asset type by name | 
 **Latitude** | Pointer to **NullableFloat64** | Latitude coordinate (GPS) of the asset | [optional] 
 **Longitude** | Pointer to **NullableFloat64** | Longitude coordinate (GPS) of the asset | [optional] 
+**IsTracker** | Pointer to **NullableBool** | Does the asset function as a tracker and capture its position by itself | [optional] [default to false]
 **Description** | Pointer to **NullableString** | Textual description for this asset | [optional] 
 **ParentFunctionalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a functional child | [optional] 
 **ParentLocationalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a locational child | [optional] 
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **ChildrenInfo** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. | [optional] [readonly] 
+**Attachments** | Pointer to [**[]Attachment**](Attachment.md) | A list of files attached to the asset | [optional] 
 
 ## Methods
 
@@ -236,6 +238,41 @@ HasLongitude returns a boolean if a field has been set.
 `func (o *Asset) UnsetLongitude()`
 
 UnsetLongitude ensures that no value is present for Longitude, not even an explicit nil
+### GetIsTracker
+
+`func (o *Asset) GetIsTracker() bool`
+
+GetIsTracker returns the IsTracker field if non-nil, zero value otherwise.
+
+### GetIsTrackerOk
+
+`func (o *Asset) GetIsTrackerOk() (*bool, bool)`
+
+GetIsTrackerOk returns a tuple with the IsTracker field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsTracker
+
+`func (o *Asset) SetIsTracker(v bool)`
+
+SetIsTracker sets IsTracker field to given value.
+
+### HasIsTracker
+
+`func (o *Asset) HasIsTracker() bool`
+
+HasIsTracker returns a boolean if a field has been set.
+
+### SetIsTrackerNil
+
+`func (o *Asset) SetIsTrackerNil(b bool)`
+
+ SetIsTrackerNil sets the value for IsTracker to be an explicit nil
+
+### UnsetIsTracker
+`func (o *Asset) UnsetIsTracker()`
+
+UnsetIsTracker ensures that no value is present for IsTracker, not even an explicit nil
 ### GetDescription
 
 `func (o *Asset) GetDescription() string`
@@ -411,6 +448,41 @@ HasChildrenInfo returns a boolean if a field has been set.
 `func (o *Asset) UnsetChildrenInfo()`
 
 UnsetChildrenInfo ensures that no value is present for ChildrenInfo, not even an explicit nil
+### GetAttachments
+
+`func (o *Asset) GetAttachments() []Attachment`
+
+GetAttachments returns the Attachments field if non-nil, zero value otherwise.
+
+### GetAttachmentsOk
+
+`func (o *Asset) GetAttachmentsOk() (*[]Attachment, bool)`
+
+GetAttachmentsOk returns a tuple with the Attachments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttachments
+
+`func (o *Asset) SetAttachments(v []Attachment)`
+
+SetAttachments sets Attachments field to given value.
+
+### HasAttachments
+
+`func (o *Asset) HasAttachments() bool`
+
+HasAttachments returns a boolean if a field has been set.
+
+### SetAttachmentsNil
+
+`func (o *Asset) SetAttachmentsNil(b bool)`
+
+ SetAttachmentsNil sets the value for Attachments to be an explicit nil
+
+### UnsetAttachments
+`func (o *Asset) UnsetAttachments()`
+
+UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

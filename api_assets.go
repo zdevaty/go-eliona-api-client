@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.14
+API version: 2.4.20
 Contact: hello@eliona.io
 */
 
@@ -297,10 +297,17 @@ type ApiPostAssetRequest struct {
 	ctx        context.Context
 	ApiService *AssetsApiService
 	asset      *Asset
+	expansions *[]string
 }
 
 func (r ApiPostAssetRequest) Asset(asset Asset) ApiPostAssetRequest {
 	r.asset = &asset
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPostAssetRequest) Expansions(expansions []string) ApiPostAssetRequest {
+	r.expansions = &expansions
 	return r
 }
 
@@ -347,6 +354,9 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 		return localVarReturnValue, nil, reportError("asset is required and must be specified")
 	}
 
+	if r.expansions != nil {
+		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -421,10 +431,17 @@ type ApiPutAssetRequest struct {
 	ctx        context.Context
 	ApiService *AssetsApiService
 	asset      *Asset
+	expansions *[]string
 }
 
 func (r ApiPutAssetRequest) Asset(asset Asset) ApiPutAssetRequest {
 	r.asset = &asset
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPutAssetRequest) Expansions(expansions []string) ApiPutAssetRequest {
+	r.expansions = &expansions
 	return r
 }
 
@@ -435,7 +452,7 @@ func (r ApiPutAssetRequest) Execute() (*Asset, *http.Response, error) {
 /*
 PutAsset Create or update an asset
 
-Creates an asset if no asset  or updating it if already exists. Uses the unique combination of project id and global asset id for updating.
+Creates an asset if no asset exists or update it if already exists. Uses the unique combination of project id and global asset id for updating.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAssetRequest
@@ -471,6 +488,9 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		return localVarReturnValue, nil, reportError("asset is required and must be specified")
 	}
 
+	if r.expansions != nil {
+		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -546,10 +566,17 @@ type ApiPutAssetByIdRequest struct {
 	ApiService *AssetsApiService
 	assetId    int32
 	asset      *Asset
+	expansions *[]string
 }
 
 func (r ApiPutAssetByIdRequest) Asset(asset Asset) ApiPutAssetByIdRequest {
 	r.asset = &asset
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPutAssetByIdRequest) Expansions(expansions []string) ApiPutAssetByIdRequest {
+	r.expansions = &expansions
 	return r
 }
 
@@ -599,6 +626,9 @@ func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 		return localVarReturnValue, nil, reportError("asset is required and must be specified")
 	}
 
+	if r.expansions != nil {
+		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
