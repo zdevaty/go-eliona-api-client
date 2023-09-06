@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,17 +14,17 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
-// VersionApiService VersionApi service
-type VersionApiService service
+// VersionAPIService VersionAPI service
+type VersionAPIService service
 
 type ApiGetOpenAPIRequest struct {
 	ctx        context.Context
-	ApiService *VersionApiService
+	ApiService *VersionAPIService
 }
 
 func (r ApiGetOpenAPIRequest) Execute() (*http.Response, error) {
@@ -39,7 +39,7 @@ Gets specification for this API version as an openapi.json file.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetOpenAPIRequest
 */
-func (a *VersionApiService) GetOpenAPI(ctx context.Context) ApiGetOpenAPIRequest {
+func (a *VersionAPIService) GetOpenAPI(ctx context.Context) ApiGetOpenAPIRequest {
 	return ApiGetOpenAPIRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -47,14 +47,14 @@ func (a *VersionApiService) GetOpenAPI(ctx context.Context) ApiGetOpenAPIRequest
 }
 
 // Execute executes the request
-func (a *VersionApiService) GetOpenAPIExecute(r ApiGetOpenAPIRequest) (*http.Response, error) {
+func (a *VersionAPIService) GetOpenAPIExecute(r ApiGetOpenAPIRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodGet
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VersionApiService.GetOpenAPI")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VersionAPIService.GetOpenAPI")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -92,9 +92,9 @@ func (a *VersionApiService) GetOpenAPIExecute(r ApiGetOpenAPIRequest) (*http.Res
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -112,7 +112,7 @@ func (a *VersionApiService) GetOpenAPIExecute(r ApiGetOpenAPIRequest) (*http.Res
 
 type ApiGetVersionRequest struct {
 	ctx        context.Context
-	ApiService *VersionApiService
+	ApiService *VersionAPIService
 }
 
 func (r ApiGetVersionRequest) Execute() (map[string]interface{}, *http.Response, error) {
@@ -127,7 +127,7 @@ Gets information about the APIs version.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetVersionRequest
 */
-func (a *VersionApiService) GetVersion(ctx context.Context) ApiGetVersionRequest {
+func (a *VersionAPIService) GetVersion(ctx context.Context) ApiGetVersionRequest {
 	return ApiGetVersionRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -136,7 +136,7 @@ func (a *VersionApiService) GetVersion(ctx context.Context) ApiGetVersionRequest
 
 // Execute executes the request
 //  @return map[string]interface{}
-func (a *VersionApiService) GetVersionExecute(r ApiGetVersionRequest) (map[string]interface{}, *http.Response, error) {
+func (a *VersionAPIService) GetVersionExecute(r ApiGetVersionRequest) (map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -144,7 +144,7 @@ func (a *VersionApiService) GetVersionExecute(r ApiGetVersionRequest) (map[strin
 		localVarReturnValue map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VersionApiService.GetVersion")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VersionAPIService.GetVersion")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -182,9 +182,9 @@ func (a *VersionApiService) GetVersionExecute(r ApiGetVersionRequest) (map[strin
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -1,15 +1,370 @@
-# \AssetsApi
+# \AssetsAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAssetById**](AssetsApi.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
-[**GetAssets**](AssetsApi.md#GetAssets) | **Get** /assets | Information about assets
-[**PostAsset**](AssetsApi.md#PostAsset) | **Post** /assets | Create an asset
-[**PutAsset**](AssetsApi.md#PutAsset) | **Put** /assets | Create or update an asset
-[**PutAssetById**](AssetsApi.md#PutAssetById) | **Put** /assets/{asset-id} | Update an asset
+[**DeleteAssetById**](AssetsAPI.md#DeleteAssetById) | **Delete** /assets/{asset-id} | Delete an asset
+[**DeleteBulkAssets**](AssetsAPI.md#DeleteBulkAssets) | **Delete** /assets-bulk | Delete a list of assets
+[**DryRunDeleteBulkAssets**](AssetsAPI.md#DryRunDeleteBulkAssets) | **Delete** /assets-bulk/dry-run | Dry-run for deleting a list of assets
+[**DryRunPostBulkAssets**](AssetsAPI.md#DryRunPostBulkAssets) | **Post** /assets-bulk/dry-run | Dry-run for creating a list of assets
+[**DryRunPutBulkAssets**](AssetsAPI.md#DryRunPutBulkAssets) | **Put** /assets-bulk/dry-run | Dry-run for creating or updating a list of assets
+[**GetAssetById**](AssetsAPI.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
+[**GetAssets**](AssetsAPI.md#GetAssets) | **Get** /assets | Information about assets
+[**GetAttributeDisplay**](AssetsAPI.md#GetAttributeDisplay) | **Get** /attribute-display | How attributes are displayed
+[**PostAsset**](AssetsAPI.md#PostAsset) | **Post** /assets | Create an asset
+[**PostBulkAssets**](AssetsAPI.md#PostBulkAssets) | **Post** /assets-bulk | Create a list of assets
+[**PutAsset**](AssetsAPI.md#PutAsset) | **Put** /assets | Create or update an asset
+[**PutAssetById**](AssetsAPI.md#PutAssetById) | **Put** /assets/{asset-id} | Update an asset
+[**PutAttributeDisplay**](AssetsAPI.md#PutAttributeDisplay) | **Put** /attribute-display | Create or update how attributes are displayed
+[**PutBulkAssets**](AssetsAPI.md#PutBulkAssets) | **Put** /assets-bulk | Create or update a list of assets
 
+
+
+## DeleteAssetById
+
+> DeleteAssetById(ctx, assetId).Execute()
+
+Delete an asset
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    assetId := int32(4711) // int32 | The id of the asset
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.AssetsAPI.DeleteAssetById(context.Background(), assetId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DeleteAssetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **int32** | The id of the asset | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAssetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteBulkAssets
+
+> DeleteBulkAssets(ctx).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Delete a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    requestBody := []string{"1234"} // []string | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.AssetsAPI.DeleteBulkAssets(context.Background()).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DeleteBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestBody** | **[]string** |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DryRunDeleteBulkAssets
+
+> []AssetDryRun DryRunDeleteBulkAssets(ctx).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Dry-run for deleting a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    requestBody := []string{"1234"} // []string | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.DryRunDeleteBulkAssets(context.Background()).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DryRunDeleteBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DryRunDeleteBulkAssets`: []AssetDryRun
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.DryRunDeleteBulkAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDryRunDeleteBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **requestBody** | **[]string** |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+[**[]AssetDryRun**](AssetDryRun.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DryRunPostBulkAssets
+
+> []AssetDryRun DryRunPostBulkAssets(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Dry-run for creating a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    asset := []openapiclient.Asset{*openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example")} // []Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.DryRunPostBulkAssets(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DryRunPostBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DryRunPostBulkAssets`: []AssetDryRun
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.DryRunPostBulkAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDryRunPostBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | [**[]Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+[**[]AssetDryRun**](AssetDryRun.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DryRunPutBulkAssets
+
+> []AssetDryRun DryRunPutBulkAssets(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Dry-run for creating or updating a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    asset := []openapiclient.Asset{*openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example")} // []Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.DryRunPutBulkAssets(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DryRunPutBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DryRunPutBulkAssets`: []AssetDryRun
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.DryRunPutBulkAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDryRunPutBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | [**[]Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+[**[]AssetDryRun**](AssetDryRun.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetAssetById
@@ -29,7 +384,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -38,13 +393,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.GetAssetById(context.Background(), assetId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetsAPI.GetAssetById(context.Background(), assetId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.GetAssetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.GetAssetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAssetById`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.GetAssetById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.GetAssetById`: %v\n", resp)
 }
 ```
 
@@ -101,7 +456,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -111,13 +466,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.GetAssets(context.Background()).AssetTypeName(assetTypeName).ProjectId(projectId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetsAPI.GetAssets(context.Background()).AssetTypeName(assetTypeName).ProjectId(projectId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.GetAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.GetAssets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAssets`: []Asset
-    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.GetAssets`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.GetAssets`: %v\n", resp)
 }
 ```
 
@@ -154,9 +509,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAttributeDisplay
+
+> AttributeDisplay GetAttributeDisplay(ctx).Execute()
+
+How attributes are displayed
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.GetAttributeDisplay(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.GetAttributeDisplay``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAttributeDisplay`: AttributeDisplay
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.GetAttributeDisplay`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAttributeDisplayRequest struct via the builder pattern
+
+
+### Return type
+
+[**AttributeDisplay**](AttributeDisplay.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PostAsset
 
-> Asset PostAsset(ctx).Asset(asset).Expansions(expansions).Execute()
+> Asset PostAsset(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
 
 Create an asset
 
@@ -171,22 +587,23 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
     asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
     expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PostAsset(context.Background()).Asset(asset).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetsAPI.PostAsset(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PostAsset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PostAsset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostAsset`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.PostAsset`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PostAsset`: %v\n", resp)
 }
 ```
 
@@ -202,6 +619,7 @@ Other parameters are passed through a pointer to a apiPostAssetRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
  **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
@@ -222,9 +640,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PostBulkAssets
+
+> []Asset PostBulkAssets(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Create a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    asset := []openapiclient.Asset{*openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example")} // []Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.PostBulkAssets(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PostBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostBulkAssets`: []Asset
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PostBulkAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | [**[]Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+[**[]Asset**](Asset.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PutAsset
 
-> Asset PutAsset(ctx).Asset(asset).Expansions(expansions).Execute()
+> Asset PutAsset(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
 
 Create or update an asset
 
@@ -239,22 +727,23 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
     asset := *openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example") // Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
     expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PutAsset(context.Background()).Asset(asset).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetsAPI.PutAsset(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PutAsset``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PutAsset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutAsset`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.PutAsset`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PutAsset`: %v\n", resp)
 }
 ```
 
@@ -270,6 +759,7 @@ Other parameters are passed through a pointer to a apiPutAssetRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **asset** | [**Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
  **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
@@ -307,7 +797,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -317,13 +807,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetsApi.PutAssetById(context.Background(), assetId).Asset(asset).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetsAPI.PutAssetById(context.Background(), assetId).Asset(asset).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetsApi.PutAssetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PutAssetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutAssetById`: Asset
-    fmt.Fprintf(os.Stdout, "Response from `AssetsApi.PutAssetById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PutAssetById`: %v\n", resp)
 }
 ```
 
@@ -349,6 +839,142 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Asset**](Asset.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutAttributeDisplay
+
+> AttributeDisplay PutAttributeDisplay(ctx).AttributeDisplay(attributeDisplay).Execute()
+
+Create or update how attributes are displayed
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    attributeDisplay := *openapiclient.NewAttributeDisplay(int32(4711), openapiclient.DataSubtype("input"), "temperature") // AttributeDisplay | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.PutAttributeDisplay(context.Background()).AttributeDisplay(attributeDisplay).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PutAttributeDisplay``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutAttributeDisplay`: AttributeDisplay
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PutAttributeDisplay`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutAttributeDisplayRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributeDisplay** | [**AttributeDisplay**](AttributeDisplay.md) |  | 
+
+### Return type
+
+[**AttributeDisplay**](AttributeDisplay.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutBulkAssets
+
+> []Asset PutBulkAssets(ctx).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+
+Create or update a list of assets
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    asset := []openapiclient.Asset{*openapiclient.NewAsset("99", "zurich_swiss", "AssetType_example")} // []Asset | 
+    identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
+    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AssetsAPI.PutBulkAssets(context.Background()).Asset(asset).IdentifyBy(identifyBy).Expansions(expansions).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.PutBulkAssets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutBulkAssets`: []Asset
+    fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.PutBulkAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutBulkAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asset** | [**[]Asset**](Asset.md) |  | 
+ **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
+ **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
+
+### Return type
+
+[**[]Asset**](Asset.md)
 
 ### Authorization
 

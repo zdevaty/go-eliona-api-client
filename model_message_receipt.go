@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -19,13 +19,13 @@ import (
 // checks if the MessageReceipt type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MessageReceipt{}
 
-// MessageReceipt A receipt for a message
+// MessageReceipt A receipt for a message or notification
 type MessageReceipt struct {
-	// Identifies the message
+	// Identifies the message or notification
 	Id string `json:"id"`
-	// When the message is scheduled for sending
+	// When the message or notification is scheduled
 	ScheduledAt NullableTime `json:"scheduledAt,omitempty"`
-	// Status of the message processing
+	// Status of communication processing
 	Status *string `json:"status,omitempty"`
 }
 
@@ -73,7 +73,7 @@ func (o *MessageReceipt) SetId(v string) {
 
 // GetScheduledAt returns the ScheduledAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MessageReceipt) GetScheduledAt() time.Time {
-	if o == nil || isNil(o.ScheduledAt.Get()) {
+	if o == nil || IsNil(o.ScheduledAt.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -116,7 +116,7 @@ func (o *MessageReceipt) UnsetScheduledAt() {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MessageReceipt) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -126,7 +126,7 @@ func (o *MessageReceipt) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MessageReceipt) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -134,7 +134,7 @@ func (o *MessageReceipt) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *MessageReceipt) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -156,11 +156,11 @@ func (o MessageReceipt) MarshalJSON() ([]byte, error) {
 
 func (o MessageReceipt) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	// skip: id is readOnly
+	toSerialize["id"] = o.Id
 	if o.ScheduledAt.IsSet() {
 		toSerialize["scheduledAt"] = o.ScheduledAt.Get()
 	}
-	if !isNil(o.Status) {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
 	return toSerialize, nil

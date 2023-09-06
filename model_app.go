@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -76,7 +76,7 @@ func (o *App) SetName(v string) {
 
 // GetActive returns the Active field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *App) GetActive() bool {
-	if o == nil || isNil(o.Active.Get()) {
+	if o == nil || IsNil(o.Active.Get()) {
 		var ret bool
 		return ret
 	}
@@ -119,7 +119,7 @@ func (o *App) UnsetActive() {
 
 // GetRegistered returns the Registered field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *App) GetRegistered() bool {
-	if o == nil || isNil(o.Registered.Get()) {
+	if o == nil || IsNil(o.Registered.Get()) {
 		var ret bool
 		return ret
 	}
@@ -173,7 +173,7 @@ func (o *App) GetMetadata() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *App) GetMetadataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Metadata) {
+	if o == nil || IsNil(o.Metadata) {
 		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
@@ -181,7 +181,7 @@ func (o *App) GetMetadataOk() (map[string]interface{}, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *App) HasMetadata() bool {
-	if o != nil && isNil(o.Metadata) {
+	if o != nil && IsNil(o.Metadata) {
 		return true
 	}
 
@@ -195,7 +195,7 @@ func (o *App) SetMetadata(v map[string]interface{}) {
 
 // GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *App) GetVersion() string {
-	if o == nil || isNil(o.Version.Get()) {
+	if o == nil || IsNil(o.Version.Get()) {
 		var ret string
 		return ret
 	}

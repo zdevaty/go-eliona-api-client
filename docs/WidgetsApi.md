@@ -1,11 +1,11 @@
-# \WidgetsApi
+# \WidgetsAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDashboardWidgets**](WidgetsApi.md#GetDashboardWidgets) | **Get** /dashboards/{dashboard-id}/widgets | Information about widgets on dashboard
-[**PostDashboardWidget**](WidgetsApi.md#PostDashboardWidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
+[**GetDashboardWidgets**](WidgetsAPI.md#GetDashboardWidgets) | **Get** /dashboards/{dashboard-id}/widgets | Information about widgets on dashboard
+[**PostDashboardWidget**](WidgetsAPI.md#PostDashboardWidget) | **Post** /dashboards/{dashboard-id}/widgets | Adds widget to dashboard
 
 
 
@@ -26,7 +26,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -35,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsApi.GetDashboardWidgets(context.Background(), dashboardId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsAPI.GetDashboardWidgets(context.Background(), dashboardId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsApi.GetDashboardWidgets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.GetDashboardWidgets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboardWidgets`: Widget
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsApi.GetDashboardWidgets`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsAPI.GetDashboardWidgets`: %v\n", resp)
 }
 ```
 
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -108,9 +108,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsApi.PostDashboardWidget(context.Background(), dashboardId).Widget(widget).Expansions(expansions).Execute()
+    r, err := apiClient.WidgetsAPI.PostDashboardWidget(context.Background(), dashboardId).Widget(widget).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsApi.PostDashboardWidget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.PostDashboardWidget``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

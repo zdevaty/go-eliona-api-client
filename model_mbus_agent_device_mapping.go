@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -64,7 +64,7 @@ func NewMbusAgentDeviceMappingWithDefaults() *MbusAgentDeviceMapping {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -107,7 +107,7 @@ func (o *MbusAgentDeviceMapping) UnsetClass() {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -150,7 +150,7 @@ func (o *MbusAgentDeviceMapping) UnsetId() {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetDeviceId() int32 {
-	if o == nil || isNil(o.DeviceId.Get()) {
+	if o == nil || IsNil(o.DeviceId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -193,7 +193,7 @@ func (o *MbusAgentDeviceMapping) UnsetDeviceId() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *MbusAgentDeviceMapping) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -203,7 +203,7 @@ func (o *MbusAgentDeviceMapping) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MbusAgentDeviceMapping) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -211,7 +211,7 @@ func (o *MbusAgentDeviceMapping) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *MbusAgentDeviceMapping) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -225,7 +225,7 @@ func (o *MbusAgentDeviceMapping) SetEnable(v bool) {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -316,7 +316,7 @@ func (o *MbusAgentDeviceMapping) SetAttribute(v string) {
 
 // GetField returns the Field field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetField() int32 {
-	if o == nil || isNil(o.Field.Get()) {
+	if o == nil || IsNil(o.Field.Get()) {
 		var ret int32
 		return ret
 	}
@@ -359,7 +359,7 @@ func (o *MbusAgentDeviceMapping) UnsetField() {
 
 // GetScale returns the Scale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetScale() float64 {
-	if o == nil || isNil(o.Scale.Get()) {
+	if o == nil || IsNil(o.Scale.Get()) {
 		var ret float64
 		return ret
 	}
@@ -402,7 +402,7 @@ func (o *MbusAgentDeviceMapping) UnsetScale() {
 
 // GetZero returns the Zero field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDeviceMapping) GetZero() float64 {
-	if o == nil || isNil(o.Zero.Get()) {
+	if o == nil || IsNil(o.Zero.Get()) {
 		var ret float64
 		return ret
 	}
@@ -462,7 +462,7 @@ func (o MbusAgentDeviceMapping) ToMap() (map[string]interface{}, error) {
 	if o.DeviceId.IsSet() {
 		toSerialize["deviceId"] = o.DeviceId.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.AssetId.IsSet() {

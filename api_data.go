@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,17 +14,17 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
 
-// DataApiService DataApi service
-type DataApiService service
+// DataAPIService DataAPI service
+type DataAPIService service
 
 type ApiGetDataRequest struct {
 	ctx           context.Context
-	ApiService    *DataApiService
+	ApiService    *DataAPIService
 	assetId       *int32
 	dataSubtype   *string
 	assetTypeName *string
@@ -60,7 +60,7 @@ Gets information about data for assets.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetDataRequest
 */
-func (a *DataApiService) GetData(ctx context.Context) ApiGetDataRequest {
+func (a *DataAPIService) GetData(ctx context.Context) ApiGetDataRequest {
 	return ApiGetDataRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -69,7 +69,7 @@ func (a *DataApiService) GetData(ctx context.Context) ApiGetDataRequest {
 
 // Execute executes the request
 //  @return []Data
-func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
+func (a *DataAPIService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -77,7 +77,7 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 		localVarReturnValue []Data
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.GetData")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -89,13 +89,13 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 	localVarFormParams := url.Values{}
 
 	if r.assetId != nil {
-		parameterAddToQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -138,9 +138,9 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -167,7 +167,7 @@ func (a *DataApiService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 
 type ApiGetDataAggregatedRequest struct {
 	ctx           context.Context
-	ApiService    *DataApiService
+	ApiService    *DataAPIService
 	fromDate      *string
 	toDate        *string
 	assetId       *int32
@@ -224,7 +224,7 @@ Gets aggregated data sets which combines a set of data points for a defined peri
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetDataAggregatedRequest
 */
-func (a *DataApiService) GetDataAggregated(ctx context.Context) ApiGetDataAggregatedRequest {
+func (a *DataAPIService) GetDataAggregated(ctx context.Context) ApiGetDataAggregatedRequest {
 	return ApiGetDataAggregatedRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -233,7 +233,7 @@ func (a *DataApiService) GetDataAggregated(ctx context.Context) ApiGetDataAggreg
 
 // Execute executes the request
 //  @return []DataAggregated
-func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest) ([]DataAggregated, *http.Response, error) {
+func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest) ([]DataAggregated, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -241,7 +241,7 @@ func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 		localVarReturnValue []DataAggregated
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetDataAggregated")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.GetDataAggregated")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -253,22 +253,22 @@ func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
 	}
 	if r.toDate != nil {
-		parameterAddToQuery(localVarQueryParams, "toDate", r.toDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
 	}
 	if r.assetId != nil {
-		parameterAddToQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
 	}
 	if r.aggregationId != nil {
-		parameterAddToQuery(localVarQueryParams, "aggregationId", r.aggregationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationId", r.aggregationId, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -311,9 +311,9 @@ func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -340,7 +340,7 @@ func (a *DataApiService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 
 type ApiGetDataTrendsRequest struct {
 	ctx           context.Context
-	ApiService    *DataApiService
+	ApiService    *DataAPIService
 	fromDate      *string
 	toDate        *string
 	assetId       *int32
@@ -390,7 +390,7 @@ Gets trend information about historical data for assets.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetDataTrendsRequest
 */
-func (a *DataApiService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequest {
+func (a *DataAPIService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequest {
 	return ApiGetDataTrendsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -399,7 +399,7 @@ func (a *DataApiService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequ
 
 // Execute executes the request
 //  @return []Data
-func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data, *http.Response, error) {
+func (a *DataAPIService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -407,7 +407,7 @@ func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 		localVarReturnValue []Data
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.GetDataTrends")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.GetDataTrends")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -419,19 +419,19 @@ func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
 	}
 	if r.toDate != nil {
-		parameterAddToQuery(localVarQueryParams, "toDate", r.toDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
 	}
 	if r.assetId != nil {
-		parameterAddToQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -474,9 +474,9 @@ func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -503,7 +503,7 @@ func (a *DataApiService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 
 type ApiListenDataRequest struct {
 	ctx         context.Context
-	ApiService  *DataApiService
+	ApiService  *DataAPIService
 	assetId     *int32
 	dataSubtype *string
 }
@@ -532,7 +532,7 @@ Open a WebSocket connection to get informed when new asset data is written or an
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListenDataRequest
 */
-func (a *DataApiService) ListenData(ctx context.Context) ApiListenDataRequest {
+func (a *DataAPIService) ListenData(ctx context.Context) ApiListenDataRequest {
 	return ApiListenDataRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -541,7 +541,7 @@ func (a *DataApiService) ListenData(ctx context.Context) ApiListenDataRequest {
 
 // Execute executes the request
 //  @return Data
-func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http.Response, error) {
+func (a *DataAPIService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -549,7 +549,7 @@ func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http
 		localVarReturnValue *Data
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.ListenData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.ListenData")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -561,10 +561,10 @@ func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http
 	localVarFormParams := url.Values{}
 
 	if r.assetId != nil {
-		parameterAddToQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -607,9 +607,9 @@ func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -634,9 +634,122 @@ func (a *DataApiService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPutBulkDataRequest struct {
+	ctx        context.Context
+	ApiService *DataAPIService
+	data       *[]Data
+}
+
+func (r ApiPutBulkDataRequest) Data(data []Data) ApiPutBulkDataRequest {
+	r.data = &data
+	return r
+}
+
+func (r ApiPutBulkDataRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutBulkDataExecute(r)
+}
+
+/*
+PutBulkData Create or update multiple asset data
+
+Create multiple asset data or update data if already exists. Uses the unique combination of asset id and subtype for updating.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutBulkDataRequest
+*/
+func (a *DataAPIService) PutBulkData(ctx context.Context) ApiPutBulkDataRequest {
+	return ApiPutBulkDataRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+func (a *DataAPIService) PutBulkDataExecute(r ApiPutBulkDataRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.PutBulkData")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/data-bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.data == nil {
+		return nil, reportError("data is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.data
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiPutDataRequest struct {
 	ctx        context.Context
-	ApiService *DataApiService
+	ApiService *DataAPIService
 	data       *Data
 }
 
@@ -657,7 +770,7 @@ Create new asset data or update data if already exists. Uses the unique combinat
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutDataRequest
 */
-func (a *DataApiService) PutData(ctx context.Context) ApiPutDataRequest {
+func (a *DataAPIService) PutData(ctx context.Context) ApiPutDataRequest {
 	return ApiPutDataRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -665,14 +778,14 @@ func (a *DataApiService) PutData(ctx context.Context) ApiPutDataRequest {
 }
 
 // Execute executes the request
-func (a *DataApiService) PutDataExecute(r ApiPutDataRequest) (*http.Response, error) {
+func (a *DataAPIService) PutDataExecute(r ApiPutDataRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataApiService.PutData")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.PutData")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -729,9 +842,9 @@ func (a *DataApiService) PutDataExecute(r ApiPutDataRequest) (*http.Response, er
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

@@ -1,13 +1,13 @@
-# \AppsApi
+# \AppsAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAppByName**](AppsApi.md#GetAppByName) | **Get** /apps/{app-name} | Information about an app
-[**GetPatchByName**](AppsApi.md#GetPatchByName) | **Get** /apps/{app-name}/patches/{patch-name} | Information about a patch for an app
-[**PatchAppByName**](AppsApi.md#PatchAppByName) | **Patch** /apps/{app-name} | Update an app
-[**PatchPatchByName**](AppsApi.md#PatchPatchByName) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
+[**GetAppByName**](AppsAPI.md#GetAppByName) | **Get** /apps/{app-name} | Information about an app
+[**GetPatchByName**](AppsAPI.md#GetPatchByName) | **Get** /apps/{app-name}/patches/{patch-name} | Information about a patch for an app
+[**PatchAppByName**](AppsAPI.md#PatchAppByName) | **Patch** /apps/{app-name} | Update an app
+[**PatchPatchByName**](AppsAPI.md#PatchPatchByName) | **Patch** /apps/{app-name}/patches/{patch-name} | Updates a patch
 
 
 
@@ -28,7 +28,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.GetAppByName(context.Background(), appName).Execute()
+    resp, r, err := apiClient.AppsAPI.GetAppByName(context.Background(), appName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetAppByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetAppByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAppByName`: App
-    fmt.Fprintf(os.Stdout, "Response from `AppsApi.GetAppByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetAppByName`: %v\n", resp)
 }
 ```
 
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.GetPatchByName(context.Background(), appName, patchName).Execute()
+    resp, r, err := apiClient.AppsAPI.GetPatchByName(context.Background(), appName, patchName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetPatchByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetPatchByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetPatchByName`: Patch
-    fmt.Fprintf(os.Stdout, "Response from `AppsApi.GetPatchByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetPatchByName`: %v\n", resp)
 }
 ```
 
@@ -171,7 +171,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -180,9 +180,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.PatchAppByName(context.Background(), appName).Registered(registered).Execute()
+    r, err := apiClient.AppsAPI.PatchAppByName(context.Background(), appName).Registered(registered).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PatchAppByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchAppByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -241,7 +241,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -251,9 +251,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.PatchPatchByName(context.Background(), appName, patchName).Apply(apply).Execute()
+    r, err := apiClient.AppsAPI.PatchPatchByName(context.Background(), appName, patchName).Apply(apply).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PatchPatchByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchPatchByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

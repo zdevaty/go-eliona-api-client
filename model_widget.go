@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -54,7 +54,7 @@ func NewWidgetWithDefaults() *Widget {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Widget) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -132,7 +132,7 @@ func (o *Widget) GetDetails() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Widget) GetDetailsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Details) {
+	if o == nil || IsNil(o.Details) {
 		return map[string]interface{}{}, false
 	}
 	return o.Details, true
@@ -140,7 +140,7 @@ func (o *Widget) GetDetailsOk() (map[string]interface{}, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *Widget) HasDetails() bool {
-	if o != nil && isNil(o.Details) {
+	if o != nil && IsNil(o.Details) {
 		return true
 	}
 
@@ -154,7 +154,7 @@ func (o *Widget) SetDetails(v map[string]interface{}) {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Widget) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -197,7 +197,7 @@ func (o *Widget) UnsetAssetId() {
 
 // GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Widget) GetSequence() int32 {
-	if o == nil || isNil(o.Sequence.Get()) {
+	if o == nil || IsNil(o.Sequence.Get()) {
 		var ret int32
 		return ret
 	}
@@ -251,7 +251,7 @@ func (o *Widget) GetData() []WidgetData {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Widget) GetDataOk() ([]WidgetData, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -259,7 +259,7 @@ func (o *Widget) GetDataOk() ([]WidgetData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *Widget) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && IsNil(o.Data) {
 		return true
 	}
 

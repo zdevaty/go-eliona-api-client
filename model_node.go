@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -62,7 +62,7 @@ func NewNodeWithDefaults() *Node {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetId() string {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret string
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *Node) UnsetId() {
 
 // GetIdent returns the Ident field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetIdent() string {
-	if o == nil || isNil(o.Ident.Get()) {
+	if o == nil || IsNil(o.Ident.Get()) {
 		var ret string
 		return ret
 	}
@@ -149,7 +149,7 @@ func (o *Node) UnsetIdent() {
 // GetPassword returns the Password field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *Node) GetPassword() string {
-	if o == nil || isNil(o.Password.Get()) {
+	if o == nil || IsNil(o.Password.Get()) {
 		var ret string
 		return ret
 	}
@@ -194,7 +194,7 @@ func (o *Node) UnsetPassword() {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -237,7 +237,7 @@ func (o *Node) UnsetAssetId() {
 
 // GetVendor returns the Vendor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetVendor() string {
-	if o == nil || isNil(o.Vendor.Get()) {
+	if o == nil || IsNil(o.Vendor.Get()) {
 		var ret string
 		return ret
 	}
@@ -280,7 +280,7 @@ func (o *Node) UnsetVendor() {
 
 // GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetModel() string {
-	if o == nil || isNil(o.Model.Get()) {
+	if o == nil || IsNil(o.Model.Get()) {
 		var ret string
 		return ret
 	}
@@ -323,7 +323,7 @@ func (o *Node) UnsetModel() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Node) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -366,7 +366,7 @@ func (o *Node) UnsetDescription() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *Node) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -376,7 +376,7 @@ func (o *Node) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Node) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -384,7 +384,7 @@ func (o *Node) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *Node) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -427,7 +427,7 @@ func (o Node) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	return toSerialize, nil

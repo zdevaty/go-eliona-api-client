@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -20,8 +20,12 @@ var _ MappedNullable = &Asset{}
 
 // Asset An asset
 type Asset struct {
+	// A custom identifier for the resource, which can be utilized to identify it for various operations such as updates, deletions, and other related tasks. If this identifier is not provided, the application will generate a new value for it automatically
+	ResourceId NullableString `json:"resourceId,omitempty"`
 	// The internal Id of asset
 	Id NullableInt32 `json:"id,omitempty"`
+	// A list of unique device ids
+	DeviceIds []string `json:"deviceIds,omitempty"`
 	// ID of the project to which the asset belongs
 	ProjectId string `json:"projectId"`
 	// Unique identifier for the asset
@@ -74,9 +78,52 @@ func NewAssetWithDefaults() *Asset {
 	return &this
 }
 
+// GetResourceId returns the ResourceId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetResourceId() string {
+	if o == nil || IsNil(o.ResourceId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ResourceId.Get()
+}
+
+// GetResourceIdOk returns a tuple with the ResourceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetResourceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceId.Get(), o.ResourceId.IsSet()
+}
+
+// HasResourceId returns a boolean if a field has been set.
+func (o *Asset) HasResourceId() bool {
+	if o != nil && o.ResourceId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceId gets a reference to the given NullableString and assigns it to the ResourceId field.
+func (o *Asset) SetResourceId(v string) {
+	o.ResourceId.Set(&v)
+}
+
+// SetResourceIdNil sets the value for ResourceId to be an explicit nil
+func (o *Asset) SetResourceIdNil() {
+	o.ResourceId.Set(nil)
+}
+
+// UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
+func (o *Asset) UnsetResourceId() {
+	o.ResourceId.Unset()
+}
+
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -115,6 +162,39 @@ func (o *Asset) SetIdNil() {
 // UnsetId ensures that no value is present for Id, not even an explicit nil
 func (o *Asset) UnsetId() {
 	o.Id.Unset()
+}
+
+// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetDeviceIds() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.DeviceIds
+}
+
+// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetDeviceIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.DeviceIds) {
+		return nil, false
+	}
+	return o.DeviceIds, true
+}
+
+// HasDeviceIds returns a boolean if a field has been set.
+func (o *Asset) HasDeviceIds() bool {
+	if o != nil && IsNil(o.DeviceIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
+func (o *Asset) SetDeviceIds(v []string) {
+	o.DeviceIds = v
 }
 
 // GetProjectId returns the ProjectId field value
@@ -167,7 +247,7 @@ func (o *Asset) SetGlobalAssetIdentifier(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetName() string {
-	if o == nil || isNil(o.Name.Get()) {
+	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
 	}
@@ -234,7 +314,7 @@ func (o *Asset) SetAssetType(v string) {
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetLatitude() float64 {
-	if o == nil || isNil(o.Latitude.Get()) {
+	if o == nil || IsNil(o.Latitude.Get()) {
 		var ret float64
 		return ret
 	}
@@ -277,7 +357,7 @@ func (o *Asset) UnsetLatitude() {
 
 // GetLongitude returns the Longitude field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetLongitude() float64 {
-	if o == nil || isNil(o.Longitude.Get()) {
+	if o == nil || IsNil(o.Longitude.Get()) {
 		var ret float64
 		return ret
 	}
@@ -320,7 +400,7 @@ func (o *Asset) UnsetLongitude() {
 
 // GetIsTracker returns the IsTracker field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetIsTracker() bool {
-	if o == nil || isNil(o.IsTracker.Get()) {
+	if o == nil || IsNil(o.IsTracker.Get()) {
 		var ret bool
 		return ret
 	}
@@ -363,7 +443,7 @@ func (o *Asset) UnsetIsTracker() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -406,7 +486,7 @@ func (o *Asset) UnsetDescription() {
 
 // GetParentFunctionalAssetId returns the ParentFunctionalAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetParentFunctionalAssetId() int32 {
-	if o == nil || isNil(o.ParentFunctionalAssetId.Get()) {
+	if o == nil || IsNil(o.ParentFunctionalAssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -449,7 +529,7 @@ func (o *Asset) UnsetParentFunctionalAssetId() {
 
 // GetParentLocationalAssetId returns the ParentLocationalAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetParentLocationalAssetId() int32 {
-	if o == nil || isNil(o.ParentLocationalAssetId.Get()) {
+	if o == nil || IsNil(o.ParentLocationalAssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -503,7 +583,7 @@ func (o *Asset) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Asset) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -511,7 +591,7 @@ func (o *Asset) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Asset) HasTags() bool {
-	if o != nil && isNil(o.Tags) {
+	if o != nil && IsNil(o.Tags) {
 		return true
 	}
 
@@ -536,7 +616,7 @@ func (o *Asset) GetChildrenInfo() []Asset {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Asset) GetChildrenInfoOk() ([]Asset, bool) {
-	if o == nil || isNil(o.ChildrenInfo) {
+	if o == nil || IsNil(o.ChildrenInfo) {
 		return nil, false
 	}
 	return o.ChildrenInfo, true
@@ -544,7 +624,7 @@ func (o *Asset) GetChildrenInfoOk() ([]Asset, bool) {
 
 // HasChildrenInfo returns a boolean if a field has been set.
 func (o *Asset) HasChildrenInfo() bool {
-	if o != nil && isNil(o.ChildrenInfo) {
+	if o != nil && IsNil(o.ChildrenInfo) {
 		return true
 	}
 
@@ -569,7 +649,7 @@ func (o *Asset) GetAttachments() []Attachment {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Asset) GetAttachmentsOk() ([]Attachment, bool) {
-	if o == nil || isNil(o.Attachments) {
+	if o == nil || IsNil(o.Attachments) {
 		return nil, false
 	}
 	return o.Attachments, true
@@ -577,7 +657,7 @@ func (o *Asset) GetAttachmentsOk() ([]Attachment, bool) {
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *Asset) HasAttachments() bool {
-	if o != nil && isNil(o.Attachments) {
+	if o != nil && IsNil(o.Attachments) {
 		return true
 	}
 
@@ -599,8 +679,14 @@ func (o Asset) MarshalJSON() ([]byte, error) {
 
 func (o Asset) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ResourceId.IsSet() {
+		toSerialize["resourceId"] = o.ResourceId.Get()
+	}
 	if o.Id.IsSet() {
 		toSerialize["id"] = o.Id.Get()
+	}
+	if o.DeviceIds != nil {
+		toSerialize["deviceIds"] = o.DeviceIds
 	}
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["globalAssetIdentifier"] = o.GlobalAssetIdentifier

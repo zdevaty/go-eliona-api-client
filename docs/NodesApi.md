@@ -1,14 +1,14 @@
-# \NodesApi
+# \NodesAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetNodeByIdent**](NodesApi.md#GetNodeByIdent) | **Get** /nodes/{node-ident} | Information about a node
-[**GetNodes**](NodesApi.md#GetNodes) | **Get** /nodes | Information about nodes
-[**PostNode**](NodesApi.md#PostNode) | **Post** /nodes | Create a node
-[**PutNode**](NodesApi.md#PutNode) | **Put** /nodes | Create or update a node
-[**PutNodeByIdent**](NodesApi.md#PutNodeByIdent) | **Put** /nodes/{node-ident} | Update a node
+[**GetNodeByIdent**](NodesAPI.md#GetNodeByIdent) | **Get** /nodes/{node-ident} | Information about a node
+[**GetNodes**](NodesAPI.md#GetNodes) | **Get** /nodes | Information about nodes
+[**PostNode**](NodesAPI.md#PostNode) | **Post** /nodes | Create a node
+[**PutNode**](NodesAPI.md#PutNode) | **Put** /nodes | Create or update a node
+[**PutNodeByIdent**](NodesAPI.md#PutNodeByIdent) | **Put** /nodes/{node-ident} | Update a node
 
 
 
@@ -29,7 +29,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -37,13 +37,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodeByIdent(context.Background(), nodeIdent).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodeByIdent(context.Background(), nodeIdent).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodeByIdent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodeByIdent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodeByIdent`: Node
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodeByIdent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodeByIdent`: %v\n", resp)
 }
 ```
 
@@ -99,20 +99,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.GetNodes(context.Background()).Execute()
+    resp, r, err := apiClient.NodesAPI.GetNodes(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.GetNodes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.GetNodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetNodes`: []Node
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.GetNodes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.GetNodes`: %v\n", resp)
 }
 ```
 
@@ -160,7 +160,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -168,13 +168,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.PostNode(context.Background()).Node(node).Execute()
+    resp, r, err := apiClient.NodesAPI.PostNode(context.Background()).Node(node).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.PostNode``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.PostNode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostNode`: Node
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.PostNode`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.PostNode`: %v\n", resp)
 }
 ```
 
@@ -226,7 +226,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -234,13 +234,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.PutNode(context.Background()).Node(node).Execute()
+    resp, r, err := apiClient.NodesAPI.PutNode(context.Background()).Node(node).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.PutNode``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.PutNode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutNode`: Node
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.PutNode`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.PutNode`: %v\n", resp)
 }
 ```
 
@@ -292,7 +292,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -301,13 +301,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.NodesApi.PutNodeByIdent(context.Background(), nodeIdent).Node(node).Execute()
+    resp, r, err := apiClient.NodesAPI.PutNodeByIdent(context.Background(), nodeIdent).Node(node).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `NodesApi.PutNodeByIdent``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `NodesAPI.PutNodeByIdent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutNodeByIdent`: Node
-    fmt.Fprintf(os.Stdout, "Response from `NodesApi.PutNodeByIdent`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `NodesAPI.PutNodeByIdent`: %v\n", resp)
 }
 ```
 

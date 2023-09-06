@@ -1,17 +1,17 @@
-# \AssetTypesApi
+# \AssetTypesAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteAssetTypeByName**](AssetTypesApi.md#DeleteAssetTypeByName) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
-[**GetAssetTypeByName**](AssetTypesApi.md#GetAssetTypeByName) | **Get** /asset-types/{asset-type-name} | Information about an asset type
-[**GetAssetTypes**](AssetTypesApi.md#GetAssetTypes) | **Get** /asset-types | List of asset types
-[**PostAssetType**](AssetTypesApi.md#PostAssetType) | **Post** /asset-types | Create an asset type
-[**PostAssetTypeAttribute**](AssetTypesApi.md#PostAssetTypeAttribute) | **Post** /asset-types/{asset-type-name}/attributes | Create asset type attribute
-[**PutAssetType**](AssetTypesApi.md#PutAssetType) | **Put** /asset-types | Create or update an asset type
-[**PutAssetTypeAttribute**](AssetTypesApi.md#PutAssetTypeAttribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
-[**PutAssetTypeByName**](AssetTypesApi.md#PutAssetTypeByName) | **Put** /asset-types/{asset-type-name} | Update an asset type
+[**DeleteAssetTypeByName**](AssetTypesAPI.md#DeleteAssetTypeByName) | **Delete** /asset-types/{asset-type-name} | Delete an asset type
+[**GetAssetTypeByName**](AssetTypesAPI.md#GetAssetTypeByName) | **Get** /asset-types/{asset-type-name} | Information about an asset type
+[**GetAssetTypes**](AssetTypesAPI.md#GetAssetTypes) | **Get** /asset-types | List of asset types
+[**PostAssetType**](AssetTypesAPI.md#PostAssetType) | **Post** /asset-types | Create an asset type
+[**PostAssetTypeAttribute**](AssetTypesAPI.md#PostAssetTypeAttribute) | **Post** /asset-types/{asset-type-name}/attributes | Create asset type attribute
+[**PutAssetType**](AssetTypesAPI.md#PutAssetType) | **Put** /asset-types | Create or update an asset type
+[**PutAssetTypeAttribute**](AssetTypesAPI.md#PutAssetTypeAttribute) | **Put** /asset-types/{asset-type-name}/attributes | Create or update an asset type attribute
+[**PutAssetTypeByName**](AssetTypesAPI.md#PutAssetTypeByName) | **Put** /asset-types/{asset-type-name} | Update an asset type
 
 
 
@@ -32,7 +32,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -40,9 +40,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.DeleteAssetTypeByName(context.Background(), assetTypeName).Execute()
+    r, err := apiClient.AssetTypesAPI.DeleteAssetTypeByName(context.Background(), assetTypeName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.DeleteAssetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.DeleteAssetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -109,13 +109,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.GetAssetTypeByName(context.Background(), assetTypeName).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.GetAssetTypeByName(context.Background(), assetTypeName).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.GetAssetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAssetTypeByName`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.GetAssetTypeByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypeByName`: %v\n", resp)
 }
 ```
 
@@ -172,7 +172,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -180,13 +180,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.GetAssetTypes(context.Background()).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.GetAssetTypes(context.Background()).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.GetAssetTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAssetTypes`: []AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.GetAssetTypes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypes`: %v\n", resp)
 }
 ```
 
@@ -238,7 +238,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -247,13 +247,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PostAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.PostAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PostAssetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostAssetType`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.PostAssetType`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetType`: %v\n", resp)
 }
 ```
 
@@ -306,7 +306,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -315,13 +315,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PostAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.PostAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PostAssetTypeAttribute``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetTypeAttribute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostAssetTypeAttribute`: AssetTypeAttribute
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.PostAssetTypeAttribute`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetTypeAttribute`: %v\n", resp)
 }
 ```
 
@@ -378,7 +378,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -387,13 +387,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PutAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.PutAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutAssetType`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.PutAssetType`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetType`: %v\n", resp)
 }
 ```
 
@@ -446,7 +446,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -455,13 +455,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PutAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetTypeAttribute``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeAttribute``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutAssetTypeAttribute`: AssetTypeAttribute
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.PutAssetTypeAttribute`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeAttribute`: %v\n", resp)
 }
 ```
 
@@ -518,7 +518,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -528,13 +528,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesApi.PutAssetTypeByName(context.Background(), assetTypeName).AssetType(assetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeByName(context.Background(), assetTypeName).AssetType(assetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesApi.PutAssetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutAssetTypeByName`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesApi.PutAssetTypeByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeByName`: %v\n", resp)
 }
 ```
 

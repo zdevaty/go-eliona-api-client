@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -104,7 +104,7 @@ func (o *Data) SetSubtype(v DataSubtype) {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Data) GetTimestamp() time.Time {
-	if o == nil || isNil(o.Timestamp.Get()) {
+	if o == nil || IsNil(o.Timestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -171,7 +171,7 @@ func (o *Data) SetData(v map[string]interface{}) {
 
 // GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Data) GetAssetTypeName() string {
-	if o == nil || isNil(o.AssetTypeName.Get()) {
+	if o == nil || IsNil(o.AssetTypeName.Get()) {
 		var ret string
 		return ret
 	}

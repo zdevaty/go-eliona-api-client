@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -60,7 +60,7 @@ func NewDashboardWithDefaults() *Dashboard {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -175,7 +175,7 @@ func (o *Dashboard) SetUserId(v string) {
 
 // GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetSequence() int32 {
-	if o == nil || isNil(o.Sequence.Get()) {
+	if o == nil || IsNil(o.Sequence.Get()) {
 		var ret int32
 		return ret
 	}
@@ -229,7 +229,7 @@ func (o *Dashboard) GetWidgets() []Widget {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Dashboard) GetWidgetsOk() ([]Widget, bool) {
-	if o == nil || isNil(o.Widgets) {
+	if o == nil || IsNil(o.Widgets) {
 		return nil, false
 	}
 	return o.Widgets, true
@@ -237,7 +237,7 @@ func (o *Dashboard) GetWidgetsOk() ([]Widget, bool) {
 
 // HasWidgets returns a boolean if a field has been set.
 func (o *Dashboard) HasWidgets() bool {
-	if o != nil && isNil(o.Widgets) {
+	if o != nil && IsNil(o.Widgets) {
 		return true
 	}
 

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -78,7 +78,7 @@ func NewMbusAgentDeviceWithDefaults() *MbusAgentDevice {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -121,7 +121,7 @@ func (o *MbusAgentDevice) UnsetClass() {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -164,7 +164,7 @@ func (o *MbusAgentDevice) UnsetId() {
 
 // GetAgentId returns the AgentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetAgentId() int32 {
-	if o == nil || isNil(o.AgentId.Get()) {
+	if o == nil || IsNil(o.AgentId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -207,7 +207,7 @@ func (o *MbusAgentDevice) UnsetAgentId() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *MbusAgentDevice) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -217,7 +217,7 @@ func (o *MbusAgentDevice) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MbusAgentDevice) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -225,7 +225,7 @@ func (o *MbusAgentDevice) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *MbusAgentDevice) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -239,7 +239,7 @@ func (o *MbusAgentDevice) SetEnable(v bool) {
 
 // GetManufacturer returns the Manufacturer field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetManufacturer() string {
-	if o == nil || isNil(o.Manufacturer.Get()) {
+	if o == nil || IsNil(o.Manufacturer.Get()) {
 		var ret string
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *MbusAgentDevice) UnsetManufacturer() {
 
 // GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetModel() string {
-	if o == nil || isNil(o.Model.Get()) {
+	if o == nil || IsNil(o.Model.Get()) {
 		var ret string
 		return ret
 	}
@@ -325,7 +325,7 @@ func (o *MbusAgentDevice) UnsetModel() {
 
 // GetAddress returns the Address field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetAddress() int32 {
-	if o == nil || isNil(o.Address.Get()) {
+	if o == nil || IsNil(o.Address.Get()) {
 		var ret int32
 		return ret
 	}
@@ -368,7 +368,7 @@ func (o *MbusAgentDevice) UnsetAddress() {
 
 // GetSecAddress returns the SecAddress field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetSecAddress() string {
-	if o == nil || isNil(o.SecAddress.Get()) {
+	if o == nil || IsNil(o.SecAddress.Get()) {
 		var ret string
 		return ret
 	}
@@ -411,7 +411,7 @@ func (o *MbusAgentDevice) UnsetSecAddress() {
 
 // GetRaster returns the Raster field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetRaster() string {
-	if o == nil || isNil(o.Raster.Get()) {
+	if o == nil || IsNil(o.Raster.Get()) {
 		var ret string
 		return ret
 	}
@@ -454,7 +454,7 @@ func (o *MbusAgentDevice) UnsetRaster() {
 
 // GetMaxFail returns the MaxFail field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetMaxFail() int32 {
-	if o == nil || isNil(o.MaxFail.Get()) {
+	if o == nil || IsNil(o.MaxFail.Get()) {
 		var ret int32
 		return ret
 	}
@@ -497,7 +497,7 @@ func (o *MbusAgentDevice) UnsetMaxFail() {
 
 // GetMaxRetry returns the MaxRetry field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetMaxRetry() int32 {
-	if o == nil || isNil(o.MaxRetry.Get()) {
+	if o == nil || IsNil(o.MaxRetry.Get()) {
 		var ret int32
 		return ret
 	}
@@ -540,7 +540,7 @@ func (o *MbusAgentDevice) UnsetMaxRetry() {
 
 // GetSendNke returns the SendNke field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetSendNke() bool {
-	if o == nil || isNil(o.SendNke.Get()) {
+	if o == nil || IsNil(o.SendNke.Get()) {
 		var ret bool
 		return ret
 	}
@@ -583,7 +583,7 @@ func (o *MbusAgentDevice) UnsetSendNke() {
 
 // GetAppResetSubcode returns the AppResetSubcode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetAppResetSubcode() int32 {
-	if o == nil || isNil(o.AppResetSubcode.Get()) {
+	if o == nil || IsNil(o.AppResetSubcode.Get()) {
 		var ret int32
 		return ret
 	}
@@ -626,7 +626,7 @@ func (o *MbusAgentDevice) UnsetAppResetSubcode() {
 
 // GetMultiFrames returns the MultiFrames field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MbusAgentDevice) GetMultiFrames() int32 {
-	if o == nil || isNil(o.MultiFrames.Get()) {
+	if o == nil || IsNil(o.MultiFrames.Get()) {
 		var ret int32
 		return ret
 	}
@@ -686,7 +686,7 @@ func (o MbusAgentDevice) ToMap() (map[string]interface{}, error) {
 	if o.AgentId.IsSet() {
 		toSerialize["agentId"] = o.AgentId.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.Manufacturer.IsSet() {

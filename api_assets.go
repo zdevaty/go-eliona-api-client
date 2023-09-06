@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,699 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AssetsApiService AssetsApi service
-type AssetsApiService service
+// AssetsAPIService AssetsAPI service
+type AssetsAPIService service
+
+type ApiDeleteAssetByIdRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	assetId    int32
+}
+
+func (r ApiDeleteAssetByIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAssetByIdExecute(r)
+}
+
+/*
+DeleteAssetById Delete an asset
+
+Deletes an asset
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param assetId The id of the asset
+ @return ApiDeleteAssetByIdRequest
+*/
+func (a *AssetsAPIService) DeleteAssetById(ctx context.Context, assetId int32) ApiDeleteAssetByIdRequest {
+	return ApiDeleteAssetByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+		assetId:    assetId,
+	}
+}
+
+// Execute executes the request
+func (a *AssetsAPIService) DeleteAssetByIdExecute(r ApiDeleteAssetByIdRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.DeleteAssetById")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets/{asset-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-id"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDeleteBulkAssetsRequest struct {
+	ctx         context.Context
+	ApiService  *AssetsAPIService
+	requestBody *[]string
+	identifyBy  *string
+	expansions  *[]string
+}
+
+func (r ApiDeleteBulkAssetsRequest) RequestBody(requestBody []string) ApiDeleteBulkAssetsRequest {
+	r.requestBody = &requestBody
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiDeleteBulkAssetsRequest) IdentifyBy(identifyBy string) ApiDeleteBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiDeleteBulkAssetsRequest) Expansions(expansions []string) ApiDeleteBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiDeleteBulkAssetsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteBulkAssetsExecute(r)
+}
+
+/*
+DeleteBulkAssets Delete a list of assets
+
+Delete multiple assets based on the identifiers defined by the 'identifyBy' parameter.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDeleteBulkAssetsRequest
+*/
+func (a *AssetsAPIService) DeleteBulkAssets(ctx context.Context) ApiDeleteBulkAssetsRequest {
+	return ApiDeleteBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+func (a *AssetsAPIService) DeleteBulkAssetsExecute(r ApiDeleteBulkAssetsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.DeleteBulkAssets")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return nil, reportError("requestBody is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDryRunDeleteBulkAssetsRequest struct {
+	ctx         context.Context
+	ApiService  *AssetsAPIService
+	requestBody *[]string
+	identifyBy  *string
+	expansions  *[]string
+}
+
+func (r ApiDryRunDeleteBulkAssetsRequest) RequestBody(requestBody []string) ApiDryRunDeleteBulkAssetsRequest {
+	r.requestBody = &requestBody
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiDryRunDeleteBulkAssetsRequest) IdentifyBy(identifyBy string) ApiDryRunDeleteBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiDryRunDeleteBulkAssetsRequest) Expansions(expansions []string) ApiDryRunDeleteBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiDryRunDeleteBulkAssetsRequest) Execute() ([]AssetDryRun, *http.Response, error) {
+	return r.ApiService.DryRunDeleteBulkAssetsExecute(r)
+}
+
+/*
+DryRunDeleteBulkAssets Dry-run for deleting a list of assets
+
+Simulates the process of deleting multiple assets via the 'DELETE /assets-bulk' without actually persisting any changes.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDryRunDeleteBulkAssetsRequest
+*/
+func (a *AssetsAPIService) DryRunDeleteBulkAssets(ctx context.Context) ApiDryRunDeleteBulkAssetsRequest {
+	return ApiDryRunDeleteBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []AssetDryRun
+func (a *AssetsAPIService) DryRunDeleteBulkAssetsExecute(r ApiDryRunDeleteBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []AssetDryRun
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.DryRunDeleteBulkAssets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk/dry-run"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestBody
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDryRunPostBulkAssetsRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	asset      *[]Asset
+	identifyBy *string
+	expansions *[]string
+}
+
+func (r ApiDryRunPostBulkAssetsRequest) Asset(asset []Asset) ApiDryRunPostBulkAssetsRequest {
+	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiDryRunPostBulkAssetsRequest) IdentifyBy(identifyBy string) ApiDryRunPostBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiDryRunPostBulkAssetsRequest) Expansions(expansions []string) ApiDryRunPostBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiDryRunPostBulkAssetsRequest) Execute() ([]AssetDryRun, *http.Response, error) {
+	return r.ApiService.DryRunPostBulkAssetsExecute(r)
+}
+
+/*
+DryRunPostBulkAssets Dry-run for creating a list of assets
+
+Simulates the process of creating assets via the 'POST /assets-bulk' endpoint without actually persisting any changes.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDryRunPostBulkAssetsRequest
+*/
+func (a *AssetsAPIService) DryRunPostBulkAssets(ctx context.Context) ApiDryRunPostBulkAssetsRequest {
+	return ApiDryRunPostBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []AssetDryRun
+func (a *AssetsAPIService) DryRunPostBulkAssetsExecute(r ApiDryRunPostBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []AssetDryRun
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.DryRunPostBulkAssets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk/dry-run"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.asset == nil {
+		return localVarReturnValue, nil, reportError("asset is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.asset
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDryRunPutBulkAssetsRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	asset      *[]Asset
+	identifyBy *string
+	expansions *[]string
+}
+
+func (r ApiDryRunPutBulkAssetsRequest) Asset(asset []Asset) ApiDryRunPutBulkAssetsRequest {
+	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiDryRunPutBulkAssetsRequest) IdentifyBy(identifyBy string) ApiDryRunPutBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiDryRunPutBulkAssetsRequest) Expansions(expansions []string) ApiDryRunPutBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiDryRunPutBulkAssetsRequest) Execute() ([]AssetDryRun, *http.Response, error) {
+	return r.ApiService.DryRunPutBulkAssetsExecute(r)
+}
+
+/*
+DryRunPutBulkAssets Dry-run for creating or updating a list of assets
+
+Simulates the process of creating or updating assets via the 'PUT /assets-bulk' endpoint without actually persisting any changes.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiDryRunPutBulkAssetsRequest
+*/
+func (a *AssetsAPIService) DryRunPutBulkAssets(ctx context.Context) ApiDryRunPutBulkAssetsRequest {
+	return ApiDryRunPutBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []AssetDryRun
+func (a *AssetsAPIService) DryRunPutBulkAssetsExecute(r ApiDryRunPutBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []AssetDryRun
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.DryRunPutBulkAssets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk/dry-run"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.asset == nil {
+		return localVarReturnValue, nil, reportError("asset is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.asset
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiGetAssetByIdRequest struct {
 	ctx        context.Context
-	ApiService *AssetsApiService
+	ApiService *AssetsAPIService
 	assetId    int32
 	expansions *[]string
 }
@@ -49,7 +730,7 @@ Gets information about an asset.
  @param assetId The id of the asset
  @return ApiGetAssetByIdRequest
 */
-func (a *AssetsApiService) GetAssetById(ctx context.Context, assetId int32) ApiGetAssetByIdRequest {
+func (a *AssetsAPIService) GetAssetById(ctx context.Context, assetId int32) ApiGetAssetByIdRequest {
 	return ApiGetAssetByIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -59,7 +740,7 @@ func (a *AssetsApiService) GetAssetById(ctx context.Context, assetId int32) ApiG
 
 // Execute executes the request
 //  @return Asset
-func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset, *http.Response, error) {
+func (a *AssetsAPIService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -67,7 +748,7 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 		localVarReturnValue *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.GetAssetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.GetAssetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,7 +761,7 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -123,9 +804,9 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -152,7 +833,7 @@ func (a *AssetsApiService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 
 type ApiGetAssetsRequest struct {
 	ctx           context.Context
-	ApiService    *AssetsApiService
+	ApiService    *AssetsAPIService
 	assetTypeName *string
 	projectId     *string
 	expansions    *[]string
@@ -188,7 +869,7 @@ Gets a list of assets
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAssetsRequest
 */
-func (a *AssetsApiService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
+func (a *AssetsAPIService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 	return ApiGetAssetsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -197,7 +878,7 @@ func (a *AssetsApiService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 
 // Execute executes the request
 //  @return []Asset
-func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *http.Response, error) {
+func (a *AssetsAPIService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -205,7 +886,7 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 		localVarReturnValue []Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.GetAssets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.GetAssets")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -217,13 +898,13 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 	localVarFormParams := url.Values{}
 
 	if r.assetTypeName != nil {
-		parameterAddToQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
 	}
 	if r.projectId != nil {
-		parameterAddToQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -266,9 +947,122 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAttributeDisplayRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+}
+
+func (r ApiGetAttributeDisplayRequest) Execute() (*AttributeDisplay, *http.Response, error) {
+	return r.ApiService.GetAttributeDisplayExecute(r)
+}
+
+/*
+GetAttributeDisplay How attributes are displayed
+
+Gets information about how attributes for specific assets are displayed in frontend.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetAttributeDisplayRequest
+*/
+func (a *AssetsAPIService) GetAttributeDisplay(ctx context.Context) ApiGetAttributeDisplayRequest {
+	return ApiGetAttributeDisplayRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AttributeDisplay
+func (a *AssetsAPIService) GetAttributeDisplayExecute(r ApiGetAttributeDisplayRequest) (*AttributeDisplay, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AttributeDisplay
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.GetAttributeDisplay")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/attribute-display"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -295,13 +1089,20 @@ func (a *AssetsApiService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 
 type ApiPostAssetRequest struct {
 	ctx        context.Context
-	ApiService *AssetsApiService
+	ApiService *AssetsAPIService
 	asset      *Asset
+	identifyBy *string
 	expansions *[]string
 }
 
 func (r ApiPostAssetRequest) Asset(asset Asset) ApiPostAssetRequest {
 	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiPostAssetRequest) IdentifyBy(identifyBy string) ApiPostAssetRequest {
+	r.identifyBy = &identifyBy
 	return r
 }
 
@@ -318,12 +1119,14 @@ func (r ApiPostAssetRequest) Execute() (*Asset, *http.Response, error) {
 /*
 PostAsset Create an asset
 
-Creates a new asset.
+This process involves creating an asset. The determination if the asset already exists and cannot be
+created is done by the 'identifyBy' parameter, which specifies the field used for identification.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAssetRequest
 */
-func (a *AssetsApiService) PostAsset(ctx context.Context) ApiPostAssetRequest {
+func (a *AssetsAPIService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 	return ApiPostAssetRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -332,7 +1135,7 @@ func (a *AssetsApiService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 
 // Execute executes the request
 //  @return Asset
-func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *http.Response, error) {
+func (a *AssetsAPIService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -340,7 +1143,7 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 		localVarReturnValue *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.PostAsset")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PostAsset")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -354,8 +1157,11 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 		return localVarReturnValue, nil, reportError("asset is required and must be specified")
 	}
 
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -400,9 +1206,9 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -411,6 +1217,170 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostBulkAssetsRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	asset      *[]Asset
+	identifyBy *string
+	expansions *[]string
+}
+
+func (r ApiPostBulkAssetsRequest) Asset(asset []Asset) ApiPostBulkAssetsRequest {
+	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiPostBulkAssetsRequest) IdentifyBy(identifyBy string) ApiPostBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPostBulkAssetsRequest) Expansions(expansions []string) ApiPostBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiPostBulkAssetsRequest) Execute() ([]Asset, *http.Response, error) {
+	return r.ApiService.PostBulkAssetsExecute(r)
+}
+
+/*
+PostBulkAssets Create a list of assets
+
+This process involves creating the assets in the list. The determination if the asset already exists and cannot be created is done by the 'identifyBy' parameter, which specifies the field used for identification.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostBulkAssetsRequest
+*/
+func (a *AssetsAPIService) PostBulkAssets(ctx context.Context) ApiPostBulkAssetsRequest {
+	return ApiPostBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []Asset
+func (a *AssetsAPIService) PostBulkAssetsExecute(r ApiPostBulkAssetsRequest) ([]Asset, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Asset
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PostBulkAssets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.asset == nil {
+		return localVarReturnValue, nil, reportError("asset is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.asset
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -429,13 +1399,20 @@ func (a *AssetsApiService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 
 type ApiPutAssetRequest struct {
 	ctx        context.Context
-	ApiService *AssetsApiService
+	ApiService *AssetsAPIService
 	asset      *Asset
+	identifyBy *string
 	expansions *[]string
 }
 
 func (r ApiPutAssetRequest) Asset(asset Asset) ApiPutAssetRequest {
 	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiPutAssetRequest) IdentifyBy(identifyBy string) ApiPutAssetRequest {
+	r.identifyBy = &identifyBy
 	return r
 }
 
@@ -452,12 +1429,14 @@ func (r ApiPutAssetRequest) Execute() (*Asset, *http.Response, error) {
 /*
 PutAsset Create or update an asset
 
-Creates an asset if no asset exists or update it if already exists. Uses the unique combination of project id and global asset id for updating.
+This process involves creating or updating an asset. The choice between updating or creating is determined
+by the 'identifyBy' parameter, which specifies the field used for identification.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAssetRequest
 */
-func (a *AssetsApiService) PutAsset(ctx context.Context) ApiPutAssetRequest {
+func (a *AssetsAPIService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 	return ApiPutAssetRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -466,7 +1445,7 @@ func (a *AssetsApiService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 
 // Execute executes the request
 //  @return Asset
-func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.Response, error) {
+func (a *AssetsAPIService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -474,7 +1453,7 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		localVarReturnValue *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.PutAsset")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PutAsset")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -488,8 +1467,11 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		return localVarReturnValue, nil, reportError("asset is required and must be specified")
 	}
 
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -534,9 +1516,9 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -545,6 +1527,16 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -563,7 +1555,7 @@ func (a *AssetsApiService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 
 type ApiPutAssetByIdRequest struct {
 	ctx        context.Context
-	ApiService *AssetsApiService
+	ApiService *AssetsAPIService
 	assetId    int32
 	asset      *Asset
 	expansions *[]string
@@ -587,13 +1579,16 @@ func (r ApiPutAssetByIdRequest) Execute() (*Asset, *http.Response, error) {
 /*
 PutAssetById Update an asset
 
-Update an asset.
+Deprecated: use the 'PUT /asset' method and optionally the 'identifyBy' parameter to update a specific asset.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param assetId The id of the asset
  @return ApiPutAssetByIdRequest
+
+Deprecated
 */
-func (a *AssetsApiService) PutAssetById(ctx context.Context, assetId int32) ApiPutAssetByIdRequest {
+func (a *AssetsAPIService) PutAssetById(ctx context.Context, assetId int32) ApiPutAssetByIdRequest {
 	return ApiPutAssetByIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -603,7 +1598,8 @@ func (a *AssetsApiService) PutAssetById(ctx context.Context, assetId int32) ApiP
 
 // Execute executes the request
 //  @return Asset
-func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset, *http.Response, error) {
+// Deprecated
+func (a *AssetsAPIService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -611,7 +1607,7 @@ func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 		localVarReturnValue *Asset
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsApiService.PutAssetById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PutAssetById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -627,7 +1623,7 @@ func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -672,9 +1668,9 @@ func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -683,6 +1679,284 @@ func (a *AssetsApiService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPutAttributeDisplayRequest struct {
+	ctx              context.Context
+	ApiService       *AssetsAPIService
+	attributeDisplay *AttributeDisplay
+}
+
+func (r ApiPutAttributeDisplayRequest) AttributeDisplay(attributeDisplay AttributeDisplay) ApiPutAttributeDisplayRequest {
+	r.attributeDisplay = &attributeDisplay
+	return r
+}
+
+func (r ApiPutAttributeDisplayRequest) Execute() (*AttributeDisplay, *http.Response, error) {
+	return r.ApiService.PutAttributeDisplayExecute(r)
+}
+
+/*
+PutAttributeDisplay Create or update how attributes are displayed
+
+Create or update how attributes are displayed in frontend. Uses the unique combination of asset id, subtype and attribute name for updating.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutAttributeDisplayRequest
+*/
+func (a *AssetsAPIService) PutAttributeDisplay(ctx context.Context) ApiPutAttributeDisplayRequest {
+	return ApiPutAttributeDisplayRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return AttributeDisplay
+func (a *AssetsAPIService) PutAttributeDisplayExecute(r ApiPutAttributeDisplayRequest) (*AttributeDisplay, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AttributeDisplay
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PutAttributeDisplay")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/attribute-display"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.attributeDisplay == nil {
+		return localVarReturnValue, nil, reportError("attributeDisplay is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.attributeDisplay
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPutBulkAssetsRequest struct {
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	asset      *[]Asset
+	identifyBy *string
+	expansions *[]string
+}
+
+func (r ApiPutBulkAssetsRequest) Asset(asset []Asset) ApiPutBulkAssetsRequest {
+	r.asset = &asset
+	return r
+}
+
+// Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.
+func (r ApiPutBulkAssetsRequest) IdentifyBy(identifyBy string) ApiPutBulkAssetsRequest {
+	r.identifyBy = &identifyBy
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiPutBulkAssetsRequest) Expansions(expansions []string) ApiPutBulkAssetsRequest {
+	r.expansions = &expansions
+	return r
+}
+
+func (r ApiPutBulkAssetsRequest) Execute() ([]Asset, *http.Response, error) {
+	return r.ApiService.PutBulkAssetsExecute(r)
+}
+
+/*
+PutBulkAssets Create or update a list of assets
+
+This process involves creating or updating assets. The choice between updating or creating an asset is determined by the 'identifyBy' parameter, which specifies the field used for identification.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutBulkAssetsRequest
+*/
+func (a *AssetsAPIService) PutBulkAssets(ctx context.Context) ApiPutBulkAssetsRequest {
+	return ApiPutBulkAssetsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []Asset
+func (a *AssetsAPIService) PutBulkAssetsExecute(r ApiPutBulkAssetsRequest) ([]Asset, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Asset
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.PutBulkAssets")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/assets-bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.asset == nil {
+		return localVarReturnValue, nil, reportError("asset is required and must be specified")
+	}
+
+	if r.identifyBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.asset
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

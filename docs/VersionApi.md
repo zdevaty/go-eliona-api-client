@@ -1,11 +1,11 @@
-# \VersionApi
+# \VersionAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOpenAPI**](VersionApi.md#GetOpenAPI) | **Get** /version/openapi.json | OpenAPI specification for this API version
-[**GetVersion**](VersionApi.md#GetVersion) | **Get** /version | Version of the API
+[**GetOpenAPI**](VersionAPI.md#GetOpenAPI) | **Get** /version/openapi.json | OpenAPI specification for this API version
+[**GetVersion**](VersionAPI.md#GetVersion) | **Get** /version | Version of the API
 
 
 
@@ -26,16 +26,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VersionApi.GetOpenAPI(context.Background()).Execute()
+    r, err := apiClient.VersionAPI.GetOpenAPI(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VersionApi.GetOpenAPI``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VersionAPI.GetOpenAPI``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -85,20 +85,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.VersionApi.GetVersion(context.Background()).Execute()
+    resp, r, err := apiClient.VersionAPI.GetVersion(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `VersionApi.GetVersion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `VersionAPI.GetVersion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetVersion`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `VersionApi.GetVersion`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `VersionAPI.GetVersion`: %v\n", resp)
 }
 ```
 

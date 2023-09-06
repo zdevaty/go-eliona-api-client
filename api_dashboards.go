@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// DashboardsApiService DashboardsApi service
-type DashboardsApiService service
+// DashboardsAPIService DashboardsAPI service
+type DashboardsAPIService service
 
 type ApiGetDashboardByIdRequest struct {
 	ctx         context.Context
-	ApiService  *DashboardsApiService
+	ApiService  *DashboardsAPIService
 	dashboardId int32
 	expansions  *[]string
 }
@@ -49,7 +49,7 @@ Gets information about a dashboard.
  @param dashboardId The id of the dashboard
  @return ApiGetDashboardByIdRequest
 */
-func (a *DashboardsApiService) GetDashboardById(ctx context.Context, dashboardId int32) ApiGetDashboardByIdRequest {
+func (a *DashboardsAPIService) GetDashboardById(ctx context.Context, dashboardId int32) ApiGetDashboardByIdRequest {
 	return ApiGetDashboardByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -59,7 +59,7 @@ func (a *DashboardsApiService) GetDashboardById(ctx context.Context, dashboardId
 
 // Execute executes the request
 //  @return Dashboard
-func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequest) (*Dashboard, *http.Response, error) {
+func (a *DashboardsAPIService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequest) (*Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -67,7 +67,7 @@ func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequ
 		localVarReturnValue *Dashboard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsApiService.GetDashboardById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsAPIService.GetDashboardById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,7 +80,7 @@ func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequ
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -123,9 +123,9 @@ func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -152,7 +152,7 @@ func (a *DashboardsApiService) GetDashboardByIdExecute(r ApiGetDashboardByIdRequ
 
 type ApiGetDashboardsRequest struct {
 	ctx        context.Context
-	ApiService *DashboardsApiService
+	ApiService *DashboardsAPIService
 	expansions *[]string
 }
 
@@ -174,7 +174,7 @@ Gets a list of dashboards
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetDashboardsRequest
 */
-func (a *DashboardsApiService) GetDashboards(ctx context.Context) ApiGetDashboardsRequest {
+func (a *DashboardsAPIService) GetDashboards(ctx context.Context) ApiGetDashboardsRequest {
 	return ApiGetDashboardsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -183,7 +183,7 @@ func (a *DashboardsApiService) GetDashboards(ctx context.Context) ApiGetDashboar
 
 // Execute executes the request
 //  @return []Dashboard
-func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) ([]Dashboard, *http.Response, error) {
+func (a *DashboardsAPIService) GetDashboardsExecute(r ApiGetDashboardsRequest) ([]Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -191,7 +191,7 @@ func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) (
 		localVarReturnValue []Dashboard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsApiService.GetDashboards")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsAPIService.GetDashboards")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -203,7 +203,7 @@ func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -246,9 +246,9 @@ func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -275,7 +275,7 @@ func (a *DashboardsApiService) GetDashboardsExecute(r ApiGetDashboardsRequest) (
 
 type ApiPostDashboardRequest struct {
 	ctx        context.Context
-	ApiService *DashboardsApiService
+	ApiService *DashboardsAPIService
 	dashboard  *Dashboard
 	expansions *[]string
 }
@@ -303,7 +303,7 @@ Create a new dashboard for frontend
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostDashboardRequest
 */
-func (a *DashboardsApiService) PostDashboard(ctx context.Context) ApiPostDashboardRequest {
+func (a *DashboardsAPIService) PostDashboard(ctx context.Context) ApiPostDashboardRequest {
 	return ApiPostDashboardRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -312,7 +312,7 @@ func (a *DashboardsApiService) PostDashboard(ctx context.Context) ApiPostDashboa
 
 // Execute executes the request
 //  @return Dashboard
-func (a *DashboardsApiService) PostDashboardExecute(r ApiPostDashboardRequest) (*Dashboard, *http.Response, error) {
+func (a *DashboardsAPIService) PostDashboardExecute(r ApiPostDashboardRequest) (*Dashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -320,7 +320,7 @@ func (a *DashboardsApiService) PostDashboardExecute(r ApiPostDashboardRequest) (
 		localVarReturnValue *Dashboard
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsApiService.PostDashboard")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardsAPIService.PostDashboard")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -335,7 +335,7 @@ func (a *DashboardsApiService) PostDashboardExecute(r ApiPostDashboardRequest) (
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -380,9 +380,9 @@ func (a *DashboardsApiService) PostDashboardExecute(r ApiPostDashboardRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

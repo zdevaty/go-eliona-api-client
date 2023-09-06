@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -74,7 +74,7 @@ func (o *Attachment) SetName(v string) {
 
 // GetContentType returns the ContentType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Attachment) GetContentType() string {
-	if o == nil || isNil(o.ContentType.Get()) {
+	if o == nil || IsNil(o.ContentType.Get()) {
 		var ret string
 		return ret
 	}
@@ -117,7 +117,7 @@ func (o *Attachment) UnsetContentType() {
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Attachment) GetEncoding() string {
-	if o == nil || isNil(o.Encoding.Get()) {
+	if o == nil || IsNil(o.Encoding.Get()) {
 		var ret string
 		return ret
 	}
@@ -160,7 +160,7 @@ func (o *Attachment) UnsetEncoding() {
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *Attachment) GetContent() string {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		var ret string
 		return ret
 	}
@@ -170,7 +170,7 @@ func (o *Attachment) GetContent() string {
 // GetContentOk returns a tuple with the Content field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Attachment) GetContentOk() (*string, bool) {
-	if o == nil || isNil(o.Content) {
+	if o == nil || IsNil(o.Content) {
 		return nil, false
 	}
 	return o.Content, true
@@ -178,7 +178,7 @@ func (o *Attachment) GetContentOk() (*string, bool) {
 
 // HasContent returns a boolean if a field has been set.
 func (o *Attachment) HasContent() bool {
-	if o != nil && !isNil(o.Content) {
+	if o != nil && !IsNil(o.Content) {
 		return true
 	}
 
@@ -207,7 +207,7 @@ func (o Attachment) ToMap() (map[string]interface{}, error) {
 	if o.Encoding.IsSet() {
 		toSerialize["encoding"] = o.Encoding.Get()
 	}
-	if !isNil(o.Content) {
+	if !IsNil(o.Content) {
 		toSerialize["content"] = o.Content
 	}
 	return toSerialize, nil

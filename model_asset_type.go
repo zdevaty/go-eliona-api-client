@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -88,7 +88,7 @@ func (o *AssetType) SetName(v string) {
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *AssetType) GetCustom() bool {
-	if o == nil || isNil(o.Custom) {
+	if o == nil || IsNil(o.Custom) {
 		var ret bool
 		return ret
 	}
@@ -98,7 +98,7 @@ func (o *AssetType) GetCustom() bool {
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AssetType) GetCustomOk() (*bool, bool) {
-	if o == nil || isNil(o.Custom) {
+	if o == nil || IsNil(o.Custom) {
 		return nil, false
 	}
 	return o.Custom, true
@@ -106,7 +106,7 @@ func (o *AssetType) GetCustomOk() (*bool, bool) {
 
 // HasCustom returns a boolean if a field has been set.
 func (o *AssetType) HasCustom() bool {
-	if o != nil && !isNil(o.Custom) {
+	if o != nil && !IsNil(o.Custom) {
 		return true
 	}
 
@@ -120,7 +120,7 @@ func (o *AssetType) SetCustom(v bool) {
 
 // GetVendor returns the Vendor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetVendor() string {
-	if o == nil || isNil(o.Vendor.Get()) {
+	if o == nil || IsNil(o.Vendor.Get()) {
 		var ret string
 		return ret
 	}
@@ -163,7 +163,7 @@ func (o *AssetType) UnsetVendor() {
 
 // GetModel returns the Model field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetModel() string {
-	if o == nil || isNil(o.Model.Get()) {
+	if o == nil || IsNil(o.Model.Get()) {
 		var ret string
 		return ret
 	}
@@ -206,7 +206,7 @@ func (o *AssetType) UnsetModel() {
 
 // GetTranslation returns the Translation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetTranslation() Translation {
-	if o == nil || isNil(o.Translation.Get()) {
+	if o == nil || IsNil(o.Translation.Get()) {
 		var ret Translation
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *AssetType) UnsetTranslation() {
 
 // GetUrldoc returns the Urldoc field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetUrldoc() string {
-	if o == nil || isNil(o.Urldoc.Get()) {
+	if o == nil || IsNil(o.Urldoc.Get()) {
 		var ret string
 		return ret
 	}
@@ -292,7 +292,7 @@ func (o *AssetType) UnsetUrldoc() {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetIcon() string {
-	if o == nil || isNil(o.Icon.Get()) {
+	if o == nil || IsNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -335,7 +335,7 @@ func (o *AssetType) UnsetIcon() {
 
 // GetPayloadFunction returns the PayloadFunction field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetPayloadFunction() string {
-	if o == nil || isNil(o.PayloadFunction.Get()) {
+	if o == nil || IsNil(o.PayloadFunction.Get()) {
 		var ret string
 		return ret
 	}
@@ -378,7 +378,7 @@ func (o *AssetType) UnsetPayloadFunction() {
 
 // GetAllowedInactivity returns the AllowedInactivity field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetAllowedInactivity() string {
-	if o == nil || isNil(o.AllowedInactivity.Get()) {
+	if o == nil || IsNil(o.AllowedInactivity.Get()) {
 		var ret string
 		return ret
 	}
@@ -432,7 +432,7 @@ func (o *AssetType) GetAttributes() []AssetTypeAttribute {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetType) GetAttributesOk() ([]AssetTypeAttribute, bool) {
-	if o == nil || isNil(o.Attributes) {
+	if o == nil || IsNil(o.Attributes) {
 		return nil, false
 	}
 	return o.Attributes, true
@@ -440,7 +440,7 @@ func (o *AssetType) GetAttributesOk() ([]AssetTypeAttribute, bool) {
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AssetType) HasAttributes() bool {
-	if o != nil && isNil(o.Attributes) {
+	if o != nil && IsNil(o.Attributes) {
 		return true
 	}
 
@@ -463,7 +463,7 @@ func (o AssetType) MarshalJSON() ([]byte, error) {
 func (o AssetType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	if !isNil(o.Custom) {
+	if !IsNil(o.Custom) {
 		toSerialize["custom"] = o.Custom
 	}
 	if o.Vendor.IsSet() {

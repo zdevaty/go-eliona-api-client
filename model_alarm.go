@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -81,7 +81,7 @@ func NewAlarmWithDefaults() *Alarm {
 
 // GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetRuleId() int32 {
-	if o == nil || isNil(o.RuleId.Get()) {
+	if o == nil || IsNil(o.RuleId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -172,7 +172,7 @@ func (o *Alarm) SetSubtype(v DataSubtype) {
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetAttribute() string {
-	if o == nil || isNil(o.Attribute.Get()) {
+	if o == nil || IsNil(o.Attribute.Get()) {
 		var ret string
 		return ret
 	}
@@ -239,7 +239,7 @@ func (o *Alarm) SetPriority(v AlarmPriority) {
 
 // GetRequiresAcknowledge returns the RequiresAcknowledge field value if set, zero value otherwise.
 func (o *Alarm) GetRequiresAcknowledge() bool {
-	if o == nil || isNil(o.RequiresAcknowledge) {
+	if o == nil || IsNil(o.RequiresAcknowledge) {
 		var ret bool
 		return ret
 	}
@@ -249,7 +249,7 @@ func (o *Alarm) GetRequiresAcknowledge() bool {
 // GetRequiresAcknowledgeOk returns a tuple with the RequiresAcknowledge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Alarm) GetRequiresAcknowledgeOk() (*bool, bool) {
-	if o == nil || isNil(o.RequiresAcknowledge) {
+	if o == nil || IsNil(o.RequiresAcknowledge) {
 		return nil, false
 	}
 	return o.RequiresAcknowledge, true
@@ -257,7 +257,7 @@ func (o *Alarm) GetRequiresAcknowledgeOk() (*bool, bool) {
 
 // HasRequiresAcknowledge returns a boolean if a field has been set.
 func (o *Alarm) HasRequiresAcknowledge() bool {
-	if o != nil && !isNil(o.RequiresAcknowledge) {
+	if o != nil && !IsNil(o.RequiresAcknowledge) {
 		return true
 	}
 
@@ -271,7 +271,7 @@ func (o *Alarm) SetRequiresAcknowledge(v bool) {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetValue() float64 {
-	if o == nil || isNil(o.Value.Get()) {
+	if o == nil || IsNil(o.Value.Get()) {
 		var ret float64
 		return ret
 	}
@@ -338,7 +338,7 @@ func (o *Alarm) SetTimestamp(v time.Time) {
 
 // GetGoneTimestamp returns the GoneTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetGoneTimestamp() time.Time {
-	if o == nil || isNil(o.GoneTimestamp.Get()) {
+	if o == nil || IsNil(o.GoneTimestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -381,7 +381,7 @@ func (o *Alarm) UnsetGoneTimestamp() {
 
 // GetAcknowledgeTimestamp returns the AcknowledgeTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetAcknowledgeTimestamp() time.Time {
-	if o == nil || isNil(o.AcknowledgeTimestamp.Get()) {
+	if o == nil || IsNil(o.AcknowledgeTimestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -448,7 +448,7 @@ func (o *Alarm) SetOccurrences(v int32) {
 
 // GetAcknowledgeText returns the AcknowledgeText field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetAcknowledgeText() string {
-	if o == nil || isNil(o.AcknowledgeText.Get()) {
+	if o == nil || IsNil(o.AcknowledgeText.Get()) {
 		var ret string
 		return ret
 	}
@@ -491,7 +491,7 @@ func (o *Alarm) UnsetAcknowledgeText() {
 
 // GetAcknowledgeUserId returns the AcknowledgeUserId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetAcknowledgeUserId() string {
-	if o == nil || isNil(o.AcknowledgeUserId.Get()) {
+	if o == nil || IsNil(o.AcknowledgeUserId.Get()) {
 		var ret string
 		return ret
 	}
@@ -545,7 +545,7 @@ func (o *Alarm) GetMessage() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Alarm) GetMessageOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		return map[string]interface{}{}, false
 	}
 	return o.Message, true
@@ -553,7 +553,7 @@ func (o *Alarm) GetMessageOk() (map[string]interface{}, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *Alarm) HasMessage() bool {
-	if o != nil && isNil(o.Message) {
+	if o != nil && IsNil(o.Message) {
 		return true
 	}
 
@@ -567,7 +567,7 @@ func (o *Alarm) SetMessage(v map[string]interface{}) {
 
 // GetAssetInfo returns the AssetInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetAssetInfo() Asset {
-	if o == nil || isNil(o.AssetInfo.Get()) {
+	if o == nil || IsNil(o.AssetInfo.Get()) {
 		var ret Asset
 		return ret
 	}
@@ -610,7 +610,7 @@ func (o *Alarm) UnsetAssetInfo() {
 
 // GetRuleInfo returns the RuleInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Alarm) GetRuleInfo() AlarmRule {
-	if o == nil || isNil(o.RuleInfo.Get()) {
+	if o == nil || IsNil(o.RuleInfo.Get()) {
 		var ret AlarmRule
 		return ret
 	}
@@ -670,7 +670,7 @@ func (o Alarm) ToMap() (map[string]interface{}, error) {
 		toSerialize["attribute"] = o.Attribute.Get()
 	}
 	toSerialize["priority"] = o.Priority
-	if !isNil(o.RequiresAcknowledge) {
+	if !IsNil(o.RequiresAcknowledge) {
 		toSerialize["requiresAcknowledge"] = o.RequiresAcknowledge
 	}
 	if o.Value.IsSet() {

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -329,8 +329,8 @@ func (v *NullableTime) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-// isNil checks if an input is nil
-func isNil(i interface{}) bool {
+// IsNil checks if an input is nil
+func IsNil(i interface{}) bool {
 	if i == nil {
 		return true
 	}

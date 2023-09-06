@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// NodesApiService NodesApi service
-type NodesApiService service
+// NodesAPIService NodesAPI service
+type NodesAPIService service
 
 type ApiGetNodeByIdentRequest struct {
 	ctx        context.Context
-	ApiService *NodesApiService
+	ApiService *NodesAPIService
 	nodeIdent  string
 }
 
@@ -42,7 +42,7 @@ Gets information about a node.
  @param nodeIdent The UUID identifier of the node
  @return ApiGetNodeByIdentRequest
 */
-func (a *NodesApiService) GetNodeByIdent(ctx context.Context, nodeIdent string) ApiGetNodeByIdentRequest {
+func (a *NodesAPIService) GetNodeByIdent(ctx context.Context, nodeIdent string) ApiGetNodeByIdentRequest {
 	return ApiGetNodeByIdentRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -52,7 +52,7 @@ func (a *NodesApiService) GetNodeByIdent(ctx context.Context, nodeIdent string) 
 
 // Execute executes the request
 //  @return Node
-func (a *NodesApiService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*Node, *http.Response, error) {
+func (a *NodesAPIService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -60,7 +60,7 @@ func (a *NodesApiService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*No
 		localVarReturnValue *Node
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodeByIdent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodeByIdent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -113,9 +113,9 @@ func (a *NodesApiService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*No
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -142,7 +142,7 @@ func (a *NodesApiService) GetNodeByIdentExecute(r ApiGetNodeByIdentRequest) (*No
 
 type ApiGetNodesRequest struct {
 	ctx        context.Context
-	ApiService *NodesApiService
+	ApiService *NodesAPIService
 }
 
 func (r ApiGetNodesRequest) Execute() ([]Node, *http.Response, error) {
@@ -157,7 +157,7 @@ Gets information about nodes.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetNodesRequest
 */
-func (a *NodesApiService) GetNodes(ctx context.Context) ApiGetNodesRequest {
+func (a *NodesAPIService) GetNodes(ctx context.Context) ApiGetNodesRequest {
 	return ApiGetNodesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -166,7 +166,7 @@ func (a *NodesApiService) GetNodes(ctx context.Context) ApiGetNodesRequest {
 
 // Execute executes the request
 //  @return []Node
-func (a *NodesApiService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.Response, error) {
+func (a *NodesAPIService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -174,7 +174,7 @@ func (a *NodesApiService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.R
 		localVarReturnValue []Node
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.GetNodes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.GetNodes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -226,9 +226,9 @@ func (a *NodesApiService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.R
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -255,7 +255,7 @@ func (a *NodesApiService) GetNodesExecute(r ApiGetNodesRequest) ([]Node, *http.R
 
 type ApiPostNodeRequest struct {
 	ctx        context.Context
-	ApiService *NodesApiService
+	ApiService *NodesAPIService
 	node       *Node
 }
 
@@ -276,7 +276,7 @@ Create a new node.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostNodeRequest
 */
-func (a *NodesApiService) PostNode(ctx context.Context) ApiPostNodeRequest {
+func (a *NodesAPIService) PostNode(ctx context.Context) ApiPostNodeRequest {
 	return ApiPostNodeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -285,7 +285,7 @@ func (a *NodesApiService) PostNode(ctx context.Context) ApiPostNodeRequest {
 
 // Execute executes the request
 //  @return Node
-func (a *NodesApiService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Response, error) {
+func (a *NodesAPIService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -293,7 +293,7 @@ func (a *NodesApiService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Re
 		localVarReturnValue *Node
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.PostNode")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.PostNode")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -350,9 +350,9 @@ func (a *NodesApiService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Re
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -379,7 +379,7 @@ func (a *NodesApiService) PostNodeExecute(r ApiPostNodeRequest) (*Node, *http.Re
 
 type ApiPutNodeRequest struct {
 	ctx        context.Context
-	ApiService *NodesApiService
+	ApiService *NodesAPIService
 	node       *Node
 }
 
@@ -402,7 +402,7 @@ Deprecated - Use POST /nodes to create PUT /nodes/{node-ident} to update.
 
 Deprecated
 */
-func (a *NodesApiService) PutNode(ctx context.Context) ApiPutNodeRequest {
+func (a *NodesAPIService) PutNode(ctx context.Context) ApiPutNodeRequest {
 	return ApiPutNodeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -412,7 +412,7 @@ func (a *NodesApiService) PutNode(ctx context.Context) ApiPutNodeRequest {
 // Execute executes the request
 //  @return Node
 // Deprecated
-func (a *NodesApiService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Response, error) {
+func (a *NodesAPIService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -420,7 +420,7 @@ func (a *NodesApiService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Resp
 		localVarReturnValue *Node
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.PutNode")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.PutNode")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -477,9 +477,9 @@ func (a *NodesApiService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Resp
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -506,7 +506,7 @@ func (a *NodesApiService) PutNodeExecute(r ApiPutNodeRequest) (*Node, *http.Resp
 
 type ApiPutNodeByIdentRequest struct {
 	ctx        context.Context
-	ApiService *NodesApiService
+	ApiService *NodesAPIService
 	nodeIdent  string
 	node       *Node
 }
@@ -529,7 +529,7 @@ Update a node.
  @param nodeIdent The UUID identifier of the node
  @return ApiPutNodeByIdentRequest
 */
-func (a *NodesApiService) PutNodeByIdent(ctx context.Context, nodeIdent string) ApiPutNodeByIdentRequest {
+func (a *NodesAPIService) PutNodeByIdent(ctx context.Context, nodeIdent string) ApiPutNodeByIdentRequest {
 	return ApiPutNodeByIdentRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -539,7 +539,7 @@ func (a *NodesApiService) PutNodeByIdent(ctx context.Context, nodeIdent string) 
 
 // Execute executes the request
 //  @return Node
-func (a *NodesApiService) PutNodeByIdentExecute(r ApiPutNodeByIdentRequest) (*Node, *http.Response, error) {
+func (a *NodesAPIService) PutNodeByIdentExecute(r ApiPutNodeByIdentRequest) (*Node, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -547,7 +547,7 @@ func (a *NodesApiService) PutNodeByIdentExecute(r ApiPutNodeByIdentRequest) (*No
 		localVarReturnValue *Node
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesApiService.PutNodeByIdent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NodesAPIService.PutNodeByIdent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -605,9 +605,9 @@ func (a *NodesApiService) PutNodeByIdentExecute(r ApiPutNodeByIdentRequest) (*No
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

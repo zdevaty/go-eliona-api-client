@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -76,7 +76,7 @@ func NewDataAggregatedWithDefaults() *DataAggregated {
 
 // GetAggregationId returns the AggregationId field value if set, zero value otherwise.
 func (o *DataAggregated) GetAggregationId() int32 {
-	if o == nil || isNil(o.AggregationId) {
+	if o == nil || IsNil(o.AggregationId) {
 		var ret int32
 		return ret
 	}
@@ -86,7 +86,7 @@ func (o *DataAggregated) GetAggregationId() int32 {
 // GetAggregationIdOk returns a tuple with the AggregationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataAggregated) GetAggregationIdOk() (*int32, bool) {
-	if o == nil || isNil(o.AggregationId) {
+	if o == nil || IsNil(o.AggregationId) {
 		return nil, false
 	}
 	return o.AggregationId, true
@@ -94,7 +94,7 @@ func (o *DataAggregated) GetAggregationIdOk() (*int32, bool) {
 
 // HasAggregationId returns a boolean if a field has been set.
 func (o *DataAggregated) HasAggregationId() bool {
-	if o != nil && !isNil(o.AggregationId) {
+	if o != nil && !IsNil(o.AggregationId) {
 		return true
 	}
 
@@ -156,7 +156,7 @@ func (o *DataAggregated) SetSubtype(v DataSubtype) {
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise.
 func (o *DataAggregated) GetAttribute() string {
-	if o == nil || isNil(o.Attribute) {
+	if o == nil || IsNil(o.Attribute) {
 		var ret string
 		return ret
 	}
@@ -166,7 +166,7 @@ func (o *DataAggregated) GetAttribute() string {
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataAggregated) GetAttributeOk() (*string, bool) {
-	if o == nil || isNil(o.Attribute) {
+	if o == nil || IsNil(o.Attribute) {
 		return nil, false
 	}
 	return o.Attribute, true
@@ -174,7 +174,7 @@ func (o *DataAggregated) GetAttributeOk() (*string, bool) {
 
 // HasAttribute returns a boolean if a field has been set.
 func (o *DataAggregated) HasAttribute() bool {
-	if o != nil && !isNil(o.Attribute) {
+	if o != nil && !IsNil(o.Attribute) {
 		return true
 	}
 
@@ -212,7 +212,7 @@ func (o *DataAggregated) SetRaster(v string) {
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetTimestamp() time.Time {
-	if o == nil || isNil(o.Timestamp.Get()) {
+	if o == nil || IsNil(o.Timestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -255,7 +255,7 @@ func (o *DataAggregated) UnsetTimestamp() {
 
 // GetCount returns the Count field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetCount() float64 {
-	if o == nil || isNil(o.Count.Get()) {
+	if o == nil || IsNil(o.Count.Get()) {
 		var ret float64
 		return ret
 	}
@@ -298,7 +298,7 @@ func (o *DataAggregated) UnsetCount() {
 
 // GetAverage returns the Average field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetAverage() float64 {
-	if o == nil || isNil(o.Average.Get()) {
+	if o == nil || IsNil(o.Average.Get()) {
 		var ret float64
 		return ret
 	}
@@ -341,7 +341,7 @@ func (o *DataAggregated) UnsetAverage() {
 
 // GetSum returns the Sum field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetSum() float64 {
-	if o == nil || isNil(o.Sum.Get()) {
+	if o == nil || IsNil(o.Sum.Get()) {
 		var ret float64
 		return ret
 	}
@@ -384,7 +384,7 @@ func (o *DataAggregated) UnsetSum() {
 
 // GetFirst returns the First field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetFirst() float64 {
-	if o == nil || isNil(o.First.Get()) {
+	if o == nil || IsNil(o.First.Get()) {
 		var ret float64
 		return ret
 	}
@@ -427,7 +427,7 @@ func (o *DataAggregated) UnsetFirst() {
 
 // GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetMin() float64 {
-	if o == nil || isNil(o.Min.Get()) {
+	if o == nil || IsNil(o.Min.Get()) {
 		var ret float64
 		return ret
 	}
@@ -470,7 +470,7 @@ func (o *DataAggregated) UnsetMin() {
 
 // GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetMax() float64 {
-	if o == nil || isNil(o.Max.Get()) {
+	if o == nil || IsNil(o.Max.Get()) {
 		var ret float64
 		return ret
 	}
@@ -513,7 +513,7 @@ func (o *DataAggregated) UnsetMax() {
 
 // GetLast returns the Last field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetLast() float64 {
-	if o == nil || isNil(o.Last.Get()) {
+	if o == nil || IsNil(o.Last.Get()) {
 		var ret float64
 		return ret
 	}
@@ -556,7 +556,7 @@ func (o *DataAggregated) UnsetLast() {
 
 // GetLastTimestamp returns the LastTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetLastTimestamp() time.Time {
-	if o == nil || isNil(o.LastTimestamp.Get()) {
+	if o == nil || IsNil(o.LastTimestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
@@ -599,7 +599,7 @@ func (o *DataAggregated) UnsetLastTimestamp() {
 
 // GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DataAggregated) GetAssetTypeName() string {
-	if o == nil || isNil(o.AssetTypeName.Get()) {
+	if o == nil || IsNil(o.AssetTypeName.Get()) {
 		var ret string
 		return ret
 	}
@@ -650,12 +650,12 @@ func (o DataAggregated) MarshalJSON() ([]byte, error) {
 
 func (o DataAggregated) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.AggregationId) {
+	if !IsNil(o.AggregationId) {
 		toSerialize["aggregationId"] = o.AggregationId
 	}
 	toSerialize["assetId"] = o.AssetId
 	toSerialize["subtype"] = o.Subtype
-	if !isNil(o.Attribute) {
+	if !IsNil(o.Attribute) {
 		toSerialize["attribute"] = o.Attribute
 	}
 	toSerialize["raster"] = o.Raster

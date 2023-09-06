@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -99,7 +99,7 @@ func (o *Patch) SetName(v string) {
 
 // GetActive returns the Active field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Patch) GetActive() bool {
-	if o == nil || isNil(o.Active.Get()) {
+	if o == nil || IsNil(o.Active.Get()) {
 		var ret bool
 		return ret
 	}
@@ -142,7 +142,7 @@ func (o *Patch) UnsetActive() {
 
 // GetApplied returns the Applied field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Patch) GetApplied() bool {
-	if o == nil || isNil(o.Applied.Get()) {
+	if o == nil || IsNil(o.Applied.Get()) {
 		var ret bool
 		return ret
 	}

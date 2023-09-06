@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -62,7 +62,7 @@ func NewIosysAgentDeviceWithDefaults() *IosysAgentDevice {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -105,7 +105,7 @@ func (o *IosysAgentDevice) UnsetClass() {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *IosysAgentDevice) UnsetId() {
 
 // GetAgentId returns the AgentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetAgentId() int32 {
-	if o == nil || isNil(o.AgentId.Get()) {
+	if o == nil || IsNil(o.AgentId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -191,7 +191,7 @@ func (o *IosysAgentDevice) UnsetAgentId() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *IosysAgentDevice) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -201,7 +201,7 @@ func (o *IosysAgentDevice) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IosysAgentDevice) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -209,7 +209,7 @@ func (o *IosysAgentDevice) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *IosysAgentDevice) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -223,7 +223,7 @@ func (o *IosysAgentDevice) SetEnable(v bool) {
 
 // GetPort returns the Port field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetPort() int32 {
-	if o == nil || isNil(o.Port.Get()) {
+	if o == nil || IsNil(o.Port.Get()) {
 		var ret int32
 		return ret
 	}
@@ -266,7 +266,7 @@ func (o *IosysAgentDevice) UnsetPort() {
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetCertificate() string {
-	if o == nil || isNil(o.Certificate.Get()) {
+	if o == nil || IsNil(o.Certificate.Get()) {
 		var ret string
 		return ret
 	}
@@ -309,7 +309,7 @@ func (o *IosysAgentDevice) UnsetCertificate() {
 
 // GetKey returns the Key field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetKey() string {
-	if o == nil || isNil(o.Key.Get()) {
+	if o == nil || IsNil(o.Key.Get()) {
 		var ret string
 		return ret
 	}
@@ -352,7 +352,7 @@ func (o *IosysAgentDevice) UnsetKey() {
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetTimeout() int32 {
-	if o == nil || isNil(o.Timeout.Get()) {
+	if o == nil || IsNil(o.Timeout.Get()) {
 		var ret int32
 		return ret
 	}
@@ -395,7 +395,7 @@ func (o *IosysAgentDevice) UnsetTimeout() {
 
 // GetReconnect returns the Reconnect field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDevice) GetReconnect() int32 {
-	if o == nil || isNil(o.Reconnect.Get()) {
+	if o == nil || IsNil(o.Reconnect.Get()) {
 		var ret int32
 		return ret
 	}
@@ -455,7 +455,7 @@ func (o IosysAgentDevice) ToMap() (map[string]interface{}, error) {
 	if o.AgentId.IsSet() {
 		toSerialize["agentId"] = o.AgentId.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.Port.IsSet() {

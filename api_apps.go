@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AppsApiService AppsApi service
-type AppsApiService service
+// AppsAPIService AppsAPI service
+type AppsAPIService service
 
 type ApiGetAppByNameRequest struct {
 	ctx        context.Context
-	ApiService *AppsApiService
+	ApiService *AppsAPIService
 	appName    string
 }
 
@@ -42,7 +42,7 @@ Gets information about an app.
  @param appName The name of the app
  @return ApiGetAppByNameRequest
 */
-func (a *AppsApiService) GetAppByName(ctx context.Context, appName string) ApiGetAppByNameRequest {
+func (a *AppsAPIService) GetAppByName(ctx context.Context, appName string) ApiGetAppByNameRequest {
 	return ApiGetAppByNameRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -52,7 +52,7 @@ func (a *AppsApiService) GetAppByName(ctx context.Context, appName string) ApiGe
 
 // Execute executes the request
 //  @return App
-func (a *AppsApiService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *http.Response, error) {
+func (a *AppsAPIService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -60,7 +60,7 @@ func (a *AppsApiService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *h
 		localVarReturnValue *App
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.GetAppByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsAPIService.GetAppByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -113,9 +113,9 @@ func (a *AppsApiService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *h
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -142,7 +142,7 @@ func (a *AppsApiService) GetAppByNameExecute(r ApiGetAppByNameRequest) (*App, *h
 
 type ApiGetPatchByNameRequest struct {
 	ctx        context.Context
-	ApiService *AppsApiService
+	ApiService *AppsAPIService
 	appName    string
 	patchName  string
 }
@@ -161,7 +161,7 @@ Gets information about a patch for an app.
  @param patchName The name of the patch
  @return ApiGetPatchByNameRequest
 */
-func (a *AppsApiService) GetPatchByName(ctx context.Context, appName string, patchName string) ApiGetPatchByNameRequest {
+func (a *AppsAPIService) GetPatchByName(ctx context.Context, appName string, patchName string) ApiGetPatchByNameRequest {
 	return ApiGetPatchByNameRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -172,7 +172,7 @@ func (a *AppsApiService) GetPatchByName(ctx context.Context, appName string, pat
 
 // Execute executes the request
 //  @return Patch
-func (a *AppsApiService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Patch, *http.Response, error) {
+func (a *AppsAPIService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Patch, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -180,7 +180,7 @@ func (a *AppsApiService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Pat
 		localVarReturnValue *Patch
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.GetPatchByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsAPIService.GetPatchByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -234,9 +234,9 @@ func (a *AppsApiService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Pat
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -263,7 +263,7 @@ func (a *AppsApiService) GetPatchByNameExecute(r ApiGetPatchByNameRequest) (*Pat
 
 type ApiPatchAppByNameRequest struct {
 	ctx        context.Context
-	ApiService *AppsApiService
+	ApiService *AppsAPIService
 	appName    string
 	registered *bool
 }
@@ -287,7 +287,7 @@ Update properties of an app.
  @param appName The name of the app
  @return ApiPatchAppByNameRequest
 */
-func (a *AppsApiService) PatchAppByName(ctx context.Context, appName string) ApiPatchAppByNameRequest {
+func (a *AppsAPIService) PatchAppByName(ctx context.Context, appName string) ApiPatchAppByNameRequest {
 	return ApiPatchAppByNameRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -296,14 +296,14 @@ func (a *AppsApiService) PatchAppByName(ctx context.Context, appName string) Api
 }
 
 // Execute executes the request
-func (a *AppsApiService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*http.Response, error) {
+func (a *AppsAPIService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.PatchAppByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsAPIService.PatchAppByName")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -316,7 +316,7 @@ func (a *AppsApiService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*htt
 	localVarFormParams := url.Values{}
 
 	if r.registered != nil {
-		parameterAddToQuery(localVarQueryParams, "registered", r.registered, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "registered", r.registered, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -359,9 +359,9 @@ func (a *AppsApiService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*htt
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -379,7 +379,7 @@ func (a *AppsApiService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*htt
 
 type ApiPatchPatchByNameRequest struct {
 	ctx        context.Context
-	ApiService *AppsApiService
+	ApiService *AppsAPIService
 	appName    string
 	patchName  string
 	apply      *bool
@@ -405,7 +405,7 @@ Updates properties of a patch for an app.
  @param patchName The name of the patch
  @return ApiPatchPatchByNameRequest
 */
-func (a *AppsApiService) PatchPatchByName(ctx context.Context, appName string, patchName string) ApiPatchPatchByNameRequest {
+func (a *AppsAPIService) PatchPatchByName(ctx context.Context, appName string, patchName string) ApiPatchPatchByNameRequest {
 	return ApiPatchPatchByNameRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -415,14 +415,14 @@ func (a *AppsApiService) PatchPatchByName(ctx context.Context, appName string, p
 }
 
 // Execute executes the request
-func (a *AppsApiService) PatchPatchByNameExecute(r ApiPatchPatchByNameRequest) (*http.Response, error) {
+func (a *AppsAPIService) PatchPatchByNameExecute(r ApiPatchPatchByNameRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.PatchPatchByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsAPIService.PatchPatchByName")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -436,7 +436,7 @@ func (a *AppsApiService) PatchPatchByNameExecute(r ApiPatchPatchByNameRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.apply != nil {
-		parameterAddToQuery(localVarQueryParams, "apply", r.apply, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apply", r.apply, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -479,9 +479,9 @@ func (a *AppsApiService) PatchPatchByNameExecute(r ApiPatchPatchByNameRequest) (
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

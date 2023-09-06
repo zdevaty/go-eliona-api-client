@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AssetTypesApiService AssetTypesApi service
-type AssetTypesApiService service
+// AssetTypesAPIService AssetTypesAPI service
+type AssetTypesAPIService service
 
 type ApiDeleteAssetTypeByNameRequest struct {
 	ctx           context.Context
-	ApiService    *AssetTypesApiService
+	ApiService    *AssetTypesAPIService
 	assetTypeName string
 }
 
@@ -42,7 +42,7 @@ Deletes an asset type and the attributes for this asset type.
  @param assetTypeName The name of the asset type
  @return ApiDeleteAssetTypeByNameRequest
 */
-func (a *AssetTypesApiService) DeleteAssetTypeByName(ctx context.Context, assetTypeName string) ApiDeleteAssetTypeByNameRequest {
+func (a *AssetTypesAPIService) DeleteAssetTypeByName(ctx context.Context, assetTypeName string) ApiDeleteAssetTypeByNameRequest {
 	return ApiDeleteAssetTypeByNameRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -51,14 +51,14 @@ func (a *AssetTypesApiService) DeleteAssetTypeByName(ctx context.Context, assetT
 }
 
 // Execute executes the request
-func (a *AssetTypesApiService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetTypeByNameRequest) (*http.Response, error) {
+func (a *AssetTypesAPIService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetTypeByNameRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.DeleteAssetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.DeleteAssetTypeByName")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -111,9 +111,9 @@ func (a *AssetTypesApiService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetType
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -131,7 +131,7 @@ func (a *AssetTypesApiService) DeleteAssetTypeByNameExecute(r ApiDeleteAssetType
 
 type ApiGetAssetTypeByNameRequest struct {
 	ctx           context.Context
-	ApiService    *AssetTypesApiService
+	ApiService    *AssetTypesAPIService
 	assetTypeName string
 	expansions    *[]string
 }
@@ -155,7 +155,7 @@ Gets information about an asset type.
  @param assetTypeName The name of the asset type
  @return ApiGetAssetTypeByNameRequest
 */
-func (a *AssetTypesApiService) GetAssetTypeByName(ctx context.Context, assetTypeName string) ApiGetAssetTypeByNameRequest {
+func (a *AssetTypesAPIService) GetAssetTypeByName(ctx context.Context, assetTypeName string) ApiGetAssetTypeByNameRequest {
 	return ApiGetAssetTypeByNameRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -165,7 +165,7 @@ func (a *AssetTypesApiService) GetAssetTypeByName(ctx context.Context, assetType
 
 // Execute executes the request
 //  @return AssetType
-func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
+func (a *AssetTypesAPIService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -173,7 +173,7 @@ func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 		localVarReturnValue *AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.GetAssetTypeByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -186,7 +186,7 @@ func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -229,9 +229,9 @@ func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -258,7 +258,7 @@ func (a *AssetTypesApiService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 
 type ApiGetAssetTypesRequest struct {
 	ctx        context.Context
-	ApiService *AssetTypesApiService
+	ApiService *AssetTypesAPIService
 	expansions *[]string
 }
 
@@ -280,7 +280,7 @@ Returns a list of asset types
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAssetTypesRequest
 */
-func (a *AssetTypesApiService) GetAssetTypes(ctx context.Context) ApiGetAssetTypesRequest {
+func (a *AssetTypesAPIService) GetAssetTypes(ctx context.Context) ApiGetAssetTypesRequest {
 	return ApiGetAssetTypesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -289,7 +289,7 @@ func (a *AssetTypesApiService) GetAssetTypes(ctx context.Context) ApiGetAssetTyp
 
 // Execute executes the request
 //  @return []AssetType
-func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) ([]AssetType, *http.Response, error) {
+func (a *AssetTypesAPIService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) ([]AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -297,7 +297,7 @@ func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 		localVarReturnValue []AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.GetAssetTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.GetAssetTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -309,7 +309,7 @@ func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -352,9 +352,9 @@ func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -381,7 +381,7 @@ func (a *AssetTypesApiService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 
 type ApiPostAssetTypeRequest struct {
 	ctx        context.Context
-	ApiService *AssetTypesApiService
+	ApiService *AssetTypesAPIService
 	assetType  *AssetType
 	expansions *[]string
 }
@@ -409,7 +409,7 @@ Create a new asset type.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAssetTypeRequest
 */
-func (a *AssetTypesApiService) PostAssetType(ctx context.Context) ApiPostAssetTypeRequest {
+func (a *AssetTypesAPIService) PostAssetType(ctx context.Context) ApiPostAssetTypeRequest {
 	return ApiPostAssetTypeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -418,7 +418,7 @@ func (a *AssetTypesApiService) PostAssetType(ctx context.Context) ApiPostAssetTy
 
 // Execute executes the request
 //  @return AssetType
-func (a *AssetTypesApiService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (*AssetType, *http.Response, error) {
+func (a *AssetTypesAPIService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -426,7 +426,7 @@ func (a *AssetTypesApiService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (
 		localVarReturnValue *AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PostAssetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.PostAssetType")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -441,7 +441,7 @@ func (a *AssetTypesApiService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -486,9 +486,9 @@ func (a *AssetTypesApiService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -515,7 +515,7 @@ func (a *AssetTypesApiService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (
 
 type ApiPostAssetTypeAttributeRequest struct {
 	ctx                context.Context
-	ApiService         *AssetTypesApiService
+	ApiService         *AssetTypesAPIService
 	assetTypeName      string
 	assetTypeAttribute *AssetTypeAttribute
 }
@@ -538,7 +538,7 @@ Create a new asset type attribute.
  @param assetTypeName The name of the asset type
  @return ApiPostAssetTypeAttributeRequest
 */
-func (a *AssetTypesApiService) PostAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPostAssetTypeAttributeRequest {
+func (a *AssetTypesAPIService) PostAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPostAssetTypeAttributeRequest {
 	return ApiPostAssetTypeAttributeRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -548,7 +548,7 @@ func (a *AssetTypesApiService) PostAssetTypeAttribute(ctx context.Context, asset
 
 // Execute executes the request
 //  @return AssetTypeAttribute
-func (a *AssetTypesApiService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
+func (a *AssetTypesAPIService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -556,7 +556,7 @@ func (a *AssetTypesApiService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeA
 		localVarReturnValue *AssetTypeAttribute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PostAssetTypeAttribute")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.PostAssetTypeAttribute")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -614,9 +614,9 @@ func (a *AssetTypesApiService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -643,7 +643,7 @@ func (a *AssetTypesApiService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeA
 
 type ApiPutAssetTypeRequest struct {
 	ctx        context.Context
-	ApiService *AssetTypesApiService
+	ApiService *AssetTypesAPIService
 	assetType  *AssetType
 	expansions *[]string
 }
@@ -671,7 +671,7 @@ Create a new asset type or update an asset type if already exists. Uses the uniq
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAssetTypeRequest
 */
-func (a *AssetTypesApiService) PutAssetType(ctx context.Context) ApiPutAssetTypeRequest {
+func (a *AssetTypesAPIService) PutAssetType(ctx context.Context) ApiPutAssetTypeRequest {
 	return ApiPutAssetTypeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -680,7 +680,7 @@ func (a *AssetTypesApiService) PutAssetType(ctx context.Context) ApiPutAssetType
 
 // Execute executes the request
 //  @return AssetType
-func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*AssetType, *http.Response, error) {
+func (a *AssetTypesAPIService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -688,7 +688,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 		localVarReturnValue *AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.PutAssetType")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -703,7 +703,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -748,9 +748,9 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -777,7 +777,7 @@ func (a *AssetTypesApiService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 
 type ApiPutAssetTypeAttributeRequest struct {
 	ctx                context.Context
-	ApiService         *AssetTypesApiService
+	ApiService         *AssetTypesAPIService
 	assetTypeName      string
 	assetTypeAttribute *AssetTypeAttribute
 }
@@ -800,7 +800,7 @@ Create a new asset type attribute or update an asset type attribute if already e
  @param assetTypeName The name of the asset type
  @return ApiPutAssetTypeAttributeRequest
 */
-func (a *AssetTypesApiService) PutAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPutAssetTypeAttributeRequest {
+func (a *AssetTypesAPIService) PutAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPutAssetTypeAttributeRequest {
 	return ApiPutAssetTypeAttributeRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -810,7 +810,7 @@ func (a *AssetTypesApiService) PutAssetTypeAttribute(ctx context.Context, assetT
 
 // Execute executes the request
 //  @return AssetTypeAttribute
-func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
+func (a *AssetTypesAPIService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -818,7 +818,7 @@ func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAtt
 		localVarReturnValue *AssetTypeAttribute
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetTypeAttribute")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.PutAssetTypeAttribute")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -876,9 +876,9 @@ func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAtt
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -905,7 +905,7 @@ func (a *AssetTypesApiService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAtt
 
 type ApiPutAssetTypeByNameRequest struct {
 	ctx           context.Context
-	ApiService    *AssetTypesApiService
+	ApiService    *AssetTypesAPIService
 	assetTypeName string
 	assetType     *AssetType
 	expansions    *[]string
@@ -935,7 +935,7 @@ Update an asset type.
  @param assetTypeName The name of the asset type
  @return ApiPutAssetTypeByNameRequest
 */
-func (a *AssetTypesApiService) PutAssetTypeByName(ctx context.Context, assetTypeName string) ApiPutAssetTypeByNameRequest {
+func (a *AssetTypesAPIService) PutAssetTypeByName(ctx context.Context, assetTypeName string) ApiPutAssetTypeByNameRequest {
 	return ApiPutAssetTypeByNameRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -945,7 +945,7 @@ func (a *AssetTypesApiService) PutAssetTypeByName(ctx context.Context, assetType
 
 // Execute executes the request
 //  @return AssetType
-func (a *AssetTypesApiService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
+func (a *AssetTypesAPIService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -953,7 +953,7 @@ func (a *AssetTypesApiService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByName
 		localVarReturnValue *AssetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesApiService.PutAssetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetTypesAPIService.PutAssetTypeByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -969,7 +969,7 @@ func (a *AssetTypesApiService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByName
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1014,9 +1014,9 @@ func (a *AssetTypesApiService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByName
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

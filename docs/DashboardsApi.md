@@ -1,12 +1,12 @@
-# \DashboardsApi
+# \DashboardsAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetDashboardById**](DashboardsApi.md#GetDashboardById) | **Get** /dashboards/{dashboard-id} | Information about a dashboard
-[**GetDashboards**](DashboardsApi.md#GetDashboards) | **Get** /dashboards | Information about dashboards
-[**PostDashboard**](DashboardsApi.md#PostDashboard) | **Post** /dashboards | Creates a new dashboard
+[**GetDashboardById**](DashboardsAPI.md#GetDashboardById) | **Get** /dashboards/{dashboard-id} | Information about a dashboard
+[**GetDashboards**](DashboardsAPI.md#GetDashboards) | **Get** /dashboards | Information about dashboards
+[**PostDashboard**](DashboardsAPI.md#PostDashboard) | **Post** /dashboards | Creates a new dashboard
 
 
 
@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -36,13 +36,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.GetDashboardById(context.Background(), dashboardId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.DashboardsAPI.GetDashboardById(context.Background(), dashboardId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboardById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsAPI.GetDashboardById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboardById`: Dashboard
-    fmt.Fprintf(os.Stdout, "Response from `DashboardsApi.GetDashboardById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsAPI.GetDashboardById`: %v\n", resp)
 }
 ```
 
@@ -99,7 +99,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.GetDashboards(context.Background()).Expansions(expansions).Execute()
+    resp, r, err := apiClient.DashboardsAPI.GetDashboards(context.Background()).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.GetDashboards``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsAPI.GetDashboards``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDashboards`: []Dashboard
-    fmt.Fprintf(os.Stdout, "Response from `DashboardsApi.GetDashboards`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsAPI.GetDashboards`: %v\n", resp)
 }
 ```
 
@@ -165,7 +165,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -174,13 +174,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DashboardsApi.PostDashboard(context.Background()).Dashboard(dashboard).Expansions(expansions).Execute()
+    resp, r, err := apiClient.DashboardsAPI.PostDashboard(context.Background()).Dashboard(dashboard).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.PostDashboard``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DashboardsAPI.PostDashboard``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostDashboard`: Dashboard
-    fmt.Fprintf(os.Stdout, "Response from `DashboardsApi.PostDashboard`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DashboardsAPI.PostDashboard`: %v\n", resp)
 }
 ```
 

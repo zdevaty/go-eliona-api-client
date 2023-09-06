@@ -1,14 +1,15 @@
-# \DataApi
+# \DataAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetData**](DataApi.md#GetData) | **Get** /data | Gets all data
-[**GetDataAggregated**](DataApi.md#GetDataAggregated) | **Get** /data-aggregated | Get aggregated data
-[**GetDataTrends**](DataApi.md#GetDataTrends) | **Get** /data-trends | Get trend of historical data
-[**ListenData**](DataApi.md#ListenData) | **Get** /data-listener | WebSocket connection for asset data changes
-[**PutData**](DataApi.md#PutData) | **Put** /data | Create or update asset data
+[**GetData**](DataAPI.md#GetData) | **Get** /data | Gets all data
+[**GetDataAggregated**](DataAPI.md#GetDataAggregated) | **Get** /data-aggregated | Get aggregated data
+[**GetDataTrends**](DataAPI.md#GetDataTrends) | **Get** /data-trends | Get trend of historical data
+[**ListenData**](DataAPI.md#ListenData) | **Get** /data-listener | WebSocket connection for asset data changes
+[**PutBulkData**](DataAPI.md#PutBulkData) | **Put** /data-bulk | Create or update multiple asset data
+[**PutData**](DataAPI.md#PutData) | **Put** /data | Create or update asset data
 
 
 
@@ -29,7 +30,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -39,13 +40,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataAPI.GetData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetData`: []Data
-    fmt.Fprintf(os.Stdout, "Response from `DataApi.GetData`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetData`: %v\n", resp)
 }
 ```
 
@@ -99,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -112,13 +113,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
+    resp, r, err := apiClient.DataAPI.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetDataAggregated``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataAggregated``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDataAggregated`: []DataAggregated
-    fmt.Fprintf(os.Stdout, "Response from `DataApi.GetDataAggregated`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataAggregated`: %v\n", resp)
 }
 ```
 
@@ -175,7 +176,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -187,13 +188,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.GetDataTrends(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataAPI.GetDataTrends(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataApi.GetDataTrends``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataTrends``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetDataTrends`: []Data
-    fmt.Fprintf(os.Stdout, "Response from `DataApi.GetDataTrends`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataTrends`: %v\n", resp)
 }
 ```
 
@@ -249,7 +250,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -258,13 +259,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.ListenData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).Execute()
+    resp, r, err := apiClient.DataAPI.ListenData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataApi.ListenData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.ListenData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListenData`: Data
-    fmt.Fprintf(os.Stdout, "Response from `DataApi.ListenData`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `DataAPI.ListenData`: %v\n", resp)
 }
 ```
 
@@ -300,6 +301,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PutBulkData
+
+> PutBulkData(ctx).Data(data).Execute()
+
+Create or update multiple asset data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+    data := []openapiclient.Data{*openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({}))} // []Data | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    r, err := apiClient.DataAPI.PutBulkData(context.Background()).Data(data).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutBulkData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutBulkDataRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**[]Data**](Data.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PutData
 
 > PutData(ctx).Data(data).Execute()
@@ -317,7 +382,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -325,9 +390,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataApi.PutData(context.Background()).Data(data).Execute()
+    r, err := apiClient.DataAPI.PutData(context.Background()).Data(data).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataApi.PutData``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -49,7 +49,7 @@ func NewTranslationWithDefaults() *Translation {
 
 // GetDe returns the De field value if set, zero value otherwise.
 func (o *Translation) GetDe() string {
-	if o == nil || isNil(o.De) {
+	if o == nil || IsNil(o.De) {
 		var ret string
 		return ret
 	}
@@ -59,7 +59,7 @@ func (o *Translation) GetDe() string {
 // GetDeOk returns a tuple with the De field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Translation) GetDeOk() (*string, bool) {
-	if o == nil || isNil(o.De) {
+	if o == nil || IsNil(o.De) {
 		return nil, false
 	}
 	return o.De, true
@@ -67,7 +67,7 @@ func (o *Translation) GetDeOk() (*string, bool) {
 
 // HasDe returns a boolean if a field has been set.
 func (o *Translation) HasDe() bool {
-	if o != nil && !isNil(o.De) {
+	if o != nil && !IsNil(o.De) {
 		return true
 	}
 
@@ -81,7 +81,7 @@ func (o *Translation) SetDe(v string) {
 
 // GetEn returns the En field value if set, zero value otherwise.
 func (o *Translation) GetEn() string {
-	if o == nil || isNil(o.En) {
+	if o == nil || IsNil(o.En) {
 		var ret string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *Translation) GetEn() string {
 // GetEnOk returns a tuple with the En field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Translation) GetEnOk() (*string, bool) {
-	if o == nil || isNil(o.En) {
+	if o == nil || IsNil(o.En) {
 		return nil, false
 	}
 	return o.En, true
@@ -99,7 +99,7 @@ func (o *Translation) GetEnOk() (*string, bool) {
 
 // HasEn returns a boolean if a field has been set.
 func (o *Translation) HasEn() bool {
-	if o != nil && !isNil(o.En) {
+	if o != nil && !IsNil(o.En) {
 		return true
 	}
 
@@ -113,7 +113,7 @@ func (o *Translation) SetEn(v string) {
 
 // GetFr returns the Fr field value if set, zero value otherwise.
 func (o *Translation) GetFr() string {
-	if o == nil || isNil(o.Fr) {
+	if o == nil || IsNil(o.Fr) {
 		var ret string
 		return ret
 	}
@@ -123,7 +123,7 @@ func (o *Translation) GetFr() string {
 // GetFrOk returns a tuple with the Fr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Translation) GetFrOk() (*string, bool) {
-	if o == nil || isNil(o.Fr) {
+	if o == nil || IsNil(o.Fr) {
 		return nil, false
 	}
 	return o.Fr, true
@@ -131,7 +131,7 @@ func (o *Translation) GetFrOk() (*string, bool) {
 
 // HasFr returns a boolean if a field has been set.
 func (o *Translation) HasFr() bool {
-	if o != nil && !isNil(o.Fr) {
+	if o != nil && !IsNil(o.Fr) {
 		return true
 	}
 
@@ -145,7 +145,7 @@ func (o *Translation) SetFr(v string) {
 
 // GetIt returns the It field value if set, zero value otherwise.
 func (o *Translation) GetIt() string {
-	if o == nil || isNil(o.It) {
+	if o == nil || IsNil(o.It) {
 		var ret string
 		return ret
 	}
@@ -155,7 +155,7 @@ func (o *Translation) GetIt() string {
 // GetItOk returns a tuple with the It field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Translation) GetItOk() (*string, bool) {
-	if o == nil || isNil(o.It) {
+	if o == nil || IsNil(o.It) {
 		return nil, false
 	}
 	return o.It, true
@@ -163,7 +163,7 @@ func (o *Translation) GetItOk() (*string, bool) {
 
 // HasIt returns a boolean if a field has been set.
 func (o *Translation) HasIt() bool {
-	if o != nil && !isNil(o.It) {
+	if o != nil && !IsNil(o.It) {
 		return true
 	}
 
@@ -185,16 +185,16 @@ func (o Translation) MarshalJSON() ([]byte, error) {
 
 func (o Translation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.De) {
+	if !IsNil(o.De) {
 		toSerialize["de"] = o.De
 	}
-	if !isNil(o.En) {
+	if !IsNil(o.En) {
 		toSerialize["en"] = o.En
 	}
-	if !isNil(o.Fr) {
+	if !IsNil(o.Fr) {
 		toSerialize["fr"] = o.Fr
 	}
-	if !isNil(o.It) {
+	if !IsNil(o.It) {
 		toSerialize["it"] = o.It
 	}
 	return toSerialize, nil

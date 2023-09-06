@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -90,7 +90,7 @@ func NewAlarmRuleWithDefaults() *AlarmRule {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *AlarmRule) SetAttribute(v string) {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *AlarmRule) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -215,7 +215,7 @@ func (o *AlarmRule) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlarmRule) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -223,7 +223,7 @@ func (o *AlarmRule) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *AlarmRule) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -261,7 +261,7 @@ func (o *AlarmRule) SetPriority(v AlarmPriority) {
 
 // GetRequiresAcknowledge returns the RequiresAcknowledge field value if set, zero value otherwise.
 func (o *AlarmRule) GetRequiresAcknowledge() bool {
-	if o == nil || isNil(o.RequiresAcknowledge) {
+	if o == nil || IsNil(o.RequiresAcknowledge) {
 		var ret bool
 		return ret
 	}
@@ -271,7 +271,7 @@ func (o *AlarmRule) GetRequiresAcknowledge() bool {
 // GetRequiresAcknowledgeOk returns a tuple with the RequiresAcknowledge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AlarmRule) GetRequiresAcknowledgeOk() (*bool, bool) {
-	if o == nil || isNil(o.RequiresAcknowledge) {
+	if o == nil || IsNil(o.RequiresAcknowledge) {
 		return nil, false
 	}
 	return o.RequiresAcknowledge, true
@@ -279,7 +279,7 @@ func (o *AlarmRule) GetRequiresAcknowledgeOk() (*bool, bool) {
 
 // HasRequiresAcknowledge returns a boolean if a field has been set.
 func (o *AlarmRule) HasRequiresAcknowledge() bool {
-	if o != nil && !isNil(o.RequiresAcknowledge) {
+	if o != nil && !IsNil(o.RequiresAcknowledge) {
 		return true
 	}
 
@@ -293,7 +293,7 @@ func (o *AlarmRule) SetRequiresAcknowledge(v bool) {
 
 // GetEqual returns the Equal field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetEqual() float64 {
-	if o == nil || isNil(o.Equal.Get()) {
+	if o == nil || IsNil(o.Equal.Get()) {
 		var ret float64
 		return ret
 	}
@@ -336,7 +336,7 @@ func (o *AlarmRule) UnsetEqual() {
 
 // GetLow returns the Low field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetLow() float64 {
-	if o == nil || isNil(o.Low.Get()) {
+	if o == nil || IsNil(o.Low.Get()) {
 		var ret float64
 		return ret
 	}
@@ -379,7 +379,7 @@ func (o *AlarmRule) UnsetLow() {
 
 // GetHigh returns the High field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetHigh() float64 {
-	if o == nil || isNil(o.High.Get()) {
+	if o == nil || IsNil(o.High.Get()) {
 		var ret float64
 		return ret
 	}
@@ -433,7 +433,7 @@ func (o *AlarmRule) GetMessage() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmRule) GetMessageOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		return map[string]interface{}{}, false
 	}
 	return o.Message, true
@@ -441,7 +441,7 @@ func (o *AlarmRule) GetMessageOk() (map[string]interface{}, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *AlarmRule) HasMessage() bool {
-	if o != nil && isNil(o.Message) {
+	if o != nil && IsNil(o.Message) {
 		return true
 	}
 
@@ -466,7 +466,7 @@ func (o *AlarmRule) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmRule) GetTagsOk() ([]string, bool) {
-	if o == nil || isNil(o.Tags) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -474,7 +474,7 @@ func (o *AlarmRule) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *AlarmRule) HasTags() bool {
-	if o != nil && isNil(o.Tags) {
+	if o != nil && IsNil(o.Tags) {
 		return true
 	}
 
@@ -488,7 +488,7 @@ func (o *AlarmRule) SetTags(v []string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetSubject() string {
-	if o == nil || isNil(o.Subject.Get()) {
+	if o == nil || IsNil(o.Subject.Get()) {
 		var ret string
 		return ret
 	}
@@ -531,7 +531,7 @@ func (o *AlarmRule) UnsetSubject() {
 
 // GetUrldoc returns the Urldoc field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetUrldoc() string {
-	if o == nil || isNil(o.Urldoc.Get()) {
+	if o == nil || IsNil(o.Urldoc.Get()) {
 		var ret string
 		return ret
 	}
@@ -574,7 +574,7 @@ func (o *AlarmRule) UnsetUrldoc() {
 
 // GetNotifyOn returns the NotifyOn field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetNotifyOn() string {
-	if o == nil || isNil(o.NotifyOn.Get()) {
+	if o == nil || IsNil(o.NotifyOn.Get()) {
 		var ret string
 		return ret
 	}
@@ -617,7 +617,7 @@ func (o *AlarmRule) UnsetNotifyOn() {
 
 // GetDontMask returns the DontMask field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetDontMask() bool {
-	if o == nil || isNil(o.DontMask.Get()) {
+	if o == nil || IsNil(o.DontMask.Get()) {
 		var ret bool
 		return ret
 	}
@@ -660,7 +660,7 @@ func (o *AlarmRule) UnsetDontMask() {
 
 // GetAssetInfo returns the AssetInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetAssetInfo() Asset {
-	if o == nil || isNil(o.AssetInfo.Get()) {
+	if o == nil || IsNil(o.AssetInfo.Get()) {
 		var ret Asset
 		return ret
 	}
@@ -717,11 +717,11 @@ func (o AlarmRule) ToMap() (map[string]interface{}, error) {
 	toSerialize["assetId"] = o.AssetId
 	toSerialize["subtype"] = o.Subtype
 	toSerialize["attribute"] = o.Attribute
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	toSerialize["priority"] = o.Priority
-	if !isNil(o.RequiresAcknowledge) {
+	if !IsNil(o.RequiresAcknowledge) {
 		toSerialize["requiresAcknowledge"] = o.RequiresAcknowledge
 	}
 	if o.Equal.IsSet() {

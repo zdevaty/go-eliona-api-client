@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -58,7 +58,7 @@ func NewAgentWithDefaults() *Agent {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Agent) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -101,7 +101,7 @@ func (o *Agent) UnsetId() {
 
 // GetNodeId returns the NodeId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Agent) GetNodeId() string {
-	if o == nil || isNil(o.NodeId.Get()) {
+	if o == nil || IsNil(o.NodeId.Get()) {
 		var ret string
 		return ret
 	}
@@ -144,7 +144,7 @@ func (o *Agent) UnsetNodeId() {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Agent) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *Agent) UnsetAssetId() {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Agent) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -230,7 +230,7 @@ func (o *Agent) UnsetClass() {
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Agent) GetDescription() string {
-	if o == nil || isNil(o.Description.Get()) {
+	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
 	}
@@ -273,7 +273,7 @@ func (o *Agent) UnsetDescription() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *Agent) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -283,7 +283,7 @@ func (o *Agent) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Agent) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -291,7 +291,7 @@ func (o *Agent) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *Agent) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -316,7 +316,7 @@ func (o *Agent) GetConfig() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Agent) GetConfigOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Config) {
+	if o == nil || IsNil(o.Config) {
 		return map[string]interface{}{}, false
 	}
 	return o.Config, true
@@ -324,7 +324,7 @@ func (o *Agent) GetConfigOk() (map[string]interface{}, bool) {
 
 // HasConfig returns a boolean if a field has been set.
 func (o *Agent) HasConfig() bool {
-	if o != nil && isNil(o.Config) {
+	if o != nil && IsNil(o.Config) {
 		return true
 	}
 
@@ -361,7 +361,7 @@ func (o Agent) ToMap() (map[string]interface{}, error) {
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.Config != nil {

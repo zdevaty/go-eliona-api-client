@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -49,7 +49,7 @@ func NewWidgetDataWithDefaults() *WidgetData {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -92,7 +92,7 @@ func (o *WidgetData) UnsetId() {
 
 // GetElementSequence returns the ElementSequence field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetElementSequence() int32 {
-	if o == nil || isNil(o.ElementSequence.Get()) {
+	if o == nil || IsNil(o.ElementSequence.Get()) {
 		var ret int32
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *WidgetData) UnsetElementSequence() {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetData) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -189,7 +189,7 @@ func (o *WidgetData) GetData() map[string]interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WidgetData) GetDataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		return map[string]interface{}{}, false
 	}
 	return o.Data, true
@@ -197,7 +197,7 @@ func (o *WidgetData) GetDataOk() (map[string]interface{}, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *WidgetData) HasData() bool {
-	if o != nil && isNil(o.Data) {
+	if o != nil && IsNil(o.Data) {
 		return true
 	}
 

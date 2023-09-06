@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -53,8 +53,8 @@ type AssetTypeAttribute struct {
 	Scale NullableFloat32 `json:"scale,omitempty"`
 	// value scale
 	Zero NullableFloat32 `json:"zero,omitempty"`
-	// list of mappings between integer values and custom translated strings
-	Map []map[string]interface{} `json:"map,omitempty"`
+	// list of mapping between value and custom text
+	Map []ValueMapping `json:"map,omitempty"`
 	// source path for attribute value
 	SourcePath []string `json:"sourcePath,omitempty"`
 	// is attribute digital
@@ -96,7 +96,7 @@ func NewAssetTypeAttributeWithDefaults() *AssetTypeAttribute {
 
 // GetAssetTypeName returns the AssetTypeName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetAssetTypeName() string {
-	if o == nil || isNil(o.AssetTypeName.Get()) {
+	if o == nil || IsNil(o.AssetTypeName.Get()) {
 		var ret string
 		return ret
 	}
@@ -187,7 +187,7 @@ func (o *AssetTypeAttribute) SetSubtype(v DataSubtype) {
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetType() string {
-	if o == nil || isNil(o.Type.Get()) {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret string
 		return ret
 	}
@@ -230,7 +230,7 @@ func (o *AssetTypeAttribute) UnsetType() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *AssetTypeAttribute) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -240,7 +240,7 @@ func (o *AssetTypeAttribute) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AssetTypeAttribute) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -248,7 +248,7 @@ func (o *AssetTypeAttribute) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -262,7 +262,7 @@ func (o *AssetTypeAttribute) SetEnable(v bool) {
 
 // GetTranslation returns the Translation field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetTranslation() Translation {
-	if o == nil || isNil(o.Translation.Get()) {
+	if o == nil || IsNil(o.Translation.Get()) {
 		var ret Translation
 		return ret
 	}
@@ -305,7 +305,7 @@ func (o *AssetTypeAttribute) UnsetTranslation() {
 
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetUnit() string {
-	if o == nil || isNil(o.Unit.Get()) {
+	if o == nil || IsNil(o.Unit.Get()) {
 		var ret string
 		return ret
 	}
@@ -348,7 +348,7 @@ func (o *AssetTypeAttribute) UnsetUnit() {
 
 // GetPrecision returns the Precision field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetPrecision() int64 {
-	if o == nil || isNil(o.Precision.Get()) {
+	if o == nil || IsNil(o.Precision.Get()) {
 		var ret int64
 		return ret
 	}
@@ -391,7 +391,7 @@ func (o *AssetTypeAttribute) UnsetPrecision() {
 
 // GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetMin() float64 {
-	if o == nil || isNil(o.Min.Get()) {
+	if o == nil || IsNil(o.Min.Get()) {
 		var ret float64
 		return ret
 	}
@@ -434,7 +434,7 @@ func (o *AssetTypeAttribute) UnsetMin() {
 
 // GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetMax() float64 {
-	if o == nil || isNil(o.Max.Get()) {
+	if o == nil || IsNil(o.Max.Get()) {
 		var ret float64
 		return ret
 	}
@@ -477,7 +477,7 @@ func (o *AssetTypeAttribute) UnsetMax() {
 
 // GetAggregationMode returns the AggregationMode field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetAggregationMode() string {
-	if o == nil || isNil(o.AggregationMode.Get()) {
+	if o == nil || IsNil(o.AggregationMode.Get()) {
 		var ret string
 		return ret
 	}
@@ -520,7 +520,7 @@ func (o *AssetTypeAttribute) UnsetAggregationMode() {
 
 // GetAggregationRasters returns the AggregationRasters field value if set, zero value otherwise.
 func (o *AssetTypeAttribute) GetAggregationRasters() []string {
-	if o == nil || isNil(o.AggregationRasters) {
+	if o == nil || IsNil(o.AggregationRasters) {
 		var ret []string
 		return ret
 	}
@@ -530,7 +530,7 @@ func (o *AssetTypeAttribute) GetAggregationRasters() []string {
 // GetAggregationRastersOk returns a tuple with the AggregationRasters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AssetTypeAttribute) GetAggregationRastersOk() ([]string, bool) {
-	if o == nil || isNil(o.AggregationRasters) {
+	if o == nil || IsNil(o.AggregationRasters) {
 		return nil, false
 	}
 	return o.AggregationRasters, true
@@ -538,7 +538,7 @@ func (o *AssetTypeAttribute) GetAggregationRastersOk() ([]string, bool) {
 
 // HasAggregationRasters returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasAggregationRasters() bool {
-	if o != nil && !isNil(o.AggregationRasters) {
+	if o != nil && !IsNil(o.AggregationRasters) {
 		return true
 	}
 
@@ -552,7 +552,7 @@ func (o *AssetTypeAttribute) SetAggregationRasters(v []string) {
 
 // GetViewer returns the Viewer field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetViewer() bool {
-	if o == nil || isNil(o.Viewer.Get()) {
+	if o == nil || IsNil(o.Viewer.Get()) {
 		var ret bool
 		return ret
 	}
@@ -595,7 +595,7 @@ func (o *AssetTypeAttribute) UnsetViewer() {
 
 // GetAr returns the Ar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetAr() bool {
-	if o == nil || isNil(o.Ar.Get()) {
+	if o == nil || IsNil(o.Ar.Get()) {
 		var ret bool
 		return ret
 	}
@@ -638,7 +638,7 @@ func (o *AssetTypeAttribute) UnsetAr() {
 
 // GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetSequence() int64 {
-	if o == nil || isNil(o.Sequence.Get()) {
+	if o == nil || IsNil(o.Sequence.Get()) {
 		var ret int64
 		return ret
 	}
@@ -681,7 +681,7 @@ func (o *AssetTypeAttribute) UnsetSequence() {
 
 // GetVirtual returns the Virtual field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetVirtual() bool {
-	if o == nil || isNil(o.Virtual.Get()) {
+	if o == nil || IsNil(o.Virtual.Get()) {
 		var ret bool
 		return ret
 	}
@@ -724,7 +724,7 @@ func (o *AssetTypeAttribute) UnsetVirtual() {
 
 // GetScale returns the Scale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetScale() float32 {
-	if o == nil || isNil(o.Scale.Get()) {
+	if o == nil || IsNil(o.Scale.Get()) {
 		var ret float32
 		return ret
 	}
@@ -767,7 +767,7 @@ func (o *AssetTypeAttribute) UnsetScale() {
 
 // GetZero returns the Zero field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetZero() float32 {
-	if o == nil || isNil(o.Zero.Get()) {
+	if o == nil || IsNil(o.Zero.Get()) {
 		var ret float32
 		return ret
 	}
@@ -809,9 +809,9 @@ func (o *AssetTypeAttribute) UnsetZero() {
 }
 
 // GetMap returns the Map field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AssetTypeAttribute) GetMap() []map[string]interface{} {
+func (o *AssetTypeAttribute) GetMap() []ValueMapping {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []ValueMapping
 		return ret
 	}
 	return o.Map
@@ -820,8 +820,8 @@ func (o *AssetTypeAttribute) GetMap() []map[string]interface{} {
 // GetMapOk returns a tuple with the Map field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AssetTypeAttribute) GetMapOk() ([]map[string]interface{}, bool) {
-	if o == nil || isNil(o.Map) {
+func (o *AssetTypeAttribute) GetMapOk() ([]ValueMapping, bool) {
+	if o == nil || IsNil(o.Map) {
 		return nil, false
 	}
 	return o.Map, true
@@ -829,15 +829,15 @@ func (o *AssetTypeAttribute) GetMapOk() ([]map[string]interface{}, bool) {
 
 // HasMap returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasMap() bool {
-	if o != nil && isNil(o.Map) {
+	if o != nil && IsNil(o.Map) {
 		return true
 	}
 
 	return false
 }
 
-// SetMap gets a reference to the given []map[string]interface{} and assigns it to the Map field.
-func (o *AssetTypeAttribute) SetMap(v []map[string]interface{}) {
+// SetMap gets a reference to the given []ValueMapping and assigns it to the Map field.
+func (o *AssetTypeAttribute) SetMap(v []ValueMapping) {
 	o.Map = v
 }
 
@@ -854,7 +854,7 @@ func (o *AssetTypeAttribute) GetSourcePath() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AssetTypeAttribute) GetSourcePathOk() ([]string, bool) {
-	if o == nil || isNil(o.SourcePath) {
+	if o == nil || IsNil(o.SourcePath) {
 		return nil, false
 	}
 	return o.SourcePath, true
@@ -862,7 +862,7 @@ func (o *AssetTypeAttribute) GetSourcePathOk() ([]string, bool) {
 
 // HasSourcePath returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasSourcePath() bool {
-	if o != nil && isNil(o.SourcePath) {
+	if o != nil && IsNil(o.SourcePath) {
 		return true
 	}
 
@@ -876,7 +876,7 @@ func (o *AssetTypeAttribute) SetSourcePath(v []string) {
 
 // GetIsDigital returns the IsDigital field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetIsDigital() bool {
-	if o == nil || isNil(o.IsDigital.Get()) {
+	if o == nil || IsNil(o.IsDigital.Get()) {
 		var ret bool
 		return ret
 	}
@@ -935,7 +935,7 @@ func (o AssetTypeAttribute) ToMap() (map[string]interface{}, error) {
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.Translation.IsSet() {
@@ -956,7 +956,7 @@ func (o AssetTypeAttribute) ToMap() (map[string]interface{}, error) {
 	if o.AggregationMode.IsSet() {
 		toSerialize["aggregationMode"] = o.AggregationMode.Get()
 	}
-	if !isNil(o.AggregationRasters) {
+	if !IsNil(o.AggregationRasters) {
 		toSerialize["aggregationRasters"] = o.AggregationRasters
 	}
 	if o.Viewer.IsSet() {

@@ -1,10 +1,10 @@
-# \QRCodesApi
+# \QRCodesAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetQrCodeByAssetId**](QRCodesApi.md#GetQrCodeByAssetId) | **Get** /qr-codes/assets/{asset-id} | QR code for assets
+[**GetQrCodeByAssetId**](QRCodesAPI.md#GetQrCodeByAssetId) | **Get** /qr-codes/assets/{asset-id} | QR code for assets
 
 
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.QRCodesApi.GetQrCodeByAssetId(context.Background(), assetId).Execute()
+    resp, r, err := apiClient.QRCodesAPI.GetQrCodeByAssetId(context.Background(), assetId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `QRCodesApi.GetQrCodeByAssetId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `QRCodesAPI.GetQrCodeByAssetId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetQrCodeByAssetId`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `QRCodesApi.GetQrCodeByAssetId`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `QRCodesAPI.GetQrCodeByAssetId`: %v\n", resp)
 }
 ```
 

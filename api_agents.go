@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AgentsApiService AgentsApi service
-type AgentsApiService service
+// AgentsAPIService AgentsAPI service
+type AgentsAPIService service
 
 type ApiGetAgentByClassAndIdRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentId    int32
 	agentClass string
 }
@@ -44,7 +44,7 @@ Gets information about an agent.
  @param agentClass The class of an agent
  @return ApiGetAgentByClassAndIdRequest
 */
-func (a *AgentsApiService) GetAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiGetAgentByClassAndIdRequest {
+func (a *AgentsAPIService) GetAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiGetAgentByClassAndIdRequest {
 	return ApiGetAgentByClassAndIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -55,7 +55,7 @@ func (a *AgentsApiService) GetAgentByClassAndId(ctx context.Context, agentId int
 
 // Execute executes the request
 //  @return Agent
-func (a *AgentsApiService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -63,7 +63,7 @@ func (a *AgentsApiService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndId
 		localVarReturnValue *Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentByClassAndId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentByClassAndId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -117,9 +117,9 @@ func (a *AgentsApiService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndId
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -146,7 +146,7 @@ func (a *AgentsApiService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndId
 
 type ApiGetAgentDeviceByIdRequest struct {
 	ctx           context.Context
-	ApiService    *AgentsApiService
+	ApiService    *AgentsAPIService
 	agentClass    string
 	agentDeviceId int32
 }
@@ -165,7 +165,7 @@ Gets information about agent device.
  @param agentDeviceId The id of the device
  @return ApiGetAgentDeviceByIdRequest
 */
-func (a *AgentsApiService) GetAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceByIdRequest {
+func (a *AgentsAPIService) GetAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceByIdRequest {
 	return ApiGetAgentDeviceByIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -176,7 +176,7 @@ func (a *AgentsApiService) GetAgentDeviceById(ctx context.Context, agentClass st
 
 // Execute executes the request
 //  @return []AgentDevice
-func (a *AgentsApiService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequest) ([]AgentDevice, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequest) ([]AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -184,7 +184,7 @@ func (a *AgentsApiService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequ
 		localVarReturnValue []AgentDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentDeviceById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentDeviceById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -238,9 +238,9 @@ func (a *AgentsApiService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -267,7 +267,7 @@ func (a *AgentsApiService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequ
 
 type ApiGetAgentDeviceMappingByIdRequest struct {
 	ctx                  context.Context
-	ApiService           *AgentsApiService
+	ApiService           *AgentsAPIService
 	agentClass           string
 	agentDeviceMappingId int32
 }
@@ -286,7 +286,7 @@ Gets information about agent device mapping.
  @param agentDeviceMappingId The id of the device mapping
  @return ApiGetAgentDeviceMappingByIdRequest
 */
-func (a *AgentsApiService) GetAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiGetAgentDeviceMappingByIdRequest {
+func (a *AgentsAPIService) GetAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiGetAgentDeviceMappingByIdRequest {
 	return ApiGetAgentDeviceMappingByIdRequest{
 		ApiService:           a,
 		ctx:                  ctx,
@@ -297,7 +297,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingById(ctx context.Context, agentC
 
 // Execute executes the request
 //  @return []AgentDeviceMapping
-func (a *AgentsApiService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceMappingByIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceMappingByIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -305,7 +305,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceM
 		localVarReturnValue []AgentDeviceMapping
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentDeviceMappingById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentDeviceMappingById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -359,9 +359,9 @@ func (a *AgentsApiService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceM
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -388,7 +388,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceM
 
 type ApiGetAgentDeviceMappingsByDeviceIdRequest struct {
 	ctx           context.Context
-	ApiService    *AgentsApiService
+	ApiService    *AgentsAPIService
 	agentClass    string
 	agentDeviceId int32
 }
@@ -407,7 +407,7 @@ Gets information about mappings between agent and eliona.
  @param agentDeviceId The id of the device
  @return ApiGetAgentDeviceMappingsByDeviceIdRequest
 */
-func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceMappingsByDeviceIdRequest {
+func (a *AgentsAPIService) GetAgentDeviceMappingsByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceMappingsByDeviceIdRequest {
 	return ApiGetAgentDeviceMappingsByDeviceIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -418,7 +418,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceId(ctx context.Context,
 
 // Execute executes the request
 //  @return []AgentDeviceMapping
-func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgentDeviceMappingsByDeviceIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgentDeviceMappingsByDeviceIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -426,7 +426,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgent
 		localVarReturnValue []AgentDeviceMapping
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentDeviceMappingsByDeviceId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentDeviceMappingsByDeviceId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -480,9 +480,9 @@ func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgent
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -509,7 +509,7 @@ func (a *AgentsApiService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgent
 
 type ApiGetAgentDevicesByAgentIdRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentClass string
 	agentId    int32
 }
@@ -528,7 +528,7 @@ Gets information about agent devices.
  @param agentId The id of the agent
  @return ApiGetAgentDevicesByAgentIdRequest
 */
-func (a *AgentsApiService) GetAgentDevicesByAgentId(ctx context.Context, agentClass string, agentId int32) ApiGetAgentDevicesByAgentIdRequest {
+func (a *AgentsAPIService) GetAgentDevicesByAgentId(ctx context.Context, agentClass string, agentId int32) ApiGetAgentDevicesByAgentIdRequest {
 	return ApiGetAgentDevicesByAgentIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -539,7 +539,7 @@ func (a *AgentsApiService) GetAgentDevicesByAgentId(ctx context.Context, agentCl
 
 // Execute executes the request
 //  @return []AgentDevice
-func (a *AgentsApiService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesByAgentIdRequest) ([]AgentDevice, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesByAgentIdRequest) ([]AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -547,7 +547,7 @@ func (a *AgentsApiService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesB
 		localVarReturnValue []AgentDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentDevicesByAgentId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentDevicesByAgentId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -601,9 +601,9 @@ func (a *AgentsApiService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesB
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -630,7 +630,7 @@ func (a *AgentsApiService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesB
 
 type ApiGetAgentsRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 }
 
 func (r ApiGetAgentsRequest) Execute() ([]Agent, *http.Response, error) {
@@ -645,7 +645,7 @@ Gets information about agents.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAgentsRequest
 */
-func (a *AgentsApiService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
+func (a *AgentsAPIService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
 	return ApiGetAgentsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -654,7 +654,7 @@ func (a *AgentsApiService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
 
 // Execute executes the request
 //  @return []Agent
-func (a *AgentsApiService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -662,7 +662,7 @@ func (a *AgentsApiService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *ht
 		localVarReturnValue []Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgents")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -714,9 +714,9 @@ func (a *AgentsApiService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -743,7 +743,7 @@ func (a *AgentsApiService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *ht
 
 type ApiGetAgentsByClassRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentClass string
 }
 
@@ -760,7 +760,7 @@ Gets information about agents.
  @param agentClass The class of an agent
  @return ApiGetAgentsByClassRequest
 */
-func (a *AgentsApiService) GetAgentsByClass(ctx context.Context, agentClass string) ApiGetAgentsByClassRequest {
+func (a *AgentsAPIService) GetAgentsByClass(ctx context.Context, agentClass string) ApiGetAgentsByClassRequest {
 	return ApiGetAgentsByClassRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -770,7 +770,7 @@ func (a *AgentsApiService) GetAgentsByClass(ctx context.Context, agentClass stri
 
 // Execute executes the request
 //  @return []Agent
-func (a *AgentsApiService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest) ([]Agent, *http.Response, error) {
+func (a *AgentsAPIService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest) ([]Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -778,7 +778,7 @@ func (a *AgentsApiService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest)
 		localVarReturnValue []Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.GetAgentsByClass")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.GetAgentsByClass")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -831,9 +831,9 @@ func (a *AgentsApiService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -860,7 +860,7 @@ func (a *AgentsApiService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest)
 
 type ApiPostAgentByClassRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentClass string
 	agent      *Agent
 }
@@ -883,7 +883,7 @@ Create a new agent for a specific class
  @param agentClass The class of an agent
  @return ApiPostAgentByClassRequest
 */
-func (a *AgentsApiService) PostAgentByClass(ctx context.Context, agentClass string) ApiPostAgentByClassRequest {
+func (a *AgentsAPIService) PostAgentByClass(ctx context.Context, agentClass string) ApiPostAgentByClassRequest {
 	return ApiPostAgentByClassRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -893,7 +893,7 @@ func (a *AgentsApiService) PostAgentByClass(ctx context.Context, agentClass stri
 
 // Execute executes the request
 //  @return Agent
-func (a *AgentsApiService) PostAgentByClassExecute(r ApiPostAgentByClassRequest) (*Agent, *http.Response, error) {
+func (a *AgentsAPIService) PostAgentByClassExecute(r ApiPostAgentByClassRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -901,7 +901,7 @@ func (a *AgentsApiService) PostAgentByClassExecute(r ApiPostAgentByClassRequest)
 		localVarReturnValue *Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PostAgentByClass")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PostAgentByClass")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -959,9 +959,9 @@ func (a *AgentsApiService) PostAgentByClassExecute(r ApiPostAgentByClassRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -988,7 +988,7 @@ func (a *AgentsApiService) PostAgentByClassExecute(r ApiPostAgentByClassRequest)
 
 type ApiPostAgentDeviceByAgentIdRequest struct {
 	ctx         context.Context
-	ApiService  *AgentsApiService
+	ApiService  *AgentsAPIService
 	agentClass  string
 	agentId     int32
 	agentDevice *AgentDevice
@@ -1013,7 +1013,7 @@ Create a new agent device.
  @param agentId The id of the agent
  @return ApiPostAgentDeviceByAgentIdRequest
 */
-func (a *AgentsApiService) PostAgentDeviceByAgentId(ctx context.Context, agentClass string, agentId int32) ApiPostAgentDeviceByAgentIdRequest {
+func (a *AgentsAPIService) PostAgentDeviceByAgentId(ctx context.Context, agentClass string, agentId int32) ApiPostAgentDeviceByAgentIdRequest {
 	return ApiPostAgentDeviceByAgentIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1024,7 +1024,7 @@ func (a *AgentsApiService) PostAgentDeviceByAgentId(ctx context.Context, agentCl
 
 // Execute executes the request
 //  @return AgentDevice
-func (a *AgentsApiService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
+func (a *AgentsAPIService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1032,7 +1032,7 @@ func (a *AgentsApiService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceB
 		localVarReturnValue *AgentDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PostAgentDeviceByAgentId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PostAgentDeviceByAgentId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1091,9 +1091,9 @@ func (a *AgentsApiService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceB
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1120,7 +1120,7 @@ func (a *AgentsApiService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceB
 
 type ApiPostAgentDeviceMappingByDeviceIdRequest struct {
 	ctx                context.Context
-	ApiService         *AgentsApiService
+	ApiService         *AgentsAPIService
 	agentClass         string
 	agentDeviceId      int32
 	agentDeviceMapping *AgentDeviceMapping
@@ -1145,7 +1145,7 @@ Create a new agent device mapping.
  @param agentDeviceId The id of the device
  @return ApiPostAgentDeviceMappingByDeviceIdRequest
 */
-func (a *AgentsApiService) PostAgentDeviceMappingByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiPostAgentDeviceMappingByDeviceIdRequest {
+func (a *AgentsAPIService) PostAgentDeviceMappingByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiPostAgentDeviceMappingByDeviceIdRequest {
 	return ApiPostAgentDeviceMappingByDeviceIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1156,7 +1156,7 @@ func (a *AgentsApiService) PostAgentDeviceMappingByDeviceId(ctx context.Context,
 
 // Execute executes the request
 //  @return AgentDeviceMapping
-func (a *AgentsApiService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
+func (a *AgentsAPIService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1164,7 +1164,7 @@ func (a *AgentsApiService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgen
 		localVarReturnValue *AgentDeviceMapping
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PostAgentDeviceMappingByDeviceId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PostAgentDeviceMappingByDeviceId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1223,9 +1223,9 @@ func (a *AgentsApiService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgen
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1252,7 +1252,7 @@ func (a *AgentsApiService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgen
 
 type ApiPutAgentByClassRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentClass string
 	agent      *Agent
 }
@@ -1277,7 +1277,7 @@ Deprecated - use POST /agents/{agent-class} for creating and PUT /agents/{agent-
 
 Deprecated
 */
-func (a *AgentsApiService) PutAgentByClass(ctx context.Context, agentClass string) ApiPutAgentByClassRequest {
+func (a *AgentsAPIService) PutAgentByClass(ctx context.Context, agentClass string) ApiPutAgentByClassRequest {
 	return ApiPutAgentByClassRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1288,7 +1288,7 @@ func (a *AgentsApiService) PutAgentByClass(ctx context.Context, agentClass strin
 // Execute executes the request
 //  @return Agent
 // Deprecated
-func (a *AgentsApiService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (*Agent, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1296,7 +1296,7 @@ func (a *AgentsApiService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (
 		localVarReturnValue *Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentByClass")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentByClass")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1354,9 +1354,9 @@ func (a *AgentsApiService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1383,7 +1383,7 @@ func (a *AgentsApiService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (
 
 type ApiPutAgentByClassAndIdRequest struct {
 	ctx        context.Context
-	ApiService *AgentsApiService
+	ApiService *AgentsAPIService
 	agentId    int32
 	agentClass string
 	agent      *Agent
@@ -1408,7 +1408,7 @@ Update an agent.
  @param agentClass The class of an agent
  @return ApiPutAgentByClassAndIdRequest
 */
-func (a *AgentsApiService) PutAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiPutAgentByClassAndIdRequest {
+func (a *AgentsAPIService) PutAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiPutAgentByClassAndIdRequest {
 	return ApiPutAgentByClassAndIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1419,7 +1419,7 @@ func (a *AgentsApiService) PutAgentByClassAndId(ctx context.Context, agentId int
 
 // Execute executes the request
 //  @return Agent
-func (a *AgentsApiService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1427,7 +1427,7 @@ func (a *AgentsApiService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndId
 		localVarReturnValue *Agent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentByClassAndId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentByClassAndId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1486,9 +1486,9 @@ func (a *AgentsApiService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndId
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1515,7 +1515,7 @@ func (a *AgentsApiService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndId
 
 type ApiPutAgentDeviceByAgentIdRequest struct {
 	ctx         context.Context
-	ApiService  *AgentsApiService
+	ApiService  *AgentsAPIService
 	agentClass  string
 	agentId     int32
 	agentDevice *AgentDevice
@@ -1542,7 +1542,7 @@ Deprecated - use POST /agents/{agent-class}/{agent-id}/devices for creating and 
 
 Deprecated
 */
-func (a *AgentsApiService) PutAgentDeviceByAgentId(ctx context.Context, agentClass string, agentId int32) ApiPutAgentDeviceByAgentIdRequest {
+func (a *AgentsAPIService) PutAgentDeviceByAgentId(ctx context.Context, agentClass string, agentId int32) ApiPutAgentDeviceByAgentIdRequest {
 	return ApiPutAgentDeviceByAgentIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1554,7 +1554,7 @@ func (a *AgentsApiService) PutAgentDeviceByAgentId(ctx context.Context, agentCla
 // Execute executes the request
 //  @return AgentDevice
 // Deprecated
-func (a *AgentsApiService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1562,7 +1562,7 @@ func (a *AgentsApiService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByA
 		localVarReturnValue *AgentDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentDeviceByAgentId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentDeviceByAgentId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1621,9 +1621,9 @@ func (a *AgentsApiService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByA
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1650,7 +1650,7 @@ func (a *AgentsApiService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByA
 
 type ApiPutAgentDeviceByIdRequest struct {
 	ctx           context.Context
-	ApiService    *AgentsApiService
+	ApiService    *AgentsAPIService
 	agentClass    string
 	agentDeviceId int32
 	agentDevice   *AgentDevice
@@ -1675,7 +1675,7 @@ Update a new agent device.
  @param agentDeviceId The id of the device
  @return ApiPutAgentDeviceByIdRequest
 */
-func (a *AgentsApiService) PutAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiPutAgentDeviceByIdRequest {
+func (a *AgentsAPIService) PutAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiPutAgentDeviceByIdRequest {
 	return ApiPutAgentDeviceByIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1686,7 +1686,7 @@ func (a *AgentsApiService) PutAgentDeviceById(ctx context.Context, agentClass st
 
 // Execute executes the request
 //  @return AgentDevice
-func (a *AgentsApiService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequest) (*AgentDevice, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1694,7 +1694,7 @@ func (a *AgentsApiService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequ
 		localVarReturnValue *AgentDevice
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentDeviceById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentDeviceById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1753,9 +1753,9 @@ func (a *AgentsApiService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1782,7 +1782,7 @@ func (a *AgentsApiService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequ
 
 type ApiPutAgentDeviceMappingByDeviceIdRequest struct {
 	ctx                context.Context
-	ApiService         *AgentsApiService
+	ApiService         *AgentsAPIService
 	agentClass         string
 	agentDeviceId      int32
 	agentDeviceMapping *AgentDeviceMapping
@@ -1809,7 +1809,7 @@ Deprecated - Use POST /agent-devices/{agent-class}/{agent-device-id}/mappings fo
 
 Deprecated
 */
-func (a *AgentsApiService) PutAgentDeviceMappingByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiPutAgentDeviceMappingByDeviceIdRequest {
+func (a *AgentsAPIService) PutAgentDeviceMappingByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiPutAgentDeviceMappingByDeviceIdRequest {
 	return ApiPutAgentDeviceMappingByDeviceIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -1821,7 +1821,7 @@ func (a *AgentsApiService) PutAgentDeviceMappingByDeviceId(ctx context.Context, 
 // Execute executes the request
 //  @return AgentDeviceMapping
 // Deprecated
-func (a *AgentsApiService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1829,7 +1829,7 @@ func (a *AgentsApiService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentD
 		localVarReturnValue *AgentDeviceMapping
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentDeviceMappingByDeviceId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentDeviceMappingByDeviceId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1888,9 +1888,9 @@ func (a *AgentsApiService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentD
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1917,7 +1917,7 @@ func (a *AgentsApiService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentD
 
 type ApiPutAgentDeviceMappingByIdRequest struct {
 	ctx                  context.Context
-	ApiService           *AgentsApiService
+	ApiService           *AgentsAPIService
 	agentClass           string
 	agentDeviceMappingId int32
 	agentDeviceMapping   *AgentDeviceMapping
@@ -1942,7 +1942,7 @@ Update a new agent device mapping.
  @param agentDeviceMappingId The id of the device mapping
  @return ApiPutAgentDeviceMappingByIdRequest
 */
-func (a *AgentsApiService) PutAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiPutAgentDeviceMappingByIdRequest {
+func (a *AgentsAPIService) PutAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiPutAgentDeviceMappingByIdRequest {
 	return ApiPutAgentDeviceMappingByIdRequest{
 		ApiService:           a,
 		ctx:                  ctx,
@@ -1953,7 +1953,7 @@ func (a *AgentsApiService) PutAgentDeviceMappingById(ctx context.Context, agentC
 
 // Execute executes the request
 //  @return AgentDeviceMapping
-func (a *AgentsApiService) PutAgentDeviceMappingByIdExecute(r ApiPutAgentDeviceMappingByIdRequest) (*AgentDeviceMapping, *http.Response, error) {
+func (a *AgentsAPIService) PutAgentDeviceMappingByIdExecute(r ApiPutAgentDeviceMappingByIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1961,7 +1961,7 @@ func (a *AgentsApiService) PutAgentDeviceMappingByIdExecute(r ApiPutAgentDeviceM
 		localVarReturnValue *AgentDeviceMapping
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsApiService.PutAgentDeviceMappingById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AgentsAPIService.PutAgentDeviceMappingById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2020,9 +2020,9 @@ func (a *AgentsApiService) PutAgentDeviceMappingByIdExecute(r ApiPutAgentDeviceM
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

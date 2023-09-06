@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -71,7 +71,7 @@ func NewWidgetTypeWithDefaults() *WidgetType {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -138,7 +138,7 @@ func (o *WidgetType) SetName(v string) {
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *WidgetType) GetCustom() bool {
-	if o == nil || isNil(o.Custom) {
+	if o == nil || IsNil(o.Custom) {
 		var ret bool
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *WidgetType) GetCustom() bool {
 // GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WidgetType) GetCustomOk() (*bool, bool) {
-	if o == nil || isNil(o.Custom) {
+	if o == nil || IsNil(o.Custom) {
 		return nil, false
 	}
 	return o.Custom, true
@@ -156,7 +156,7 @@ func (o *WidgetType) GetCustomOk() (*bool, bool) {
 
 // HasCustom returns a boolean if a field has been set.
 func (o *WidgetType) HasCustom() bool {
-	if o != nil && !isNil(o.Custom) {
+	if o != nil && !IsNil(o.Custom) {
 		return true
 	}
 
@@ -196,7 +196,7 @@ func (o *WidgetType) SetTranslation(v Translation) {
 
 // GetIcon returns the Icon field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetIcon() string {
-	if o == nil || isNil(o.Icon.Get()) {
+	if o == nil || IsNil(o.Icon.Get()) {
 		var ret string
 		return ret
 	}
@@ -239,7 +239,7 @@ func (o *WidgetType) UnsetIcon() {
 
 // GetWithAlarm returns the WithAlarm field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetWithAlarm() bool {
-	if o == nil || isNil(o.WithAlarm.Get()) {
+	if o == nil || IsNil(o.WithAlarm.Get()) {
 		var ret bool
 		return ret
 	}
@@ -282,7 +282,7 @@ func (o *WidgetType) UnsetWithAlarm() {
 
 // GetWithTimespan returns the WithTimespan field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetType) GetWithTimespan() bool {
-	if o == nil || isNil(o.WithTimespan.Get()) {
+	if o == nil || IsNil(o.WithTimespan.Get()) {
 		var ret bool
 		return ret
 	}
@@ -361,7 +361,7 @@ func (o WidgetType) ToMap() (map[string]interface{}, error) {
 		toSerialize["id"] = o.Id.Get()
 	}
 	toSerialize["name"] = o.Name
-	if !isNil(o.Custom) {
+	if !IsNil(o.Custom) {
 		toSerialize["custom"] = o.Custom
 	}
 	toSerialize["translation"] = o.Translation.Get()

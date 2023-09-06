@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -61,7 +61,7 @@ func NewAgentDeviceMappingGeneralWithDefaults() *AgentDeviceMappingGeneral {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgentDeviceMappingGeneral) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -104,7 +104,7 @@ func (o *AgentDeviceMappingGeneral) UnsetClass() {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgentDeviceMappingGeneral) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -147,7 +147,7 @@ func (o *AgentDeviceMappingGeneral) UnsetId() {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgentDeviceMappingGeneral) GetDeviceId() int32 {
-	if o == nil || isNil(o.DeviceId.Get()) {
+	if o == nil || IsNil(o.DeviceId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -190,7 +190,7 @@ func (o *AgentDeviceMappingGeneral) UnsetDeviceId() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *AgentDeviceMappingGeneral) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -200,7 +200,7 @@ func (o *AgentDeviceMappingGeneral) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AgentDeviceMappingGeneral) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -208,7 +208,7 @@ func (o *AgentDeviceMappingGeneral) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *AgentDeviceMappingGeneral) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -222,7 +222,7 @@ func (o *AgentDeviceMappingGeneral) SetEnable(v bool) {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AgentDeviceMappingGeneral) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -330,7 +330,7 @@ func (o AgentDeviceMappingGeneral) ToMap() (map[string]interface{}, error) {
 	if o.DeviceId.IsSet() {
 		toSerialize["deviceId"] = o.DeviceId.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.AssetId.IsSet() {

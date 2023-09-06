@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// WidgetsTypesApiService WidgetsTypesApi service
-type WidgetsTypesApiService service
+// WidgetsTypesAPIService WidgetsTypesAPI service
+type WidgetsTypesAPIService service
 
 type ApiDeleteWidgetTypeByNameRequest struct {
 	ctx            context.Context
-	ApiService     *WidgetsTypesApiService
+	ApiService     *WidgetsTypesAPIService
 	widgetTypeName string
 }
 
@@ -42,7 +42,7 @@ Deletes a widget type and the elements for this widget type.
  @param widgetTypeName The name of the widget type
  @return ApiDeleteWidgetTypeByNameRequest
 */
-func (a *WidgetsTypesApiService) DeleteWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiDeleteWidgetTypeByNameRequest {
+func (a *WidgetsTypesAPIService) DeleteWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiDeleteWidgetTypeByNameRequest {
 	return ApiDeleteWidgetTypeByNameRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -51,14 +51,14 @@ func (a *WidgetsTypesApiService) DeleteWidgetTypeByName(ctx context.Context, wid
 }
 
 // Execute executes the request
-func (a *WidgetsTypesApiService) DeleteWidgetTypeByNameExecute(r ApiDeleteWidgetTypeByNameRequest) (*http.Response, error) {
+func (a *WidgetsTypesAPIService) DeleteWidgetTypeByNameExecute(r ApiDeleteWidgetTypeByNameRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.DeleteWidgetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.DeleteWidgetTypeByName")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -111,9 +111,9 @@ func (a *WidgetsTypesApiService) DeleteWidgetTypeByNameExecute(r ApiDeleteWidget
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -131,7 +131,7 @@ func (a *WidgetsTypesApiService) DeleteWidgetTypeByNameExecute(r ApiDeleteWidget
 
 type ApiGetWidgetTypeByNameRequest struct {
 	ctx            context.Context
-	ApiService     *WidgetsTypesApiService
+	ApiService     *WidgetsTypesAPIService
 	widgetTypeName string
 	expansions     *[]string
 }
@@ -155,7 +155,7 @@ Gets information about a widget type.
  @param widgetTypeName The name of the widget type
  @return ApiGetWidgetTypeByNameRequest
 */
-func (a *WidgetsTypesApiService) GetWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiGetWidgetTypeByNameRequest {
+func (a *WidgetsTypesAPIService) GetWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiGetWidgetTypeByNameRequest {
 	return ApiGetWidgetTypeByNameRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -165,7 +165,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByName(ctx context.Context, widget
 
 // Execute executes the request
 //  @return WidgetType
-func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
+func (a *WidgetsTypesAPIService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -173,7 +173,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeBy
 		localVarReturnValue *WidgetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.GetWidgetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.GetWidgetTypeByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -186,7 +186,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeBy
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -229,9 +229,9 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeBy
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -258,7 +258,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypeByNameExecute(r ApiGetWidgetTypeBy
 
 type ApiGetWidgetTypesRequest struct {
 	ctx        context.Context
-	ApiService *WidgetsTypesApiService
+	ApiService *WidgetsTypesAPIService
 	expansions *[]string
 }
 
@@ -280,7 +280,7 @@ Returns a list of widget types
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetWidgetTypesRequest
 */
-func (a *WidgetsTypesApiService) GetWidgetTypes(ctx context.Context) ApiGetWidgetTypesRequest {
+func (a *WidgetsTypesAPIService) GetWidgetTypes(ctx context.Context) ApiGetWidgetTypesRequest {
 	return ApiGetWidgetTypesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -289,7 +289,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypes(ctx context.Context) ApiGetWidge
 
 // Execute executes the request
 //  @return []WidgetType
-func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesRequest) ([]WidgetType, *http.Response, error) {
+func (a *WidgetsTypesAPIService) GetWidgetTypesExecute(r ApiGetWidgetTypesRequest) ([]WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -297,7 +297,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesReques
 		localVarReturnValue []WidgetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.GetWidgetTypes")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.GetWidgetTypes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -309,7 +309,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesReques
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -352,9 +352,9 @@ func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -381,7 +381,7 @@ func (a *WidgetsTypesApiService) GetWidgetTypesExecute(r ApiGetWidgetTypesReques
 
 type ApiPostWidgetTypeRequest struct {
 	ctx        context.Context
-	ApiService *WidgetsTypesApiService
+	ApiService *WidgetsTypesAPIService
 	widgetType *WidgetType
 	expansions *[]string
 }
@@ -409,7 +409,7 @@ Create a new widget type.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostWidgetTypeRequest
 */
-func (a *WidgetsTypesApiService) PostWidgetType(ctx context.Context) ApiPostWidgetTypeRequest {
+func (a *WidgetsTypesAPIService) PostWidgetType(ctx context.Context) ApiPostWidgetTypeRequest {
 	return ApiPostWidgetTypeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -418,7 +418,7 @@ func (a *WidgetsTypesApiService) PostWidgetType(ctx context.Context) ApiPostWidg
 
 // Execute executes the request
 //  @return WidgetType
-func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) (*WidgetType, *http.Response, error) {
+func (a *WidgetsTypesAPIService) PostWidgetTypeExecute(r ApiPostWidgetTypeRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -426,7 +426,7 @@ func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeReques
 		localVarReturnValue *WidgetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.PostWidgetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.PostWidgetType")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -441,7 +441,7 @@ func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeReques
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -486,9 +486,9 @@ func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -515,7 +515,7 @@ func (a *WidgetsTypesApiService) PostWidgetTypeExecute(r ApiPostWidgetTypeReques
 
 type ApiPutWidgetTypeRequest struct {
 	ctx        context.Context
-	ApiService *WidgetsTypesApiService
+	ApiService *WidgetsTypesAPIService
 	widgetType *WidgetType
 	expansions *[]string
 }
@@ -543,7 +543,7 @@ Create a new widget type or update it if already exists. Uses the unique widget 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutWidgetTypeRequest
 */
-func (a *WidgetsTypesApiService) PutWidgetType(ctx context.Context) ApiPutWidgetTypeRequest {
+func (a *WidgetsTypesAPIService) PutWidgetType(ctx context.Context) ApiPutWidgetTypeRequest {
 	return ApiPutWidgetTypeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -552,7 +552,7 @@ func (a *WidgetsTypesApiService) PutWidgetType(ctx context.Context) ApiPutWidget
 
 // Execute executes the request
 //  @return WidgetType
-func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest) (*WidgetType, *http.Response, error) {
+func (a *WidgetsTypesAPIService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -560,7 +560,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest)
 		localVarReturnValue *WidgetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.PutWidgetType")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.PutWidgetType")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -575,7 +575,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest)
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -620,9 +620,9 @@ func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -649,7 +649,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeExecute(r ApiPutWidgetTypeRequest)
 
 type ApiPutWidgetTypeByNameRequest struct {
 	ctx            context.Context
-	ApiService     *WidgetsTypesApiService
+	ApiService     *WidgetsTypesAPIService
 	widgetTypeName string
 	widgetType     *WidgetType
 	expansions     *[]string
@@ -679,7 +679,7 @@ Update a widget type.
  @param widgetTypeName The name of the widget type
  @return ApiPutWidgetTypeByNameRequest
 */
-func (a *WidgetsTypesApiService) PutWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiPutWidgetTypeByNameRequest {
+func (a *WidgetsTypesAPIService) PutWidgetTypeByName(ctx context.Context, widgetTypeName string) ApiPutWidgetTypeByNameRequest {
 	return ApiPutWidgetTypeByNameRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -689,7 +689,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeByName(ctx context.Context, widget
 
 // Execute executes the request
 //  @return WidgetType
-func (a *WidgetsTypesApiService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
+func (a *WidgetsTypesAPIService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeByNameRequest) (*WidgetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -697,7 +697,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeBy
 		localVarReturnValue *WidgetType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesApiService.PutWidgetTypeByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsTypesAPIService.PutWidgetTypeByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -713,7 +713,7 @@ func (a *WidgetsTypesApiService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeBy
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -758,9 +758,9 @@ func (a *WidgetsTypesApiService) PutWidgetTypeByNameExecute(r ApiPutWidgetTypeBy
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AlarmsApiService AlarmsApi service
-type AlarmsApiService service
+// AlarmsAPIService AlarmsAPI service
+type AlarmsAPIService service
 
 type ApiGetAlarmByIdRequest struct {
 	ctx         context.Context
-	ApiService  *AlarmsApiService
+	ApiService  *AlarmsAPIService
 	alarmRuleId int32
 	expansions  *[]string
 }
@@ -49,7 +49,7 @@ Gets information about alarm.
  @param alarmRuleId The id of the alarm rule
  @return ApiGetAlarmByIdRequest
 */
-func (a *AlarmsApiService) GetAlarmById(ctx context.Context, alarmRuleId int32) ApiGetAlarmByIdRequest {
+func (a *AlarmsAPIService) GetAlarmById(ctx context.Context, alarmRuleId int32) ApiGetAlarmByIdRequest {
 	return ApiGetAlarmByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -59,7 +59,7 @@ func (a *AlarmsApiService) GetAlarmById(ctx context.Context, alarmRuleId int32) 
 
 // Execute executes the request
 //  @return Alarm
-func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -67,7 +67,7 @@ func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm
 		localVarReturnValue *Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.GetAlarmById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.GetAlarmById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,7 +80,7 @@ func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -123,9 +123,9 @@ func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -152,7 +152,7 @@ func (a *AlarmsApiService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm
 
 type ApiGetAlarmHistoryByIdRequest struct {
 	ctx         context.Context
-	ApiService  *AlarmsApiService
+	ApiService  *AlarmsAPIService
 	alarmRuleId int32
 	expansions  *[]string
 }
@@ -176,7 +176,7 @@ Gets information about alarm over the entire time. This includes current alarm a
  @param alarmRuleId The id of the alarm rule
  @return ApiGetAlarmHistoryByIdRequest
 */
-func (a *AlarmsApiService) GetAlarmHistoryById(ctx context.Context, alarmRuleId int32) ApiGetAlarmHistoryByIdRequest {
+func (a *AlarmsAPIService) GetAlarmHistoryById(ctx context.Context, alarmRuleId int32) ApiGetAlarmHistoryByIdRequest {
 	return ApiGetAlarmHistoryByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -186,7 +186,7 @@ func (a *AlarmsApiService) GetAlarmHistoryById(ctx context.Context, alarmRuleId 
 
 // Execute executes the request
 //  @return []Alarm
-func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRequest) ([]Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -194,7 +194,7 @@ func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRe
 		localVarReturnValue []Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.GetAlarmHistoryById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.GetAlarmHistoryById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -207,7 +207,7 @@ func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRe
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -250,9 +250,9 @@ func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -279,7 +279,7 @@ func (a *AlarmsApiService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRe
 
 type ApiGetAlarmsRequest struct {
 	ctx        context.Context
-	ApiService *AlarmsApiService
+	ApiService *AlarmsAPIService
 	projectId  *string
 	expansions *[]string
 }
@@ -308,7 +308,7 @@ Gets information about alarms
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAlarmsRequest
 */
-func (a *AlarmsApiService) GetAlarms(ctx context.Context) ApiGetAlarmsRequest {
+func (a *AlarmsAPIService) GetAlarms(ctx context.Context) ApiGetAlarmsRequest {
 	return ApiGetAlarmsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -317,7 +317,7 @@ func (a *AlarmsApiService) GetAlarms(ctx context.Context) ApiGetAlarmsRequest {
 
 // Execute executes the request
 //  @return []Alarm
-func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -325,7 +325,7 @@ func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *ht
 		localVarReturnValue []Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.GetAlarms")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.GetAlarms")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -337,10 +337,10 @@ func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *ht
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -383,9 +383,9 @@ func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *ht
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -412,7 +412,7 @@ func (a *AlarmsApiService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *ht
 
 type ApiGetAlarmsHistoryRequest struct {
 	ctx        context.Context
-	ApiService *AlarmsApiService
+	ApiService *AlarmsAPIService
 	projectId  *string
 	expansions *[]string
 }
@@ -441,7 +441,7 @@ Gets information about alarms over the entire time. This includes current alarms
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAlarmsHistoryRequest
 */
-func (a *AlarmsApiService) GetAlarmsHistory(ctx context.Context) ApiGetAlarmsHistoryRequest {
+func (a *AlarmsAPIService) GetAlarmsHistory(ctx context.Context) ApiGetAlarmsHistoryRequest {
 	return ApiGetAlarmsHistoryRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -450,7 +450,7 @@ func (a *AlarmsApiService) GetAlarmsHistory(ctx context.Context) ApiGetAlarmsHis
 
 // Execute executes the request
 //  @return []Alarm
-func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest) ([]Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -458,7 +458,7 @@ func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest)
 		localVarReturnValue []Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.GetAlarmsHistory")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.GetAlarmsHistory")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -470,10 +470,10 @@ func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest)
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -516,9 +516,9 @@ func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -545,7 +545,7 @@ func (a *AlarmsApiService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest)
 
 type ApiGetHighestAlarmsRequest struct {
 	ctx        context.Context
-	ApiService *AlarmsApiService
+	ApiService *AlarmsAPIService
 	projectId  *string
 	expansions *[]string
 }
@@ -574,7 +574,7 @@ Gets information about an alarms with the highest priority for each asset.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetHighestAlarmsRequest
 */
-func (a *AlarmsApiService) GetHighestAlarms(ctx context.Context) ApiGetHighestAlarmsRequest {
+func (a *AlarmsAPIService) GetHighestAlarms(ctx context.Context) ApiGetHighestAlarmsRequest {
 	return ApiGetHighestAlarmsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -583,7 +583,7 @@ func (a *AlarmsApiService) GetHighestAlarms(ctx context.Context) ApiGetHighestAl
 
 // Execute executes the request
 //  @return []Alarm
-func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest) ([]Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest) ([]Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -591,7 +591,7 @@ func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest)
 		localVarReturnValue []Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.GetHighestAlarms")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.GetHighestAlarms")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -603,10 +603,10 @@ func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest)
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
 	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -649,9 +649,9 @@ func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -678,7 +678,7 @@ func (a *AlarmsApiService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest)
 
 type ApiListenAlarmRequest struct {
 	ctx        context.Context
-	ApiService *AlarmsApiService
+	ApiService *AlarmsAPIService
 }
 
 func (r ApiListenAlarmRequest) Execute() (*Alarm, *http.Response, error) {
@@ -693,7 +693,7 @@ Open a WebSocket connection to get informed when new alarm data is written or an
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListenAlarmRequest
 */
-func (a *AlarmsApiService) ListenAlarm(ctx context.Context) ApiListenAlarmRequest {
+func (a *AlarmsAPIService) ListenAlarm(ctx context.Context) ApiListenAlarmRequest {
 	return ApiListenAlarmRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -702,7 +702,7 @@ func (a *AlarmsApiService) ListenAlarm(ctx context.Context) ApiListenAlarmReques
 
 // Execute executes the request
 //  @return Alarm
-func (a *AlarmsApiService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, *http.Response, error) {
+func (a *AlarmsAPIService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -710,7 +710,7 @@ func (a *AlarmsApiService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, 
 		localVarReturnValue *Alarm
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.ListenAlarm")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.ListenAlarm")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -762,9 +762,9 @@ func (a *AlarmsApiService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -791,19 +791,19 @@ func (a *AlarmsApiService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, 
 
 type ApiPatchAlarmByIdRequest struct {
 	ctx             context.Context
-	ApiService      *AlarmsApiService
+	ApiService      *AlarmsAPIService
 	alarmRuleId     int32
 	acknowledged    *bool
 	acknowledgeText *string
 }
 
-// Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
+// Marks the alarm as acknowledged or not acknowledged by setting the acknowledge timestamp to now or to null.
 func (r ApiPatchAlarmByIdRequest) Acknowledged(acknowledged bool) ApiPatchAlarmByIdRequest {
 	r.acknowledged = &acknowledged
 	return r
 }
 
-// Sets the text for acknowledgement
+// Sets the text for acknowledgement if acknowledged is set to true
 func (r ApiPatchAlarmByIdRequest) AcknowledgeText(acknowledgeText string) ApiPatchAlarmByIdRequest {
 	r.acknowledgeText = &acknowledgeText
 	return r
@@ -822,7 +822,7 @@ Update properties of alarm for given id.
  @param alarmRuleId The id of the alarm rule
  @return ApiPatchAlarmByIdRequest
 */
-func (a *AlarmsApiService) PatchAlarmById(ctx context.Context, alarmRuleId int32) ApiPatchAlarmByIdRequest {
+func (a *AlarmsAPIService) PatchAlarmById(ctx context.Context, alarmRuleId int32) ApiPatchAlarmByIdRequest {
 	return ApiPatchAlarmByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -831,14 +831,14 @@ func (a *AlarmsApiService) PatchAlarmById(ctx context.Context, alarmRuleId int32
 }
 
 // Execute executes the request
-func (a *AlarmsApiService) PatchAlarmByIdExecute(r ApiPatchAlarmByIdRequest) (*http.Response, error) {
+func (a *AlarmsAPIService) PatchAlarmByIdExecute(r ApiPatchAlarmByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsApiService.PatchAlarmById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.PatchAlarmById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -853,9 +853,9 @@ func (a *AlarmsApiService) PatchAlarmByIdExecute(r ApiPatchAlarmByIdRequest) (*h
 		return nil, reportError("acknowledged is required and must be specified")
 	}
 
-	parameterAddToQuery(localVarQueryParams, "acknowledged", r.acknowledged, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledged", r.acknowledged, "")
 	if r.acknowledgeText != nil {
-		parameterAddToQuery(localVarQueryParams, "acknowledgeText", r.acknowledgeText, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledgeText", r.acknowledgeText, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -898,9 +898,9 @@ func (a *AlarmsApiService) PatchAlarmByIdExecute(r ApiPatchAlarmByIdRequest) (*h
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

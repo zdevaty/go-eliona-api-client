@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// WidgetsApiService WidgetsApi service
-type WidgetsApiService service
+// WidgetsAPIService WidgetsAPI service
+type WidgetsAPIService service
 
 type ApiGetDashboardWidgetsRequest struct {
 	ctx         context.Context
-	ApiService  *WidgetsApiService
+	ApiService  *WidgetsAPIService
 	dashboardId int32
 	expansions  *[]string
 }
@@ -49,7 +49,7 @@ Gets information about widgets on a dashboard.
  @param dashboardId The id of the dashboard
  @return ApiGetDashboardWidgetsRequest
 */
-func (a *WidgetsApiService) GetDashboardWidgets(ctx context.Context, dashboardId int32) ApiGetDashboardWidgetsRequest {
+func (a *WidgetsAPIService) GetDashboardWidgets(ctx context.Context, dashboardId int32) ApiGetDashboardWidgetsRequest {
 	return ApiGetDashboardWidgetsRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -59,7 +59,7 @@ func (a *WidgetsApiService) GetDashboardWidgets(ctx context.Context, dashboardId
 
 // Execute executes the request
 //  @return Widget
-func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsRequest) (*Widget, *http.Response, error) {
+func (a *WidgetsAPIService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsRequest) (*Widget, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -67,7 +67,7 @@ func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 		localVarReturnValue *Widget
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsApiService.GetDashboardWidgets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsAPIService.GetDashboardWidgets")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -80,7 +80,7 @@ func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -123,9 +123,9 @@ func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -152,7 +152,7 @@ func (a *WidgetsApiService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 
 type ApiPostDashboardWidgetRequest struct {
 	ctx         context.Context
-	ApiService  *WidgetsApiService
+	ApiService  *WidgetsAPIService
 	dashboardId int32
 	widget      *Widget
 	expansions  *[]string
@@ -182,7 +182,7 @@ Create a new widget and add this to a dashboard
  @param dashboardId The id of the dashboard
  @return ApiPostDashboardWidgetRequest
 */
-func (a *WidgetsApiService) PostDashboardWidget(ctx context.Context, dashboardId int32) ApiPostDashboardWidgetRequest {
+func (a *WidgetsAPIService) PostDashboardWidget(ctx context.Context, dashboardId int32) ApiPostDashboardWidgetRequest {
 	return ApiPostDashboardWidgetRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -191,14 +191,14 @@ func (a *WidgetsApiService) PostDashboardWidget(ctx context.Context, dashboardId
 }
 
 // Execute executes the request
-func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetRequest) (*http.Response, error) {
+func (a *WidgetsAPIService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsApiService.PostDashboardWidget")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WidgetsAPIService.PostDashboardWidget")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -214,7 +214,7 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 	}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -259,9 +259,9 @@ func (a *WidgetsApiService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}

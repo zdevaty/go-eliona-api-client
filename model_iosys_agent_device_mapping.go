@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -76,7 +76,7 @@ func NewIosysAgentDeviceMappingWithDefaults() *IosysAgentDeviceMapping {
 
 // GetClass returns the Class field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetClass() AgentClass {
-	if o == nil || isNil(o.Class.Get()) {
+	if o == nil || IsNil(o.Class.Get()) {
 		var ret AgentClass
 		return ret
 	}
@@ -119,7 +119,7 @@ func (o *IosysAgentDeviceMapping) UnsetClass() {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -162,7 +162,7 @@ func (o *IosysAgentDeviceMapping) UnsetId() {
 
 // GetDeviceId returns the DeviceId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetDeviceId() int32 {
-	if o == nil || isNil(o.DeviceId.Get()) {
+	if o == nil || IsNil(o.DeviceId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -205,7 +205,7 @@ func (o *IosysAgentDeviceMapping) UnsetDeviceId() {
 
 // GetEnable returns the Enable field value if set, zero value otherwise.
 func (o *IosysAgentDeviceMapping) GetEnable() bool {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		var ret bool
 		return ret
 	}
@@ -215,7 +215,7 @@ func (o *IosysAgentDeviceMapping) GetEnable() bool {
 // GetEnableOk returns a tuple with the Enable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IosysAgentDeviceMapping) GetEnableOk() (*bool, bool) {
-	if o == nil || isNil(o.Enable) {
+	if o == nil || IsNil(o.Enable) {
 		return nil, false
 	}
 	return o.Enable, true
@@ -223,7 +223,7 @@ func (o *IosysAgentDeviceMapping) GetEnableOk() (*bool, bool) {
 
 // HasEnable returns a boolean if a field has been set.
 func (o *IosysAgentDeviceMapping) HasEnable() bool {
-	if o != nil && !isNil(o.Enable) {
+	if o != nil && !IsNil(o.Enable) {
 		return true
 	}
 
@@ -237,7 +237,7 @@ func (o *IosysAgentDeviceMapping) SetEnable(v bool) {
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetAssetId() int32 {
-	if o == nil || isNil(o.AssetId.Get()) {
+	if o == nil || IsNil(o.AssetId.Get()) {
 		var ret int32
 		return ret
 	}
@@ -328,7 +328,7 @@ func (o *IosysAgentDeviceMapping) SetAttribute(v string) {
 
 // GetIosVar returns the IosVar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetIosVar() string {
-	if o == nil || isNil(o.IosVar.Get()) {
+	if o == nil || IsNil(o.IosVar.Get()) {
 		var ret string
 		return ret
 	}
@@ -371,7 +371,7 @@ func (o *IosysAgentDeviceMapping) UnsetIosVar() {
 
 // GetIosType returns the IosType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetIosType() string {
-	if o == nil || isNil(o.IosType.Get()) {
+	if o == nil || IsNil(o.IosType.Get()) {
 		var ret string
 		return ret
 	}
@@ -414,7 +414,7 @@ func (o *IosysAgentDeviceMapping) UnsetIosType() {
 
 // GetDown returns the Down field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetDown() bool {
-	if o == nil || isNil(o.Down.Get()) {
+	if o == nil || IsNil(o.Down.Get()) {
 		var ret bool
 		return ret
 	}
@@ -457,7 +457,7 @@ func (o *IosysAgentDeviceMapping) UnsetDown() {
 
 // GetScale returns the Scale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetScale() float64 {
-	if o == nil || isNil(o.Scale.Get()) {
+	if o == nil || IsNil(o.Scale.Get()) {
 		var ret float64
 		return ret
 	}
@@ -500,7 +500,7 @@ func (o *IosysAgentDeviceMapping) UnsetScale() {
 
 // GetZero returns the Zero field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetZero() float64 {
-	if o == nil || isNil(o.Zero.Get()) {
+	if o == nil || IsNil(o.Zero.Get()) {
 		var ret float64
 		return ret
 	}
@@ -554,7 +554,7 @@ func (o *IosysAgentDeviceMapping) GetMask() []int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IosysAgentDeviceMapping) GetMaskOk() ([]int64, bool) {
-	if o == nil || isNil(o.Mask) {
+	if o == nil || IsNil(o.Mask) {
 		return nil, false
 	}
 	return o.Mask, true
@@ -562,7 +562,7 @@ func (o *IosysAgentDeviceMapping) GetMaskOk() ([]int64, bool) {
 
 // HasMask returns a boolean if a field has been set.
 func (o *IosysAgentDeviceMapping) HasMask() bool {
-	if o != nil && isNil(o.Mask) {
+	if o != nil && IsNil(o.Mask) {
 		return true
 	}
 
@@ -587,7 +587,7 @@ func (o *IosysAgentDeviceMapping) GetMaskAttributes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IosysAgentDeviceMapping) GetMaskAttributesOk() ([]string, bool) {
-	if o == nil || isNil(o.MaskAttributes) {
+	if o == nil || IsNil(o.MaskAttributes) {
 		return nil, false
 	}
 	return o.MaskAttributes, true
@@ -595,7 +595,7 @@ func (o *IosysAgentDeviceMapping) GetMaskAttributesOk() ([]string, bool) {
 
 // HasMaskAttributes returns a boolean if a field has been set.
 func (o *IosysAgentDeviceMapping) HasMaskAttributes() bool {
-	if o != nil && isNil(o.MaskAttributes) {
+	if o != nil && IsNil(o.MaskAttributes) {
 		return true
 	}
 
@@ -609,7 +609,7 @@ func (o *IosysAgentDeviceMapping) SetMaskAttributes(v []string) {
 
 // GetDeadTime returns the DeadTime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetDeadTime() int32 {
-	if o == nil || isNil(o.DeadTime.Get()) {
+	if o == nil || IsNil(o.DeadTime.Get()) {
 		var ret int32
 		return ret
 	}
@@ -652,7 +652,7 @@ func (o *IosysAgentDeviceMapping) UnsetDeadTime() {
 
 // GetDeadBand returns the DeadBand field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetDeadBand() float64 {
-	if o == nil || isNil(o.DeadBand.Get()) {
+	if o == nil || IsNil(o.DeadBand.Get()) {
 		var ret float64
 		return ret
 	}
@@ -695,7 +695,7 @@ func (o *IosysAgentDeviceMapping) UnsetDeadBand() {
 
 // GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetFilter() string {
-	if o == nil || isNil(o.Filter.Get()) {
+	if o == nil || IsNil(o.Filter.Get()) {
 		var ret string
 		return ret
 	}
@@ -738,7 +738,7 @@ func (o *IosysAgentDeviceMapping) UnsetFilter() {
 
 // GetTau returns the Tau field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IosysAgentDeviceMapping) GetTau() float64 {
-	if o == nil || isNil(o.Tau.Get()) {
+	if o == nil || IsNil(o.Tau.Get()) {
 		var ret float64
 		return ret
 	}
@@ -798,7 +798,7 @@ func (o IosysAgentDeviceMapping) ToMap() (map[string]interface{}, error) {
 	if o.DeviceId.IsSet() {
 		toSerialize["deviceId"] = o.DeviceId.Get()
 	}
-	if !isNil(o.Enable) {
+	if !IsNil(o.Enable) {
 		toSerialize["enable"] = o.Enable
 	}
 	if o.AssetId.IsSet() {

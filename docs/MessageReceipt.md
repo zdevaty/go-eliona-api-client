@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Identifies the message | [readonly] 
-**ScheduledAt** | Pointer to **NullableTime** | When the message is scheduled for sending | [optional] 
-**Status** | Pointer to **string** | Status of the message processing | [optional] 
+**Id** | **string** | Identifies the message or notification | [readonly] 
+**ScheduledAt** | Pointer to **NullableTime** | When the message or notification is scheduled | [optional] 
+**Status** | Pointer to **string** | Status of communication processing | [optional] 
 
 ## Methods
 

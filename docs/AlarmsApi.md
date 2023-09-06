@@ -1,16 +1,16 @@
-# \AlarmsApi
+# \AlarmsAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetAlarmById**](AlarmsApi.md#GetAlarmById) | **Get** /alarms/{alarm-rule-id} | Information about alarm
-[**GetAlarmHistoryById**](AlarmsApi.md#GetAlarmHistoryById) | **Get** /alarms-history/{alarm-rule-id} | Information about alarm history
-[**GetAlarms**](AlarmsApi.md#GetAlarms) | **Get** /alarms | Information about alarms
-[**GetAlarmsHistory**](AlarmsApi.md#GetAlarmsHistory) | **Get** /alarms-history | Information about alarms history
-[**GetHighestAlarms**](AlarmsApi.md#GetHighestAlarms) | **Get** /alarms-highest | Information about most prioritized alarms
-[**ListenAlarm**](AlarmsApi.md#ListenAlarm) | **Get** /alarm-listener | WebSocket connection for alarm changes
-[**PatchAlarmById**](AlarmsApi.md#PatchAlarmById) | **Patch** /alarms/{alarm-rule-id} | Update alarm
+[**GetAlarmById**](AlarmsAPI.md#GetAlarmById) | **Get** /alarms/{alarm-rule-id} | Information about alarm
+[**GetAlarmHistoryById**](AlarmsAPI.md#GetAlarmHistoryById) | **Get** /alarms-history/{alarm-rule-id} | Information about alarm history
+[**GetAlarms**](AlarmsAPI.md#GetAlarms) | **Get** /alarms | Information about alarms
+[**GetAlarmsHistory**](AlarmsAPI.md#GetAlarmsHistory) | **Get** /alarms-history | Information about alarms history
+[**GetHighestAlarms**](AlarmsAPI.md#GetHighestAlarms) | **Get** /alarms-highest | Information about most prioritized alarms
+[**ListenAlarm**](AlarmsAPI.md#ListenAlarm) | **Get** /alarm-listener | WebSocket connection for alarm changes
+[**PatchAlarmById**](AlarmsAPI.md#PatchAlarmById) | **Patch** /alarms/{alarm-rule-id} | Update alarm
 
 
 
@@ -31,7 +31,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -40,13 +40,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.GetAlarmById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AlarmsAPI.GetAlarmById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.GetAlarmById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.GetAlarmById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAlarmById`: Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.GetAlarmById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.GetAlarmById`: %v\n", resp)
 }
 ```
 
@@ -103,7 +103,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -112,13 +112,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.GetAlarmHistoryById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AlarmsAPI.GetAlarmHistoryById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.GetAlarmHistoryById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.GetAlarmHistoryById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAlarmHistoryById`: []Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.GetAlarmHistoryById`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.GetAlarmHistoryById`: %v\n", resp)
 }
 ```
 
@@ -175,7 +175,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -184,13 +184,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.GetAlarms(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AlarmsAPI.GetAlarms(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.GetAlarms``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.GetAlarms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAlarms`: []Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.GetAlarms`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.GetAlarms`: %v\n", resp)
 }
 ```
 
@@ -243,7 +243,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -252,13 +252,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.GetAlarmsHistory(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AlarmsAPI.GetAlarmsHistory(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.GetAlarmsHistory``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.GetAlarmsHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetAlarmsHistory`: []Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.GetAlarmsHistory`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.GetAlarmsHistory`: %v\n", resp)
 }
 ```
 
@@ -311,7 +311,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -320,13 +320,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.GetHighestAlarms(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
+    resp, r, err := apiClient.AlarmsAPI.GetHighestAlarms(context.Background()).ProjectId(projectId).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.GetHighestAlarms``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.GetHighestAlarms``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetHighestAlarms`: []Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.GetHighestAlarms`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.GetHighestAlarms`: %v\n", resp)
 }
 ```
 
@@ -379,20 +379,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.ListenAlarm(context.Background()).Execute()
+    resp, r, err := apiClient.AlarmsAPI.ListenAlarm(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.ListenAlarm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.ListenAlarm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListenAlarm`: Alarm
-    fmt.Fprintf(os.Stdout, "Response from `AlarmsApi.ListenAlarm`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.ListenAlarm`: %v\n", resp)
 }
 ```
 
@@ -440,19 +440,19 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
     alarmRuleId := int32(4711) // int32 | The id of the alarm rule
-    acknowledged := true // bool | Marks the alarm as acknowledged by setting the acknowledge timestamp to now.
-    acknowledgeText := "acknowledgeText_example" // string | Sets the text for acknowledgement (optional)
+    acknowledged := true // bool | Marks the alarm as acknowledged or not acknowledged by setting the acknowledge timestamp to now or to null.
+    acknowledgeText := "acknowledgeText_example" // string | Sets the text for acknowledgement if acknowledged is set to true (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmsApi.PatchAlarmById(context.Background(), alarmRuleId).Acknowledged(acknowledged).AcknowledgeText(acknowledgeText).Execute()
+    r, err := apiClient.AlarmsAPI.PatchAlarmById(context.Background(), alarmRuleId).Acknowledged(acknowledged).AcknowledgeText(acknowledgeText).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsApi.PatchAlarmById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.PatchAlarmById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -474,8 +474,8 @@ Other parameters are passed through a pointer to a apiPatchAlarmByIdRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **acknowledged** | **bool** | Marks the alarm as acknowledged by setting the acknowledge timestamp to now. | 
- **acknowledgeText** | **string** | Sets the text for acknowledgement | 
+ **acknowledged** | **bool** | Marks the alarm as acknowledged or not acknowledged by setting the acknowledge timestamp to now or to null. | 
+ **acknowledgeText** | **string** | Sets the text for acknowledgement if acknowledged is set to true | 
 
 ### Return type
 

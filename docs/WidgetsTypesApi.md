@@ -1,15 +1,15 @@
-# \WidgetsTypesApi
+# \WidgetsTypesAPI
 
 All URIs are relative to *https://api.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteWidgetTypeByName**](WidgetsTypesApi.md#DeleteWidgetTypeByName) | **Delete** /widget-types/{widget-type-name} | Delete a widget type
-[**GetWidgetTypeByName**](WidgetsTypesApi.md#GetWidgetTypeByName) | **Get** /widget-types/{widget-type-name} | Information about a widget type
-[**GetWidgetTypes**](WidgetsTypesApi.md#GetWidgetTypes) | **Get** /widget-types | List of widget types
-[**PostWidgetType**](WidgetsTypesApi.md#PostWidgetType) | **Post** /widget-types | Create a widget type
-[**PutWidgetType**](WidgetsTypesApi.md#PutWidgetType) | **Put** /widget-types | Create or update a widget type
-[**PutWidgetTypeByName**](WidgetsTypesApi.md#PutWidgetTypeByName) | **Put** /widget-types/{widget-type-name} | Update a widget type
+[**DeleteWidgetTypeByName**](WidgetsTypesAPI.md#DeleteWidgetTypeByName) | **Delete** /widget-types/{widget-type-name} | Delete a widget type
+[**GetWidgetTypeByName**](WidgetsTypesAPI.md#GetWidgetTypeByName) | **Get** /widget-types/{widget-type-name} | Information about a widget type
+[**GetWidgetTypes**](WidgetsTypesAPI.md#GetWidgetTypes) | **Get** /widget-types | List of widget types
+[**PostWidgetType**](WidgetsTypesAPI.md#PostWidgetType) | **Post** /widget-types | Create a widget type
+[**PutWidgetType**](WidgetsTypesAPI.md#PutWidgetType) | **Put** /widget-types | Create or update a widget type
+[**PutWidgetTypeByName**](WidgetsTypesAPI.md#PutWidgetTypeByName) | **Put** /widget-types/{widget-type-name} | Update a widget type
 
 
 
@@ -30,7 +30,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -38,9 +38,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.DeleteWidgetTypeByName(context.Background(), widgetTypeName).Execute()
+    r, err := apiClient.WidgetsTypesAPI.DeleteWidgetTypeByName(context.Background(), widgetTypeName).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.DeleteWidgetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.DeleteWidgetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -98,7 +98,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -107,13 +107,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.GetWidgetTypeByName(context.Background(), widgetTypeName).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypeByName(context.Background(), widgetTypeName).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.GetWidgetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWidgetTypeByName`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesApi.GetWidgetTypeByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypeByName`: %v\n", resp)
 }
 ```
 
@@ -170,7 +170,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -178,13 +178,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.GetWidgetTypes(context.Background()).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypes(context.Background()).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.GetWidgetTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetWidgetTypes`: []WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesApi.GetWidgetTypes`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypes`: %v\n", resp)
 }
 ```
 
@@ -236,7 +236,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -245,13 +245,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.PostWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsTypesAPI.PostWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.PostWidgetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PostWidgetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PostWidgetType`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesApi.PostWidgetType`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PostWidgetType`: %v\n", resp)
 }
 ```
 
@@ -304,7 +304,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -313,13 +313,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.PutWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.PutWidgetType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetType``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutWidgetType`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesApi.PutWidgetType`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetType`: %v\n", resp)
 }
 ```
 
@@ -372,7 +372,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
@@ -382,13 +382,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesApi.PutWidgetTypeByName(context.Background(), widgetTypeName).WidgetType(widgetType).Expansions(expansions).Execute()
+    resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetTypeByName(context.Background(), widgetTypeName).WidgetType(widgetType).Expansions(expansions).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesApi.PutWidgetTypeByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetTypeByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `PutWidgetTypeByName`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesApi.PutWidgetTypeByName`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetTypeByName`: %v\n", resp)
 }
 ```
 

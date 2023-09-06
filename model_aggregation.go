@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -57,7 +57,7 @@ func NewAggregationWithDefaults() *Aggregation {
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Aggregation) GetId() int32 {
-	if o == nil || isNil(o.Id.Get()) {
+	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
 	}
@@ -148,7 +148,7 @@ func (o *Aggregation) SetSubtype(v DataSubtype) {
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise.
 func (o *Aggregation) GetAttribute() string {
-	if o == nil || isNil(o.Attribute) {
+	if o == nil || IsNil(o.Attribute) {
 		var ret string
 		return ret
 	}
@@ -158,7 +158,7 @@ func (o *Aggregation) GetAttribute() string {
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Aggregation) GetAttributeOk() (*string, bool) {
-	if o == nil || isNil(o.Attribute) {
+	if o == nil || IsNil(o.Attribute) {
 		return nil, false
 	}
 	return o.Attribute, true
@@ -166,7 +166,7 @@ func (o *Aggregation) GetAttributeOk() (*string, bool) {
 
 // HasAttribute returns a boolean if a field has been set.
 func (o *Aggregation) HasAttribute() bool {
-	if o != nil && !isNil(o.Attribute) {
+	if o != nil && !IsNil(o.Attribute) {
 		return true
 	}
 
@@ -204,7 +204,7 @@ func (o *Aggregation) SetMode(v string) {
 
 // GetRaster returns the Raster field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Aggregation) GetRaster() string {
-	if o == nil || isNil(o.Raster.Get()) {
+	if o == nil || IsNil(o.Raster.Get()) {
 		var ret string
 		return ret
 	}
@@ -260,7 +260,7 @@ func (o Aggregation) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["assetId"] = o.AssetId
 	toSerialize["subtype"] = o.Subtype
-	if !isNil(o.Attribute) {
+	if !IsNil(o.Attribute) {
 		toSerialize["attribute"] = o.Attribute
 	}
 	toSerialize["mode"] = o.Mode

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -57,7 +57,7 @@ func NewMessageWithDefaults() *Message {
 
 // GetSender returns the Sender field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Message) GetSender() string {
-	if o == nil || isNil(o.Sender.Get()) {
+	if o == nil || IsNil(o.Sender.Get()) {
 		var ret string
 		return ret
 	}
@@ -135,7 +135,7 @@ func (o *Message) GetCopyRecipients() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetCopyRecipientsOk() ([]string, bool) {
-	if o == nil || isNil(o.CopyRecipients) {
+	if o == nil || IsNil(o.CopyRecipients) {
 		return nil, false
 	}
 	return o.CopyRecipients, true
@@ -143,7 +143,7 @@ func (o *Message) GetCopyRecipientsOk() ([]string, bool) {
 
 // HasCopyRecipients returns a boolean if a field has been set.
 func (o *Message) HasCopyRecipients() bool {
-	if o != nil && isNil(o.CopyRecipients) {
+	if o != nil && IsNil(o.CopyRecipients) {
 		return true
 	}
 
@@ -168,7 +168,7 @@ func (o *Message) GetBlindCopyRecipients() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetBlindCopyRecipientsOk() ([]string, bool) {
-	if o == nil || isNil(o.BlindCopyRecipients) {
+	if o == nil || IsNil(o.BlindCopyRecipients) {
 		return nil, false
 	}
 	return o.BlindCopyRecipients, true
@@ -176,7 +176,7 @@ func (o *Message) GetBlindCopyRecipientsOk() ([]string, bool) {
 
 // HasBlindCopyRecipients returns a boolean if a field has been set.
 func (o *Message) HasBlindCopyRecipients() bool {
-	if o != nil && isNil(o.BlindCopyRecipients) {
+	if o != nil && IsNil(o.BlindCopyRecipients) {
 		return true
 	}
 
@@ -190,7 +190,7 @@ func (o *Message) SetBlindCopyRecipients(v []string) {
 
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *Message) GetSubject() string {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		var ret string
 		return ret
 	}
@@ -200,7 +200,7 @@ func (o *Message) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Message) GetSubjectOk() (*string, bool) {
-	if o == nil || isNil(o.Subject) {
+	if o == nil || IsNil(o.Subject) {
 		return nil, false
 	}
 	return o.Subject, true
@@ -208,7 +208,7 @@ func (o *Message) GetSubjectOk() (*string, bool) {
 
 // HasSubject returns a boolean if a field has been set.
 func (o *Message) HasSubject() bool {
-	if o != nil && !isNil(o.Subject) {
+	if o != nil && !IsNil(o.Subject) {
 		return true
 	}
 
@@ -257,7 +257,7 @@ func (o *Message) GetAttachments() []Attachment {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Message) GetAttachmentsOk() ([]Attachment, bool) {
-	if o == nil || isNil(o.Attachments) {
+	if o == nil || IsNil(o.Attachments) {
 		return nil, false
 	}
 	return o.Attachments, true
@@ -265,7 +265,7 @@ func (o *Message) GetAttachmentsOk() ([]Attachment, bool) {
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *Message) HasAttachments() bool {
-	if o != nil && isNil(o.Attachments) {
+	if o != nil && IsNil(o.Attachments) {
 		return true
 	}
 
@@ -297,7 +297,7 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	if o.BlindCopyRecipients != nil {
 		toSerialize["blindCopyRecipients"] = o.BlindCopyRecipients
 	}
-	if !isNil(o.Subject) {
+	if !IsNil(o.Subject) {
 		toSerialize["subject"] = o.Subject
 	}
 	toSerialize["content"] = o.Content

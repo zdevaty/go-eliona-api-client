@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AlarmRulesApiService AlarmRulesApi service
-type AlarmRulesApiService service
+// AlarmRulesAPIService AlarmRulesAPI service
+type AlarmRulesAPIService service
 
 type ApiDeleteAlarmRuleByIdRequest struct {
 	ctx         context.Context
-	ApiService  *AlarmRulesApiService
+	ApiService  *AlarmRulesAPIService
 	alarmRuleId int32
 }
 
@@ -42,7 +42,7 @@ Deletes an alarm rule.
  @param alarmRuleId The id of the alarm rule
  @return ApiDeleteAlarmRuleByIdRequest
 */
-func (a *AlarmRulesApiService) DeleteAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiDeleteAlarmRuleByIdRequest {
+func (a *AlarmRulesAPIService) DeleteAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiDeleteAlarmRuleByIdRequest {
 	return ApiDeleteAlarmRuleByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -51,14 +51,14 @@ func (a *AlarmRulesApiService) DeleteAlarmRuleById(ctx context.Context, alarmRul
 }
 
 // Execute executes the request
-func (a *AlarmRulesApiService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleByIdRequest) (*http.Response, error) {
+func (a *AlarmRulesAPIService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.DeleteAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.DeleteAlarmRuleById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -111,9 +111,9 @@ func (a *AlarmRulesApiService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleBy
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -131,7 +131,7 @@ func (a *AlarmRulesApiService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleBy
 
 type ApiGetAlarmRuleByIdRequest struct {
 	ctx         context.Context
-	ApiService  *AlarmRulesApiService
+	ApiService  *AlarmRulesAPIService
 	alarmRuleId int32
 	expansions  *[]string
 }
@@ -155,7 +155,7 @@ Gets information about an alarm rule.
  @param alarmRuleId The id of the alarm rule
  @return ApiGetAlarmRuleByIdRequest
 */
-func (a *AlarmRulesApiService) GetAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiGetAlarmRuleByIdRequest {
+func (a *AlarmRulesAPIService) GetAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiGetAlarmRuleByIdRequest {
 	return ApiGetAlarmRuleByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -165,7 +165,7 @@ func (a *AlarmRulesApiService) GetAlarmRuleById(ctx context.Context, alarmRuleId
 
 // Execute executes the request
 //  @return AlarmRule
-func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
+func (a *AlarmRulesAPIService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -173,7 +173,7 @@ func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 		localVarReturnValue *AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.GetAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.GetAlarmRuleById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -186,7 +186,7 @@ func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -229,9 +229,9 @@ func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -257,9 +257,16 @@ func (a *AlarmRulesApiService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 }
 
 type ApiGetAlarmRulesRequest struct {
-	ctx        context.Context
-	ApiService *AlarmRulesApiService
-	expansions *[]string
+	ctx          context.Context
+	ApiService   *AlarmRulesAPIService
+	alarmRuleIds *[]int32
+	expansions   *[]string
+}
+
+// List of alarm rule ids for filtering
+func (r ApiGetAlarmRulesRequest) AlarmRuleIds(alarmRuleIds []int32) ApiGetAlarmRulesRequest {
+	r.alarmRuleIds = &alarmRuleIds
+	return r
 }
 
 // List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
@@ -280,7 +287,7 @@ Gets information about alarm rules.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAlarmRulesRequest
 */
-func (a *AlarmRulesApiService) GetAlarmRules(ctx context.Context) ApiGetAlarmRulesRequest {
+func (a *AlarmRulesAPIService) GetAlarmRules(ctx context.Context) ApiGetAlarmRulesRequest {
 	return ApiGetAlarmRulesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -289,7 +296,7 @@ func (a *AlarmRulesApiService) GetAlarmRules(ctx context.Context) ApiGetAlarmRul
 
 // Execute executes the request
 //  @return []AlarmRule
-func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) ([]AlarmRule, *http.Response, error) {
+func (a *AlarmRulesAPIService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) ([]AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -297,7 +304,7 @@ func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 		localVarReturnValue []AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.GetAlarmRules")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.GetAlarmRules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -308,8 +315,11 @@ func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.alarmRuleIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "alarmRuleIds", r.alarmRuleIds, "csv")
+	}
 	if r.expansions != nil {
-		parameterAddToQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -352,9 +362,9 @@ func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -381,7 +391,7 @@ func (a *AlarmRulesApiService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 
 type ApiPostAlarmRuleRequest struct {
 	ctx        context.Context
-	ApiService *AlarmRulesApiService
+	ApiService *AlarmRulesAPIService
 	alarmRule  *AlarmRule
 }
 
@@ -402,7 +412,7 @@ Create a new alarm rule.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAlarmRuleRequest
 */
-func (a *AlarmRulesApiService) PostAlarmRule(ctx context.Context) ApiPostAlarmRuleRequest {
+func (a *AlarmRulesAPIService) PostAlarmRule(ctx context.Context) ApiPostAlarmRuleRequest {
 	return ApiPostAlarmRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -411,7 +421,7 @@ func (a *AlarmRulesApiService) PostAlarmRule(ctx context.Context) ApiPostAlarmRu
 
 // Execute executes the request
 //  @return AlarmRule
-func (a *AlarmRulesApiService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
+func (a *AlarmRulesAPIService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -419,7 +429,7 @@ func (a *AlarmRulesApiService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (
 		localVarReturnValue *AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.PostAlarmRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PostAlarmRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -476,9 +486,9 @@ func (a *AlarmRulesApiService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -505,7 +515,7 @@ func (a *AlarmRulesApiService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (
 
 type ApiPutAlarmRuleRequest struct {
 	ctx        context.Context
-	ApiService *AlarmRulesApiService
+	ApiService *AlarmRulesAPIService
 	alarmRule  *AlarmRule
 }
 
@@ -528,7 +538,7 @@ Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id
 
 Deprecated
 */
-func (a *AlarmRulesApiService) PutAlarmRule(ctx context.Context) ApiPutAlarmRuleRequest {
+func (a *AlarmRulesAPIService) PutAlarmRule(ctx context.Context) ApiPutAlarmRuleRequest {
 	return ApiPutAlarmRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -538,7 +548,7 @@ func (a *AlarmRulesApiService) PutAlarmRule(ctx context.Context) ApiPutAlarmRule
 // Execute executes the request
 //  @return AlarmRule
 // Deprecated
-func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
+func (a *AlarmRulesAPIService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -546,7 +556,7 @@ func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*A
 		localVarReturnValue *AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.PutAlarmRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PutAlarmRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -603,9 +613,9 @@ func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -632,7 +642,7 @@ func (a *AlarmRulesApiService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*A
 
 type ApiPutAlarmRuleByIdRequest struct {
 	ctx         context.Context
-	ApiService  *AlarmRulesApiService
+	ApiService  *AlarmRulesAPIService
 	alarmRuleId int32
 	alarmRule   *AlarmRule
 }
@@ -655,7 +665,7 @@ Update an alarm rule.
  @param alarmRuleId The id of the alarm rule
  @return ApiPutAlarmRuleByIdRequest
 */
-func (a *AlarmRulesApiService) PutAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiPutAlarmRuleByIdRequest {
+func (a *AlarmRulesAPIService) PutAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiPutAlarmRuleByIdRequest {
 	return ApiPutAlarmRuleByIdRequest{
 		ApiService:  a,
 		ctx:         ctx,
@@ -665,7 +675,7 @@ func (a *AlarmRulesApiService) PutAlarmRuleById(ctx context.Context, alarmRuleId
 
 // Execute executes the request
 //  @return AlarmRule
-func (a *AlarmRulesApiService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
+func (a *AlarmRulesAPIService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -673,7 +683,7 @@ func (a *AlarmRulesApiService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequ
 		localVarReturnValue *AlarmRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesApiService.PutAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PutAlarmRuleById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -731,9 +741,9 @@ func (a *AlarmRulesApiService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

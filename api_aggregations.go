@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,18 +14,18 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
-// AggregationsApiService AggregationsApi service
-type AggregationsApiService service
+// AggregationsAPIService AggregationsAPI service
+type AggregationsAPIService service
 
 type ApiDeleteAggregationByIdRequest struct {
 	ctx           context.Context
-	ApiService    *AggregationsApiService
+	ApiService    *AggregationsAPIService
 	aggregationId int32
 }
 
@@ -42,7 +42,7 @@ Deletes an aggregation by the given id.
  @param aggregationId The id of the aggregation
  @return ApiDeleteAggregationByIdRequest
 */
-func (a *AggregationsApiService) DeleteAggregationById(ctx context.Context, aggregationId int32) ApiDeleteAggregationByIdRequest {
+func (a *AggregationsAPIService) DeleteAggregationById(ctx context.Context, aggregationId int32) ApiDeleteAggregationByIdRequest {
 	return ApiDeleteAggregationByIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -51,14 +51,14 @@ func (a *AggregationsApiService) DeleteAggregationById(ctx context.Context, aggr
 }
 
 // Execute executes the request
-func (a *AggregationsApiService) DeleteAggregationByIdExecute(r ApiDeleteAggregationByIdRequest) (*http.Response, error) {
+func (a *AggregationsAPIService) DeleteAggregationByIdExecute(r ApiDeleteAggregationByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.DeleteAggregationById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.DeleteAggregationById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -111,9 +111,9 @@ func (a *AggregationsApiService) DeleteAggregationByIdExecute(r ApiDeleteAggrega
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -131,7 +131,7 @@ func (a *AggregationsApiService) DeleteAggregationByIdExecute(r ApiDeleteAggrega
 
 type ApiGetAggregationByIdRequest struct {
 	ctx           context.Context
-	ApiService    *AggregationsApiService
+	ApiService    *AggregationsAPIService
 	aggregationId int32
 }
 
@@ -148,7 +148,7 @@ Gets information about an aggregation by the given id.
  @param aggregationId The id of the aggregation
  @return ApiGetAggregationByIdRequest
 */
-func (a *AggregationsApiService) GetAggregationById(ctx context.Context, aggregationId int32) ApiGetAggregationByIdRequest {
+func (a *AggregationsAPIService) GetAggregationById(ctx context.Context, aggregationId int32) ApiGetAggregationByIdRequest {
 	return ApiGetAggregationByIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -158,7 +158,7 @@ func (a *AggregationsApiService) GetAggregationById(ctx context.Context, aggrega
 
 // Execute executes the request
 //  @return Aggregation
-func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationByIdRequest) (*Aggregation, *http.Response, error) {
+func (a *AggregationsAPIService) GetAggregationByIdExecute(r ApiGetAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -166,7 +166,7 @@ func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationBy
 		localVarReturnValue *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.GetAggregationById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.GetAggregationById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -219,9 +219,9 @@ func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationBy
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -248,7 +248,7 @@ func (a *AggregationsApiService) GetAggregationByIdExecute(r ApiGetAggregationBy
 
 type ApiGetAggregationsRequest struct {
 	ctx        context.Context
-	ApiService *AggregationsApiService
+	ApiService *AggregationsAPIService
 }
 
 func (r ApiGetAggregationsRequest) Execute() ([]Aggregation, *http.Response, error) {
@@ -263,7 +263,7 @@ Gets a list of aggregations
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetAggregationsRequest
 */
-func (a *AggregationsApiService) GetAggregations(ctx context.Context) ApiGetAggregationsRequest {
+func (a *AggregationsAPIService) GetAggregations(ctx context.Context) ApiGetAggregationsRequest {
 	return ApiGetAggregationsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -272,7 +272,7 @@ func (a *AggregationsApiService) GetAggregations(ctx context.Context) ApiGetAggr
 
 // Execute executes the request
 //  @return []Aggregation
-func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequest) ([]Aggregation, *http.Response, error) {
+func (a *AggregationsAPIService) GetAggregationsExecute(r ApiGetAggregationsRequest) ([]Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -280,7 +280,7 @@ func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequ
 		localVarReturnValue []Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.GetAggregations")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.GetAggregations")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -332,9 +332,9 @@ func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -361,7 +361,7 @@ func (a *AggregationsApiService) GetAggregationsExecute(r ApiGetAggregationsRequ
 
 type ApiPostAggregationRequest struct {
 	ctx         context.Context
-	ApiService  *AggregationsApiService
+	ApiService  *AggregationsAPIService
 	aggregation *Aggregation
 }
 
@@ -382,7 +382,7 @@ Creates a new aggregation.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostAggregationRequest
 */
-func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
+func (a *AggregationsAPIService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
 	return ApiPostAggregationRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -391,7 +391,7 @@ func (a *AggregationsApiService) PostAggregation(ctx context.Context) ApiPostAgg
 
 // Execute executes the request
 //  @return Aggregation
-func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
+func (a *AggregationsAPIService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -399,7 +399,7 @@ func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequ
 		localVarReturnValue *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PostAggregation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.PostAggregation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -456,9 +456,9 @@ func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -485,7 +485,7 @@ func (a *AggregationsApiService) PostAggregationExecute(r ApiPostAggregationRequ
 
 type ApiPutAggregationRequest struct {
 	ctx         context.Context
-	ApiService  *AggregationsApiService
+	ApiService  *AggregationsAPIService
 	aggregation *Aggregation
 }
 
@@ -506,7 +506,7 @@ Creates an aggregation or updates if already exists. Uses the unique combination
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPutAggregationRequest
 */
-func (a *AggregationsApiService) PutAggregation(ctx context.Context) ApiPutAggregationRequest {
+func (a *AggregationsAPIService) PutAggregation(ctx context.Context) ApiPutAggregationRequest {
 	return ApiPutAggregationRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -515,7 +515,7 @@ func (a *AggregationsApiService) PutAggregation(ctx context.Context) ApiPutAggre
 
 // Execute executes the request
 //  @return Aggregation
-func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationRequest) (*Aggregation, *http.Response, error) {
+func (a *AggregationsAPIService) PutAggregationExecute(r ApiPutAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -523,7 +523,7 @@ func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationReques
 		localVarReturnValue *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PutAggregation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.PutAggregation")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -580,9 +580,9 @@ func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationReques
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -609,7 +609,7 @@ func (a *AggregationsApiService) PutAggregationExecute(r ApiPutAggregationReques
 
 type ApiPutAggregationByIdRequest struct {
 	ctx           context.Context
-	ApiService    *AggregationsApiService
+	ApiService    *AggregationsAPIService
 	aggregationId int32
 	aggregation   *Aggregation
 }
@@ -632,7 +632,7 @@ Updates an aggregation.
  @param aggregationId The id of the aggregation
  @return ApiPutAggregationByIdRequest
 */
-func (a *AggregationsApiService) PutAggregationById(ctx context.Context, aggregationId int32) ApiPutAggregationByIdRequest {
+func (a *AggregationsAPIService) PutAggregationById(ctx context.Context, aggregationId int32) ApiPutAggregationByIdRequest {
 	return ApiPutAggregationByIdRequest{
 		ApiService:    a,
 		ctx:           ctx,
@@ -642,7 +642,7 @@ func (a *AggregationsApiService) PutAggregationById(ctx context.Context, aggrega
 
 // Execute executes the request
 //  @return Aggregation
-func (a *AggregationsApiService) PutAggregationByIdExecute(r ApiPutAggregationByIdRequest) (*Aggregation, *http.Response, error) {
+func (a *AggregationsAPIService) PutAggregationByIdExecute(r ApiPutAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -650,7 +650,7 @@ func (a *AggregationsApiService) PutAggregationByIdExecute(r ApiPutAggregationBy
 		localVarReturnValue *Aggregation
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsApiService.PutAggregationById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AggregationsAPIService.PutAggregationById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -708,9 +708,9 @@ func (a *AggregationsApiService) PutAggregationByIdExecute(r ApiPutAggregationBy
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}

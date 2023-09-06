@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ResourceId** | Pointer to **NullableString** | A custom identifier for the resource, which can be utilized to identify it for various operations such as updates, deletions, and other related tasks. If this identifier is not provided, the application will generate a new value for it automatically | [optional] 
 **Id** | Pointer to **NullableInt32** | The internal Id of asset | [optional] [readonly] 
+**DeviceIds** | Pointer to **[]string** | A list of unique device ids | [optional] 
 **ProjectId** | **string** | ID of the project to which the asset belongs | 
 **GlobalAssetIdentifier** | **string** | Unique identifier for the asset | 
 **Name** | Pointer to **NullableString** | Alternate text for the asset to display in frontend | [optional] 
@@ -38,6 +40,41 @@ NewAssetWithDefaults instantiates a new Asset object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetResourceId
+
+`func (o *Asset) GetResourceId() string`
+
+GetResourceId returns the ResourceId field if non-nil, zero value otherwise.
+
+### GetResourceIdOk
+
+`func (o *Asset) GetResourceIdOk() (*string, bool)`
+
+GetResourceIdOk returns a tuple with the ResourceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResourceId
+
+`func (o *Asset) SetResourceId(v string)`
+
+SetResourceId sets ResourceId field to given value.
+
+### HasResourceId
+
+`func (o *Asset) HasResourceId() bool`
+
+HasResourceId returns a boolean if a field has been set.
+
+### SetResourceIdNil
+
+`func (o *Asset) SetResourceIdNil(b bool)`
+
+ SetResourceIdNil sets the value for ResourceId to be an explicit nil
+
+### UnsetResourceId
+`func (o *Asset) UnsetResourceId()`
+
+UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
 ### GetId
 
 `func (o *Asset) GetId() int32`
@@ -73,6 +110,41 @@ HasId returns a boolean if a field has been set.
 `func (o *Asset) UnsetId()`
 
 UnsetId ensures that no value is present for Id, not even an explicit nil
+### GetDeviceIds
+
+`func (o *Asset) GetDeviceIds() []string`
+
+GetDeviceIds returns the DeviceIds field if non-nil, zero value otherwise.
+
+### GetDeviceIdsOk
+
+`func (o *Asset) GetDeviceIdsOk() (*[]string, bool)`
+
+GetDeviceIdsOk returns a tuple with the DeviceIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeviceIds
+
+`func (o *Asset) SetDeviceIds(v []string)`
+
+SetDeviceIds sets DeviceIds field to given value.
+
+### HasDeviceIds
+
+`func (o *Asset) HasDeviceIds() bool`
+
+HasDeviceIds returns a boolean if a field has been set.
+
+### SetDeviceIdsNil
+
+`func (o *Asset) SetDeviceIdsNil(b bool)`
+
+ SetDeviceIdsNil sets the value for DeviceIds to be an explicit nil
+
+### UnsetDeviceIds
+`func (o *Asset) UnsetDeviceIds()`
+
+UnsetDeviceIds ensures that no value is present for DeviceIds, not even an explicit nil
 ### GetProjectId
 
 `func (o *Asset) GetProjectId() string`

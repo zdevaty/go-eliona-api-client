@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.4.20
+API version: 2.5.3
 Contact: hello@eliona.io
 */
 
@@ -14,19 +14,19 @@ package api
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
 )
 
-// QRCodesApiService QRCodesApi service
-type QRCodesApiService service
+// QRCodesAPIService QRCodesAPI service
+type QRCodesAPIService service
 
 type ApiGetQrCodeByAssetIdRequest struct {
 	ctx        context.Context
-	ApiService *QRCodesApiService
+	ApiService *QRCodesAPIService
 	assetId    int32
 }
 
@@ -43,7 +43,7 @@ Generates QR code linking to an asset in the Eliona frontend.
  @param assetId The id of the asset
  @return ApiGetQrCodeByAssetIdRequest
 */
-func (a *QRCodesApiService) GetQrCodeByAssetId(ctx context.Context, assetId int32) ApiGetQrCodeByAssetIdRequest {
+func (a *QRCodesAPIService) GetQrCodeByAssetId(ctx context.Context, assetId int32) ApiGetQrCodeByAssetIdRequest {
 	return ApiGetQrCodeByAssetIdRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -53,7 +53,7 @@ func (a *QRCodesApiService) GetQrCodeByAssetId(ctx context.Context, assetId int3
 
 // Execute executes the request
 //  @return *os.File
-func (a *QRCodesApiService) GetQrCodeByAssetIdExecute(r ApiGetQrCodeByAssetIdRequest) (*os.File, *http.Response, error) {
+func (a *QRCodesAPIService) GetQrCodeByAssetIdExecute(r ApiGetQrCodeByAssetIdRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -61,7 +61,7 @@ func (a *QRCodesApiService) GetQrCodeByAssetIdExecute(r ApiGetQrCodeByAssetIdReq
 		localVarReturnValue *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRCodesApiService.GetQrCodeByAssetId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QRCodesAPIService.GetQrCodeByAssetId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -114,9 +114,9 @@ func (a *QRCodesApiService) GetQrCodeByAssetIdExecute(r ApiGetQrCodeByAssetIdReq
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
