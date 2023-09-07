@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.3
+API version: 2.5.4
 Contact: hello@eliona.io
 */
 
@@ -44,8 +44,12 @@ type Asset struct {
 	Description NullableString `json:"description,omitempty"`
 	// The id of an asset which groups this asset as a functional child
 	ParentFunctionalAssetId NullableInt32 `json:"parentFunctionalAssetId,omitempty"`
+	// The hierarchical path of functional ids of the asset
+	FunctionalAssetIdPath []int32 `json:"functionalAssetIdPath,omitempty"`
 	// The id of an asset which groups this asset as a locational child
 	ParentLocationalAssetId NullableInt32 `json:"parentLocationalAssetId,omitempty"`
+	// The hierarchical path of locational ids of the asset
+	LocationalAssetIdPath []int32 `json:"locationalAssetIdPath,omitempty"`
 	// List of associated tags
 	Tags []string `json:"tags,omitempty"`
 	// List of children for this asset.
@@ -527,6 +531,39 @@ func (o *Asset) UnsetParentFunctionalAssetId() {
 	o.ParentFunctionalAssetId.Unset()
 }
 
+// GetFunctionalAssetIdPath returns the FunctionalAssetIdPath field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetFunctionalAssetIdPath() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+	return o.FunctionalAssetIdPath
+}
+
+// GetFunctionalAssetIdPathOk returns a tuple with the FunctionalAssetIdPath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetFunctionalAssetIdPathOk() ([]int32, bool) {
+	if o == nil || IsNil(o.FunctionalAssetIdPath) {
+		return nil, false
+	}
+	return o.FunctionalAssetIdPath, true
+}
+
+// HasFunctionalAssetIdPath returns a boolean if a field has been set.
+func (o *Asset) HasFunctionalAssetIdPath() bool {
+	if o != nil && IsNil(o.FunctionalAssetIdPath) {
+		return true
+	}
+
+	return false
+}
+
+// SetFunctionalAssetIdPath gets a reference to the given []int32 and assigns it to the FunctionalAssetIdPath field.
+func (o *Asset) SetFunctionalAssetIdPath(v []int32) {
+	o.FunctionalAssetIdPath = v
+}
+
 // GetParentLocationalAssetId returns the ParentLocationalAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetParentLocationalAssetId() int32 {
 	if o == nil || IsNil(o.ParentLocationalAssetId.Get()) {
@@ -568,6 +605,39 @@ func (o *Asset) SetParentLocationalAssetIdNil() {
 // UnsetParentLocationalAssetId ensures that no value is present for ParentLocationalAssetId, not even an explicit nil
 func (o *Asset) UnsetParentLocationalAssetId() {
 	o.ParentLocationalAssetId.Unset()
+}
+
+// GetLocationalAssetIdPath returns the LocationalAssetIdPath field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetLocationalAssetIdPath() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+	return o.LocationalAssetIdPath
+}
+
+// GetLocationalAssetIdPathOk returns a tuple with the LocationalAssetIdPath field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetLocationalAssetIdPathOk() ([]int32, bool) {
+	if o == nil || IsNil(o.LocationalAssetIdPath) {
+		return nil, false
+	}
+	return o.LocationalAssetIdPath, true
+}
+
+// HasLocationalAssetIdPath returns a boolean if a field has been set.
+func (o *Asset) HasLocationalAssetIdPath() bool {
+	if o != nil && IsNil(o.LocationalAssetIdPath) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocationalAssetIdPath gets a reference to the given []int32 and assigns it to the LocationalAssetIdPath field.
+func (o *Asset) SetLocationalAssetIdPath(v []int32) {
+	o.LocationalAssetIdPath = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -709,8 +779,14 @@ func (o Asset) ToMap() (map[string]interface{}, error) {
 	if o.ParentFunctionalAssetId.IsSet() {
 		toSerialize["parentFunctionalAssetId"] = o.ParentFunctionalAssetId.Get()
 	}
+	if o.FunctionalAssetIdPath != nil {
+		toSerialize["functionalAssetIdPath"] = o.FunctionalAssetIdPath
+	}
 	if o.ParentLocationalAssetId.IsSet() {
 		toSerialize["parentLocationalAssetId"] = o.ParentLocationalAssetId.Get()
+	}
+	if o.LocationalAssetIdPath != nil {
+		toSerialize["locationalAssetIdPath"] = o.LocationalAssetIdPath
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags

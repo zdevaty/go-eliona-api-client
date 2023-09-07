@@ -16,7 +16,9 @@ Name | Type | Description | Notes
 **IsTracker** | Pointer to **NullableBool** | Does the asset function as a tracker and capture its position by itself | [optional] [default to false]
 **Description** | Pointer to **NullableString** | Textual description for this asset | [optional] 
 **ParentFunctionalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a functional child | [optional] 
+**FunctionalAssetIdPath** | Pointer to **[]int32** | The hierarchical path of functional ids of the asset | [optional] [readonly] 
 **ParentLocationalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a locational child | [optional] 
+**LocationalAssetIdPath** | Pointer to **[]int32** | The hierarchical path of locational ids of the asset | [optional] [readonly] 
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **ChildrenInfo** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. | [optional] [readonly] 
 **Attachments** | Pointer to [**[]Attachment**](Attachment.md) | A list of files attached to the asset | [optional] 
@@ -415,6 +417,41 @@ HasParentFunctionalAssetId returns a boolean if a field has been set.
 `func (o *Asset) UnsetParentFunctionalAssetId()`
 
 UnsetParentFunctionalAssetId ensures that no value is present for ParentFunctionalAssetId, not even an explicit nil
+### GetFunctionalAssetIdPath
+
+`func (o *Asset) GetFunctionalAssetIdPath() []int32`
+
+GetFunctionalAssetIdPath returns the FunctionalAssetIdPath field if non-nil, zero value otherwise.
+
+### GetFunctionalAssetIdPathOk
+
+`func (o *Asset) GetFunctionalAssetIdPathOk() (*[]int32, bool)`
+
+GetFunctionalAssetIdPathOk returns a tuple with the FunctionalAssetIdPath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFunctionalAssetIdPath
+
+`func (o *Asset) SetFunctionalAssetIdPath(v []int32)`
+
+SetFunctionalAssetIdPath sets FunctionalAssetIdPath field to given value.
+
+### HasFunctionalAssetIdPath
+
+`func (o *Asset) HasFunctionalAssetIdPath() bool`
+
+HasFunctionalAssetIdPath returns a boolean if a field has been set.
+
+### SetFunctionalAssetIdPathNil
+
+`func (o *Asset) SetFunctionalAssetIdPathNil(b bool)`
+
+ SetFunctionalAssetIdPathNil sets the value for FunctionalAssetIdPath to be an explicit nil
+
+### UnsetFunctionalAssetIdPath
+`func (o *Asset) UnsetFunctionalAssetIdPath()`
+
+UnsetFunctionalAssetIdPath ensures that no value is present for FunctionalAssetIdPath, not even an explicit nil
 ### GetParentLocationalAssetId
 
 `func (o *Asset) GetParentLocationalAssetId() int32`
@@ -450,6 +487,41 @@ HasParentLocationalAssetId returns a boolean if a field has been set.
 `func (o *Asset) UnsetParentLocationalAssetId()`
 
 UnsetParentLocationalAssetId ensures that no value is present for ParentLocationalAssetId, not even an explicit nil
+### GetLocationalAssetIdPath
+
+`func (o *Asset) GetLocationalAssetIdPath() []int32`
+
+GetLocationalAssetIdPath returns the LocationalAssetIdPath field if non-nil, zero value otherwise.
+
+### GetLocationalAssetIdPathOk
+
+`func (o *Asset) GetLocationalAssetIdPathOk() (*[]int32, bool)`
+
+GetLocationalAssetIdPathOk returns a tuple with the LocationalAssetIdPath field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocationalAssetIdPath
+
+`func (o *Asset) SetLocationalAssetIdPath(v []int32)`
+
+SetLocationalAssetIdPath sets LocationalAssetIdPath field to given value.
+
+### HasLocationalAssetIdPath
+
+`func (o *Asset) HasLocationalAssetIdPath() bool`
+
+HasLocationalAssetIdPath returns a boolean if a field has been set.
+
+### SetLocationalAssetIdPathNil
+
+`func (o *Asset) SetLocationalAssetIdPathNil(b bool)`
+
+ SetLocationalAssetIdPathNil sets the value for LocationalAssetIdPath to be an explicit nil
+
+### UnsetLocationalAssetIdPath
+`func (o *Asset) UnsetLocationalAssetIdPath()`
+
+UnsetLocationalAssetIdPath ensures that no value is present for LocationalAssetIdPath, not even an explicit nil
 ### GetTags
 
 `func (o *Asset) GetTags() []string`
