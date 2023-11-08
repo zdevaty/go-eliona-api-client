@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
 **Data** | **map[string]interface{}** | Asset payload | 
 **AssetTypeName** | Pointer to **NullableString** | The name of the corresponding asset type | [optional] [readonly] 
+**ClientReference** | Pointer to **NullableString** | freely assignable by the client to identify self-created data | [optional] 
 
 ## Methods
 
@@ -159,6 +160,41 @@ HasAssetTypeName returns a boolean if a field has been set.
 `func (o *Data) UnsetAssetTypeName()`
 
 UnsetAssetTypeName ensures that no value is present for AssetTypeName, not even an explicit nil
+### GetClientReference
+
+`func (o *Data) GetClientReference() string`
+
+GetClientReference returns the ClientReference field if non-nil, zero value otherwise.
+
+### GetClientReferenceOk
+
+`func (o *Data) GetClientReferenceOk() (*string, bool)`
+
+GetClientReferenceOk returns a tuple with the ClientReference field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientReference
+
+`func (o *Data) SetClientReference(v string)`
+
+SetClientReference sets ClientReference field to given value.
+
+### HasClientReference
+
+`func (o *Data) HasClientReference() bool`
+
+HasClientReference returns a boolean if a field has been set.
+
+### SetClientReferenceNil
+
+`func (o *Data) SetClientReferenceNil(b bool)`
+
+ SetClientReferenceNil sets the value for ClientReference to be an explicit nil
+
+### UnsetClientReference
+`func (o *Data) UnsetClientReference()`
+
+UnsetClientReference ensures that no value is present for ClientReference, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

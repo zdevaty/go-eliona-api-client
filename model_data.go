@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.4
+API version: 2.5.5
 Contact: hello@eliona.io
 */
 
@@ -30,6 +30,8 @@ type Data struct {
 	Data map[string]interface{} `json:"data"`
 	// The name of the corresponding asset type
 	AssetTypeName NullableString `json:"assetTypeName,omitempty"`
+	// freely assignable by the client to identify self-created data
+	ClientReference NullableString `json:"clientReference,omitempty"`
 }
 
 // NewData instantiates a new Data object
@@ -212,6 +214,49 @@ func (o *Data) UnsetAssetTypeName() {
 	o.AssetTypeName.Unset()
 }
 
+// GetClientReference returns the ClientReference field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Data) GetClientReference() string {
+	if o == nil || IsNil(o.ClientReference.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClientReference.Get()
+}
+
+// GetClientReferenceOk returns a tuple with the ClientReference field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Data) GetClientReferenceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientReference.Get(), o.ClientReference.IsSet()
+}
+
+// HasClientReference returns a boolean if a field has been set.
+func (o *Data) HasClientReference() bool {
+	if o != nil && o.ClientReference.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientReference gets a reference to the given NullableString and assigns it to the ClientReference field.
+func (o *Data) SetClientReference(v string) {
+	o.ClientReference.Set(&v)
+}
+
+// SetClientReferenceNil sets the value for ClientReference to be an explicit nil
+func (o *Data) SetClientReferenceNil() {
+	o.ClientReference.Set(nil)
+}
+
+// UnsetClientReference ensures that no value is present for ClientReference, not even an explicit nil
+func (o *Data) UnsetClientReference() {
+	o.ClientReference.Unset()
+}
+
 func (o Data) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -230,6 +275,9 @@ func (o Data) ToMap() (map[string]interface{}, error) {
 	toSerialize["data"] = o.Data
 	if o.AssetTypeName.IsSet() {
 		toSerialize["assetTypeName"] = o.AssetTypeName.Get()
+	}
+	if o.ClientReference.IsSet() {
+		toSerialize["clientReference"] = o.ClientReference.Get()
 	}
 	return toSerialize, nil
 }
