@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## GetData
 
-> []Data GetData(ctx).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+> []Data GetData(ctx).AssetId(assetId).ParentAssetId(parentAssetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
 
 Gets all data
 
@@ -35,12 +35,13 @@ import (
 
 func main() {
     assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+    parentAssetId := int32(4711) // int32 | Filter for a specific parent asset id (optional)
     dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
     assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataAPI.GetData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+    resp, r, err := apiClient.DataAPI.GetData(context.Background()).AssetId(assetId).ParentAssetId(parentAssetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -62,6 +63,7 @@ Other parameters are passed through a pointer to a apiGetDataRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **assetId** | **int32** | Filter for a specific asset id | 
+ **parentAssetId** | **int32** | Filter for a specific parent asset id | 
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
 

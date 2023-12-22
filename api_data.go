@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.5
+API version: 2.5.7
 Contact: hello@eliona.io
 */
 
@@ -26,6 +26,7 @@ type ApiGetDataRequest struct {
 	ctx           context.Context
 	ApiService    *DataAPIService
 	assetId       *int32
+	parentAssetId *int32
 	dataSubtype   *string
 	assetTypeName *string
 }
@@ -33,6 +34,12 @@ type ApiGetDataRequest struct {
 // Filter for a specific asset id
 func (r ApiGetDataRequest) AssetId(assetId int32) ApiGetDataRequest {
 	r.assetId = &assetId
+	return r
+}
+
+// Filter for a specific parent asset id
+func (r ApiGetDataRequest) ParentAssetId(parentAssetId int32) ApiGetDataRequest {
+	r.parentAssetId = &parentAssetId
 	return r
 }
 
@@ -90,6 +97,9 @@ func (a *DataAPIService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 
 	if r.assetId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+	}
+	if r.parentAssetId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parentAssetId", r.parentAssetId, "")
 	}
 	if r.dataSubtype != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")

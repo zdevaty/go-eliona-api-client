@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Urldoc** | Pointer to **NullableString** | The url describing the alarm | [optional] 
 **NotifyOn** | Pointer to **NullableString** | Notification | [optional] 
 **DontMask** | Pointer to **NullableBool** | Do not mask | [optional] [default to false]
+**CheckType** | Pointer to **NullableString** | Check type | [optional] [default to "limits"]
 **AssetInfo** | Pointer to [**NullableAsset**](Asset.md) |  | [optional] 
 
 ## Methods
@@ -521,6 +522,41 @@ HasDontMask returns a boolean if a field has been set.
 `func (o *AlarmRule) UnsetDontMask()`
 
 UnsetDontMask ensures that no value is present for DontMask, not even an explicit nil
+### GetCheckType
+
+`func (o *AlarmRule) GetCheckType() string`
+
+GetCheckType returns the CheckType field if non-nil, zero value otherwise.
+
+### GetCheckTypeOk
+
+`func (o *AlarmRule) GetCheckTypeOk() (*string, bool)`
+
+GetCheckTypeOk returns a tuple with the CheckType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckType
+
+`func (o *AlarmRule) SetCheckType(v string)`
+
+SetCheckType sets CheckType field to given value.
+
+### HasCheckType
+
+`func (o *AlarmRule) HasCheckType() bool`
+
+HasCheckType returns a boolean if a field has been set.
+
+### SetCheckTypeNil
+
+`func (o *AlarmRule) SetCheckTypeNil(b bool)`
+
+ SetCheckTypeNil sets the value for CheckType to be an explicit nil
+
+### UnsetCheckType
+`func (o *AlarmRule) UnsetCheckType()`
+
+UnsetCheckType ensures that no value is present for CheckType, not even an explicit nil
 ### GetAssetInfo
 
 `func (o *AlarmRule) GetAssetInfo() Asset`

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.5
+API version: 2.5.7
 Contact: hello@eliona.io
 */
 
@@ -21,9 +21,10 @@ type AlarmPriority int32
 
 // List of AlarmPriority
 const (
-	ALARM_PRIORITY_LOW    AlarmPriority = 1
+	ALARM_PRIORITY_HEIGHT AlarmPriority = 1
 	ALARM_PRIORITY_MEDIUM AlarmPriority = 2
-	ALARM_PRIORITY_HEIGHT AlarmPriority = 3
+	ALARM_PRIORITY_LOW    AlarmPriority = 3
+	ALARM_PRIORITY_INFO   AlarmPriority = 10
 )
 
 // All allowed values of AlarmPriority enum
@@ -31,6 +32,7 @@ var AllowedAlarmPriorityEnumValues = []AlarmPriority{
 	1,
 	2,
 	3,
+	10,
 }
 
 func (v *AlarmPriority) UnmarshalJSON(src []byte) error {

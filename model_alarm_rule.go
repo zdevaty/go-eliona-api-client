@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.5
+API version: 2.5.7
 Contact: hello@eliona.io
 */
 
@@ -49,8 +49,10 @@ type AlarmRule struct {
 	// Notification
 	NotifyOn NullableString `json:"notifyOn,omitempty"`
 	// Do not mask
-	DontMask  NullableBool  `json:"dontMask,omitempty"`
-	AssetInfo NullableAsset `json:"assetInfo,omitempty"`
+	DontMask NullableBool `json:"dontMask,omitempty"`
+	// Check type
+	CheckType NullableString `json:"checkType,omitempty"`
+	AssetInfo NullableAsset  `json:"assetInfo,omitempty"`
 }
 
 // NewAlarmRule instantiates a new AlarmRule object
@@ -69,6 +71,8 @@ func NewAlarmRule(assetId int32, subtype DataSubtype, attribute string, priority
 	this.RequiresAcknowledge = &requiresAcknowledge
 	var dontMask bool = false
 	this.DontMask = *NewNullableBool(&dontMask)
+	var checkType CHECK_TYPE = "limits"
+	this.CheckType = *NewNullableString(&checkType)
 	return &this
 }
 
@@ -85,6 +89,8 @@ func NewAlarmRuleWithDefaults() *AlarmRule {
 	this.RequiresAcknowledge = &requiresAcknowledge
 	var dontMask bool = false
 	this.DontMask = *NewNullableBool(&dontMask)
+	var checkType CHECK_TYPE = "limits"
+	this.CheckType = *NewNullableString(&checkType)
 	return &this
 }
 
@@ -658,6 +664,49 @@ func (o *AlarmRule) UnsetDontMask() {
 	o.DontMask.Unset()
 }
 
+// GetCheckType returns the CheckType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmRule) GetCheckType() string {
+	if o == nil || IsNil(o.CheckType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CheckType.Get()
+}
+
+// GetCheckTypeOk returns a tuple with the CheckType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmRule) GetCheckTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CheckType.Get(), o.CheckType.IsSet()
+}
+
+// HasCheckType returns a boolean if a field has been set.
+func (o *AlarmRule) HasCheckType() bool {
+	if o != nil && o.CheckType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckType gets a reference to the given NullableString and assigns it to the CheckType field.
+func (o *AlarmRule) SetCheckType(v string) {
+	o.CheckType.Set(&v)
+}
+
+// SetCheckTypeNil sets the value for CheckType to be an explicit nil
+func (o *AlarmRule) SetCheckTypeNil() {
+	o.CheckType.Set(nil)
+}
+
+// UnsetCheckType ensures that no value is present for CheckType, not even an explicit nil
+func (o *AlarmRule) UnsetCheckType() {
+	o.CheckType.Unset()
+}
+
 // GetAssetInfo returns the AssetInfo field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmRule) GetAssetInfo() Asset {
 	if o == nil || IsNil(o.AssetInfo.Get()) {
@@ -750,6 +799,9 @@ func (o AlarmRule) ToMap() (map[string]interface{}, error) {
 	}
 	if o.DontMask.IsSet() {
 		toSerialize["dontMask"] = o.DontMask.Get()
+	}
+	if o.CheckType.IsSet() {
+		toSerialize["checkType"] = o.CheckType.Get()
 	}
 	if o.AssetInfo.IsSet() {
 		toSerialize["assetInfo"] = o.AssetInfo.Get()
