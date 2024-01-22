@@ -1,6 +1,6 @@
 # \AppsAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,24 +25,24 @@ Information about an app
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    appName := "weather" // string | The name of the app
+	appName := "weather" // string | The name of the app
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsAPI.GetAppByName(context.Background(), appName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetAppByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAppByName`: App
-    fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetAppByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AppsAPI.GetAppByName(context.Background(), appName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetAppByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAppByName`: App
+	fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetAppByName`: %v\n", resp)
 }
 ```
 
@@ -95,25 +95,25 @@ Information about a patch for an app
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    appName := "weather" // string | The name of the app
-    patchName := "2.0.0" // string | The name of the patch
+	appName := "weather" // string | The name of the app
+	patchName := "2.0.0" // string | The name of the patch
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsAPI.GetPatchByName(context.Background(), appName, patchName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetPatchByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPatchByName`: Patch
-    fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetPatchByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AppsAPI.GetPatchByName(context.Background(), appName, patchName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.GetPatchByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPatchByName`: Patch
+	fmt.Fprintf(os.Stdout, "Response from `AppsAPI.GetPatchByName`: %v\n", resp)
 }
 ```
 
@@ -168,23 +168,23 @@ Update an app
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    appName := "weather" // string | The name of the app
-    registered := true // bool | Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true } (optional)
+	appName := "weather" // string | The name of the app
+	registered := true // bool | Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true } (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AppsAPI.PatchAppByName(context.Background(), appName).Registered(registered).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchAppByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AppsAPI.PatchAppByName(context.Background(), appName).Registered(registered).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchAppByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -238,24 +238,24 @@ Updates a patch
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    appName := "weather" // string | The name of the app
-    patchName := "2.0.0" // string | The name of the patch
-    apply := true // bool | Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true } (optional)
+	appName := "weather" // string | The name of the app
+	patchName := "2.0.0" // string | The name of the patch
+	apply := true // bool | Marks that the patch is now applied. Further request to get patch information returns { \"applied\": true } (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AppsAPI.PatchPatchByName(context.Background(), appName, patchName).Apply(apply).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchPatchByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AppsAPI.PatchPatchByName(context.Background(), appName, patchName).Apply(apply).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AppsAPI.PatchPatchByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

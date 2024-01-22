@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.7
+API version: 2.5.9
 Contact: hello@eliona.io
 */
 
@@ -12,7 +12,9 @@ Contact: hello@eliona.io
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the MbusAgentDeviceMapping type satisfies the MappedNullable interface at compile time
@@ -36,6 +38,8 @@ type MbusAgentDeviceMapping struct {
 	Scale     NullableFloat64 `json:"scale,omitempty"`
 	Zero      NullableFloat64 `json:"zero,omitempty"`
 }
+
+type _MbusAgentDeviceMapping MbusAgentDeviceMapping
 
 // NewMbusAgentDeviceMapping instantiates a new MbusAgentDeviceMapping object
 // This constructor will assign default values to properties that have it defined,
@@ -480,6 +484,44 @@ func (o MbusAgentDeviceMapping) ToMap() (map[string]interface{}, error) {
 		toSerialize["zero"] = o.Zero.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *MbusAgentDeviceMapping) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subtype",
+		"attribute",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMbusAgentDeviceMapping := _MbusAgentDeviceMapping{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMbusAgentDeviceMapping)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MbusAgentDeviceMapping(varMbusAgentDeviceMapping)
+
+	return err
 }
 
 type NullableMbusAgentDeviceMapping struct {

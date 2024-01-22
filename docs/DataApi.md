@@ -1,6 +1,6 @@
 # \DataAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,27 +27,27 @@ Gets all data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
-    parentAssetId := int32(4711) // int32 | Filter for a specific parent asset id (optional)
-    dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
-    assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+	parentAssetId := int32(4711) // int32 | Filter for a specific parent asset id (optional)
+	dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
+	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataAPI.GetData(context.Background()).AssetId(assetId).ParentAssetId(parentAssetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetData`: []Data
-    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.GetData(context.Background()).AssetId(assetId).ParentAssetId(parentAssetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetData`: []Data
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetData`: %v\n", resp)
 }
 ```
 
@@ -99,29 +99,29 @@ Get aggregated data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
-    toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
-    assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
-    dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
-    assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
-    aggregationId := int32(0815) // int32 | Filter for a specific aggregation id (optional)
+	fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
+	toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+	dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
+	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+	aggregationId := int32(0815) // int32 | Filter for a specific aggregation id (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataAPI.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataAggregated``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetDataAggregated`: []DataAggregated
-    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataAggregated`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataAggregated``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDataAggregated`: []DataAggregated
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataAggregated`: %v\n", resp)
 }
 ```
 
@@ -175,28 +175,28 @@ Get trend of historical data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
-    toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
-    assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
-    dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
-    assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+	fromDate := "2020-01-01T09:00:00.000Z" // string | Filter by lower date time (RFC3339) limit inclusive (optional)
+	toDate := "2021-12-31T23:00:00.000Z" // string | Filter by upper date time (RFC3339) limit exclusive (optional)
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+	dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
+	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataAPI.GetDataTrends(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataTrends``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetDataTrends`: []Data
-    fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataTrends`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.GetDataTrends(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataTrends``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDataTrends`: []Data
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataTrends`: %v\n", resp)
 }
 ```
 
@@ -249,25 +249,25 @@ WebSocket connection for asset data changes
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
-    dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+	dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DataAPI.ListenData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.ListenData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `ListenData`: Data
-    fmt.Fprintf(os.Stdout, "Response from `DataAPI.ListenData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.ListenData(context.Background()).AssetId(assetId).DataSubtype(dataSubtype).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.ListenData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListenData`: Data
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.ListenData`: %v\n", resp)
 }
 ```
 
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 ## PutBulkData
 
-> PutBulkData(ctx).Data(data).Execute()
+> PutBulkData(ctx).Data(data).DirectMode(directMode).Execute()
 
 Create or update multiple asset data
 
@@ -317,22 +317,23 @@ Create or update multiple asset data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    data := []openapiclient.Data{*openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({}))} // []Data | 
+	data := []openapiclient.Data{*openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({}))} // []Data | 
+	directMode := "true" // string | Executes the operation directly without using other services. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DataAPI.PutBulkData(context.Background()).Data(data).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutBulkData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DataAPI.PutBulkData(context.Background()).Data(data).DirectMode(directMode).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutBulkData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -348,6 +349,7 @@ Other parameters are passed through a pointer to a apiPutBulkDataRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**[]Data**](Data.md) |  | 
+ **directMode** | **string** | Executes the operation directly without using other services. | 
 
 ### Return type
 
@@ -369,7 +371,7 @@ Name | Type | Description  | Notes
 
 ## PutData
 
-> PutData(ctx).Data(data).Execute()
+> PutData(ctx).Data(data).DirectMode(directMode).Execute()
 
 Create or update asset data
 
@@ -381,22 +383,23 @@ Create or update asset data
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    data := *openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({})) // Data | 
+	data := *openapiclient.NewData(int32(4711), openapiclient.DataSubtype("input"), map[string]interface{}({})) // Data | 
+	directMode := "true" // string | Executes the operation directly without using other services. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.DataAPI.PutData(context.Background()).Data(data).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DataAPI.PutData(context.Background()).Data(data).DirectMode(directMode).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.PutData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -412,6 +415,7 @@ Other parameters are passed through a pointer to a apiPutDataRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **data** | [**Data**](Data.md) |  | 
+ **directMode** | **string** | Executes the operation directly without using other services. | 
 
 ### Return type
 

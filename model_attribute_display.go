@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.7
+API version: 2.5.9
 Contact: hello@eliona.io
 */
 
@@ -12,7 +12,9 @@ Contact: hello@eliona.io
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AttributeDisplay type satisfies the MappedNullable interface at compile time
@@ -42,6 +44,8 @@ type AttributeDisplay struct {
 	// list of mapping between value and custom text
 	Map []ValueMapping `json:"map,omitempty"`
 }
+
+type _AttributeDisplay AttributeDisplay
 
 // NewAttributeDisplay instantiates a new AttributeDisplay object
 // This constructor will assign default values to properties that have it defined,
@@ -517,6 +521,45 @@ func (o AttributeDisplay) ToMap() (map[string]interface{}, error) {
 		toSerialize["map"] = o.Map
 	}
 	return toSerialize, nil
+}
+
+func (o *AttributeDisplay) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"assetId",
+		"subtype",
+		"attribute",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAttributeDisplay := _AttributeDisplay{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAttributeDisplay)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AttributeDisplay(varAttributeDisplay)
+
+	return err
 }
 
 type NullableAttributeDisplay struct {

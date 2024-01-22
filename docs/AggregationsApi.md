@@ -1,6 +1,6 @@
 # \AggregationsAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,22 +27,22 @@ Delete an aggregation
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    aggregationId := int32(4711) // int32 | The id of the aggregation
+	aggregationId := int32(4711) // int32 | The id of the aggregation
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AggregationsAPI.DeleteAggregationById(context.Background(), aggregationId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.DeleteAggregationById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AggregationsAPI.DeleteAggregationById(context.Background(), aggregationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.DeleteAggregationById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -95,24 +95,24 @@ Information about an aggregation
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    aggregationId := int32(4711) // int32 | The id of the aggregation
+	aggregationId := int32(4711) // int32 | The id of the aggregation
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsAPI.GetAggregationById(context.Background(), aggregationId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.GetAggregationById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAggregationById`: Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.GetAggregationById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AggregationsAPI.GetAggregationById(context.Background(), aggregationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.GetAggregationById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAggregationById`: Aggregation
+	fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.GetAggregationById`: %v\n", resp)
 }
 ```
 
@@ -165,23 +165,23 @@ Information about aggregations
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsAPI.GetAggregations(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.GetAggregations``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAggregations`: []Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.GetAggregations`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AggregationsAPI.GetAggregations(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.GetAggregations``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAggregations`: []Aggregation
+	fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.GetAggregations`: %v\n", resp)
 }
 ```
 
@@ -226,24 +226,24 @@ Creates an aggregation
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
+	aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsAPI.PostAggregation(context.Background()).Aggregation(aggregation).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PostAggregation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAggregation`: Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PostAggregation`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AggregationsAPI.PostAggregation(context.Background()).Aggregation(aggregation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PostAggregation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAggregation`: Aggregation
+	fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PostAggregation`: %v\n", resp)
 }
 ```
 
@@ -292,24 +292,24 @@ Creates or updates an aggregation
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
+	aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsAPI.PutAggregation(context.Background()).Aggregation(aggregation).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PutAggregation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAggregation`: Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PutAggregation`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AggregationsAPI.PutAggregation(context.Background()).Aggregation(aggregation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PutAggregation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAggregation`: Aggregation
+	fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PutAggregation`: %v\n", resp)
 }
 ```
 
@@ -358,25 +358,25 @@ Updates an aggregation
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    aggregationId := int32(4711) // int32 | The id of the aggregation
-    aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
+	aggregationId := int32(4711) // int32 | The id of the aggregation
+	aggregation := *openapiclient.NewAggregation(int32(4711), openapiclient.DataSubtype("input"), "avg") // Aggregation | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AggregationsAPI.PutAggregationById(context.Background(), aggregationId).Aggregation(aggregation).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PutAggregationById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAggregationById`: Aggregation
-    fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PutAggregationById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AggregationsAPI.PutAggregationById(context.Background(), aggregationId).Aggregation(aggregation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AggregationsAPI.PutAggregationById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAggregationById`: Aggregation
+	fmt.Fprintf(os.Stdout, "Response from `AggregationsAPI.PutAggregationById`: %v\n", resp)
 }
 ```
 

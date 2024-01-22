@@ -1,6 +1,6 @@
 # \CommunicationAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,24 +24,24 @@ Information about a message
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    messageId := "AB0815" // string | The id of the message
+	messageId := "AB0815" // string | The id of the message
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommunicationAPI.GetMessageReceiptById(context.Background(), messageId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.GetMessageReceiptById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMessageReceiptById`: MessageReceipt
-    fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.GetMessageReceiptById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CommunicationAPI.GetMessageReceiptById(context.Background(), messageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.GetMessageReceiptById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMessageReceiptById`: MessageReceipt
+	fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.GetMessageReceiptById`: %v\n", resp)
 }
 ```
 
@@ -94,24 +94,24 @@ Send e-mail
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    message := *openapiclient.NewMessage([]string{"recipient@example.com"}, "<h1>Example</h1>") // Message | 
+	message := *openapiclient.NewMessage([]string{"recipient@example.com"}, "<h1>Example</h1>") // Message | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommunicationAPI.PostMail(context.Background()).Message(message).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.PostMail``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostMail`: MessageReceipt
-    fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.PostMail`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CommunicationAPI.PostMail(context.Background()).Message(message).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.PostMail``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostMail`: MessageReceipt
+	fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.PostMail`: %v\n", resp)
 }
 ```
 
@@ -160,24 +160,24 @@ Send notification
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    notification := *openapiclient.NewNotification("peter.fox@example.com", "TODO") // Notification | 
+	notification := *openapiclient.NewNotification("peter.fox@example.com", "TODO") // Notification | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CommunicationAPI.PostNotification(context.Background()).Notification(notification).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.PostNotification``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostNotification`: MessageReceipt
-    fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.PostNotification`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CommunicationAPI.PostNotification(context.Background()).Notification(notification).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CommunicationAPI.PostNotification``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostNotification`: MessageReceipt
+	fmt.Fprintf(os.Stdout, "Response from `CommunicationAPI.PostNotification`: %v\n", resp)
 }
 ```
 

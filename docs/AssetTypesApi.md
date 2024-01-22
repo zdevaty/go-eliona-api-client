@@ -1,6 +1,6 @@
 # \AssetTypesAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,22 +29,22 @@ Delete an asset type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetTypeName := "weather_location" // string | The name of the asset type
+	assetTypeName := "weather_location" // string | The name of the asset type
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AssetTypesAPI.DeleteAssetTypeByName(context.Background(), assetTypeName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.DeleteAssetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AssetTypesAPI.DeleteAssetTypeByName(context.Background(), assetTypeName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.DeleteAssetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -97,25 +97,25 @@ Information about an asset type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetTypeName := "weather_location" // string | The name of the asset type
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	assetTypeName := "weather_location" // string | The name of the asset type
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.GetAssetTypeByName(context.Background(), assetTypeName).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAssetTypeByName`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypeByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.GetAssetTypeByName(context.Background(), assetTypeName).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAssetTypeByName`: AssetType
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypeByName`: %v\n", resp)
 }
 ```
 
@@ -169,24 +169,24 @@ List of asset types
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.GetAssetTypes(context.Background()).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAssetTypes`: []AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.GetAssetTypes(context.Background()).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.GetAssetTypes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAssetTypes`: []AssetType
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.GetAssetTypes`: %v\n", resp)
 }
 ```
 
@@ -235,25 +235,25 @@ Create an asset type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.PostAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetType``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAssetType`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetType`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.PostAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetType``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAssetType`: AssetType
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetType`: %v\n", resp)
 }
 ```
 
@@ -303,25 +303,25 @@ Create asset type attribute
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetTypeName := "weather_location" // string | The name of the asset type
-    assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.DataSubtype("input")) // AssetTypeAttribute | 
+	assetTypeName := "weather_location" // string | The name of the asset type
+	assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.DataSubtype("input")) // AssetTypeAttribute | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.PostAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetTypeAttribute``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAssetTypeAttribute`: AssetTypeAttribute
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetTypeAttribute`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.PostAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PostAssetTypeAttribute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAssetTypeAttribute`: AssetTypeAttribute
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PostAssetTypeAttribute`: %v\n", resp)
 }
 ```
 
@@ -375,25 +375,25 @@ Create or update an asset type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.PutAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetType``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAssetType`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetType`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.PutAssetType(context.Background()).AssetType(assetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetType``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAssetType`: AssetType
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetType`: %v\n", resp)
 }
 ```
 
@@ -443,25 +443,25 @@ Create or update an asset type attribute
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetTypeName := "weather_location" // string | The name of the asset type
-    assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.DataSubtype("input")) // AssetTypeAttribute | 
+	assetTypeName := "weather_location" // string | The name of the asset type
+	assetTypeAttribute := *openapiclient.NewAssetTypeAttribute("temperature", openapiclient.DataSubtype("input")) // AssetTypeAttribute | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeAttribute``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAssetTypeAttribute`: AssetTypeAttribute
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeAttribute`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeAttribute(context.Background(), assetTypeName).AssetTypeAttribute(assetTypeAttribute).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeAttribute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAssetTypeAttribute`: AssetTypeAttribute
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeAttribute`: %v\n", resp)
 }
 ```
 
@@ -515,26 +515,26 @@ Update an asset type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetTypeName := "weather_location" // string | The name of the asset type
-    assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	assetTypeName := "weather_location" // string | The name of the asset type
+	assetType := *openapiclient.NewAssetType("weather_location") // AssetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeByName(context.Background(), assetTypeName).AssetType(assetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAssetTypeByName`: AssetType
-    fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetTypesAPI.PutAssetTypeByName(context.Background(), assetTypeName).AssetType(assetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetTypesAPI.PutAssetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAssetTypeByName`: AssetType
+	fmt.Fprintf(os.Stdout, "Response from `AssetTypesAPI.PutAssetTypeByName`: %v\n", resp)
 }
 ```
 

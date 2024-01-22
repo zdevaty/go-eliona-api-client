@@ -1,6 +1,6 @@
 # \TagsAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,24 +24,24 @@ Information about a tag
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    tagName := "Support" // string | The name of the tag
+	tagName := "Support" // string | The name of the tag
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TagsAPI.GetTagByName(context.Background(), tagName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.GetTagByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTagByName`: Tag
-    fmt.Fprintf(os.Stdout, "Response from `TagsAPI.GetTagByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TagsAPI.GetTagByName(context.Background(), tagName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.GetTagByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTagByName`: Tag
+	fmt.Fprintf(os.Stdout, "Response from `TagsAPI.GetTagByName`: %v\n", resp)
 }
 ```
 
@@ -94,23 +94,23 @@ Information about tags
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TagsAPI.GetTags(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.GetTags``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetTags`: []Tag
-    fmt.Fprintf(os.Stdout, "Response from `TagsAPI.GetTags`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TagsAPI.GetTags(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.GetTags``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTags`: []Tag
+	fmt.Fprintf(os.Stdout, "Response from `TagsAPI.GetTags`: %v\n", resp)
 }
 ```
 
@@ -155,24 +155,24 @@ Create or update a tag
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    tag := *openapiclient.NewTag("Support") // Tag | 
+	tag := *openapiclient.NewTag("Support") // Tag | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.TagsAPI.PutTag(context.Background()).Tag(tag).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.PutTag``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutTag`: Tag
-    fmt.Fprintf(os.Stdout, "Response from `TagsAPI.PutTag`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TagsAPI.PutTag(context.Background()).Tag(tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TagsAPI.PutTag``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutTag`: Tag
+	fmt.Fprintf(os.Stdout, "Response from `TagsAPI.PutTag`: %v\n", resp)
 }
 ```
 

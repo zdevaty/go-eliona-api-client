@@ -1,6 +1,6 @@
 # \AgentsAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,25 +37,25 @@ Information about an agent
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentId := int32(4711) // int32 | The id of the agent
-    agentClass := "iosys" // string | The class of an agent
+	agentId := int32(4711) // int32 | The id of the agent
+	agentClass := "iosys" // string | The class of an agent
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentByClassAndId(context.Background(), agentId, agentClass).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentByClassAndId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentByClassAndId`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentByClassAndId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentByClassAndId(context.Background(), agentId, agentClass).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentByClassAndId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentByClassAndId`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentByClassAndId`: %v\n", resp)
 }
 ```
 
@@ -110,25 +110,25 @@ Information about agent device
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceId := int32(4711) // int32 | The id of the device
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceId := int32(4711) // int32 | The id of the device
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentDeviceById(context.Background(), agentClass, agentDeviceId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentDeviceById`: []AgentDevice
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentDeviceById(context.Background(), agentClass, agentDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentDeviceById`: []AgentDevice
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceById`: %v\n", resp)
 }
 ```
 
@@ -183,25 +183,25 @@ Information about agent device mapping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceMappingId := int32(4711) // int32 | The id of the device mapping
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceMappingId := int32(4711) // int32 | The id of the device mapping
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentDeviceMappingById(context.Background(), agentClass, agentDeviceMappingId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceMappingById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentDeviceMappingById`: []AgentDeviceMapping
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceMappingById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentDeviceMappingById(context.Background(), agentClass, agentDeviceMappingId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceMappingById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentDeviceMappingById`: []AgentDeviceMapping
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceMappingById`: %v\n", resp)
 }
 ```
 
@@ -256,25 +256,25 @@ Information about agent device mappings
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceId := int32(4711) // int32 | The id of the device
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceId := int32(4711) // int32 | The id of the device
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentDeviceMappingsByDeviceId(context.Background(), agentClass, agentDeviceId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceMappingsByDeviceId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentDeviceMappingsByDeviceId`: []AgentDeviceMapping
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceMappingsByDeviceId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentDeviceMappingsByDeviceId(context.Background(), agentClass, agentDeviceId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDeviceMappingsByDeviceId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentDeviceMappingsByDeviceId`: []AgentDeviceMapping
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDeviceMappingsByDeviceId`: %v\n", resp)
 }
 ```
 
@@ -329,25 +329,25 @@ Information about agent devices
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentId := int32(4711) // int32 | The id of the agent
+	agentClass := "iosys" // string | The class of an agent
+	agentId := int32(4711) // int32 | The id of the agent
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentDevicesByAgentId(context.Background(), agentClass, agentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDevicesByAgentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentDevicesByAgentId`: []AgentDevice
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDevicesByAgentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentDevicesByAgentId(context.Background(), agentClass, agentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentDevicesByAgentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentDevicesByAgentId`: []AgentDevice
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentDevicesByAgentId`: %v\n", resp)
 }
 ```
 
@@ -402,23 +402,23 @@ Information about agents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgents(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgents`: []Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgents(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgents`: []Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgents`: %v\n", resp)
 }
 ```
 
@@ -463,24 +463,24 @@ Information about agents for a specific class
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
+	agentClass := "iosys" // string | The class of an agent
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.GetAgentsByClass(context.Background(), agentClass).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentsByClass``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAgentsByClass`: []Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentsByClass`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.GetAgentsByClass(context.Background(), agentClass).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.GetAgentsByClass``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAgentsByClass`: []Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.GetAgentsByClass`: %v\n", resp)
 }
 ```
 
@@ -533,25 +533,25 @@ Create an agent
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agent := *openapiclient.NewAgent() // Agent | 
+	agentClass := "iosys" // string | The class of an agent
+	agent := *openapiclient.NewAgent() // Agent | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PostAgentByClass(context.Background(), agentClass).Agent(agent).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentByClass``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAgentByClass`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentByClass`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PostAgentByClass(context.Background(), agentClass).Agent(agent).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentByClass``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAgentByClass`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentByClass`: %v\n", resp)
 }
 ```
 
@@ -605,26 +605,26 @@ Create an agent device
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentId := int32(4711) // int32 | The id of the agent
-    agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
+	agentClass := "iosys" // string | The class of an agent
+	agentId := int32(4711) // int32 | The id of the agent
+	agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PostAgentDeviceByAgentId(context.Background(), agentClass, agentId).AgentDevice(agentDevice).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentDeviceByAgentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAgentDeviceByAgentId`: AgentDevice
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentDeviceByAgentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PostAgentDeviceByAgentId(context.Background(), agentClass, agentId).AgentDevice(agentDevice).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentDeviceByAgentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAgentDeviceByAgentId`: AgentDevice
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentDeviceByAgentId`: %v\n", resp)
 }
 ```
 
@@ -680,26 +680,26 @@ Create an agent device mapping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceId := int32(4711) // int32 | The id of the device
-    agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceId := int32(4711) // int32 | The id of the device
+	agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PostAgentDeviceMappingByDeviceId(context.Background(), agentClass, agentDeviceId).AgentDeviceMapping(agentDeviceMapping).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentDeviceMappingByDeviceId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAgentDeviceMappingByDeviceId`: AgentDeviceMapping
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentDeviceMappingByDeviceId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PostAgentDeviceMappingByDeviceId(context.Background(), agentClass, agentDeviceId).AgentDeviceMapping(agentDeviceMapping).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PostAgentDeviceMappingByDeviceId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAgentDeviceMappingByDeviceId`: AgentDeviceMapping
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PostAgentDeviceMappingByDeviceId`: %v\n", resp)
 }
 ```
 
@@ -755,25 +755,25 @@ Create or update an agent
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agent := *openapiclient.NewAgent() // Agent | 
+	agentClass := "iosys" // string | The class of an agent
+	agent := *openapiclient.NewAgent() // Agent | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentByClass(context.Background(), agentClass).Agent(agent).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentByClass``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentByClass`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentByClass`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentByClass(context.Background(), agentClass).Agent(agent).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentByClass``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentByClass`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentByClass`: %v\n", resp)
 }
 ```
 
@@ -827,26 +827,26 @@ Update an agent
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentId := int32(4711) // int32 | The id of the agent
-    agentClass := "iosys" // string | The class of an agent
-    agent := *openapiclient.NewAgent() // Agent | 
+	agentId := int32(4711) // int32 | The id of the agent
+	agentClass := "iosys" // string | The class of an agent
+	agent := *openapiclient.NewAgent() // Agent | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentByClassAndId(context.Background(), agentId, agentClass).Agent(agent).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentByClassAndId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentByClassAndId`: Agent
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentByClassAndId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentByClassAndId(context.Background(), agentId, agentClass).Agent(agent).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentByClassAndId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentByClassAndId`: Agent
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentByClassAndId`: %v\n", resp)
 }
 ```
 
@@ -902,26 +902,26 @@ Create or update an agent device
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentId := int32(4711) // int32 | The id of the agent
-    agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
+	agentClass := "iosys" // string | The class of an agent
+	agentId := int32(4711) // int32 | The id of the agent
+	agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentDeviceByAgentId(context.Background(), agentClass, agentId).AgentDevice(agentDevice).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceByAgentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentDeviceByAgentId`: AgentDevice
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceByAgentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentDeviceByAgentId(context.Background(), agentClass, agentId).AgentDevice(agentDevice).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceByAgentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentDeviceByAgentId`: AgentDevice
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceByAgentId`: %v\n", resp)
 }
 ```
 
@@ -977,26 +977,26 @@ Update an agent device
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceId := int32(4711) // int32 | The id of the device
-    agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceId := int32(4711) // int32 | The id of the device
+	agentDevice := *openapiclient.NewAgentDevice() // AgentDevice | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentDeviceById(context.Background(), agentClass, agentDeviceId).AgentDevice(agentDevice).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentDeviceById`: AgentDevice
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentDeviceById(context.Background(), agentClass, agentDeviceId).AgentDevice(agentDevice).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentDeviceById`: AgentDevice
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceById`: %v\n", resp)
 }
 ```
 
@@ -1052,26 +1052,26 @@ Create or update an agent device mapping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceId := int32(4711) // int32 | The id of the device
-    agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceId := int32(4711) // int32 | The id of the device
+	agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentDeviceMappingByDeviceId(context.Background(), agentClass, agentDeviceId).AgentDeviceMapping(agentDeviceMapping).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceMappingByDeviceId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentDeviceMappingByDeviceId`: AgentDeviceMapping
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceMappingByDeviceId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentDeviceMappingByDeviceId(context.Background(), agentClass, agentDeviceId).AgentDeviceMapping(agentDeviceMapping).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceMappingByDeviceId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentDeviceMappingByDeviceId`: AgentDeviceMapping
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceMappingByDeviceId`: %v\n", resp)
 }
 ```
 
@@ -1127,26 +1127,26 @@ Update an agent device mapping
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    agentClass := "iosys" // string | The class of an agent
-    agentDeviceMappingId := int32(4711) // int32 | The id of the device mapping
-    agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
+	agentClass := "iosys" // string | The class of an agent
+	agentDeviceMappingId := int32(4711) // int32 | The id of the device mapping
+	agentDeviceMapping := *openapiclient.NewAgentDeviceMapping(openapiclient.DataSubtype("input"), "temperature") // AgentDeviceMapping | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AgentsAPI.PutAgentDeviceMappingById(context.Background(), agentClass, agentDeviceMappingId).AgentDeviceMapping(agentDeviceMapping).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceMappingById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAgentDeviceMappingById`: AgentDeviceMapping
-    fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceMappingById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AgentsAPI.PutAgentDeviceMappingById(context.Background(), agentClass, agentDeviceMappingId).AgentDeviceMapping(agentDeviceMapping).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AgentsAPI.PutAgentDeviceMappingById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAgentDeviceMappingById`: AgentDeviceMapping
+	fmt.Fprintf(os.Stdout, "Response from `AgentsAPI.PutAgentDeviceMappingById`: %v\n", resp)
 }
 ```
 

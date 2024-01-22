@@ -1,6 +1,6 @@
 # \QRCodesAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,24 +22,24 @@ QR code for assets
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    assetId := int32(4711) // int32 | The id of the asset
+	assetId := int32(4711) // int32 | The id of the asset
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.QRCodesAPI.GetQrCodeByAssetId(context.Background(), assetId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `QRCodesAPI.GetQrCodeByAssetId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetQrCodeByAssetId`: *os.File
-    fmt.Fprintf(os.Stdout, "Response from `QRCodesAPI.GetQrCodeByAssetId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.QRCodesAPI.GetQrCodeByAssetId(context.Background(), assetId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `QRCodesAPI.GetQrCodeByAssetId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetQrCodeByAssetId`: *os.File
+	fmt.Fprintf(os.Stdout, "Response from `QRCodesAPI.GetQrCodeByAssetId`: %v\n", resp)
 }
 ```
 

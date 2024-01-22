@@ -1,6 +1,6 @@
 # \WidgetsAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,25 +23,25 @@ Information about widgets on dashboard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    dashboardId := int32(4711) // int32 | The id of the dashboard
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	dashboardId := int32(4711) // int32 | The id of the dashboard
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsAPI.GetDashboardWidgets(context.Background(), dashboardId).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.GetDashboardWidgets``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetDashboardWidgets`: Widget
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsAPI.GetDashboardWidgets`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsAPI.GetDashboardWidgets(context.Background(), dashboardId).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.GetDashboardWidgets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDashboardWidgets`: Widget
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsAPI.GetDashboardWidgets`: %v\n", resp)
 }
 ```
 
@@ -95,24 +95,24 @@ Adds widget to dashboard
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    dashboardId := int32(4711) // int32 | The id of the dashboard
-    widget := *openapiclient.NewWidget("Weather") // Widget | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	dashboardId := int32(4711) // int32 | The id of the dashboard
+	widget := *openapiclient.NewWidget("Weather") // Widget | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.WidgetsAPI.PostDashboardWidget(context.Background(), dashboardId).Widget(widget).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.PostDashboardWidget``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WidgetsAPI.PostDashboardWidget(context.Background(), dashboardId).Widget(widget).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsAPI.PostDashboardWidget``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

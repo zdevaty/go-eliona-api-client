@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.7
+API version: 2.5.9
 Contact: hello@eliona.io
 */
 
@@ -648,10 +648,17 @@ type ApiPutBulkDataRequest struct {
 	ctx        context.Context
 	ApiService *DataAPIService
 	data       *[]Data
+	directMode *string
 }
 
 func (r ApiPutBulkDataRequest) Data(data []Data) ApiPutBulkDataRequest {
 	r.data = &data
+	return r
+}
+
+// Executes the operation directly without using other services.
+func (r ApiPutBulkDataRequest) DirectMode(directMode string) ApiPutBulkDataRequest {
+	r.directMode = &directMode
 	return r
 }
 
@@ -696,6 +703,9 @@ func (a *DataAPIService) PutBulkDataExecute(r ApiPutBulkDataRequest) (*http.Resp
 		return nil, reportError("data is required and must be specified")
 	}
 
+	if r.directMode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -761,10 +771,17 @@ type ApiPutDataRequest struct {
 	ctx        context.Context
 	ApiService *DataAPIService
 	data       *Data
+	directMode *string
 }
 
 func (r ApiPutDataRequest) Data(data Data) ApiPutDataRequest {
 	r.data = &data
+	return r
+}
+
+// Executes the operation directly without using other services.
+func (r ApiPutDataRequest) DirectMode(directMode string) ApiPutDataRequest {
+	r.directMode = &directMode
 	return r
 }
 
@@ -809,6 +826,9 @@ func (a *DataAPIService) PutDataExecute(r ApiPutDataRequest) (*http.Response, er
 		return nil, reportError("data is required and must be specified")
 	}
 
+	if r.directMode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

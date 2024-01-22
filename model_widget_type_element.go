@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.7
+API version: 2.5.9
 Contact: hello@eliona.io
 */
 
@@ -12,7 +12,9 @@ Contact: hello@eliona.io
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the WidgetTypeElement type satisfies the MappedNullable interface at compile time
@@ -29,6 +31,8 @@ type WidgetTypeElement struct {
 	// individual config parameters depending on category
 	Config map[string]interface{} `json:"config,omitempty"`
 }
+
+type _WidgetTypeElement WidgetTypeElement
 
 // NewWidgetTypeElement instantiates a new WidgetTypeElement object
 // This constructor will assign default values to properties that have it defined,
@@ -212,6 +216,43 @@ func (o WidgetTypeElement) ToMap() (map[string]interface{}, error) {
 		toSerialize["config"] = o.Config
 	}
 	return toSerialize, nil
+}
+
+func (o *WidgetTypeElement) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"category",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varWidgetTypeElement := _WidgetTypeElement{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varWidgetTypeElement)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WidgetTypeElement(varWidgetTypeElement)
+
+	return err
 }
 
 type NullableWidgetTypeElement struct {

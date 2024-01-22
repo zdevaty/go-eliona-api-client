@@ -1,6 +1,6 @@
 # \WidgetsTypesAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,22 +27,22 @@ Delete a widget type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    widgetTypeName := "weather" // string | The name of the widget type
+	widgetTypeName := "weather" // string | The name of the widget type
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.WidgetsTypesAPI.DeleteWidgetTypeByName(context.Background(), widgetTypeName).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.DeleteWidgetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WidgetsTypesAPI.DeleteWidgetTypeByName(context.Background(), widgetTypeName).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.DeleteWidgetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -95,25 +95,25 @@ Information about a widget type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    widgetTypeName := "weather" // string | The name of the widget type
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	widgetTypeName := "weather" // string | The name of the widget type
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypeByName(context.Background(), widgetTypeName).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWidgetTypeByName`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypeByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypeByName(context.Background(), widgetTypeName).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWidgetTypeByName`: WidgetType
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypeByName`: %v\n", resp)
 }
 ```
 
@@ -167,24 +167,24 @@ List of widget types
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypes(context.Background()).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypes``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetWidgetTypes`: []WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypes`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsTypesAPI.GetWidgetTypes(context.Background()).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.GetWidgetTypes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetWidgetTypes`: []WidgetType
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.GetWidgetTypes`: %v\n", resp)
 }
 ```
 
@@ -233,25 +233,25 @@ Create a widget type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesAPI.PostWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PostWidgetType``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostWidgetType`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PostWidgetType`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsTypesAPI.PostWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PostWidgetType``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostWidgetType`: WidgetType
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PostWidgetType`: %v\n", resp)
 }
 ```
 
@@ -301,25 +301,25 @@ Create or update a widget type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetType``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutWidgetType`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetType`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetType(context.Background()).WidgetType(widgetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetType``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutWidgetType`: WidgetType
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetType`: %v\n", resp)
 }
 ```
 
@@ -369,26 +369,26 @@ Update a widget type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    widgetTypeName := "weather" // string | The name of the widget type
-    widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	widgetTypeName := "weather" // string | The name of the widget type
+	widgetType := *openapiclient.NewWidgetType("weather", "TODO", []openapiclient.WidgetTypeElement{*openapiclient.NewWidgetTypeElement("weather")}) // WidgetType | 
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetTypeByName(context.Background(), widgetTypeName).WidgetType(widgetType).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetTypeByName``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutWidgetTypeByName`: WidgetType
-    fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetTypeByName`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WidgetsTypesAPI.PutWidgetTypeByName(context.Background(), widgetTypeName).WidgetType(widgetType).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WidgetsTypesAPI.PutWidgetTypeByName``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutWidgetTypeByName`: WidgetType
+	fmt.Fprintf(os.Stdout, "Response from `WidgetsTypesAPI.PutWidgetTypeByName`: %v\n", resp)
 }
 ```
 

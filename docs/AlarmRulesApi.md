@@ -1,6 +1,6 @@
 # \AlarmRulesAPI
 
-All URIs are relative to *https://api.eliona.io/v2*
+All URIs are relative to *https://name.eliona.io/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,22 +27,22 @@ Delete an alarm rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+	alarmRuleId := int32(4711) // int32 | The id of the alarm rule
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    r, err := apiClient.AlarmRulesAPI.DeleteAlarmRuleById(context.Background(), alarmRuleId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.DeleteAlarmRuleById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AlarmRulesAPI.DeleteAlarmRuleById(context.Background(), alarmRuleId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.DeleteAlarmRuleById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -95,25 +95,25 @@ Information about an alarm rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRuleId := int32(4711) // int32 | The id of the alarm rule
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRuleById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.GetAlarmRuleById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAlarmRuleById`: AlarmRule
-    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.GetAlarmRuleById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRuleById(context.Background(), alarmRuleId).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.GetAlarmRuleById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAlarmRuleById`: AlarmRule
+	fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.GetAlarmRuleById`: %v\n", resp)
 }
 ```
 
@@ -167,25 +167,25 @@ Information about alarm rules
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRuleIds := []int32{int32(123)} // []int32 | List of alarm rule ids for filtering (optional)
-    expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
+	alarmRuleIds := []int32{int32(123)} // []int32 | List of alarm rule ids for filtering (optional)
+	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRules(context.Background()).AlarmRuleIds(alarmRuleIds).Expansions(expansions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.GetAlarmRules``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetAlarmRules`: []AlarmRule
-    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.GetAlarmRules`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRules(context.Background()).AlarmRuleIds(alarmRuleIds).Expansions(expansions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.GetAlarmRules``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAlarmRules`: []AlarmRule
+	fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.GetAlarmRules`: %v\n", resp)
 }
 ```
 
@@ -235,24 +235,24 @@ Create an alarm rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+	alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmRulesAPI.PostAlarmRule(context.Background()).AlarmRule(alarmRule).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PostAlarmRule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostAlarmRule`: AlarmRule
-    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PostAlarmRule`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmRulesAPI.PostAlarmRule(context.Background()).AlarmRule(alarmRule).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PostAlarmRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostAlarmRule`: AlarmRule
+	fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PostAlarmRule`: %v\n", resp)
 }
 ```
 
@@ -301,24 +301,24 @@ Create or update an alarm rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+	alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmRulesAPI.PutAlarmRule(context.Background()).AlarmRule(alarmRule).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PutAlarmRule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAlarmRule`: AlarmRule
-    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PutAlarmRule`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmRulesAPI.PutAlarmRule(context.Background()).AlarmRule(alarmRule).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PutAlarmRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAlarmRule`: AlarmRule
+	fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PutAlarmRule`: %v\n", resp)
 }
 ```
 
@@ -367,25 +367,25 @@ Update an alarm rule
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 )
 
 func main() {
-    alarmRuleId := int32(4711) // int32 | The id of the alarm rule
-    alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
+	alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+	alarmRule := *openapiclient.NewAlarmRule(int32(4711), openapiclient.DataSubtype("input"), "temperature", openapiclient.AlarmPriority(1)) // AlarmRule | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AlarmRulesAPI.PutAlarmRuleById(context.Background(), alarmRuleId).AlarmRule(alarmRule).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PutAlarmRuleById``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutAlarmRuleById`: AlarmRule
-    fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PutAlarmRuleById`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmRulesAPI.PutAlarmRuleById(context.Background(), alarmRuleId).AlarmRule(alarmRule).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.PutAlarmRuleById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAlarmRuleById`: AlarmRule
+	fmt.Fprintf(os.Stdout, "Response from `AlarmRulesAPI.PutAlarmRuleById`: %v\n", resp)
 }
 ```
 

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.7
+API version: 2.5.9
 Contact: hello@eliona.io
 */
 
@@ -12,7 +12,9 @@ Contact: hello@eliona.io
 package api
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Patch type satisfies the MappedNullable interface at compile time
@@ -29,6 +31,8 @@ type Patch struct {
 	// Is the app already applied or not
 	Applied NullableBool `json:"applied,omitempty"`
 }
+
+type _Patch Patch
 
 // NewPatch instantiates a new Patch object
 // This constructor will assign default values to properties that have it defined,
@@ -202,6 +206,44 @@ func (o Patch) ToMap() (map[string]interface{}, error) {
 		toSerialize["applied"] = o.Applied.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *Patch) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"appName",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPatch := _Patch{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Patch(varPatch)
+
+	return err
 }
 
 type NullablePatch struct {
