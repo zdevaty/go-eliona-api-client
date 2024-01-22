@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **Urldoc** | Pointer to **NullableString** | The url describing the alarm | [optional] 
 **NotifyOn** | Pointer to **NullableString** | Notification | [optional] 
 **DontMask** | Pointer to **NullableBool** | Do not mask | [optional] [default to false]
-**CheckType** | Pointer to **NullableString** | Check type | [optional] [default to "limits"]
+**CheckType** | Pointer to **NullableString** | Check type | [optional] 
 **AssetInfo** | Pointer to [**NullableAsset**](Asset.md) |  | [optional] 
 
 ## Methods

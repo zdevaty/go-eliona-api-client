@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.9
+API version: 2.5.10
 Contact: hello@eliona.io
 */
 
@@ -75,8 +75,6 @@ func NewAlarmRule(assetId int32, subtype DataSubtype, attribute string, priority
 	this.RequiresAcknowledge = &requiresAcknowledge
 	var dontMask bool = false
 	this.DontMask = *NewNullableBool(&dontMask)
-	var checkType CHECK_TYPE = "limits"
-	this.CheckType = *NewNullableString(&checkType)
 	return &this
 }
 
@@ -93,8 +91,6 @@ func NewAlarmRuleWithDefaults() *AlarmRule {
 	this.RequiresAcknowledge = &requiresAcknowledge
 	var dontMask bool = false
 	this.DontMask = *NewNullableBool(&dontMask)
-	var checkType CHECK_TYPE = "limits"
-	this.CheckType = *NewNullableString(&checkType)
 	return &this
 }
 

@@ -10,4 +10,6 @@ docker run --rm ^
     -o /local ^
     --additional-properties="packageName=api"
 
-goimports -w *.go
+go mod tidy
+FOR /R %%f IN (*.go) DO (goimports -w "%%f")
+go vet ./...
