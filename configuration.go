@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.10
+API version: 2.6.0
 Contact: hello@eliona.io
 */
 
@@ -103,6 +103,26 @@ func NewConfiguration() *Configuration {
 					"environment": ServerVariable{
 						Description:  "Environment name to define the server URL",
 						DefaultValue: "name",
+					},
+				},
+			},
+			{
+				URL:         "https://{server}/v2",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"server": ServerVariable{
+						Description:  "Server of the API",
+						DefaultValue: "somewhere:3000",
+					},
+				},
+			},
+			{
+				URL:         "http://{server}/v2",
+				Description: "No description provided",
+				Variables: map[string]ServerVariable{
+					"server": ServerVariable{
+						Description:  "Server of the API",
+						DefaultValue: "localhost:3000",
 					},
 				},
 			},

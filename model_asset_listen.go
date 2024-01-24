@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the Asset type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Asset{}
+// checks if the AssetListen type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AssetListen{}
 
-// Asset An asset
-type Asset struct {
+// AssetListen struct for AssetListen
+type AssetListen struct {
 	// A custom identifier for the resource, which can be utilized to identify it for various operations such as updates, deletions, and other related tasks. If this identifier is not provided, the application will generate a new value for it automatically
 	ResourceId NullableString `json:"resourceId,omitempty"`
 	// The internal Id of asset
@@ -58,16 +58,18 @@ type Asset struct {
 	ChildrenInfo []Asset `json:"childrenInfo,omitempty"`
 	// A list of files attached to the asset
 	Attachments []Attachment `json:"attachments,omitempty"`
+	// The status code expecting when actually perform the operation. Some values are - 200: updated (ok)  - 201: created - 204: deleted (no content) - 304: unchanged (not modified) - 400: problem (bad request) - 404: not found - 409: duplicated (conflict) - 422: unprocessable
+	StatusCode *int32 `json:"statusCode,omitempty"`
 }
 
-type _Asset Asset
+type _AssetListen AssetListen
 
-// NewAsset instantiates a new Asset object
+// NewAssetListen instantiates a new AssetListen object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAsset(projectId string, globalAssetIdentifier string, assetType string) *Asset {
-	this := Asset{}
+func NewAssetListen(projectId string, globalAssetIdentifier string, assetType string) *AssetListen {
+	this := AssetListen{}
 	this.ProjectId = projectId
 	this.GlobalAssetIdentifier = globalAssetIdentifier
 	this.AssetType = assetType
@@ -76,18 +78,18 @@ func NewAsset(projectId string, globalAssetIdentifier string, assetType string) 
 	return &this
 }
 
-// NewAssetWithDefaults instantiates a new Asset object
+// NewAssetListenWithDefaults instantiates a new AssetListen object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAssetWithDefaults() *Asset {
-	this := Asset{}
+func NewAssetListenWithDefaults() *AssetListen {
+	this := AssetListen{}
 	var isTracker bool = false
 	this.IsTracker = *NewNullableBool(&isTracker)
 	return &this
 }
 
 // GetResourceId returns the ResourceId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetResourceId() string {
+func (o *AssetListen) GetResourceId() string {
 	if o == nil || IsNil(o.ResourceId.Get()) {
 		var ret string
 		return ret
@@ -98,7 +100,7 @@ func (o *Asset) GetResourceId() string {
 // GetResourceIdOk returns a tuple with the ResourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetResourceIdOk() (*string, bool) {
+func (o *AssetListen) GetResourceIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +108,7 @@ func (o *Asset) GetResourceIdOk() (*string, bool) {
 }
 
 // HasResourceId returns a boolean if a field has been set.
-func (o *Asset) HasResourceId() bool {
+func (o *AssetListen) HasResourceId() bool {
 	if o != nil && o.ResourceId.IsSet() {
 		return true
 	}
@@ -115,22 +117,22 @@ func (o *Asset) HasResourceId() bool {
 }
 
 // SetResourceId gets a reference to the given NullableString and assigns it to the ResourceId field.
-func (o *Asset) SetResourceId(v string) {
+func (o *AssetListen) SetResourceId(v string) {
 	o.ResourceId.Set(&v)
 }
 
 // SetResourceIdNil sets the value for ResourceId to be an explicit nil
-func (o *Asset) SetResourceIdNil() {
+func (o *AssetListen) SetResourceIdNil() {
 	o.ResourceId.Set(nil)
 }
 
 // UnsetResourceId ensures that no value is present for ResourceId, not even an explicit nil
-func (o *Asset) UnsetResourceId() {
+func (o *AssetListen) UnsetResourceId() {
 	o.ResourceId.Unset()
 }
 
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetId() int32 {
+func (o *AssetListen) GetId() int32 {
 	if o == nil || IsNil(o.Id.Get()) {
 		var ret int32
 		return ret
@@ -141,7 +143,7 @@ func (o *Asset) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetIdOk() (*int32, bool) {
+func (o *AssetListen) GetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -149,7 +151,7 @@ func (o *Asset) GetIdOk() (*int32, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Asset) HasId() bool {
+func (o *AssetListen) HasId() bool {
 	if o != nil && o.Id.IsSet() {
 		return true
 	}
@@ -158,22 +160,22 @@ func (o *Asset) HasId() bool {
 }
 
 // SetId gets a reference to the given NullableInt32 and assigns it to the Id field.
-func (o *Asset) SetId(v int32) {
+func (o *AssetListen) SetId(v int32) {
 	o.Id.Set(&v)
 }
 
 // SetIdNil sets the value for Id to be an explicit nil
-func (o *Asset) SetIdNil() {
+func (o *AssetListen) SetIdNil() {
 	o.Id.Set(nil)
 }
 
 // UnsetId ensures that no value is present for Id, not even an explicit nil
-func (o *Asset) UnsetId() {
+func (o *AssetListen) UnsetId() {
 	o.Id.Unset()
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetDeviceIds() []string {
+func (o *AssetListen) GetDeviceIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -184,7 +186,7 @@ func (o *Asset) GetDeviceIds() []string {
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetDeviceIdsOk() ([]string, bool) {
+func (o *AssetListen) GetDeviceIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DeviceIds) {
 		return nil, false
 	}
@@ -192,7 +194,7 @@ func (o *Asset) GetDeviceIdsOk() ([]string, bool) {
 }
 
 // HasDeviceIds returns a boolean if a field has been set.
-func (o *Asset) HasDeviceIds() bool {
+func (o *AssetListen) HasDeviceIds() bool {
 	if o != nil && IsNil(o.DeviceIds) {
 		return true
 	}
@@ -201,12 +203,12 @@ func (o *Asset) HasDeviceIds() bool {
 }
 
 // SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.
-func (o *Asset) SetDeviceIds(v []string) {
+func (o *AssetListen) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
 
 // GetProjectId returns the ProjectId field value
-func (o *Asset) GetProjectId() string {
+func (o *AssetListen) GetProjectId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -217,7 +219,7 @@ func (o *Asset) GetProjectId() string {
 
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
-func (o *Asset) GetProjectIdOk() (*string, bool) {
+func (o *AssetListen) GetProjectIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -225,12 +227,12 @@ func (o *Asset) GetProjectIdOk() (*string, bool) {
 }
 
 // SetProjectId sets field value
-func (o *Asset) SetProjectId(v string) {
+func (o *AssetListen) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
 // GetGlobalAssetIdentifier returns the GlobalAssetIdentifier field value
-func (o *Asset) GetGlobalAssetIdentifier() string {
+func (o *AssetListen) GetGlobalAssetIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -241,7 +243,7 @@ func (o *Asset) GetGlobalAssetIdentifier() string {
 
 // GetGlobalAssetIdentifierOk returns a tuple with the GlobalAssetIdentifier field value
 // and a boolean to check if the value has been set.
-func (o *Asset) GetGlobalAssetIdentifierOk() (*string, bool) {
+func (o *AssetListen) GetGlobalAssetIdentifierOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -249,12 +251,12 @@ func (o *Asset) GetGlobalAssetIdentifierOk() (*string, bool) {
 }
 
 // SetGlobalAssetIdentifier sets field value
-func (o *Asset) SetGlobalAssetIdentifier(v string) {
+func (o *AssetListen) SetGlobalAssetIdentifier(v string) {
 	o.GlobalAssetIdentifier = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetName() string {
+func (o *AssetListen) GetName() string {
 	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
@@ -265,7 +267,7 @@ func (o *Asset) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetNameOk() (*string, bool) {
+func (o *AssetListen) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -273,7 +275,7 @@ func (o *Asset) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *Asset) HasName() bool {
+func (o *AssetListen) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -282,22 +284,22 @@ func (o *Asset) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *Asset) SetName(v string) {
+func (o *AssetListen) SetName(v string) {
 	o.Name.Set(&v)
 }
 
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *Asset) SetNameNil() {
+func (o *AssetListen) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *Asset) UnsetName() {
+func (o *AssetListen) UnsetName() {
 	o.Name.Unset()
 }
 
 // GetAssetType returns the AssetType field value
-func (o *Asset) GetAssetType() string {
+func (o *AssetListen) GetAssetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -308,7 +310,7 @@ func (o *Asset) GetAssetType() string {
 
 // GetAssetTypeOk returns a tuple with the AssetType field value
 // and a boolean to check if the value has been set.
-func (o *Asset) GetAssetTypeOk() (*string, bool) {
+func (o *AssetListen) GetAssetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -316,12 +318,12 @@ func (o *Asset) GetAssetTypeOk() (*string, bool) {
 }
 
 // SetAssetType sets field value
-func (o *Asset) SetAssetType(v string) {
+func (o *AssetListen) SetAssetType(v string) {
 	o.AssetType = v
 }
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetLatitude() float64 {
+func (o *AssetListen) GetLatitude() float64 {
 	if o == nil || IsNil(o.Latitude.Get()) {
 		var ret float64
 		return ret
@@ -332,7 +334,7 @@ func (o *Asset) GetLatitude() float64 {
 // GetLatitudeOk returns a tuple with the Latitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetLatitudeOk() (*float64, bool) {
+func (o *AssetListen) GetLatitudeOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -340,7 +342,7 @@ func (o *Asset) GetLatitudeOk() (*float64, bool) {
 }
 
 // HasLatitude returns a boolean if a field has been set.
-func (o *Asset) HasLatitude() bool {
+func (o *AssetListen) HasLatitude() bool {
 	if o != nil && o.Latitude.IsSet() {
 		return true
 	}
@@ -349,22 +351,22 @@ func (o *Asset) HasLatitude() bool {
 }
 
 // SetLatitude gets a reference to the given NullableFloat64 and assigns it to the Latitude field.
-func (o *Asset) SetLatitude(v float64) {
+func (o *AssetListen) SetLatitude(v float64) {
 	o.Latitude.Set(&v)
 }
 
 // SetLatitudeNil sets the value for Latitude to be an explicit nil
-func (o *Asset) SetLatitudeNil() {
+func (o *AssetListen) SetLatitudeNil() {
 	o.Latitude.Set(nil)
 }
 
 // UnsetLatitude ensures that no value is present for Latitude, not even an explicit nil
-func (o *Asset) UnsetLatitude() {
+func (o *AssetListen) UnsetLatitude() {
 	o.Latitude.Unset()
 }
 
 // GetLongitude returns the Longitude field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetLongitude() float64 {
+func (o *AssetListen) GetLongitude() float64 {
 	if o == nil || IsNil(o.Longitude.Get()) {
 		var ret float64
 		return ret
@@ -375,7 +377,7 @@ func (o *Asset) GetLongitude() float64 {
 // GetLongitudeOk returns a tuple with the Longitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetLongitudeOk() (*float64, bool) {
+func (o *AssetListen) GetLongitudeOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -383,7 +385,7 @@ func (o *Asset) GetLongitudeOk() (*float64, bool) {
 }
 
 // HasLongitude returns a boolean if a field has been set.
-func (o *Asset) HasLongitude() bool {
+func (o *AssetListen) HasLongitude() bool {
 	if o != nil && o.Longitude.IsSet() {
 		return true
 	}
@@ -392,22 +394,22 @@ func (o *Asset) HasLongitude() bool {
 }
 
 // SetLongitude gets a reference to the given NullableFloat64 and assigns it to the Longitude field.
-func (o *Asset) SetLongitude(v float64) {
+func (o *AssetListen) SetLongitude(v float64) {
 	o.Longitude.Set(&v)
 }
 
 // SetLongitudeNil sets the value for Longitude to be an explicit nil
-func (o *Asset) SetLongitudeNil() {
+func (o *AssetListen) SetLongitudeNil() {
 	o.Longitude.Set(nil)
 }
 
 // UnsetLongitude ensures that no value is present for Longitude, not even an explicit nil
-func (o *Asset) UnsetLongitude() {
+func (o *AssetListen) UnsetLongitude() {
 	o.Longitude.Unset()
 }
 
 // GetIsTracker returns the IsTracker field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetIsTracker() bool {
+func (o *AssetListen) GetIsTracker() bool {
 	if o == nil || IsNil(o.IsTracker.Get()) {
 		var ret bool
 		return ret
@@ -418,7 +420,7 @@ func (o *Asset) GetIsTracker() bool {
 // GetIsTrackerOk returns a tuple with the IsTracker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetIsTrackerOk() (*bool, bool) {
+func (o *AssetListen) GetIsTrackerOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -426,7 +428,7 @@ func (o *Asset) GetIsTrackerOk() (*bool, bool) {
 }
 
 // HasIsTracker returns a boolean if a field has been set.
-func (o *Asset) HasIsTracker() bool {
+func (o *AssetListen) HasIsTracker() bool {
 	if o != nil && o.IsTracker.IsSet() {
 		return true
 	}
@@ -435,22 +437,22 @@ func (o *Asset) HasIsTracker() bool {
 }
 
 // SetIsTracker gets a reference to the given NullableBool and assigns it to the IsTracker field.
-func (o *Asset) SetIsTracker(v bool) {
+func (o *AssetListen) SetIsTracker(v bool) {
 	o.IsTracker.Set(&v)
 }
 
 // SetIsTrackerNil sets the value for IsTracker to be an explicit nil
-func (o *Asset) SetIsTrackerNil() {
+func (o *AssetListen) SetIsTrackerNil() {
 	o.IsTracker.Set(nil)
 }
 
 // UnsetIsTracker ensures that no value is present for IsTracker, not even an explicit nil
-func (o *Asset) UnsetIsTracker() {
+func (o *AssetListen) UnsetIsTracker() {
 	o.IsTracker.Unset()
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetDescription() string {
+func (o *AssetListen) GetDescription() string {
 	if o == nil || IsNil(o.Description.Get()) {
 		var ret string
 		return ret
@@ -461,7 +463,7 @@ func (o *Asset) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetDescriptionOk() (*string, bool) {
+func (o *AssetListen) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -469,7 +471,7 @@ func (o *Asset) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Asset) HasDescription() bool {
+func (o *AssetListen) HasDescription() bool {
 	if o != nil && o.Description.IsSet() {
 		return true
 	}
@@ -478,22 +480,22 @@ func (o *Asset) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *Asset) SetDescription(v string) {
+func (o *AssetListen) SetDescription(v string) {
 	o.Description.Set(&v)
 }
 
 // SetDescriptionNil sets the value for Description to be an explicit nil
-func (o *Asset) SetDescriptionNil() {
+func (o *AssetListen) SetDescriptionNil() {
 	o.Description.Set(nil)
 }
 
 // UnsetDescription ensures that no value is present for Description, not even an explicit nil
-func (o *Asset) UnsetDescription() {
+func (o *AssetListen) UnsetDescription() {
 	o.Description.Unset()
 }
 
 // GetParentFunctionalAssetId returns the ParentFunctionalAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetParentFunctionalAssetId() int32 {
+func (o *AssetListen) GetParentFunctionalAssetId() int32 {
 	if o == nil || IsNil(o.ParentFunctionalAssetId.Get()) {
 		var ret int32
 		return ret
@@ -504,7 +506,7 @@ func (o *Asset) GetParentFunctionalAssetId() int32 {
 // GetParentFunctionalAssetIdOk returns a tuple with the ParentFunctionalAssetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetParentFunctionalAssetIdOk() (*int32, bool) {
+func (o *AssetListen) GetParentFunctionalAssetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -512,7 +514,7 @@ func (o *Asset) GetParentFunctionalAssetIdOk() (*int32, bool) {
 }
 
 // HasParentFunctionalAssetId returns a boolean if a field has been set.
-func (o *Asset) HasParentFunctionalAssetId() bool {
+func (o *AssetListen) HasParentFunctionalAssetId() bool {
 	if o != nil && o.ParentFunctionalAssetId.IsSet() {
 		return true
 	}
@@ -521,22 +523,22 @@ func (o *Asset) HasParentFunctionalAssetId() bool {
 }
 
 // SetParentFunctionalAssetId gets a reference to the given NullableInt32 and assigns it to the ParentFunctionalAssetId field.
-func (o *Asset) SetParentFunctionalAssetId(v int32) {
+func (o *AssetListen) SetParentFunctionalAssetId(v int32) {
 	o.ParentFunctionalAssetId.Set(&v)
 }
 
 // SetParentFunctionalAssetIdNil sets the value for ParentFunctionalAssetId to be an explicit nil
-func (o *Asset) SetParentFunctionalAssetIdNil() {
+func (o *AssetListen) SetParentFunctionalAssetIdNil() {
 	o.ParentFunctionalAssetId.Set(nil)
 }
 
 // UnsetParentFunctionalAssetId ensures that no value is present for ParentFunctionalAssetId, not even an explicit nil
-func (o *Asset) UnsetParentFunctionalAssetId() {
+func (o *AssetListen) UnsetParentFunctionalAssetId() {
 	o.ParentFunctionalAssetId.Unset()
 }
 
 // GetFunctionalAssetIdPath returns the FunctionalAssetIdPath field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetFunctionalAssetIdPath() []int32 {
+func (o *AssetListen) GetFunctionalAssetIdPath() []int32 {
 	if o == nil {
 		var ret []int32
 		return ret
@@ -547,7 +549,7 @@ func (o *Asset) GetFunctionalAssetIdPath() []int32 {
 // GetFunctionalAssetIdPathOk returns a tuple with the FunctionalAssetIdPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetFunctionalAssetIdPathOk() ([]int32, bool) {
+func (o *AssetListen) GetFunctionalAssetIdPathOk() ([]int32, bool) {
 	if o == nil || IsNil(o.FunctionalAssetIdPath) {
 		return nil, false
 	}
@@ -555,7 +557,7 @@ func (o *Asset) GetFunctionalAssetIdPathOk() ([]int32, bool) {
 }
 
 // HasFunctionalAssetIdPath returns a boolean if a field has been set.
-func (o *Asset) HasFunctionalAssetIdPath() bool {
+func (o *AssetListen) HasFunctionalAssetIdPath() bool {
 	if o != nil && IsNil(o.FunctionalAssetIdPath) {
 		return true
 	}
@@ -564,12 +566,12 @@ func (o *Asset) HasFunctionalAssetIdPath() bool {
 }
 
 // SetFunctionalAssetIdPath gets a reference to the given []int32 and assigns it to the FunctionalAssetIdPath field.
-func (o *Asset) SetFunctionalAssetIdPath(v []int32) {
+func (o *AssetListen) SetFunctionalAssetIdPath(v []int32) {
 	o.FunctionalAssetIdPath = v
 }
 
 // GetParentLocationalAssetId returns the ParentLocationalAssetId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetParentLocationalAssetId() int32 {
+func (o *AssetListen) GetParentLocationalAssetId() int32 {
 	if o == nil || IsNil(o.ParentLocationalAssetId.Get()) {
 		var ret int32
 		return ret
@@ -580,7 +582,7 @@ func (o *Asset) GetParentLocationalAssetId() int32 {
 // GetParentLocationalAssetIdOk returns a tuple with the ParentLocationalAssetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetParentLocationalAssetIdOk() (*int32, bool) {
+func (o *AssetListen) GetParentLocationalAssetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -588,7 +590,7 @@ func (o *Asset) GetParentLocationalAssetIdOk() (*int32, bool) {
 }
 
 // HasParentLocationalAssetId returns a boolean if a field has been set.
-func (o *Asset) HasParentLocationalAssetId() bool {
+func (o *AssetListen) HasParentLocationalAssetId() bool {
 	if o != nil && o.ParentLocationalAssetId.IsSet() {
 		return true
 	}
@@ -597,22 +599,22 @@ func (o *Asset) HasParentLocationalAssetId() bool {
 }
 
 // SetParentLocationalAssetId gets a reference to the given NullableInt32 and assigns it to the ParentLocationalAssetId field.
-func (o *Asset) SetParentLocationalAssetId(v int32) {
+func (o *AssetListen) SetParentLocationalAssetId(v int32) {
 	o.ParentLocationalAssetId.Set(&v)
 }
 
 // SetParentLocationalAssetIdNil sets the value for ParentLocationalAssetId to be an explicit nil
-func (o *Asset) SetParentLocationalAssetIdNil() {
+func (o *AssetListen) SetParentLocationalAssetIdNil() {
 	o.ParentLocationalAssetId.Set(nil)
 }
 
 // UnsetParentLocationalAssetId ensures that no value is present for ParentLocationalAssetId, not even an explicit nil
-func (o *Asset) UnsetParentLocationalAssetId() {
+func (o *AssetListen) UnsetParentLocationalAssetId() {
 	o.ParentLocationalAssetId.Unset()
 }
 
 // GetLocationalAssetIdPath returns the LocationalAssetIdPath field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetLocationalAssetIdPath() []int32 {
+func (o *AssetListen) GetLocationalAssetIdPath() []int32 {
 	if o == nil {
 		var ret []int32
 		return ret
@@ -623,7 +625,7 @@ func (o *Asset) GetLocationalAssetIdPath() []int32 {
 // GetLocationalAssetIdPathOk returns a tuple with the LocationalAssetIdPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetLocationalAssetIdPathOk() ([]int32, bool) {
+func (o *AssetListen) GetLocationalAssetIdPathOk() ([]int32, bool) {
 	if o == nil || IsNil(o.LocationalAssetIdPath) {
 		return nil, false
 	}
@@ -631,7 +633,7 @@ func (o *Asset) GetLocationalAssetIdPathOk() ([]int32, bool) {
 }
 
 // HasLocationalAssetIdPath returns a boolean if a field has been set.
-func (o *Asset) HasLocationalAssetIdPath() bool {
+func (o *AssetListen) HasLocationalAssetIdPath() bool {
 	if o != nil && IsNil(o.LocationalAssetIdPath) {
 		return true
 	}
@@ -640,12 +642,12 @@ func (o *Asset) HasLocationalAssetIdPath() bool {
 }
 
 // SetLocationalAssetIdPath gets a reference to the given []int32 and assigns it to the LocationalAssetIdPath field.
-func (o *Asset) SetLocationalAssetIdPath(v []int32) {
+func (o *AssetListen) SetLocationalAssetIdPath(v []int32) {
 	o.LocationalAssetIdPath = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetTags() []string {
+func (o *AssetListen) GetTags() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -656,7 +658,7 @@ func (o *Asset) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetTagsOk() ([]string, bool) {
+func (o *AssetListen) GetTagsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -664,7 +666,7 @@ func (o *Asset) GetTagsOk() ([]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *Asset) HasTags() bool {
+func (o *AssetListen) HasTags() bool {
 	if o != nil && IsNil(o.Tags) {
 		return true
 	}
@@ -673,12 +675,12 @@ func (o *Asset) HasTags() bool {
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *Asset) SetTags(v []string) {
+func (o *AssetListen) SetTags(v []string) {
 	o.Tags = v
 }
 
 // GetChildrenInfo returns the ChildrenInfo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetChildrenInfo() []Asset {
+func (o *AssetListen) GetChildrenInfo() []Asset {
 	if o == nil {
 		var ret []Asset
 		return ret
@@ -689,7 +691,7 @@ func (o *Asset) GetChildrenInfo() []Asset {
 // GetChildrenInfoOk returns a tuple with the ChildrenInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetChildrenInfoOk() ([]Asset, bool) {
+func (o *AssetListen) GetChildrenInfoOk() ([]Asset, bool) {
 	if o == nil || IsNil(o.ChildrenInfo) {
 		return nil, false
 	}
@@ -697,7 +699,7 @@ func (o *Asset) GetChildrenInfoOk() ([]Asset, bool) {
 }
 
 // HasChildrenInfo returns a boolean if a field has been set.
-func (o *Asset) HasChildrenInfo() bool {
+func (o *AssetListen) HasChildrenInfo() bool {
 	if o != nil && IsNil(o.ChildrenInfo) {
 		return true
 	}
@@ -706,12 +708,12 @@ func (o *Asset) HasChildrenInfo() bool {
 }
 
 // SetChildrenInfo gets a reference to the given []Asset and assigns it to the ChildrenInfo field.
-func (o *Asset) SetChildrenInfo(v []Asset) {
+func (o *AssetListen) SetChildrenInfo(v []Asset) {
 	o.ChildrenInfo = v
 }
 
 // GetAttachments returns the Attachments field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Asset) GetAttachments() []Attachment {
+func (o *AssetListen) GetAttachments() []Attachment {
 	if o == nil {
 		var ret []Attachment
 		return ret
@@ -722,7 +724,7 @@ func (o *Asset) GetAttachments() []Attachment {
 // GetAttachmentsOk returns a tuple with the Attachments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Asset) GetAttachmentsOk() ([]Attachment, bool) {
+func (o *AssetListen) GetAttachmentsOk() ([]Attachment, bool) {
 	if o == nil || IsNil(o.Attachments) {
 		return nil, false
 	}
@@ -730,7 +732,7 @@ func (o *Asset) GetAttachmentsOk() ([]Attachment, bool) {
 }
 
 // HasAttachments returns a boolean if a field has been set.
-func (o *Asset) HasAttachments() bool {
+func (o *AssetListen) HasAttachments() bool {
 	if o != nil && IsNil(o.Attachments) {
 		return true
 	}
@@ -739,11 +741,43 @@ func (o *Asset) HasAttachments() bool {
 }
 
 // SetAttachments gets a reference to the given []Attachment and assigns it to the Attachments field.
-func (o *Asset) SetAttachments(v []Attachment) {
+func (o *AssetListen) SetAttachments(v []Attachment) {
 	o.Attachments = v
 }
 
-func (o Asset) MarshalJSON() ([]byte, error) {
+// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
+func (o *AssetListen) GetStatusCode() int32 {
+	if o == nil || IsNil(o.StatusCode) {
+		var ret int32
+		return ret
+	}
+	return *o.StatusCode
+}
+
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssetListen) GetStatusCodeOk() (*int32, bool) {
+	if o == nil || IsNil(o.StatusCode) {
+		return nil, false
+	}
+	return o.StatusCode, true
+}
+
+// HasStatusCode returns a boolean if a field has been set.
+func (o *AssetListen) HasStatusCode() bool {
+	if o != nil && !IsNil(o.StatusCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
+func (o *AssetListen) SetStatusCode(v int32) {
+	o.StatusCode = &v
+}
+
+func (o AssetListen) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -751,7 +785,7 @@ func (o Asset) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Asset) ToMap() (map[string]interface{}, error) {
+func (o AssetListen) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ResourceId.IsSet() {
 		toSerialize["resourceId"] = o.ResourceId.Get()
@@ -801,10 +835,13 @@ func (o Asset) ToMap() (map[string]interface{}, error) {
 	if o.Attachments != nil {
 		toSerialize["attachments"] = o.Attachments
 	}
+	if !IsNil(o.StatusCode) {
+		toSerialize["statusCode"] = o.StatusCode
+	}
 	return toSerialize, nil
 }
 
-func (o *Asset) UnmarshalJSON(data []byte) (err error) {
+func (o *AssetListen) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -828,53 +865,53 @@ func (o *Asset) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAsset := _Asset{}
+	varAssetListen := _AssetListen{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAsset)
+	err = decoder.Decode(&varAssetListen)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Asset(varAsset)
+	*o = AssetListen(varAssetListen)
 
 	return err
 }
 
-type NullableAsset struct {
-	value *Asset
+type NullableAssetListen struct {
+	value *AssetListen
 	isSet bool
 }
 
-func (v NullableAsset) Get() *Asset {
+func (v NullableAssetListen) Get() *AssetListen {
 	return v.value
 }
 
-func (v *NullableAsset) Set(val *Asset) {
+func (v *NullableAssetListen) Set(val *AssetListen) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAsset) IsSet() bool {
+func (v NullableAssetListen) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAsset) Unset() {
+func (v *NullableAssetListen) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAsset(val *Asset) *NullableAsset {
-	return &NullableAsset{value: val, isSet: true}
+func NewNullableAssetListen(val *AssetListen) *NullableAssetListen {
+	return &NullableAssetListen{value: val, isSet: true}
 }
 
-func (v NullableAsset) MarshalJSON() ([]byte, error) {
+func (v NullableAssetListen) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAsset) UnmarshalJSON(src []byte) error {
+func (v *NullableAssetListen) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

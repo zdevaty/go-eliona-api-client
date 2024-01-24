@@ -18,11 +18,11 @@ import (
 	"time"
 )
 
-// checks if the Alarm type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Alarm{}
+// checks if the AlarmListen type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AlarmListen{}
 
-// Alarm An alarm
-type Alarm struct {
+// AlarmListen struct for AlarmListen
+type AlarmListen struct {
 	// The id of the corresponding rule
 	RuleId NullableInt32 `json:"ruleId,omitempty"`
 	// ID of the corresponding asset
@@ -51,16 +51,18 @@ type Alarm struct {
 	Message   map[string]interface{} `json:"message,omitempty"`
 	AssetInfo NullableAsset          `json:"assetInfo,omitempty"`
 	RuleInfo  NullableAlarmRule      `json:"ruleInfo,omitempty"`
+	// The status code expecting when actually perform the operation. Some values are - 200: updated (ok)  - 201: created - 204: deleted (no content) - 304: unchanged (not modified) - 400: problem (bad request) - 404: not found - 409: duplicated (conflict) - 422: unprocessable
+	StatusCode *int32 `json:"statusCode,omitempty"`
 }
 
-type _Alarm Alarm
+type _AlarmListen AlarmListen
 
-// NewAlarm instantiates a new Alarm object
+// NewAlarmListen instantiates a new AlarmListen object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlarm(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32) *Alarm {
-	this := Alarm{}
+func NewAlarmListen(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32) *AlarmListen {
+	this := AlarmListen{}
 	this.AssetId = assetId
 	this.Subtype = subtype
 	this.Priority = priority
@@ -71,11 +73,11 @@ func NewAlarm(assetId int32, subtype DataSubtype, priority AlarmPriority, timest
 	return &this
 }
 
-// NewAlarmWithDefaults instantiates a new Alarm object
+// NewAlarmListenWithDefaults instantiates a new AlarmListen object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAlarmWithDefaults() *Alarm {
-	this := Alarm{}
+func NewAlarmListenWithDefaults() *AlarmListen {
+	this := AlarmListen{}
 	var subtype DataSubtype = SUBTYPE_INPUT
 	this.Subtype = subtype
 	var requiresAcknowledge bool = false
@@ -84,7 +86,7 @@ func NewAlarmWithDefaults() *Alarm {
 }
 
 // GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetRuleId() int32 {
+func (o *AlarmListen) GetRuleId() int32 {
 	if o == nil || IsNil(o.RuleId.Get()) {
 		var ret int32
 		return ret
@@ -95,7 +97,7 @@ func (o *Alarm) GetRuleId() int32 {
 // GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetRuleIdOk() (*int32, bool) {
+func (o *AlarmListen) GetRuleIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,7 +105,7 @@ func (o *Alarm) GetRuleIdOk() (*int32, bool) {
 }
 
 // HasRuleId returns a boolean if a field has been set.
-func (o *Alarm) HasRuleId() bool {
+func (o *AlarmListen) HasRuleId() bool {
 	if o != nil && o.RuleId.IsSet() {
 		return true
 	}
@@ -112,22 +114,22 @@ func (o *Alarm) HasRuleId() bool {
 }
 
 // SetRuleId gets a reference to the given NullableInt32 and assigns it to the RuleId field.
-func (o *Alarm) SetRuleId(v int32) {
+func (o *AlarmListen) SetRuleId(v int32) {
 	o.RuleId.Set(&v)
 }
 
 // SetRuleIdNil sets the value for RuleId to be an explicit nil
-func (o *Alarm) SetRuleIdNil() {
+func (o *AlarmListen) SetRuleIdNil() {
 	o.RuleId.Set(nil)
 }
 
 // UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
-func (o *Alarm) UnsetRuleId() {
+func (o *AlarmListen) UnsetRuleId() {
 	o.RuleId.Unset()
 }
 
 // GetAssetId returns the AssetId field value
-func (o *Alarm) GetAssetId() int32 {
+func (o *AlarmListen) GetAssetId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -138,7 +140,7 @@ func (o *Alarm) GetAssetId() int32 {
 
 // GetAssetIdOk returns a tuple with the AssetId field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetAssetIdOk() (*int32, bool) {
+func (o *AlarmListen) GetAssetIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -146,12 +148,12 @@ func (o *Alarm) GetAssetIdOk() (*int32, bool) {
 }
 
 // SetAssetId sets field value
-func (o *Alarm) SetAssetId(v int32) {
+func (o *AlarmListen) SetAssetId(v int32) {
 	o.AssetId = v
 }
 
 // GetSubtype returns the Subtype field value
-func (o *Alarm) GetSubtype() DataSubtype {
+func (o *AlarmListen) GetSubtype() DataSubtype {
 	if o == nil {
 		var ret DataSubtype
 		return ret
@@ -162,7 +164,7 @@ func (o *Alarm) GetSubtype() DataSubtype {
 
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetSubtypeOk() (*DataSubtype, bool) {
+func (o *AlarmListen) GetSubtypeOk() (*DataSubtype, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -170,12 +172,12 @@ func (o *Alarm) GetSubtypeOk() (*DataSubtype, bool) {
 }
 
 // SetSubtype sets field value
-func (o *Alarm) SetSubtype(v DataSubtype) {
+func (o *AlarmListen) SetSubtype(v DataSubtype) {
 	o.Subtype = v
 }
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetAttribute() string {
+func (o *AlarmListen) GetAttribute() string {
 	if o == nil || IsNil(o.Attribute.Get()) {
 		var ret string
 		return ret
@@ -186,7 +188,7 @@ func (o *Alarm) GetAttribute() string {
 // GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetAttributeOk() (*string, bool) {
+func (o *AlarmListen) GetAttributeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +196,7 @@ func (o *Alarm) GetAttributeOk() (*string, bool) {
 }
 
 // HasAttribute returns a boolean if a field has been set.
-func (o *Alarm) HasAttribute() bool {
+func (o *AlarmListen) HasAttribute() bool {
 	if o != nil && o.Attribute.IsSet() {
 		return true
 	}
@@ -203,22 +205,22 @@ func (o *Alarm) HasAttribute() bool {
 }
 
 // SetAttribute gets a reference to the given NullableString and assigns it to the Attribute field.
-func (o *Alarm) SetAttribute(v string) {
+func (o *AlarmListen) SetAttribute(v string) {
 	o.Attribute.Set(&v)
 }
 
 // SetAttributeNil sets the value for Attribute to be an explicit nil
-func (o *Alarm) SetAttributeNil() {
+func (o *AlarmListen) SetAttributeNil() {
 	o.Attribute.Set(nil)
 }
 
 // UnsetAttribute ensures that no value is present for Attribute, not even an explicit nil
-func (o *Alarm) UnsetAttribute() {
+func (o *AlarmListen) UnsetAttribute() {
 	o.Attribute.Unset()
 }
 
 // GetPriority returns the Priority field value
-func (o *Alarm) GetPriority() AlarmPriority {
+func (o *AlarmListen) GetPriority() AlarmPriority {
 	if o == nil {
 		var ret AlarmPriority
 		return ret
@@ -229,7 +231,7 @@ func (o *Alarm) GetPriority() AlarmPriority {
 
 // GetPriorityOk returns a tuple with the Priority field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetPriorityOk() (*AlarmPriority, bool) {
+func (o *AlarmListen) GetPriorityOk() (*AlarmPriority, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -237,12 +239,12 @@ func (o *Alarm) GetPriorityOk() (*AlarmPriority, bool) {
 }
 
 // SetPriority sets field value
-func (o *Alarm) SetPriority(v AlarmPriority) {
+func (o *AlarmListen) SetPriority(v AlarmPriority) {
 	o.Priority = v
 }
 
 // GetRequiresAcknowledge returns the RequiresAcknowledge field value if set, zero value otherwise.
-func (o *Alarm) GetRequiresAcknowledge() bool {
+func (o *AlarmListen) GetRequiresAcknowledge() bool {
 	if o == nil || IsNil(o.RequiresAcknowledge) {
 		var ret bool
 		return ret
@@ -252,7 +254,7 @@ func (o *Alarm) GetRequiresAcknowledge() bool {
 
 // GetRequiresAcknowledgeOk returns a tuple with the RequiresAcknowledge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetRequiresAcknowledgeOk() (*bool, bool) {
+func (o *AlarmListen) GetRequiresAcknowledgeOk() (*bool, bool) {
 	if o == nil || IsNil(o.RequiresAcknowledge) {
 		return nil, false
 	}
@@ -260,7 +262,7 @@ func (o *Alarm) GetRequiresAcknowledgeOk() (*bool, bool) {
 }
 
 // HasRequiresAcknowledge returns a boolean if a field has been set.
-func (o *Alarm) HasRequiresAcknowledge() bool {
+func (o *AlarmListen) HasRequiresAcknowledge() bool {
 	if o != nil && !IsNil(o.RequiresAcknowledge) {
 		return true
 	}
@@ -269,12 +271,12 @@ func (o *Alarm) HasRequiresAcknowledge() bool {
 }
 
 // SetRequiresAcknowledge gets a reference to the given bool and assigns it to the RequiresAcknowledge field.
-func (o *Alarm) SetRequiresAcknowledge(v bool) {
+func (o *AlarmListen) SetRequiresAcknowledge(v bool) {
 	o.RequiresAcknowledge = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetValue() float64 {
+func (o *AlarmListen) GetValue() float64 {
 	if o == nil || IsNil(o.Value.Get()) {
 		var ret float64
 		return ret
@@ -285,7 +287,7 @@ func (o *Alarm) GetValue() float64 {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetValueOk() (*float64, bool) {
+func (o *AlarmListen) GetValueOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -293,7 +295,7 @@ func (o *Alarm) GetValueOk() (*float64, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *Alarm) HasValue() bool {
+func (o *AlarmListen) HasValue() bool {
 	if o != nil && o.Value.IsSet() {
 		return true
 	}
@@ -302,22 +304,22 @@ func (o *Alarm) HasValue() bool {
 }
 
 // SetValue gets a reference to the given NullableFloat64 and assigns it to the Value field.
-func (o *Alarm) SetValue(v float64) {
+func (o *AlarmListen) SetValue(v float64) {
 	o.Value.Set(&v)
 }
 
 // SetValueNil sets the value for Value to be an explicit nil
-func (o *Alarm) SetValueNil() {
+func (o *AlarmListen) SetValueNil() {
 	o.Value.Set(nil)
 }
 
 // UnsetValue ensures that no value is present for Value, not even an explicit nil
-func (o *Alarm) UnsetValue() {
+func (o *AlarmListen) UnsetValue() {
 	o.Value.Unset()
 }
 
 // GetTimestamp returns the Timestamp field value
-func (o *Alarm) GetTimestamp() time.Time {
+func (o *AlarmListen) GetTimestamp() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -328,7 +330,7 @@ func (o *Alarm) GetTimestamp() time.Time {
 
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetTimestampOk() (*time.Time, bool) {
+func (o *AlarmListen) GetTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -336,12 +338,12 @@ func (o *Alarm) GetTimestampOk() (*time.Time, bool) {
 }
 
 // SetTimestamp sets field value
-func (o *Alarm) SetTimestamp(v time.Time) {
+func (o *AlarmListen) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
 // GetGoneTimestamp returns the GoneTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetGoneTimestamp() time.Time {
+func (o *AlarmListen) GetGoneTimestamp() time.Time {
 	if o == nil || IsNil(o.GoneTimestamp.Get()) {
 		var ret time.Time
 		return ret
@@ -352,7 +354,7 @@ func (o *Alarm) GetGoneTimestamp() time.Time {
 // GetGoneTimestampOk returns a tuple with the GoneTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetGoneTimestampOk() (*time.Time, bool) {
+func (o *AlarmListen) GetGoneTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -360,7 +362,7 @@ func (o *Alarm) GetGoneTimestampOk() (*time.Time, bool) {
 }
 
 // HasGoneTimestamp returns a boolean if a field has been set.
-func (o *Alarm) HasGoneTimestamp() bool {
+func (o *AlarmListen) HasGoneTimestamp() bool {
 	if o != nil && o.GoneTimestamp.IsSet() {
 		return true
 	}
@@ -369,22 +371,22 @@ func (o *Alarm) HasGoneTimestamp() bool {
 }
 
 // SetGoneTimestamp gets a reference to the given NullableTime and assigns it to the GoneTimestamp field.
-func (o *Alarm) SetGoneTimestamp(v time.Time) {
+func (o *AlarmListen) SetGoneTimestamp(v time.Time) {
 	o.GoneTimestamp.Set(&v)
 }
 
 // SetGoneTimestampNil sets the value for GoneTimestamp to be an explicit nil
-func (o *Alarm) SetGoneTimestampNil() {
+func (o *AlarmListen) SetGoneTimestampNil() {
 	o.GoneTimestamp.Set(nil)
 }
 
 // UnsetGoneTimestamp ensures that no value is present for GoneTimestamp, not even an explicit nil
-func (o *Alarm) UnsetGoneTimestamp() {
+func (o *AlarmListen) UnsetGoneTimestamp() {
 	o.GoneTimestamp.Unset()
 }
 
 // GetAcknowledgeTimestamp returns the AcknowledgeTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetAcknowledgeTimestamp() time.Time {
+func (o *AlarmListen) GetAcknowledgeTimestamp() time.Time {
 	if o == nil || IsNil(o.AcknowledgeTimestamp.Get()) {
 		var ret time.Time
 		return ret
@@ -395,7 +397,7 @@ func (o *Alarm) GetAcknowledgeTimestamp() time.Time {
 // GetAcknowledgeTimestampOk returns a tuple with the AcknowledgeTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetAcknowledgeTimestampOk() (*time.Time, bool) {
+func (o *AlarmListen) GetAcknowledgeTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -403,7 +405,7 @@ func (o *Alarm) GetAcknowledgeTimestampOk() (*time.Time, bool) {
 }
 
 // HasAcknowledgeTimestamp returns a boolean if a field has been set.
-func (o *Alarm) HasAcknowledgeTimestamp() bool {
+func (o *AlarmListen) HasAcknowledgeTimestamp() bool {
 	if o != nil && o.AcknowledgeTimestamp.IsSet() {
 		return true
 	}
@@ -412,22 +414,22 @@ func (o *Alarm) HasAcknowledgeTimestamp() bool {
 }
 
 // SetAcknowledgeTimestamp gets a reference to the given NullableTime and assigns it to the AcknowledgeTimestamp field.
-func (o *Alarm) SetAcknowledgeTimestamp(v time.Time) {
+func (o *AlarmListen) SetAcknowledgeTimestamp(v time.Time) {
 	o.AcknowledgeTimestamp.Set(&v)
 }
 
 // SetAcknowledgeTimestampNil sets the value for AcknowledgeTimestamp to be an explicit nil
-func (o *Alarm) SetAcknowledgeTimestampNil() {
+func (o *AlarmListen) SetAcknowledgeTimestampNil() {
 	o.AcknowledgeTimestamp.Set(nil)
 }
 
 // UnsetAcknowledgeTimestamp ensures that no value is present for AcknowledgeTimestamp, not even an explicit nil
-func (o *Alarm) UnsetAcknowledgeTimestamp() {
+func (o *AlarmListen) UnsetAcknowledgeTimestamp() {
 	o.AcknowledgeTimestamp.Unset()
 }
 
 // GetOccurrences returns the Occurrences field value
-func (o *Alarm) GetOccurrences() int32 {
+func (o *AlarmListen) GetOccurrences() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -438,7 +440,7 @@ func (o *Alarm) GetOccurrences() int32 {
 
 // GetOccurrencesOk returns a tuple with the Occurrences field value
 // and a boolean to check if the value has been set.
-func (o *Alarm) GetOccurrencesOk() (*int32, bool) {
+func (o *AlarmListen) GetOccurrencesOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -446,12 +448,12 @@ func (o *Alarm) GetOccurrencesOk() (*int32, bool) {
 }
 
 // SetOccurrences sets field value
-func (o *Alarm) SetOccurrences(v int32) {
+func (o *AlarmListen) SetOccurrences(v int32) {
 	o.Occurrences = v
 }
 
 // GetAcknowledgeText returns the AcknowledgeText field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetAcknowledgeText() string {
+func (o *AlarmListen) GetAcknowledgeText() string {
 	if o == nil || IsNil(o.AcknowledgeText.Get()) {
 		var ret string
 		return ret
@@ -462,7 +464,7 @@ func (o *Alarm) GetAcknowledgeText() string {
 // GetAcknowledgeTextOk returns a tuple with the AcknowledgeText field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetAcknowledgeTextOk() (*string, bool) {
+func (o *AlarmListen) GetAcknowledgeTextOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -470,7 +472,7 @@ func (o *Alarm) GetAcknowledgeTextOk() (*string, bool) {
 }
 
 // HasAcknowledgeText returns a boolean if a field has been set.
-func (o *Alarm) HasAcknowledgeText() bool {
+func (o *AlarmListen) HasAcknowledgeText() bool {
 	if o != nil && o.AcknowledgeText.IsSet() {
 		return true
 	}
@@ -479,22 +481,22 @@ func (o *Alarm) HasAcknowledgeText() bool {
 }
 
 // SetAcknowledgeText gets a reference to the given NullableString and assigns it to the AcknowledgeText field.
-func (o *Alarm) SetAcknowledgeText(v string) {
+func (o *AlarmListen) SetAcknowledgeText(v string) {
 	o.AcknowledgeText.Set(&v)
 }
 
 // SetAcknowledgeTextNil sets the value for AcknowledgeText to be an explicit nil
-func (o *Alarm) SetAcknowledgeTextNil() {
+func (o *AlarmListen) SetAcknowledgeTextNil() {
 	o.AcknowledgeText.Set(nil)
 }
 
 // UnsetAcknowledgeText ensures that no value is present for AcknowledgeText, not even an explicit nil
-func (o *Alarm) UnsetAcknowledgeText() {
+func (o *AlarmListen) UnsetAcknowledgeText() {
 	o.AcknowledgeText.Unset()
 }
 
 // GetAcknowledgeUserId returns the AcknowledgeUserId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetAcknowledgeUserId() string {
+func (o *AlarmListen) GetAcknowledgeUserId() string {
 	if o == nil || IsNil(o.AcknowledgeUserId.Get()) {
 		var ret string
 		return ret
@@ -505,7 +507,7 @@ func (o *Alarm) GetAcknowledgeUserId() string {
 // GetAcknowledgeUserIdOk returns a tuple with the AcknowledgeUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetAcknowledgeUserIdOk() (*string, bool) {
+func (o *AlarmListen) GetAcknowledgeUserIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -513,7 +515,7 @@ func (o *Alarm) GetAcknowledgeUserIdOk() (*string, bool) {
 }
 
 // HasAcknowledgeUserId returns a boolean if a field has been set.
-func (o *Alarm) HasAcknowledgeUserId() bool {
+func (o *AlarmListen) HasAcknowledgeUserId() bool {
 	if o != nil && o.AcknowledgeUserId.IsSet() {
 		return true
 	}
@@ -522,22 +524,22 @@ func (o *Alarm) HasAcknowledgeUserId() bool {
 }
 
 // SetAcknowledgeUserId gets a reference to the given NullableString and assigns it to the AcknowledgeUserId field.
-func (o *Alarm) SetAcknowledgeUserId(v string) {
+func (o *AlarmListen) SetAcknowledgeUserId(v string) {
 	o.AcknowledgeUserId.Set(&v)
 }
 
 // SetAcknowledgeUserIdNil sets the value for AcknowledgeUserId to be an explicit nil
-func (o *Alarm) SetAcknowledgeUserIdNil() {
+func (o *AlarmListen) SetAcknowledgeUserIdNil() {
 	o.AcknowledgeUserId.Set(nil)
 }
 
 // UnsetAcknowledgeUserId ensures that no value is present for AcknowledgeUserId, not even an explicit nil
-func (o *Alarm) UnsetAcknowledgeUserId() {
+func (o *AlarmListen) UnsetAcknowledgeUserId() {
 	o.AcknowledgeUserId.Unset()
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetMessage() map[string]interface{} {
+func (o *AlarmListen) GetMessage() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
@@ -548,7 +550,7 @@ func (o *Alarm) GetMessage() map[string]interface{} {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetMessageOk() (map[string]interface{}, bool) {
+func (o *AlarmListen) GetMessageOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Message) {
 		return map[string]interface{}{}, false
 	}
@@ -556,7 +558,7 @@ func (o *Alarm) GetMessageOk() (map[string]interface{}, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *Alarm) HasMessage() bool {
+func (o *AlarmListen) HasMessage() bool {
 	if o != nil && IsNil(o.Message) {
 		return true
 	}
@@ -565,12 +567,12 @@ func (o *Alarm) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given map[string]interface{} and assigns it to the Message field.
-func (o *Alarm) SetMessage(v map[string]interface{}) {
+func (o *AlarmListen) SetMessage(v map[string]interface{}) {
 	o.Message = v
 }
 
 // GetAssetInfo returns the AssetInfo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetAssetInfo() Asset {
+func (o *AlarmListen) GetAssetInfo() Asset {
 	if o == nil || IsNil(o.AssetInfo.Get()) {
 		var ret Asset
 		return ret
@@ -581,7 +583,7 @@ func (o *Alarm) GetAssetInfo() Asset {
 // GetAssetInfoOk returns a tuple with the AssetInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetAssetInfoOk() (*Asset, bool) {
+func (o *AlarmListen) GetAssetInfoOk() (*Asset, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -589,7 +591,7 @@ func (o *Alarm) GetAssetInfoOk() (*Asset, bool) {
 }
 
 // HasAssetInfo returns a boolean if a field has been set.
-func (o *Alarm) HasAssetInfo() bool {
+func (o *AlarmListen) HasAssetInfo() bool {
 	if o != nil && o.AssetInfo.IsSet() {
 		return true
 	}
@@ -598,22 +600,22 @@ func (o *Alarm) HasAssetInfo() bool {
 }
 
 // SetAssetInfo gets a reference to the given NullableAsset and assigns it to the AssetInfo field.
-func (o *Alarm) SetAssetInfo(v Asset) {
+func (o *AlarmListen) SetAssetInfo(v Asset) {
 	o.AssetInfo.Set(&v)
 }
 
 // SetAssetInfoNil sets the value for AssetInfo to be an explicit nil
-func (o *Alarm) SetAssetInfoNil() {
+func (o *AlarmListen) SetAssetInfoNil() {
 	o.AssetInfo.Set(nil)
 }
 
 // UnsetAssetInfo ensures that no value is present for AssetInfo, not even an explicit nil
-func (o *Alarm) UnsetAssetInfo() {
+func (o *AlarmListen) UnsetAssetInfo() {
 	o.AssetInfo.Unset()
 }
 
 // GetRuleInfo returns the RuleInfo field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Alarm) GetRuleInfo() AlarmRule {
+func (o *AlarmListen) GetRuleInfo() AlarmRule {
 	if o == nil || IsNil(o.RuleInfo.Get()) {
 		var ret AlarmRule
 		return ret
@@ -624,7 +626,7 @@ func (o *Alarm) GetRuleInfo() AlarmRule {
 // GetRuleInfoOk returns a tuple with the RuleInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Alarm) GetRuleInfoOk() (*AlarmRule, bool) {
+func (o *AlarmListen) GetRuleInfoOk() (*AlarmRule, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -632,7 +634,7 @@ func (o *Alarm) GetRuleInfoOk() (*AlarmRule, bool) {
 }
 
 // HasRuleInfo returns a boolean if a field has been set.
-func (o *Alarm) HasRuleInfo() bool {
+func (o *AlarmListen) HasRuleInfo() bool {
 	if o != nil && o.RuleInfo.IsSet() {
 		return true
 	}
@@ -641,21 +643,53 @@ func (o *Alarm) HasRuleInfo() bool {
 }
 
 // SetRuleInfo gets a reference to the given NullableAlarmRule and assigns it to the RuleInfo field.
-func (o *Alarm) SetRuleInfo(v AlarmRule) {
+func (o *AlarmListen) SetRuleInfo(v AlarmRule) {
 	o.RuleInfo.Set(&v)
 }
 
 // SetRuleInfoNil sets the value for RuleInfo to be an explicit nil
-func (o *Alarm) SetRuleInfoNil() {
+func (o *AlarmListen) SetRuleInfoNil() {
 	o.RuleInfo.Set(nil)
 }
 
 // UnsetRuleInfo ensures that no value is present for RuleInfo, not even an explicit nil
-func (o *Alarm) UnsetRuleInfo() {
+func (o *AlarmListen) UnsetRuleInfo() {
 	o.RuleInfo.Unset()
 }
 
-func (o Alarm) MarshalJSON() ([]byte, error) {
+// GetStatusCode returns the StatusCode field value if set, zero value otherwise.
+func (o *AlarmListen) GetStatusCode() int32 {
+	if o == nil || IsNil(o.StatusCode) {
+		var ret int32
+		return ret
+	}
+	return *o.StatusCode
+}
+
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AlarmListen) GetStatusCodeOk() (*int32, bool) {
+	if o == nil || IsNil(o.StatusCode) {
+		return nil, false
+	}
+	return o.StatusCode, true
+}
+
+// HasStatusCode returns a boolean if a field has been set.
+func (o *AlarmListen) HasStatusCode() bool {
+	if o != nil && !IsNil(o.StatusCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
+func (o *AlarmListen) SetStatusCode(v int32) {
+	o.StatusCode = &v
+}
+
+func (o AlarmListen) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -663,7 +697,7 @@ func (o Alarm) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Alarm) ToMap() (map[string]interface{}, error) {
+func (o AlarmListen) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.RuleId.IsSet() {
 		toSerialize["ruleId"] = o.RuleId.Get()
@@ -703,10 +737,13 @@ func (o Alarm) ToMap() (map[string]interface{}, error) {
 	if o.RuleInfo.IsSet() {
 		toSerialize["ruleInfo"] = o.RuleInfo.Get()
 	}
+	if !IsNil(o.StatusCode) {
+		toSerialize["statusCode"] = o.StatusCode
+	}
 	return toSerialize, nil
 }
 
-func (o *Alarm) UnmarshalJSON(data []byte) (err error) {
+func (o *AlarmListen) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -732,53 +769,53 @@ func (o *Alarm) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAlarm := _Alarm{}
+	varAlarmListen := _AlarmListen{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlarm)
+	err = decoder.Decode(&varAlarmListen)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Alarm(varAlarm)
+	*o = AlarmListen(varAlarmListen)
 
 	return err
 }
 
-type NullableAlarm struct {
-	value *Alarm
+type NullableAlarmListen struct {
+	value *AlarmListen
 	isSet bool
 }
 
-func (v NullableAlarm) Get() *Alarm {
+func (v NullableAlarmListen) Get() *AlarmListen {
 	return v.value
 }
 
-func (v *NullableAlarm) Set(val *Alarm) {
+func (v *NullableAlarmListen) Set(val *AlarmListen) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAlarm) IsSet() bool {
+func (v NullableAlarmListen) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAlarm) Unset() {
+func (v *NullableAlarmListen) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAlarm(val *Alarm) *NullableAlarm {
-	return &NullableAlarm{value: val, isSet: true}
+func NewNullableAlarmListen(val *AlarmListen) *NullableAlarmListen {
+	return &NullableAlarmListen{value: val, isSet: true}
 }
 
-func (v NullableAlarm) MarshalJSON() ([]byte, error) {
+func (v NullableAlarmListen) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAlarm) UnmarshalJSON(src []byte) error {
+func (v *NullableAlarmListen) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ## ListenAlarm
 
-> Alarm ListenAlarm(ctx).Execute()
+> AlarmListen ListenAlarm(ctx).Execute()
 
 WebSocket connection for alarm changes
 
@@ -391,7 +391,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.ListenAlarm``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListenAlarm`: Alarm
+	// response from `ListenAlarm`: AlarmListen
 	fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.ListenAlarm`: %v\n", resp)
 }
 ```
@@ -407,7 +407,7 @@ Other parameters are passed through a pointer to a apiListenAlarmRequest struct 
 
 ### Return type
 
-[**Alarm**](Alarm.md)
+[**AlarmListen**](AlarmListen.md)
 
 ### Authorization
 

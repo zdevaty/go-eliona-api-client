@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | **string** | E-Mail address of the Eliona user | 
+**User** | **string** | E-Mail address or internal ID of the Eliona user | 
 **ProjectId** | Pointer to **NullableString** | ID of the project the notification should appear | [optional] 
 **Message** | [**NullableTranslation**](Translation.md) |  | 
 

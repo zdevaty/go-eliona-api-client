@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**GetAssetById**](AssetsAPI.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
 [**GetAssets**](AssetsAPI.md#GetAssets) | **Get** /assets | Information about assets
 [**GetAttributeDisplay**](AssetsAPI.md#GetAttributeDisplay) | **Get** /attribute-display | How attributes are displayed
+[**ListenAssets**](AssetsAPI.md#ListenAssets) | **Get** /asset-listener | WebSocket connection for asset changes
 [**PostAsset**](AssetsAPI.md#PostAsset) | **Post** /assets | Create an asset
 [**PostBulkAssets**](AssetsAPI.md#PostBulkAssets) | **Post** /assets-bulk | Create a list of assets
 [**PutAsset**](AssetsAPI.md#PutAsset) | **Put** /assets | Create or update an asset
@@ -555,6 +556,76 @@ Other parameters are passed through a pointer to a apiGetAttributeDisplayRequest
 ### Return type
 
 [**AttributeDisplay**](AttributeDisplay.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListenAssets
+
+> AssetListen ListenAssets(ctx).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
+
+WebSocket connection for asset changes
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
+	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
+	tag := "building" // string | Filter the tag (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AssetsAPI.ListenAssets(context.Background()).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.ListenAssets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListenAssets`: AssetListen
+	fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.ListenAssets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListenAssetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **assetId** | **int32** | Filter for a specific asset id | 
+ **assetTypeName** | **string** | Filter the name of the asset type | 
+ **tag** | **string** | Filter the tag | 
+
+### Return type
+
+[**AssetListen**](AssetListen.md)
 
 ### Authorization
 
