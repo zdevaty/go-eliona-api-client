@@ -133,7 +133,7 @@ Class | Method | HTTP request | Description
 *AssetsAPI* | [**GetAssetById**](docs/AssetsAPI.md#getassetbyid) | **Get** /assets/{asset-id} | Information about an asset
 *AssetsAPI* | [**GetAssets**](docs/AssetsAPI.md#getassets) | **Get** /assets | Information about assets
 *AssetsAPI* | [**GetAttributeDisplay**](docs/AssetsAPI.md#getattributedisplay) | **Get** /attribute-display | How attributes are displayed
-*AssetsAPI* | [**ListenAssets**](docs/AssetsAPI.md#listenassets) | **Get** /asset-listener | WebSocket connection for asset changes
+*AssetsAPI* | [**ListenAsset**](docs/AssetsAPI.md#listenasset) | **Get** /asset-listener | WebSocket connection for asset changes
 *AssetsAPI* | [**PostAsset**](docs/AssetsAPI.md#postasset) | **Post** /assets | Create an asset
 *AssetsAPI* | [**PostBulkAssets**](docs/AssetsAPI.md#postbulkassets) | **Post** /assets-bulk | Create a list of assets
 *AssetsAPI* | [**PutAsset**](docs/AssetsAPI.md#putasset) | **Put** /assets | Create or update an asset

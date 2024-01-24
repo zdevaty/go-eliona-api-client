@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**GetAssetById**](AssetsAPI.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
 [**GetAssets**](AssetsAPI.md#GetAssets) | **Get** /assets | Information about assets
 [**GetAttributeDisplay**](AssetsAPI.md#GetAttributeDisplay) | **Get** /attribute-display | How attributes are displayed
-[**ListenAssets**](AssetsAPI.md#ListenAssets) | **Get** /asset-listener | WebSocket connection for asset changes
+[**ListenAsset**](AssetsAPI.md#ListenAsset) | **Get** /asset-listener | WebSocket connection for asset changes
 [**PostAsset**](AssetsAPI.md#PostAsset) | **Post** /assets | Create an asset
 [**PostBulkAssets**](AssetsAPI.md#PostBulkAssets) | **Post** /assets-bulk | Create a list of assets
 [**PutAsset**](AssetsAPI.md#PutAsset) | **Put** /assets | Create or update an asset
@@ -571,9 +571,9 @@ Other parameters are passed through a pointer to a apiGetAttributeDisplayRequest
 [[Back to README]](../README.md)
 
 
-## ListenAssets
+## ListenAsset
 
-> AssetListen ListenAssets(ctx).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
+> AssetListen ListenAsset(ctx).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
 
 WebSocket connection for asset changes
 
@@ -598,13 +598,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssetsAPI.ListenAssets(context.Background()).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
+	resp, r, err := apiClient.AssetsAPI.ListenAsset(context.Background()).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.ListenAssets``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.ListenAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListenAssets`: AssetListen
-	fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.ListenAssets`: %v\n", resp)
+	// response from `ListenAsset`: AssetListen
+	fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.ListenAsset`: %v\n", resp)
 }
 ```
 
@@ -614,7 +614,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListenAssetsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListenAssetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

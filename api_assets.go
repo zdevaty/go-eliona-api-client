@@ -1087,7 +1087,7 @@ func (a *AssetsAPIService) GetAttributeDisplayExecute(r ApiGetAttributeDisplayRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListenAssetsRequest struct {
+type ApiListenAssetRequest struct {
 	ctx           context.Context
 	ApiService    *AssetsAPIService
 	assetId       *int32
@@ -1096,37 +1096,37 @@ type ApiListenAssetsRequest struct {
 }
 
 // Filter for a specific asset id
-func (r ApiListenAssetsRequest) AssetId(assetId int32) ApiListenAssetsRequest {
+func (r ApiListenAssetRequest) AssetId(assetId int32) ApiListenAssetRequest {
 	r.assetId = &assetId
 	return r
 }
 
 // Filter the name of the asset type
-func (r ApiListenAssetsRequest) AssetTypeName(assetTypeName string) ApiListenAssetsRequest {
+func (r ApiListenAssetRequest) AssetTypeName(assetTypeName string) ApiListenAssetRequest {
 	r.assetTypeName = &assetTypeName
 	return r
 }
 
 // Filter the tag
-func (r ApiListenAssetsRequest) Tag(tag string) ApiListenAssetsRequest {
+func (r ApiListenAssetRequest) Tag(tag string) ApiListenAssetRequest {
 	r.tag = &tag
 	return r
 }
 
-func (r ApiListenAssetsRequest) Execute() (*AssetListen, *http.Response, error) {
-	return r.ApiService.ListenAssetsExecute(r)
+func (r ApiListenAssetRequest) Execute() (*AssetListen, *http.Response, error) {
+	return r.ApiService.ListenAssetExecute(r)
 }
 
 /*
-ListenAssets WebSocket connection for asset changes
+ListenAsset WebSocket connection for asset changes
 
 Open a WebSocket connection to get informed when asset is created, updated or deleted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListenAssetsRequest
+ @return ApiListenAssetRequest
 */
-func (a *AssetsAPIService) ListenAssets(ctx context.Context) ApiListenAssetsRequest {
-	return ApiListenAssetsRequest{
+func (a *AssetsAPIService) ListenAsset(ctx context.Context) ApiListenAssetRequest {
+	return ApiListenAssetRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -1134,7 +1134,7 @@ func (a *AssetsAPIService) ListenAssets(ctx context.Context) ApiListenAssetsRequ
 
 // Execute executes the request
 //  @return AssetListen
-func (a *AssetsAPIService) ListenAssetsExecute(r ApiListenAssetsRequest) (*AssetListen, *http.Response, error) {
+func (a *AssetsAPIService) ListenAssetExecute(r ApiListenAssetRequest) (*AssetListen, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1142,7 +1142,7 @@ func (a *AssetsAPIService) ListenAssetsExecute(r ApiListenAssetsRequest) (*Asset
 		localVarReturnValue *AssetListen
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.ListenAssets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AssetsAPIService.ListenAsset")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
