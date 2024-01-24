@@ -1093,6 +1093,7 @@ type ApiListenAssetRequest struct {
 	assetId       *int32
 	assetTypeName *string
 	tag           *string
+	expansions    *[]string
 }
 
 // Filter for a specific asset id
@@ -1110,6 +1111,12 @@ func (r ApiListenAssetRequest) AssetTypeName(assetTypeName string) ApiListenAsse
 // Filter the tag
 func (r ApiListenAssetRequest) Tag(tag string) ApiListenAssetRequest {
 	r.tag = &tag
+	return r
+}
+
+// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
+func (r ApiListenAssetRequest) Expansions(expansions []string) ApiListenAssetRequest {
+	r.expansions = &expansions
 	return r
 }
 
@@ -1161,6 +1168,9 @@ func (a *AssetsAPIService) ListenAssetExecute(r ApiListenAssetRequest) (*AssetLi
 	}
 	if r.tag != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "")
+	}
+	if r.expansions != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
