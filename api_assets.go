@@ -1088,30 +1088,9 @@ func (a *AssetsAPIService) GetAttributeDisplayExecute(r ApiGetAttributeDisplayRe
 }
 
 type ApiListenAssetRequest struct {
-	ctx           context.Context
-	ApiService    *AssetsAPIService
-	assetId       *int32
-	assetTypeName *string
-	tag           *string
-	expansions    *[]string
-}
-
-// Filter for a specific asset id
-func (r ApiListenAssetRequest) AssetId(assetId int32) ApiListenAssetRequest {
-	r.assetId = &assetId
-	return r
-}
-
-// Filter the name of the asset type
-func (r ApiListenAssetRequest) AssetTypeName(assetTypeName string) ApiListenAssetRequest {
-	r.assetTypeName = &assetTypeName
-	return r
-}
-
-// Filter the tag
-func (r ApiListenAssetRequest) Tag(tag string) ApiListenAssetRequest {
-	r.tag = &tag
-	return r
+	ctx        context.Context
+	ApiService *AssetsAPIService
+	expansions *[]string
 }
 
 // List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
@@ -1160,15 +1139,6 @@ func (a *AssetsAPIService) ListenAssetExecute(r ApiListenAssetRequest) (*AssetLi
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
-	}
-	if r.assetTypeName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
-	}
-	if r.tag != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "")
-	}
 	if r.expansions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
 	}

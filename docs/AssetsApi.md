@@ -573,7 +573,7 @@ Other parameters are passed through a pointer to a apiGetAttributeDisplayRequest
 
 ## ListenAsset
 
-> AssetListen ListenAsset(ctx).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Expansions(expansions).Execute()
+> AssetListen ListenAsset(ctx).Expansions(expansions).Execute()
 
 WebSocket connection for asset changes
 
@@ -592,14 +592,11 @@ import (
 )
 
 func main() {
-	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
-	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
-	tag := "building" // string | Filter the tag (optional)
 	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssetsAPI.ListenAsset(context.Background()).AssetId(assetId).AssetTypeName(assetTypeName).Tag(tag).Expansions(expansions).Execute()
+	resp, r, err := apiClient.AssetsAPI.ListenAsset(context.Background()).Expansions(expansions).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.ListenAsset``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -620,9 +617,6 @@ Other parameters are passed through a pointer to a apiListenAssetRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **assetId** | **int32** | Filter for a specific asset id | 
- **assetTypeName** | **string** | Filter the name of the asset type | 
- **tag** | **string** | Filter the tag | 
  **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type
