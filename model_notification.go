@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.10
+API version: 2.6.0
 Contact: hello@eliona.io
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Notification{}
 
 // Notification A notification
 type Notification struct {
-	// E-Mail address of the Eliona user
+	// E-Mail address or internal ID of the Eliona user
 	User string `json:"user"`
 	// ID of the project the notification should appear
 	ProjectId NullableString      `json:"projectId,omitempty"`

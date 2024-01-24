@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## ListenData
 
-> Data ListenData(ctx).AssetId(assetId).DataSubtype(dataSubtype).Execute()
+> DataListen ListenData(ctx).AssetId(assetId).DataSubtype(dataSubtype).Execute()
 
 WebSocket connection for asset data changes
 
@@ -266,7 +266,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.ListenData``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListenData`: Data
+	// response from `ListenData`: DataListen
 	fmt.Fprintf(os.Stdout, "Response from `DataAPI.ListenData`: %v\n", resp)
 }
 ```
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Data**](Data.md)
+[**DataListen**](DataListen.md)
 
 ### Authorization
 

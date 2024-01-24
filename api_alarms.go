@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.10
+API version: 2.6.0
 Contact: hello@eliona.io
 */
 
@@ -681,7 +681,7 @@ type ApiListenAlarmRequest struct {
 	ApiService *AlarmsAPIService
 }
 
-func (r ApiListenAlarmRequest) Execute() (*Alarm, *http.Response, error) {
+func (r ApiListenAlarmRequest) Execute() (*AlarmListen, *http.Response, error) {
 	return r.ApiService.ListenAlarmExecute(r)
 }
 
@@ -701,13 +701,13 @@ func (a *AlarmsAPIService) ListenAlarm(ctx context.Context) ApiListenAlarmReques
 }
 
 // Execute executes the request
-//  @return Alarm
-func (a *AlarmsAPIService) ListenAlarmExecute(r ApiListenAlarmRequest) (*Alarm, *http.Response, error) {
+//  @return AlarmListen
+func (a *AlarmsAPIService) ListenAlarmExecute(r ApiListenAlarmRequest) (*AlarmListen, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Alarm
+		localVarReturnValue *AlarmListen
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmsAPIService.ListenAlarm")

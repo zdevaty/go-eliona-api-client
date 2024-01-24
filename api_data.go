@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.5.10
+API version: 2.6.0
 Contact: hello@eliona.io
 */
 
@@ -530,7 +530,7 @@ func (r ApiListenDataRequest) DataSubtype(dataSubtype string) ApiListenDataReque
 	return r
 }
 
-func (r ApiListenDataRequest) Execute() (*Data, *http.Response, error) {
+func (r ApiListenDataRequest) Execute() (*DataListen, *http.Response, error) {
 	return r.ApiService.ListenDataExecute(r)
 }
 
@@ -550,13 +550,13 @@ func (a *DataAPIService) ListenData(ctx context.Context) ApiListenDataRequest {
 }
 
 // Execute executes the request
-//  @return Data
-func (a *DataAPIService) ListenDataExecute(r ApiListenDataRequest) (*Data, *http.Response, error) {
+//  @return DataListen
+func (a *DataAPIService) ListenDataExecute(r ApiListenDataRequest) (*DataListen, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Data
+		localVarReturnValue *DataListen
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.ListenData")
