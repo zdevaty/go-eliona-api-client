@@ -16,14 +16,16 @@
 package tools
 
 import (
+	"errors"
+
 	api "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
 	"github.com/eliona-smart-building-assistant/go-utils/log"
 )
 
 func LogError(err error) {
 	if err != nil {
-		genErr, ok := err.(*api.GenericOpenAPIError)
-		if ok {
+		var genErr *api.GenericOpenAPIError
+		if errors.As(err, &genErr) {
 			log.Error("api", "Error requesting API: %v (Response: %v)", genErr.Error(), string(genErr.Body()))
 		} else {
 			log.Error("api", "Error requesting API: %v", err.Error())
