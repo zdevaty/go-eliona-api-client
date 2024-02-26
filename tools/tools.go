@@ -26,7 +26,7 @@ func LogError(err error) {
 	if err != nil {
 		var genErr *api.GenericOpenAPIError
 		if errors.As(err, &genErr) {
-			log.Error("api", "Error requesting API: %v (Response: %v)", genErr.Error(), string(genErr.Body()))
+			log.Error("api", "Error requesting API: %v (Response: %v)", err.Error(), string(genErr.Body()))
 		} else {
 			log.Error("api", "Error requesting API: %v", err.Error())
 		}
