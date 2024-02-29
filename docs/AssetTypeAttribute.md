@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Virtual** | Pointer to **NullableBool** | Is the attribute virtual or not | [optional] 
 **Scale** | Pointer to **NullableFloat32** | value scale | [optional] 
 **Zero** | Pointer to **NullableFloat32** | value scale | [optional] 
-**Map** | Pointer to [**[]ValueMapping**](ValueMapping.md) | list of mapping between value and custom text | [optional] 
+**Map** | Pointer to **[]map[string]interface{}** | list of mapping between value and custom text | [optional] 
 **SourcePath** | Pointer to **[]string** | source path for attribute value | [optional] 
 **IsDigital** | Pointer to **NullableBool** | is attribute digital | [optional] 
 
@@ -627,20 +627,20 @@ HasZero returns a boolean if a field has been set.
 UnsetZero ensures that no value is present for Zero, not even an explicit nil
 ### GetMap
 
-`func (o *AssetTypeAttribute) GetMap() []ValueMapping`
+`func (o *AssetTypeAttribute) GetMap() []map[string]interface{}`
 
 GetMap returns the Map field if non-nil, zero value otherwise.
 
 ### GetMapOk
 
-`func (o *AssetTypeAttribute) GetMapOk() (*[]ValueMapping, bool)`
+`func (o *AssetTypeAttribute) GetMapOk() (*[]map[string]interface{}, bool)`
 
 GetMapOk returns a tuple with the Map field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMap
 
-`func (o *AssetTypeAttribute) SetMap(v []ValueMapping)`
+`func (o *AssetTypeAttribute) SetMap(v []map[string]interface{})`
 
 SetMap sets Map field to given value.
 

@@ -42,7 +42,7 @@ type AttributeDisplay struct {
 	// Sequence in AR display
 	Sequence NullableInt64 `json:"sequence,omitempty"`
 	// list of mapping between value and custom text
-	Map []ValueMapping `json:"map,omitempty"`
+	Map []map[string]interface{} `json:"map,omitempty"`
 }
 
 type _AttributeDisplay AttributeDisplay
@@ -451,9 +451,9 @@ func (o *AttributeDisplay) UnsetSequence() {
 }
 
 // GetMap returns the Map field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AttributeDisplay) GetMap() []ValueMapping {
+func (o *AttributeDisplay) GetMap() []map[string]interface{} {
 	if o == nil {
-		var ret []ValueMapping
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Map
@@ -462,7 +462,7 @@ func (o *AttributeDisplay) GetMap() []ValueMapping {
 // GetMapOk returns a tuple with the Map field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AttributeDisplay) GetMapOk() ([]ValueMapping, bool) {
+func (o *AttributeDisplay) GetMapOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Map) {
 		return nil, false
 	}
@@ -478,8 +478,8 @@ func (o *AttributeDisplay) HasMap() bool {
 	return false
 }
 
-// SetMap gets a reference to the given []ValueMapping and assigns it to the Map field.
-func (o *AttributeDisplay) SetMap(v []ValueMapping) {
+// SetMap gets a reference to the given []map[string]interface{} and assigns it to the Map field.
+func (o *AttributeDisplay) SetMap(v []map[string]interface{}) {
 	o.Map = v
 }
 

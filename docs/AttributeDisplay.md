@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Viewer** | Pointer to **NullableBool** | Should the attribute be displayed in viewer | [optional] [default to false]
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
 **Sequence** | Pointer to **NullableInt64** | Sequence in AR display | [optional] 
-**Map** | Pointer to [**[]ValueMapping**](ValueMapping.md) | list of mapping between value and custom text | [optional] 
+**Map** | Pointer to **[]map[string]interface{}** | list of mapping between value and custom text | [optional] 
 
 ## Methods
 
@@ -342,20 +342,20 @@ HasSequence returns a boolean if a field has been set.
 UnsetSequence ensures that no value is present for Sequence, not even an explicit nil
 ### GetMap
 
-`func (o *AttributeDisplay) GetMap() []ValueMapping`
+`func (o *AttributeDisplay) GetMap() []map[string]interface{}`
 
 GetMap returns the Map field if non-nil, zero value otherwise.
 
 ### GetMapOk
 
-`func (o *AttributeDisplay) GetMapOk() (*[]ValueMapping, bool)`
+`func (o *AttributeDisplay) GetMapOk() (*[]map[string]interface{}, bool)`
 
 GetMapOk returns a tuple with the Map field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMap
 
-`func (o *AttributeDisplay) SetMap(v []ValueMapping)`
+`func (o *AttributeDisplay) SetMap(v []map[string]interface{})`
 
 SetMap sets Map field to given value.
 
