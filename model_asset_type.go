@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.5
+API version: 2.6.6
 Contact: hello@eliona.io
 */
 
@@ -33,7 +33,7 @@ type AssetType struct {
 	Translation NullableTranslation `json:"translation,omitempty"`
 	// The url describing assets of this type
 	Urldoc NullableString `json:"urldoc,omitempty"`
-	// Icon name corresponding to assets of this type
+	// Icon name corresponding to assets of this type: blind, building, button, closable, elevator, environment, fallback, filling, gateway, light, mailbox, parking, people, power, rack, storey, trash, ventilation, vibration, water, weather
 	Icon NullableString `json:"icon,omitempty"`
 	// Asset types payload function
 	PayloadFunction   NullableString `json:"payloadFunction,omitempty"`

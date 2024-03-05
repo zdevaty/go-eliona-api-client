@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Model** | Pointer to **NullableString** | The specific model of assets of this type | [optional] 
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Urldoc** | Pointer to **NullableString** | The url describing assets of this type | [optional] 
-**Icon** | Pointer to **NullableString** | Icon name corresponding to assets of this type | [optional] 
+**Icon** | Pointer to **NullableString** | Icon name corresponding to assets of this type: blind, building, button, closable, elevator, environment, fallback, filling, gateway, light, mailbox, parking, people, power, rack, storey, trash, ventilation, vibration, water, weather | [optional] 
 **PayloadFunction** | Pointer to **NullableString** | Asset types payload function | [optional] 
 **AllowedInactivity** | Pointer to **NullableString** |  | [optional] 
 **Attributes** | Pointer to [**[]AssetTypeAttribute**](AssetTypeAttribute.md) | List of named attributes | [optional] 
