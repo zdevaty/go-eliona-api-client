@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.6
+API version: 2.6.7
 Contact: hello@eliona.io
 */
 
@@ -27,7 +27,7 @@ type AssetTypeAttribute struct {
 	// Unique key of asset data
 	Name    string      `json:"name"`
 	Subtype DataSubtype `json:"subtype"`
-	// Name of the type for this attribute
+	// Name of the type for this attribute: air_quality, battery-voltage, brightness, co2, current, device-info, device-status, energy, flow, frequency, humidity, inputs-and-switches, level, motion, operating-status, people-count, power, presence, pressure, temperature, vehicle-detector, voltage, weather, voc
 	Type NullableString `json:"type,omitempty"`
 	// Is data active or not
 	Enable      *bool               `json:"enable,omitempty"`

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AssetTypeName** | Pointer to **NullableString** | The unique name for the asset type | [optional] 
 **Name** | **string** | Unique key of asset data | 
 **Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
-**Type** | Pointer to **NullableString** | Name of the type for this attribute | [optional] 
+**Type** | Pointer to **NullableString** | Name of the type for this attribute: air_quality, battery-voltage, brightness, co2, current, device-info, device-status, energy, flow, frequency, humidity, inputs-and-switches, level, motion, operating-status, people-count, power, presence, pressure, temperature, vehicle-detector, voltage, weather, voc | [optional] 
 **Enable** | Pointer to **bool** | Is data active or not | [optional] [default to true]
 **Translation** | Pointer to [**NullableTranslation**](Translation.md) |  | [optional] 
 **Unit** | Pointer to **NullableString** | Physical unit of numeric data | [optional] 
