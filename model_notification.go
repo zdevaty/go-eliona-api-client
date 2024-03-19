@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.7
+API version: 2.6.8
 Contact: hello@eliona.io
 */
 

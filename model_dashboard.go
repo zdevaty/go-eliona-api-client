@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.7
+API version: 2.6.8
 Contact: hello@eliona.io
 */
 
@@ -31,9 +31,12 @@ type Dashboard struct {
 	// ID of the user who owns the dashboard
 	UserId string `json:"userId"`
 	// The sequence of the dashboard
+	// Deprecated
 	Sequence NullableInt32 `json:"sequence,omitempty"`
 	// List of widgets on this dashboard (order matches the order of widgets on the dashboard)
 	Widgets []Widget `json:"widgets,omitempty"`
+	// Is the dashboard public and not bound to a dedicated user
+	Public NullableBool `json:"public,omitempty"`
 }
 
 type _Dashboard Dashboard
@@ -49,6 +52,8 @@ func NewDashboard(name string, projectId string, userId string) *Dashboard {
 	this.UserId = userId
 	var sequence int32 = 0
 	this.Sequence = *NewNullableInt32(&sequence)
+	var public bool = false
+	this.Public = *NewNullableBool(&public)
 	return &this
 }
 
@@ -59,6 +64,8 @@ func NewDashboardWithDefaults() *Dashboard {
 	this := Dashboard{}
 	var sequence int32 = 0
 	this.Sequence = *NewNullableInt32(&sequence)
+	var public bool = false
+	this.Public = *NewNullableBool(&public)
 	return &this
 }
 
@@ -178,6 +185,7 @@ func (o *Dashboard) SetUserId(v string) {
 }
 
 // GetSequence returns the Sequence field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *Dashboard) GetSequence() int32 {
 	if o == nil || IsNil(o.Sequence.Get()) {
 		var ret int32
@@ -189,6 +197,7 @@ func (o *Dashboard) GetSequence() int32 {
 // GetSequenceOk returns a tuple with the Sequence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *Dashboard) GetSequenceOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
@@ -206,6 +215,7 @@ func (o *Dashboard) HasSequence() bool {
 }
 
 // SetSequence gets a reference to the given NullableInt32 and assigns it to the Sequence field.
+// Deprecated
 func (o *Dashboard) SetSequence(v int32) {
 	o.Sequence.Set(&v)
 }
@@ -253,6 +263,49 @@ func (o *Dashboard) SetWidgets(v []Widget) {
 	o.Widgets = v
 }
 
+// GetPublic returns the Public field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Dashboard) GetPublic() bool {
+	if o == nil || IsNil(o.Public.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.Public.Get()
+}
+
+// GetPublicOk returns a tuple with the Public field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Dashboard) GetPublicOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Public.Get(), o.Public.IsSet()
+}
+
+// HasPublic returns a boolean if a field has been set.
+func (o *Dashboard) HasPublic() bool {
+	if o != nil && o.Public.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPublic gets a reference to the given NullableBool and assigns it to the Public field.
+func (o *Dashboard) SetPublic(v bool) {
+	o.Public.Set(&v)
+}
+
+// SetPublicNil sets the value for Public to be an explicit nil
+func (o *Dashboard) SetPublicNil() {
+	o.Public.Set(nil)
+}
+
+// UnsetPublic ensures that no value is present for Public, not even an explicit nil
+func (o *Dashboard) UnsetPublic() {
+	o.Public.Unset()
+}
+
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -274,6 +327,9 @@ func (o Dashboard) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Widgets != nil {
 		toSerialize["widgets"] = o.Widgets
+	}
+	if o.Public.IsSet() {
+		toSerialize["public"] = o.Public.Get()
 	}
 	return toSerialize, nil
 }

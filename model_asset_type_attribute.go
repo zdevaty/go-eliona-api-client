@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.7
+API version: 2.6.8
 Contact: hello@eliona.io
 */
 
@@ -51,6 +51,8 @@ type AssetTypeAttribute struct {
 	Sequence NullableInt64 `json:"sequence,omitempty"`
 	// Is the attribute virtual or not
 	Virtual NullableBool `json:"virtual,omitempty"`
+	// calculation rule to calculate the value for this attribute
+	Formula NullableString `json:"formula,omitempty"`
 	// value scale
 	Scale NullableFloat32 `json:"scale,omitempty"`
 	// value scale
@@ -726,6 +728,49 @@ func (o *AssetTypeAttribute) UnsetVirtual() {
 	o.Virtual.Unset()
 }
 
+// GetFormula returns the Formula field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssetTypeAttribute) GetFormula() string {
+	if o == nil || IsNil(o.Formula.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Formula.Get()
+}
+
+// GetFormulaOk returns a tuple with the Formula field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AssetTypeAttribute) GetFormulaOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Formula.Get(), o.Formula.IsSet()
+}
+
+// HasFormula returns a boolean if a field has been set.
+func (o *AssetTypeAttribute) HasFormula() bool {
+	if o != nil && o.Formula.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFormula gets a reference to the given NullableString and assigns it to the Formula field.
+func (o *AssetTypeAttribute) SetFormula(v string) {
+	o.Formula.Set(&v)
+}
+
+// SetFormulaNil sets the value for Formula to be an explicit nil
+func (o *AssetTypeAttribute) SetFormulaNil() {
+	o.Formula.Set(nil)
+}
+
+// UnsetFormula ensures that no value is present for Formula, not even an explicit nil
+func (o *AssetTypeAttribute) UnsetFormula() {
+	o.Formula.Unset()
+}
+
 // GetScale returns the Scale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetTypeAttribute) GetScale() float32 {
 	if o == nil || IsNil(o.Scale.Get()) {
@@ -974,6 +1019,9 @@ func (o AssetTypeAttribute) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Virtual.IsSet() {
 		toSerialize["virtual"] = o.Virtual.Get()
+	}
+	if o.Formula.IsSet() {
+		toSerialize["formula"] = o.Formula.Get()
 	}
 	if o.Scale.IsSet() {
 		toSerialize["scale"] = o.Scale.Get()

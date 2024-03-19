@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **UserId** | **string** | ID of the user who owns the dashboard | 
 **Sequence** | Pointer to **NullableInt32** | The sequence of the dashboard | [optional] [default to 0]
 **Widgets** | Pointer to [**[]Widget**](Widget.md) | List of widgets on this dashboard (order matches the order of widgets on the dashboard) | [optional] 
+**Public** | Pointer to **NullableBool** | Is the dashboard public and not bound to a dedicated user | [optional] [default to false]
 
 ## Methods
 
@@ -195,6 +196,41 @@ HasWidgets returns a boolean if a field has been set.
 `func (o *Dashboard) UnsetWidgets()`
 
 UnsetWidgets ensures that no value is present for Widgets, not even an explicit nil
+### GetPublic
+
+`func (o *Dashboard) GetPublic() bool`
+
+GetPublic returns the Public field if non-nil, zero value otherwise.
+
+### GetPublicOk
+
+`func (o *Dashboard) GetPublicOk() (*bool, bool)`
+
+GetPublicOk returns a tuple with the Public field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublic
+
+`func (o *Dashboard) SetPublic(v bool)`
+
+SetPublic sets Public field to given value.
+
+### HasPublic
+
+`func (o *Dashboard) HasPublic() bool`
+
+HasPublic returns a boolean if a field has been set.
+
+### SetPublicNil
+
+`func (o *Dashboard) SetPublicNil(b bool)`
+
+ SetPublicNil sets the value for Public to be an explicit nil
+
+### UnsetPublic
+`func (o *Dashboard) UnsetPublic()`
+
+UnsetPublic ensures that no value is present for Public, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
 **Sequence** | Pointer to **NullableInt64** | Sequence in AR display | [optional] 
 **Virtual** | Pointer to **NullableBool** | Is the attribute virtual or not | [optional] 
+**Formula** | Pointer to **NullableString** | calculation rule to calculate the value for this attribute | [optional] 
 **Scale** | Pointer to **NullableFloat32** | value scale | [optional] 
 **Zero** | Pointer to **NullableFloat32** | value scale | [optional] 
 **Map** | Pointer to **[]map[string]interface{}** | list of mapping between value and custom text | [optional] 
@@ -555,6 +556,41 @@ HasVirtual returns a boolean if a field has been set.
 `func (o *AssetTypeAttribute) UnsetVirtual()`
 
 UnsetVirtual ensures that no value is present for Virtual, not even an explicit nil
+### GetFormula
+
+`func (o *AssetTypeAttribute) GetFormula() string`
+
+GetFormula returns the Formula field if non-nil, zero value otherwise.
+
+### GetFormulaOk
+
+`func (o *AssetTypeAttribute) GetFormulaOk() (*string, bool)`
+
+GetFormulaOk returns a tuple with the Formula field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormula
+
+`func (o *AssetTypeAttribute) SetFormula(v string)`
+
+SetFormula sets Formula field to given value.
+
+### HasFormula
+
+`func (o *AssetTypeAttribute) HasFormula() bool`
+
+HasFormula returns a boolean if a field has been set.
+
+### SetFormulaNil
+
+`func (o *AssetTypeAttribute) SetFormulaNil(b bool)`
+
+ SetFormulaNil sets the value for Formula to be an explicit nil
+
+### UnsetFormula
+`func (o *AssetTypeAttribute) UnsetFormula()`
+
+UnsetFormula ensures that no value is present for Formula, not even an explicit nil
 ### GetScale
 
 `func (o *AssetTypeAttribute) GetScale() float32`
