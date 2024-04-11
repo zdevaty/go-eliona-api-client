@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.8
+API version: 2.6.10
 Contact: hello@eliona.io
 */
 
@@ -39,10 +39,10 @@ GetAgentByClassAndId Information about an agent
 
 Gets information about an agent.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentId The id of the agent
- @param agentClass The class of an agent
- @return ApiGetAgentByClassAndIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentId The id of the agent
+	@param agentClass The class of an agent
+	@return ApiGetAgentByClassAndIdRequest
 */
 func (a *AgentsAPIService) GetAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiGetAgentByClassAndIdRequest {
 	return ApiGetAgentByClassAndIdRequest{
@@ -54,7 +54,8 @@ func (a *AgentsAPIService) GetAgentByClassAndId(ctx context.Context, agentId int
 }
 
 // Execute executes the request
-//  @return Agent
+//
+//	@return Agent
 func (a *AgentsAPIService) GetAgentByClassAndIdExecute(r ApiGetAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -160,10 +161,10 @@ GetAgentDeviceById Information about agent device
 
 Gets information about agent device.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceId The id of the device
- @return ApiGetAgentDeviceByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceId The id of the device
+	@return ApiGetAgentDeviceByIdRequest
 */
 func (a *AgentsAPIService) GetAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceByIdRequest {
 	return ApiGetAgentDeviceByIdRequest{
@@ -175,7 +176,8 @@ func (a *AgentsAPIService) GetAgentDeviceById(ctx context.Context, agentClass st
 }
 
 // Execute executes the request
-//  @return []AgentDevice
+//
+//	@return []AgentDevice
 func (a *AgentsAPIService) GetAgentDeviceByIdExecute(r ApiGetAgentDeviceByIdRequest) ([]AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -281,10 +283,10 @@ GetAgentDeviceMappingById Information about agent device mapping
 
 Gets information about agent device mapping.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceMappingId The id of the device mapping
- @return ApiGetAgentDeviceMappingByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceMappingId The id of the device mapping
+	@return ApiGetAgentDeviceMappingByIdRequest
 */
 func (a *AgentsAPIService) GetAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiGetAgentDeviceMappingByIdRequest {
 	return ApiGetAgentDeviceMappingByIdRequest{
@@ -296,7 +298,8 @@ func (a *AgentsAPIService) GetAgentDeviceMappingById(ctx context.Context, agentC
 }
 
 // Execute executes the request
-//  @return []AgentDeviceMapping
+//
+//	@return []AgentDeviceMapping
 func (a *AgentsAPIService) GetAgentDeviceMappingByIdExecute(r ApiGetAgentDeviceMappingByIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -402,10 +405,10 @@ GetAgentDeviceMappingsByDeviceId Information about agent device mappings
 
 Gets information about mappings between agent and eliona.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceId The id of the device
- @return ApiGetAgentDeviceMappingsByDeviceIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceId The id of the device
+	@return ApiGetAgentDeviceMappingsByDeviceIdRequest
 */
 func (a *AgentsAPIService) GetAgentDeviceMappingsByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiGetAgentDeviceMappingsByDeviceIdRequest {
 	return ApiGetAgentDeviceMappingsByDeviceIdRequest{
@@ -417,7 +420,8 @@ func (a *AgentsAPIService) GetAgentDeviceMappingsByDeviceId(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []AgentDeviceMapping
+//
+//	@return []AgentDeviceMapping
 func (a *AgentsAPIService) GetAgentDeviceMappingsByDeviceIdExecute(r ApiGetAgentDeviceMappingsByDeviceIdRequest) ([]AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -523,10 +527,10 @@ GetAgentDevicesByAgentId Information about agent devices
 
 Gets information about agent devices.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentId The id of the agent
- @return ApiGetAgentDevicesByAgentIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentId The id of the agent
+	@return ApiGetAgentDevicesByAgentIdRequest
 */
 func (a *AgentsAPIService) GetAgentDevicesByAgentId(ctx context.Context, agentClass string, agentId int32) ApiGetAgentDevicesByAgentIdRequest {
 	return ApiGetAgentDevicesByAgentIdRequest{
@@ -538,7 +542,8 @@ func (a *AgentsAPIService) GetAgentDevicesByAgentId(ctx context.Context, agentCl
 }
 
 // Execute executes the request
-//  @return []AgentDevice
+//
+//	@return []AgentDevice
 func (a *AgentsAPIService) GetAgentDevicesByAgentIdExecute(r ApiGetAgentDevicesByAgentIdRequest) ([]AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -642,8 +647,8 @@ GetAgents Information about agents
 
 Gets information about agents.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAgentsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAgentsRequest
 */
 func (a *AgentsAPIService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
 	return ApiGetAgentsRequest{
@@ -653,7 +658,8 @@ func (a *AgentsAPIService) GetAgents(ctx context.Context) ApiGetAgentsRequest {
 }
 
 // Execute executes the request
-//  @return []Agent
+//
+//	@return []Agent
 func (a *AgentsAPIService) GetAgentsExecute(r ApiGetAgentsRequest) ([]Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -756,9 +762,9 @@ GetAgentsByClass Information about agents for a specific class
 
 Gets information about agents.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @return ApiGetAgentsByClassRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@return ApiGetAgentsByClassRequest
 */
 func (a *AgentsAPIService) GetAgentsByClass(ctx context.Context, agentClass string) ApiGetAgentsByClassRequest {
 	return ApiGetAgentsByClassRequest{
@@ -769,7 +775,8 @@ func (a *AgentsAPIService) GetAgentsByClass(ctx context.Context, agentClass stri
 }
 
 // Execute executes the request
-//  @return []Agent
+//
+//	@return []Agent
 func (a *AgentsAPIService) GetAgentsByClassExecute(r ApiGetAgentsByClassRequest) ([]Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -879,9 +886,9 @@ PostAgentByClass Create an agent
 
 Create a new agent for a specific class
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @return ApiPostAgentByClassRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@return ApiPostAgentByClassRequest
 */
 func (a *AgentsAPIService) PostAgentByClass(ctx context.Context, agentClass string) ApiPostAgentByClassRequest {
 	return ApiPostAgentByClassRequest{
@@ -892,7 +899,8 @@ func (a *AgentsAPIService) PostAgentByClass(ctx context.Context, agentClass stri
 }
 
 // Execute executes the request
-//  @return Agent
+//
+//	@return Agent
 func (a *AgentsAPIService) PostAgentByClassExecute(r ApiPostAgentByClassRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1008,10 +1016,10 @@ PostAgentDeviceByAgentId Create an agent device
 
 Create a new agent device.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentId The id of the agent
- @return ApiPostAgentDeviceByAgentIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentId The id of the agent
+	@return ApiPostAgentDeviceByAgentIdRequest
 */
 func (a *AgentsAPIService) PostAgentDeviceByAgentId(ctx context.Context, agentClass string, agentId int32) ApiPostAgentDeviceByAgentIdRequest {
 	return ApiPostAgentDeviceByAgentIdRequest{
@@ -1023,7 +1031,8 @@ func (a *AgentsAPIService) PostAgentDeviceByAgentId(ctx context.Context, agentCl
 }
 
 // Execute executes the request
-//  @return AgentDevice
+//
+//	@return AgentDevice
 func (a *AgentsAPIService) PostAgentDeviceByAgentIdExecute(r ApiPostAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1140,10 +1149,10 @@ PostAgentDeviceMappingByDeviceId Create an agent device mapping
 
 Create a new agent device mapping.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceId The id of the device
- @return ApiPostAgentDeviceMappingByDeviceIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceId The id of the device
+	@return ApiPostAgentDeviceMappingByDeviceIdRequest
 */
 func (a *AgentsAPIService) PostAgentDeviceMappingByDeviceId(ctx context.Context, agentClass string, agentDeviceId int32) ApiPostAgentDeviceMappingByDeviceIdRequest {
 	return ApiPostAgentDeviceMappingByDeviceIdRequest{
@@ -1155,7 +1164,8 @@ func (a *AgentsAPIService) PostAgentDeviceMappingByDeviceId(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return AgentDeviceMapping
+//
+//	@return AgentDeviceMapping
 func (a *AgentsAPIService) PostAgentDeviceMappingByDeviceIdExecute(r ApiPostAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1271,9 +1281,9 @@ PutAgentByClass Create or update an agent
 
 Deprecated - use POST /agents/{agent-class} for creating and PUT /agents/{agent-class}/{agent-id} for updating
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @return ApiPutAgentByClassRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@return ApiPutAgentByClassRequest
 
 Deprecated
 */
@@ -1286,7 +1296,9 @@ func (a *AgentsAPIService) PutAgentByClass(ctx context.Context, agentClass strin
 }
 
 // Execute executes the request
-//  @return Agent
+//
+//	@return Agent
+//
 // Deprecated
 func (a *AgentsAPIService) PutAgentByClassExecute(r ApiPutAgentByClassRequest) (*Agent, *http.Response, error) {
 	var (
@@ -1403,10 +1415,10 @@ PutAgentByClassAndId Update an agent
 
 Update an agent.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentId The id of the agent
- @param agentClass The class of an agent
- @return ApiPutAgentByClassAndIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentId The id of the agent
+	@param agentClass The class of an agent
+	@return ApiPutAgentByClassAndIdRequest
 */
 func (a *AgentsAPIService) PutAgentByClassAndId(ctx context.Context, agentId int32, agentClass string) ApiPutAgentByClassAndIdRequest {
 	return ApiPutAgentByClassAndIdRequest{
@@ -1418,7 +1430,8 @@ func (a *AgentsAPIService) PutAgentByClassAndId(ctx context.Context, agentId int
 }
 
 // Execute executes the request
-//  @return Agent
+//
+//	@return Agent
 func (a *AgentsAPIService) PutAgentByClassAndIdExecute(r ApiPutAgentByClassAndIdRequest) (*Agent, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1535,10 +1548,10 @@ PutAgentDeviceByAgentId Create or update an agent device
 
 Deprecated - use POST /agents/{agent-class}/{agent-id}/devices for creating and PUT /agent-devices/{agent-class}/{agent-device-id} for updating
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentId The id of the agent
- @return ApiPutAgentDeviceByAgentIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentId The id of the agent
+	@return ApiPutAgentDeviceByAgentIdRequest
 
 Deprecated
 */
@@ -1552,7 +1565,9 @@ func (a *AgentsAPIService) PutAgentDeviceByAgentId(ctx context.Context, agentCla
 }
 
 // Execute executes the request
-//  @return AgentDevice
+//
+//	@return AgentDevice
+//
 // Deprecated
 func (a *AgentsAPIService) PutAgentDeviceByAgentIdExecute(r ApiPutAgentDeviceByAgentIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
@@ -1670,10 +1685,10 @@ PutAgentDeviceById Update an agent device
 
 Update a new agent device.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceId The id of the device
- @return ApiPutAgentDeviceByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceId The id of the device
+	@return ApiPutAgentDeviceByIdRequest
 */
 func (a *AgentsAPIService) PutAgentDeviceById(ctx context.Context, agentClass string, agentDeviceId int32) ApiPutAgentDeviceByIdRequest {
 	return ApiPutAgentDeviceByIdRequest{
@@ -1685,7 +1700,8 @@ func (a *AgentsAPIService) PutAgentDeviceById(ctx context.Context, agentClass st
 }
 
 // Execute executes the request
-//  @return AgentDevice
+//
+//	@return AgentDevice
 func (a *AgentsAPIService) PutAgentDeviceByIdExecute(r ApiPutAgentDeviceByIdRequest) (*AgentDevice, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1802,10 +1818,10 @@ PutAgentDeviceMappingByDeviceId Create or update an agent device mapping
 
 Deprecated - Use POST /agent-devices/{agent-class}/{agent-device-id}/mappings for creating and /agent-device-mappings/{agent-class}/{agent-device-mapping-id} for updating
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceId The id of the device
- @return ApiPutAgentDeviceMappingByDeviceIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceId The id of the device
+	@return ApiPutAgentDeviceMappingByDeviceIdRequest
 
 Deprecated
 */
@@ -1819,7 +1835,9 @@ func (a *AgentsAPIService) PutAgentDeviceMappingByDeviceId(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return AgentDeviceMapping
+//
+//	@return AgentDeviceMapping
+//
 // Deprecated
 func (a *AgentsAPIService) PutAgentDeviceMappingByDeviceIdExecute(r ApiPutAgentDeviceMappingByDeviceIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
@@ -1937,10 +1955,10 @@ PutAgentDeviceMappingById Update an agent device mapping
 
 Update a new agent device mapping.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param agentClass The class of an agent
- @param agentDeviceMappingId The id of the device mapping
- @return ApiPutAgentDeviceMappingByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param agentClass The class of an agent
+	@param agentDeviceMappingId The id of the device mapping
+	@return ApiPutAgentDeviceMappingByIdRequest
 */
 func (a *AgentsAPIService) PutAgentDeviceMappingById(ctx context.Context, agentClass string, agentDeviceMappingId int32) ApiPutAgentDeviceMappingByIdRequest {
 	return ApiPutAgentDeviceMappingByIdRequest{
@@ -1952,7 +1970,8 @@ func (a *AgentsAPIService) PutAgentDeviceMappingById(ctx context.Context, agentC
 }
 
 // Execute executes the request
-//  @return AgentDeviceMapping
+//
+//	@return AgentDeviceMapping
 func (a *AgentsAPIService) PutAgentDeviceMappingByIdExecute(r ApiPutAgentDeviceMappingByIdRequest) (*AgentDeviceMapping, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

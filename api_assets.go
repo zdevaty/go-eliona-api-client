@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.8
+API version: 2.6.10
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ DeleteAssetById Delete an asset
 
 Deletes an asset
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetId The id of the asset
- @return ApiDeleteAssetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiDeleteAssetByIdRequest
 */
 func (a *AssetsAPIService) DeleteAssetById(ctx context.Context, assetId int32) ApiDeleteAssetByIdRequest {
 	return ApiDeleteAssetByIdRequest{
@@ -163,8 +163,8 @@ DeleteBulkAssets Delete a list of assets
 
 Delete multiple assets based on the identifiers defined by the 'identifyBy' parameter.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteBulkAssetsRequest
 */
 func (a *AssetsAPIService) DeleteBulkAssets(ctx context.Context) ApiDeleteBulkAssetsRequest {
 	return ApiDeleteBulkAssetsRequest{
@@ -306,8 +306,8 @@ DryRunDeleteBulkAssets Dry-run for deleting a list of assets
 
 Simulates the process of deleting multiple assets via the 'DELETE /assets-bulk' without actually persisting any changes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDryRunDeleteBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDryRunDeleteBulkAssetsRequest
 */
 func (a *AssetsAPIService) DryRunDeleteBulkAssets(ctx context.Context) ApiDryRunDeleteBulkAssetsRequest {
 	return ApiDryRunDeleteBulkAssetsRequest{
@@ -317,7 +317,8 @@ func (a *AssetsAPIService) DryRunDeleteBulkAssets(ctx context.Context) ApiDryRun
 }
 
 // Execute executes the request
-//  @return []AssetDryRun
+//
+//	@return []AssetDryRun
 func (a *AssetsAPIService) DryRunDeleteBulkAssetsExecute(r ApiDryRunDeleteBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -450,8 +451,8 @@ DryRunPostBulkAssets Dry-run for creating a list of assets
 
 Simulates the process of creating assets via the 'POST /assets-bulk' endpoint without actually persisting any changes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDryRunPostBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDryRunPostBulkAssetsRequest
 */
 func (a *AssetsAPIService) DryRunPostBulkAssets(ctx context.Context) ApiDryRunPostBulkAssetsRequest {
 	return ApiDryRunPostBulkAssetsRequest{
@@ -461,7 +462,8 @@ func (a *AssetsAPIService) DryRunPostBulkAssets(ctx context.Context) ApiDryRunPo
 }
 
 // Execute executes the request
-//  @return []AssetDryRun
+//
+//	@return []AssetDryRun
 func (a *AssetsAPIService) DryRunPostBulkAssetsExecute(r ApiDryRunPostBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -594,8 +596,8 @@ DryRunPutBulkAssets Dry-run for creating or updating a list of assets
 
 Simulates the process of creating or updating assets via the 'PUT /assets-bulk' endpoint without actually persisting any changes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDryRunPutBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDryRunPutBulkAssetsRequest
 */
 func (a *AssetsAPIService) DryRunPutBulkAssets(ctx context.Context) ApiDryRunPutBulkAssetsRequest {
 	return ApiDryRunPutBulkAssetsRequest{
@@ -605,7 +607,8 @@ func (a *AssetsAPIService) DryRunPutBulkAssets(ctx context.Context) ApiDryRunPut
 }
 
 // Execute executes the request
-//  @return []AssetDryRun
+//
+//	@return []AssetDryRun
 func (a *AssetsAPIService) DryRunPutBulkAssetsExecute(r ApiDryRunPutBulkAssetsRequest) ([]AssetDryRun, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -726,9 +729,9 @@ GetAssetById Information about an asset
 
 Gets information about an asset.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetId The id of the asset
- @return ApiGetAssetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiGetAssetByIdRequest
 */
 func (a *AssetsAPIService) GetAssetById(ctx context.Context, assetId int32) ApiGetAssetByIdRequest {
 	return ApiGetAssetByIdRequest{
@@ -739,7 +742,8 @@ func (a *AssetsAPIService) GetAssetById(ctx context.Context, assetId int32) ApiG
 }
 
 // Execute executes the request
-//  @return Asset
+//
+//	@return Asset
 func (a *AssetsAPIService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -866,8 +870,8 @@ GetAssets Information about assets
 
 Gets a list of assets
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAssetsRequest
 */
 func (a *AssetsAPIService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 	return ApiGetAssetsRequest{
@@ -877,7 +881,8 @@ func (a *AssetsAPIService) GetAssets(ctx context.Context) ApiGetAssetsRequest {
 }
 
 // Execute executes the request
-//  @return []Asset
+//
+//	@return []Asset
 func (a *AssetsAPIService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -988,8 +993,8 @@ GetAttributeDisplay How attributes are displayed
 
 Gets information about how attributes for specific assets are displayed in frontend.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAttributeDisplayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAttributeDisplayRequest
 */
 func (a *AssetsAPIService) GetAttributeDisplay(ctx context.Context) ApiGetAttributeDisplayRequest {
 	return ApiGetAttributeDisplayRequest{
@@ -999,7 +1004,8 @@ func (a *AssetsAPIService) GetAttributeDisplay(ctx context.Context) ApiGetAttrib
 }
 
 // Execute executes the request
-//  @return AttributeDisplay
+//
+//	@return AttributeDisplay
 func (a *AssetsAPIService) GetAttributeDisplayExecute(r ApiGetAttributeDisplayRequest) (*AttributeDisplay, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1108,8 +1114,8 @@ ListenAsset WebSocket connection for asset changes
 
 Open a WebSocket connection to get informed when asset is created, updated or deleted.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListenAssetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListenAssetRequest
 */
 func (a *AssetsAPIService) ListenAsset(ctx context.Context) ApiListenAssetRequest {
 	return ApiListenAssetRequest{
@@ -1119,7 +1125,8 @@ func (a *AssetsAPIService) ListenAsset(ctx context.Context) ApiListenAssetReques
 }
 
 // Execute executes the request
-//  @return AssetListen
+//
+//	@return AssetListen
 func (a *AssetsAPIService) ListenAssetExecute(r ApiListenAssetRequest) (*AssetListen, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1245,9 +1252,8 @@ PostAsset Create an asset
 This process involves creating an asset. The determination if the asset already exists and cannot be
 created is done by the 'identifyBy' parameter, which specifies the field used for identification.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostAssetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostAssetRequest
 */
 func (a *AssetsAPIService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 	return ApiPostAssetRequest{
@@ -1257,7 +1263,8 @@ func (a *AssetsAPIService) PostAsset(ctx context.Context) ApiPostAssetRequest {
 }
 
 // Execute executes the request
-//  @return Asset
+//
+//	@return Asset
 func (a *AssetsAPIService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1400,8 +1407,8 @@ PostBulkAssets Create a list of assets
 
 This process involves creating the assets in the list. The determination if the asset already exists and cannot be created is done by the 'identifyBy' parameter, which specifies the field used for identification.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostBulkAssetsRequest
 */
 func (a *AssetsAPIService) PostBulkAssets(ctx context.Context) ApiPostBulkAssetsRequest {
 	return ApiPostBulkAssetsRequest{
@@ -1411,7 +1418,8 @@ func (a *AssetsAPIService) PostBulkAssets(ctx context.Context) ApiPostBulkAssets
 }
 
 // Execute executes the request
-//  @return []Asset
+//
+//	@return []Asset
 func (a *AssetsAPIService) PostBulkAssetsExecute(r ApiPostBulkAssetsRequest) ([]Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -1555,9 +1563,8 @@ PutAsset Create or update an asset
 This process involves creating or updating an asset. The choice between updating or creating is determined
 by the 'identifyBy' parameter, which specifies the field used for identification.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAssetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutAssetRequest
 */
 func (a *AssetsAPIService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 	return ApiPutAssetRequest{
@@ -1567,7 +1574,8 @@ func (a *AssetsAPIService) PutAsset(ctx context.Context) ApiPutAssetRequest {
 }
 
 // Execute executes the request
-//  @return Asset
+//
+//	@return Asset
 func (a *AssetsAPIService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1704,10 +1712,9 @@ PutAssetById Update an asset
 
 Deprecated: use the 'PUT /asset' method and optionally the 'identifyBy' parameter to update a specific asset.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetId The id of the asset
- @return ApiPutAssetByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiPutAssetByIdRequest
 
 Deprecated
 */
@@ -1720,7 +1727,9 @@ func (a *AssetsAPIService) PutAssetById(ctx context.Context, assetId int32) ApiP
 }
 
 // Execute executes the request
-//  @return Asset
+//
+//	@return Asset
+//
 // Deprecated
 func (a *AssetsAPIService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset, *http.Response, error) {
 	var (
@@ -1838,8 +1847,8 @@ PutAttributeDisplay Create or update how attributes are displayed
 
 Create or update how attributes are displayed in frontend. Uses the unique combination of asset id, subtype and attribute name for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAttributeDisplayRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutAttributeDisplayRequest
 */
 func (a *AssetsAPIService) PutAttributeDisplay(ctx context.Context) ApiPutAttributeDisplayRequest {
 	return ApiPutAttributeDisplayRequest{
@@ -1849,7 +1858,8 @@ func (a *AssetsAPIService) PutAttributeDisplay(ctx context.Context) ApiPutAttrib
 }
 
 // Execute executes the request
-//  @return AttributeDisplay
+//
+//	@return AttributeDisplay
 func (a *AssetsAPIService) PutAttributeDisplayExecute(r ApiPutAttributeDisplayRequest) (*AttributeDisplay, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -1976,8 +1986,8 @@ PutBulkAssets Create or update a list of assets
 
 This process involves creating or updating assets. The choice between updating or creating an asset is determined by the 'identifyBy' parameter, which specifies the field used for identification.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutBulkAssetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutBulkAssetsRequest
 */
 func (a *AssetsAPIService) PutBulkAssets(ctx context.Context) ApiPutBulkAssetsRequest {
 	return ApiPutBulkAssetsRequest{
@@ -1987,7 +1997,8 @@ func (a *AssetsAPIService) PutBulkAssets(ctx context.Context) ApiPutBulkAssetsRe
 }
 
 // Execute executes the request
-//  @return []Asset
+//
+//	@return []Asset
 func (a *AssetsAPIService) PutBulkAssetsExecute(r ApiPutBulkAssetsRequest) ([]Asset, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

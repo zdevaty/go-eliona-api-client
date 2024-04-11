@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.8
+API version: 2.6.10
 Contact: hello@eliona.io
 */
 
@@ -38,6 +38,8 @@ type AssetType struct {
 	// Asset types payload function
 	PayloadFunction   NullableString `json:"payloadFunction,omitempty"`
 	AllowedInactivity NullableString `json:"allowedInactivity,omitempty"`
+	// Function as a tracker
+	IsTracker NullableBool `json:"isTracker,omitempty"`
 	// List of named attributes
 	Attributes []AssetTypeAttribute `json:"attributes,omitempty"`
 }
@@ -53,6 +55,8 @@ func NewAssetType(name string) *AssetType {
 	this.Name = name
 	var custom bool = true
 	this.Custom = &custom
+	var isTracker bool = false
+	this.IsTracker = *NewNullableBool(&isTracker)
 	return &this
 }
 
@@ -63,6 +67,8 @@ func NewAssetTypeWithDefaults() *AssetType {
 	this := AssetType{}
 	var custom bool = true
 	this.Custom = &custom
+	var isTracker bool = false
+	this.IsTracker = *NewNullableBool(&isTracker)
 	return &this
 }
 
@@ -423,6 +429,49 @@ func (o *AssetType) UnsetAllowedInactivity() {
 	o.AllowedInactivity.Unset()
 }
 
+// GetIsTracker returns the IsTracker field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AssetType) GetIsTracker() bool {
+	if o == nil || IsNil(o.IsTracker.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.IsTracker.Get()
+}
+
+// GetIsTrackerOk returns a tuple with the IsTracker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AssetType) GetIsTrackerOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.IsTracker.Get(), o.IsTracker.IsSet()
+}
+
+// HasIsTracker returns a boolean if a field has been set.
+func (o *AssetType) HasIsTracker() bool {
+	if o != nil && o.IsTracker.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetIsTracker gets a reference to the given NullableBool and assigns it to the IsTracker field.
+func (o *AssetType) SetIsTracker(v bool) {
+	o.IsTracker.Set(&v)
+}
+
+// SetIsTrackerNil sets the value for IsTracker to be an explicit nil
+func (o *AssetType) SetIsTrackerNil() {
+	o.IsTracker.Set(nil)
+}
+
+// UnsetIsTracker ensures that no value is present for IsTracker, not even an explicit nil
+func (o *AssetType) UnsetIsTracker() {
+	o.IsTracker.Unset()
+}
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AssetType) GetAttributes() []AssetTypeAttribute {
 	if o == nil {
@@ -490,6 +539,9 @@ func (o AssetType) ToMap() (map[string]interface{}, error) {
 	}
 	if o.AllowedInactivity.IsSet() {
 		toSerialize["allowedInactivity"] = o.AllowedInactivity.Get()
+	}
+	if o.IsTracker.IsSet() {
+		toSerialize["isTracker"] = o.IsTracker.Get()
 	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes

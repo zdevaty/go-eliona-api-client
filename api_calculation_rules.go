@@ -20,51 +20,51 @@ import (
 	"strings"
 )
 
-// AlarmRulesAPIService AlarmRulesAPI service
-type AlarmRulesAPIService service
+// CalculationRulesAPIService CalculationRulesAPI service
+type CalculationRulesAPIService service
 
-type ApiDeleteAlarmRuleByIdRequest struct {
-	ctx         context.Context
-	ApiService  *AlarmRulesAPIService
-	alarmRuleId int32
+type ApiDeleteCalculationRuleByIdRequest struct {
+	ctx               context.Context
+	ApiService        *CalculationRulesAPIService
+	calculationRuleId int32
 }
 
-func (r ApiDeleteAlarmRuleByIdRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteAlarmRuleByIdExecute(r)
+func (r ApiDeleteCalculationRuleByIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteCalculationRuleByIdExecute(r)
 }
 
 /*
-DeleteAlarmRuleById Delete an alarm rule
+DeleteCalculationRuleById Delete a calculation rule
 
-Deletes an alarm rule.
+Deletes a calculation rule.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiDeleteAlarmRuleByIdRequest
+	@param calculationRuleId The id of the calculation rule
+	@return ApiDeleteCalculationRuleByIdRequest
 */
-func (a *AlarmRulesAPIService) DeleteAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiDeleteAlarmRuleByIdRequest {
-	return ApiDeleteAlarmRuleByIdRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		alarmRuleId: alarmRuleId,
+func (a *CalculationRulesAPIService) DeleteCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiDeleteCalculationRuleByIdRequest {
+	return ApiDeleteCalculationRuleByIdRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		calculationRuleId: calculationRuleId,
 	}
 }
 
 // Execute executes the request
-func (a *AlarmRulesAPIService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleByIdRequest) (*http.Response, error) {
+func (a *CalculationRulesAPIService) DeleteCalculationRuleByIdExecute(r ApiDeleteCalculationRuleByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.DeleteAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CalculationRulesAPIService.DeleteCalculationRuleById")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/alarm-rules/{alarm-rule-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alarm-rule-id"+"}", url.PathEscape(parameterValueToString(r.alarmRuleId, "alarmRuleId")), -1)
+	localVarPath := localBasePath + "/calculation-rules/{calculation-rule-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"calculation-rule-id"+"}", url.PathEscape(parameterValueToString(r.calculationRuleId, "calculationRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -129,65 +129,179 @@ func (a *AlarmRulesAPIService) DeleteAlarmRuleByIdExecute(r ApiDeleteAlarmRuleBy
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetAlarmRuleByIdRequest struct {
-	ctx         context.Context
-	ApiService  *AlarmRulesAPIService
-	alarmRuleId int32
-	expansions  *[]string
+type ApiGetCalculationRuleByIdRequest struct {
+	ctx               context.Context
+	ApiService        *CalculationRulesAPIService
+	calculationRuleId int32
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetAlarmRuleByIdRequest) Expansions(expansions []string) ApiGetAlarmRuleByIdRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiGetAlarmRuleByIdRequest) Execute() (*AlarmRule, *http.Response, error) {
-	return r.ApiService.GetAlarmRuleByIdExecute(r)
+func (r ApiGetCalculationRuleByIdRequest) Execute() (*CalculationRule, *http.Response, error) {
+	return r.ApiService.GetCalculationRuleByIdExecute(r)
 }
 
 /*
-GetAlarmRuleById Information about an alarm rule
+GetCalculationRuleById Information about a calculation rules rule
 
-Gets information about an alarm rule.
+Gets information about a calculation rule.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiGetAlarmRuleByIdRequest
+	@param calculationRuleId The id of the calculation rule
+	@return ApiGetCalculationRuleByIdRequest
 */
-func (a *AlarmRulesAPIService) GetAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiGetAlarmRuleByIdRequest {
-	return ApiGetAlarmRuleByIdRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		alarmRuleId: alarmRuleId,
+func (a *CalculationRulesAPIService) GetCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiGetCalculationRuleByIdRequest {
+	return ApiGetCalculationRuleByIdRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		calculationRuleId: calculationRuleId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return AlarmRule
-func (a *AlarmRulesAPIService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
+//	@return CalculationRule
+func (a *CalculationRulesAPIService) GetCalculationRuleByIdExecute(r ApiGetCalculationRuleByIdRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *AlarmRule
+		localVarReturnValue *CalculationRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.GetAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CalculationRulesAPIService.GetCalculationRuleById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/alarm-rules/{alarm-rule-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alarm-rule-id"+"}", url.PathEscape(parameterValueToString(r.alarmRuleId, "alarmRuleId")), -1)
+	localVarPath := localBasePath + "/calculation-rules/{calculation-rule-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"calculation-rule-id"+"}", url.PathEscape(parameterValueToString(r.calculationRuleId, "calculationRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetCalculationRulesRequest struct {
+	ctx                context.Context
+	ApiService         *CalculationRulesAPIService
+	calculationRuleIds *[]int32
+}
+
+// List of calculation rule ids for filtering
+func (r ApiGetCalculationRulesRequest) CalculationRuleIds(calculationRuleIds []int32) ApiGetCalculationRulesRequest {
+	r.calculationRuleIds = &calculationRuleIds
+	return r
+}
+
+func (r ApiGetCalculationRulesRequest) Execute() ([]CalculationRule, *http.Response, error) {
+	return r.ApiService.GetCalculationRulesExecute(r)
+}
+
+/*
+GetCalculationRules Information about calculation rules
+
+Gets information about calculation rules.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetCalculationRulesRequest
+*/
+func (a *CalculationRulesAPIService) GetCalculationRules(ctx context.Context) ApiGetCalculationRulesRequest {
+	return ApiGetCalculationRulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return []CalculationRule
+func (a *CalculationRulesAPIService) GetCalculationRulesExecute(r ApiGetCalculationRulesRequest) ([]CalculationRule, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []CalculationRule
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CalculationRulesAPIService.GetCalculationRules")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/calculation-rules"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.calculationRuleIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "calculationRuleIds", r.calculationRuleIds, "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -257,39 +371,31 @@ func (a *AlarmRulesAPIService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetAlarmRulesRequest struct {
-	ctx          context.Context
-	ApiService   *AlarmRulesAPIService
-	alarmRuleIds *[]int32
-	expansions   *[]string
+type ApiPutCalculationRuleRequest struct {
+	ctx             context.Context
+	ApiService      *CalculationRulesAPIService
+	calculationRule *CalculationRule
 }
 
-// List of alarm rule ids for filtering
-func (r ApiGetAlarmRulesRequest) AlarmRuleIds(alarmRuleIds []int32) ApiGetAlarmRulesRequest {
-	r.alarmRuleIds = &alarmRuleIds
+func (r ApiPutCalculationRuleRequest) CalculationRule(calculationRule CalculationRule) ApiPutCalculationRuleRequest {
+	r.calculationRule = &calculationRule
 	return r
 }
 
-// List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;.
-func (r ApiGetAlarmRulesRequest) Expansions(expansions []string) ApiGetAlarmRulesRequest {
-	r.expansions = &expansions
-	return r
-}
-
-func (r ApiGetAlarmRulesRequest) Execute() ([]AlarmRule, *http.Response, error) {
-	return r.ApiService.GetAlarmRulesExecute(r)
+func (r ApiPutCalculationRuleRequest) Execute() (*CalculationRule, *http.Response, error) {
+	return r.ApiService.PutCalculationRuleExecute(r)
 }
 
 /*
-GetAlarmRules Information about alarm rules
+PutCalculationRule Creates or updates a calculation rule
 
-Gets information about alarm rules.
+Creates a new or updates an existing calculation rule.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAlarmRulesRequest
+	@return ApiPutCalculationRuleRequest
 */
-func (a *AlarmRulesAPIService) GetAlarmRules(ctx context.Context) ApiGetAlarmRulesRequest {
-	return ApiGetAlarmRulesRequest{
+func (a *CalculationRulesAPIService) PutCalculationRule(ctx context.Context) ApiPutCalculationRuleRequest {
+	return ApiPutCalculationRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -297,282 +403,27 @@ func (a *AlarmRulesAPIService) GetAlarmRules(ctx context.Context) ApiGetAlarmRul
 
 // Execute executes the request
 //
-//	@return []AlarmRule
-func (a *AlarmRulesAPIService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) ([]AlarmRule, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []AlarmRule
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.GetAlarmRules")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/alarm-rules"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.alarmRuleIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "alarmRuleIds", r.alarmRuleIds, "csv")
-	}
-	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-Key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPostAlarmRuleRequest struct {
-	ctx        context.Context
-	ApiService *AlarmRulesAPIService
-	alarmRule  *AlarmRule
-}
-
-func (r ApiPostAlarmRuleRequest) AlarmRule(alarmRule AlarmRule) ApiPostAlarmRuleRequest {
-	r.alarmRule = &alarmRule
-	return r
-}
-
-func (r ApiPostAlarmRuleRequest) Execute() (*AlarmRule, *http.Response, error) {
-	return r.ApiService.PostAlarmRuleExecute(r)
-}
-
-/*
-PostAlarmRule Create an alarm rule
-
-Create a new alarm rule.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostAlarmRuleRequest
-*/
-func (a *AlarmRulesAPIService) PostAlarmRule(ctx context.Context) ApiPostAlarmRuleRequest {
-	return ApiPostAlarmRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-//
-//	@return AlarmRule
-func (a *AlarmRulesAPIService) PostAlarmRuleExecute(r ApiPostAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlarmRule
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PostAlarmRule")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/alarm-rules"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.alarmRule == nil {
-		return localVarReturnValue, nil, reportError("alarmRule is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.alarmRule
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-Key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPutAlarmRuleRequest struct {
-	ctx        context.Context
-	ApiService *AlarmRulesAPIService
-	alarmRule  *AlarmRule
-}
-
-func (r ApiPutAlarmRuleRequest) AlarmRule(alarmRule AlarmRule) ApiPutAlarmRuleRequest {
-	r.alarmRule = &alarmRule
-	return r
-}
-
-func (r ApiPutAlarmRuleRequest) Execute() (*AlarmRule, *http.Response, error) {
-	return r.ApiService.PutAlarmRuleExecute(r)
-}
-
-/*
-PutAlarmRule Create or update an alarm rule
-
-Deprecated - Use POST /alarm-rules to create and PUT /alarm-rules/{alarm-rule-id} to update
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutAlarmRuleRequest
-
-Deprecated
-*/
-func (a *AlarmRulesAPIService) PutAlarmRule(ctx context.Context) ApiPutAlarmRuleRequest {
-	return ApiPutAlarmRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Execute executes the request
-//
-//	@return AlarmRule
-//
-// Deprecated
-func (a *AlarmRulesAPIService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*AlarmRule, *http.Response, error) {
+//	@return CalculationRule
+func (a *CalculationRulesAPIService) PutCalculationRuleExecute(r ApiPutCalculationRuleRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *AlarmRule
+		localVarReturnValue *CalculationRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PutAlarmRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CalculationRulesAPIService.PutCalculationRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/alarm-rules"
+	localVarPath := localBasePath + "/calculation-rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.alarmRule == nil {
-		return localVarReturnValue, nil, reportError("alarmRule is required and must be specified")
+	if r.calculationRule == nil {
+		return localVarReturnValue, nil, reportError("calculationRule is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -593,7 +444,7 @@ func (a *AlarmRulesAPIService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.alarmRule
+	localVarPostBody = r.calculationRule
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -645,63 +496,63 @@ func (a *AlarmRulesAPIService) PutAlarmRuleExecute(r ApiPutAlarmRuleRequest) (*A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPutAlarmRuleByIdRequest struct {
-	ctx         context.Context
-	ApiService  *AlarmRulesAPIService
-	alarmRuleId int32
-	alarmRule   *AlarmRule
+type ApiPutCalculationRuleByIdRequest struct {
+	ctx               context.Context
+	ApiService        *CalculationRulesAPIService
+	calculationRuleId int32
+	calculationRule   *CalculationRule
 }
 
-func (r ApiPutAlarmRuleByIdRequest) AlarmRule(alarmRule AlarmRule) ApiPutAlarmRuleByIdRequest {
-	r.alarmRule = &alarmRule
+func (r ApiPutCalculationRuleByIdRequest) CalculationRule(calculationRule CalculationRule) ApiPutCalculationRuleByIdRequest {
+	r.calculationRule = &calculationRule
 	return r
 }
 
-func (r ApiPutAlarmRuleByIdRequest) Execute() (*AlarmRule, *http.Response, error) {
-	return r.ApiService.PutAlarmRuleByIdExecute(r)
+func (r ApiPutCalculationRuleByIdRequest) Execute() (*CalculationRule, *http.Response, error) {
+	return r.ApiService.PutCalculationRuleByIdExecute(r)
 }
 
 /*
-PutAlarmRuleById Update an alarm rule
+PutCalculationRuleById Update a calculation rule
 
-Update an alarm rule.
+Update a calculation rule.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alarmRuleId The id of the alarm rule
-	@return ApiPutAlarmRuleByIdRequest
+	@param calculationRuleId The id of the calculation rule
+	@return ApiPutCalculationRuleByIdRequest
 */
-func (a *AlarmRulesAPIService) PutAlarmRuleById(ctx context.Context, alarmRuleId int32) ApiPutAlarmRuleByIdRequest {
-	return ApiPutAlarmRuleByIdRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		alarmRuleId: alarmRuleId,
+func (a *CalculationRulesAPIService) PutCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiPutCalculationRuleByIdRequest {
+	return ApiPutCalculationRuleByIdRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		calculationRuleId: calculationRuleId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return AlarmRule
-func (a *AlarmRulesAPIService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequest) (*AlarmRule, *http.Response, error) {
+//	@return CalculationRule
+func (a *CalculationRulesAPIService) PutCalculationRuleByIdExecute(r ApiPutCalculationRuleByIdRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *AlarmRule
+		localVarReturnValue *CalculationRule
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AlarmRulesAPIService.PutAlarmRuleById")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CalculationRulesAPIService.PutCalculationRuleById")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/alarm-rules/{alarm-rule-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alarm-rule-id"+"}", url.PathEscape(parameterValueToString(r.alarmRuleId, "alarmRuleId")), -1)
+	localVarPath := localBasePath + "/calculation-rules/{calculation-rule-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"calculation-rule-id"+"}", url.PathEscape(parameterValueToString(r.calculationRuleId, "calculationRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.alarmRule == nil {
-		return localVarReturnValue, nil, reportError("alarmRule is required and must be specified")
+	if r.calculationRule == nil {
+		return localVarReturnValue, nil, reportError("calculationRule is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -722,7 +573,7 @@ func (a *AlarmRulesAPIService) PutAlarmRuleByIdExecute(r ApiPutAlarmRuleByIdRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.alarmRule
+	localVarPostBody = r.calculationRule
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
