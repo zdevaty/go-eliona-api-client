@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.11
+API version: 2.6.12
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ DeleteAssetTypeByName Delete an asset type
 
 Deletes an asset type and the attributes for this asset type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiDeleteAssetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetTypeName The name of the asset type
+	@return ApiDeleteAssetTypeByNameRequest
 */
 func (a *AssetTypesAPIService) DeleteAssetTypeByName(ctx context.Context, assetTypeName string) ApiDeleteAssetTypeByNameRequest {
 	return ApiDeleteAssetTypeByNameRequest{
@@ -151,9 +151,9 @@ GetAssetTypeByName Information about an asset type
 
 Gets information about an asset type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiGetAssetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetTypeName The name of the asset type
+	@return ApiGetAssetTypeByNameRequest
 */
 func (a *AssetTypesAPIService) GetAssetTypeByName(ctx context.Context, assetTypeName string) ApiGetAssetTypeByNameRequest {
 	return ApiGetAssetTypeByNameRequest{
@@ -164,7 +164,8 @@ func (a *AssetTypesAPIService) GetAssetTypeByName(ctx context.Context, assetType
 }
 
 // Execute executes the request
-//  @return AssetType
+//
+//	@return AssetType
 func (a *AssetTypesAPIService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -277,8 +278,8 @@ GetAssetTypes List of asset types
 
 Returns a list of asset types
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAssetTypesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAssetTypesRequest
 */
 func (a *AssetTypesAPIService) GetAssetTypes(ctx context.Context) ApiGetAssetTypesRequest {
 	return ApiGetAssetTypesRequest{
@@ -288,7 +289,8 @@ func (a *AssetTypesAPIService) GetAssetTypes(ctx context.Context) ApiGetAssetTyp
 }
 
 // Execute executes the request
-//  @return []AssetType
+//
+//	@return []AssetType
 func (a *AssetTypesAPIService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) ([]AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -406,8 +408,8 @@ PostAssetType Create an asset type
 
 Create a new asset type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostAssetTypeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPostAssetTypeRequest
 */
 func (a *AssetTypesAPIService) PostAssetType(ctx context.Context) ApiPostAssetTypeRequest {
 	return ApiPostAssetTypeRequest{
@@ -417,7 +419,8 @@ func (a *AssetTypesAPIService) PostAssetType(ctx context.Context) ApiPostAssetTy
 }
 
 // Execute executes the request
-//  @return AssetType
+//
+//	@return AssetType
 func (a *AssetTypesAPIService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -534,9 +537,9 @@ PostAssetTypeAttribute Create asset type attribute
 
 Create a new asset type attribute.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiPostAssetTypeAttributeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetTypeName The name of the asset type
+	@return ApiPostAssetTypeAttributeRequest
 */
 func (a *AssetTypesAPIService) PostAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPostAssetTypeAttributeRequest {
 	return ApiPostAssetTypeAttributeRequest{
@@ -547,7 +550,8 @@ func (a *AssetTypesAPIService) PostAssetTypeAttribute(ctx context.Context, asset
 }
 
 // Execute executes the request
-//  @return AssetTypeAttribute
+//
+//	@return AssetTypeAttribute
 func (a *AssetTypesAPIService) PostAssetTypeAttributeExecute(r ApiPostAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -668,8 +672,8 @@ PutAssetType Create or update an asset type
 
 Create a new asset type or update an asset type if already exists. Uses the unique asset type name for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutAssetTypeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutAssetTypeRequest
 */
 func (a *AssetTypesAPIService) PutAssetType(ctx context.Context) ApiPutAssetTypeRequest {
 	return ApiPutAssetTypeRequest{
@@ -679,7 +683,8 @@ func (a *AssetTypesAPIService) PutAssetType(ctx context.Context) ApiPutAssetType
 }
 
 // Execute executes the request
-//  @return AssetType
+//
+//	@return AssetType
 func (a *AssetTypesAPIService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -796,9 +801,9 @@ PutAssetTypeAttribute Create or update an asset type attribute
 
 Create a new asset type attribute or update an asset type attribute if already exists. Uses the unique combination of asset type name, subtype and attribute name for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiPutAssetTypeAttributeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetTypeName The name of the asset type
+	@return ApiPutAssetTypeAttributeRequest
 */
 func (a *AssetTypesAPIService) PutAssetTypeAttribute(ctx context.Context, assetTypeName string) ApiPutAssetTypeAttributeRequest {
 	return ApiPutAssetTypeAttributeRequest{
@@ -809,7 +814,8 @@ func (a *AssetTypesAPIService) PutAssetTypeAttribute(ctx context.Context, assetT
 }
 
 // Execute executes the request
-//  @return AssetTypeAttribute
+//
+//	@return AssetTypeAttribute
 func (a *AssetTypesAPIService) PutAssetTypeAttributeExecute(r ApiPutAssetTypeAttributeRequest) (*AssetTypeAttribute, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -931,9 +937,9 @@ PutAssetTypeByName Update an asset type
 
 Update an asset type.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetTypeName The name of the asset type
- @return ApiPutAssetTypeByNameRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetTypeName The name of the asset type
+	@return ApiPutAssetTypeByNameRequest
 */
 func (a *AssetTypesAPIService) PutAssetTypeByName(ctx context.Context, assetTypeName string) ApiPutAssetTypeByNameRequest {
 	return ApiPutAssetTypeByNameRequest{
@@ -944,7 +950,8 @@ func (a *AssetTypesAPIService) PutAssetTypeByName(ctx context.Context, assetType
 }
 
 // Execute executes the request
-//  @return AssetType
+//
+//	@return AssetType
 func (a *AssetTypesAPIService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByNameRequest) (*AssetType, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

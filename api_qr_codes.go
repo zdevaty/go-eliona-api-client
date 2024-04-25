@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.11
+API version: 2.6.12
 Contact: hello@eliona.io
 */
 
@@ -39,9 +39,9 @@ GetQrCodeByAssetId QR code for assets
 
 Generates QR code linking to an asset in the Eliona frontend.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param assetId The id of the asset
- @return ApiGetQrCodeByAssetIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiGetQrCodeByAssetIdRequest
 */
 func (a *QRCodesAPIService) GetQrCodeByAssetId(ctx context.Context, assetId int32) ApiGetQrCodeByAssetIdRequest {
 	return ApiGetQrCodeByAssetIdRequest{
@@ -52,7 +52,8 @@ func (a *QRCodesAPIService) GetQrCodeByAssetId(ctx context.Context, assetId int3
 }
 
 // Execute executes the request
-//  @return *os.File
+//
+//	@return *os.File
 func (a *QRCodesAPIService) GetQrCodeByAssetIdExecute(r ApiGetQrCodeByAssetIdRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

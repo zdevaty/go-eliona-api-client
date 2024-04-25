@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.11
+API version: 2.6.12
 Contact: hello@eliona.io
 */
 
@@ -45,9 +45,9 @@ GetDashboardWidgets Information about widgets on dashboard
 
 Gets information about widgets on a dashboard.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiGetDashboardWidgetsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId The id of the dashboard
+	@return ApiGetDashboardWidgetsRequest
 */
 func (a *WidgetsAPIService) GetDashboardWidgets(ctx context.Context, dashboardId int32) ApiGetDashboardWidgetsRequest {
 	return ApiGetDashboardWidgetsRequest{
@@ -58,7 +58,8 @@ func (a *WidgetsAPIService) GetDashboardWidgets(ctx context.Context, dashboardId
 }
 
 // Execute executes the request
-//  @return Widget
+//
+//	@return Widget
 func (a *WidgetsAPIService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsRequest) (*Widget, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -178,9 +179,9 @@ PostDashboardWidget Adds widget to dashboard
 
 Create a new widget and add this to a dashboard
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId The id of the dashboard
- @return ApiPostDashboardWidgetRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param dashboardId The id of the dashboard
+	@return ApiPostDashboardWidgetRequest
 */
 func (a *WidgetsAPIService) PostDashboardWidget(ctx context.Context, dashboardId int32) ApiPostDashboardWidgetRequest {
 	return ApiPostDashboardWidgetRequest{

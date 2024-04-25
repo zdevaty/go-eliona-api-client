@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## GetDataAggregated
 
-> []DataAggregated GetDataAggregated(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
+> []DataAggregated GetDataAggregated(ctx).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).AggregationRaster(aggregationRaster).Execute()
 
 Get aggregated data
 
@@ -112,10 +112,11 @@ func main() {
 	dataSubtype := "input" // string | Filter for a specific type of asset data (optional)
 	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
 	aggregationId := int32(0815) // int32 | Filter for a specific aggregation id (optional)
+	aggregationRaster := "DAY" // string | Aggregation calculation interval (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataAPI.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).Execute()
+	resp, r, err := apiClient.DataAPI.GetDataAggregated(context.Background()).FromDate(fromDate).ToDate(toDate).AssetId(assetId).DataSubtype(dataSubtype).AssetTypeName(assetTypeName).AggregationId(aggregationId).AggregationRaster(aggregationRaster).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataAggregated``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +143,7 @@ Name | Type | Description  | Notes
  **dataSubtype** | **string** | Filter for a specific type of asset data | 
  **assetTypeName** | **string** | Filter the name of the asset type | 
  **aggregationId** | **int32** | Filter for a specific aggregation id | 
+ **aggregationRaster** | **string** | Aggregation calculation interval | 
 
 ### Return type
 

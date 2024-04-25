@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.11
+API version: 2.6.12
 Contact: hello@eliona.io
 */
 
@@ -64,8 +64,8 @@ GetData Gets all data
 
 Gets information about data for assets.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDataRequest
 */
 func (a *DataAPIService) GetData(ctx context.Context) ApiGetDataRequest {
 	return ApiGetDataRequest{
@@ -75,7 +75,8 @@ func (a *DataAPIService) GetData(ctx context.Context) ApiGetDataRequest {
 }
 
 // Execute executes the request
-//  @return []Data
+//
+//	@return []Data
 func (a *DataAPIService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -176,14 +177,15 @@ func (a *DataAPIService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 }
 
 type ApiGetDataAggregatedRequest struct {
-	ctx           context.Context
-	ApiService    *DataAPIService
-	fromDate      *string
-	toDate        *string
-	assetId       *int32
-	dataSubtype   *string
-	assetTypeName *string
-	aggregationId *int32
+	ctx               context.Context
+	ApiService        *DataAPIService
+	fromDate          *string
+	toDate            *string
+	assetId           *int32
+	dataSubtype       *string
+	assetTypeName     *string
+	aggregationId     *int32
+	aggregationRaster *string
 }
 
 // Filter by lower date time (RFC3339) limit inclusive
@@ -222,6 +224,12 @@ func (r ApiGetDataAggregatedRequest) AggregationId(aggregationId int32) ApiGetDa
 	return r
 }
 
+// Aggregation calculation interval
+func (r ApiGetDataAggregatedRequest) AggregationRaster(aggregationRaster string) ApiGetDataAggregatedRequest {
+	r.aggregationRaster = &aggregationRaster
+	return r
+}
+
 func (r ApiGetDataAggregatedRequest) Execute() ([]DataAggregated, *http.Response, error) {
 	return r.ApiService.GetDataAggregatedExecute(r)
 }
@@ -231,8 +239,8 @@ GetDataAggregated Get aggregated data
 
 Gets aggregated data sets which combines a set of data points for a defined periodical raster
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDataAggregatedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDataAggregatedRequest
 */
 func (a *DataAPIService) GetDataAggregated(ctx context.Context) ApiGetDataAggregatedRequest {
 	return ApiGetDataAggregatedRequest{
@@ -242,7 +250,8 @@ func (a *DataAPIService) GetDataAggregated(ctx context.Context) ApiGetDataAggreg
 }
 
 // Execute executes the request
-//  @return []DataAggregated
+//
+//	@return []DataAggregated
 func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest) ([]DataAggregated, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -279,6 +288,9 @@ func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 	}
 	if r.aggregationId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationId", r.aggregationId, "")
+	}
+	if r.aggregationRaster != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -397,8 +409,8 @@ GetDataTrends Get trend of historical data
 
 Gets trend information about historical data for assets.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDataTrendsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDataTrendsRequest
 */
 func (a *DataAPIService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequest {
 	return ApiGetDataTrendsRequest{
@@ -408,7 +420,8 @@ func (a *DataAPIService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequ
 }
 
 // Execute executes the request
-//  @return []Data
+//
+//	@return []Data
 func (a *DataAPIService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -539,8 +552,8 @@ ListenData WebSocket connection for asset data changes
 
 Open a WebSocket connection to get informed when new asset data is written or anything changes.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListenDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListenDataRequest
 */
 func (a *DataAPIService) ListenData(ctx context.Context) ApiListenDataRequest {
 	return ApiListenDataRequest{
@@ -550,7 +563,8 @@ func (a *DataAPIService) ListenData(ctx context.Context) ApiListenDataRequest {
 }
 
 // Execute executes the request
-//  @return DataListen
+//
+//	@return DataListen
 func (a *DataAPIService) ListenDataExecute(r ApiListenDataRequest) (*DataListen, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -671,8 +685,8 @@ PutBulkData Create or update multiple asset data
 
 Create multiple asset data or update data if already exists. Uses the unique combination of asset id and subtype for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutBulkDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutBulkDataRequest
 */
 func (a *DataAPIService) PutBulkData(ctx context.Context) ApiPutBulkDataRequest {
 	return ApiPutBulkDataRequest{
@@ -794,8 +808,8 @@ PutData Create or update asset data
 
 Create new asset data or update data if already exists. Uses the unique combination of asset id and subtype for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutDataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutDataRequest
 */
 func (a *DataAPIService) PutData(ctx context.Context) ApiPutDataRequest {
 	return ApiPutDataRequest{

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.11
+API version: 2.6.12
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetUserById Information about an user
 
 Gets information about an user.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param userId The id of the user
- @return ApiGetUserByIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param userId The id of the user
+	@return ApiGetUserByIdRequest
 */
 func (a *UsersAPIService) GetUserById(ctx context.Context, userId string) ApiGetUserByIdRequest {
 	return ApiGetUserByIdRequest{
@@ -51,7 +51,8 @@ func (a *UsersAPIService) GetUserById(ctx context.Context, userId string) ApiGet
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersAPIService) GetUserByIdExecute(r ApiGetUserByIdRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -154,8 +155,8 @@ GetUsers Information about users
 
 Gets a list of users
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetUsersRequest
 */
 func (a *UsersAPIService) GetUsers(ctx context.Context) ApiGetUsersRequest {
 	return ApiGetUsersRequest{
@@ -165,7 +166,8 @@ func (a *UsersAPIService) GetUsers(ctx context.Context) ApiGetUsersRequest {
 }
 
 // Execute executes the request
-//  @return []User
+//
+//	@return []User
 func (a *UsersAPIService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -273,8 +275,8 @@ PutUser Create or update an user
 
 Creates an user if no user exists or update it if already exists. Uses the email address for updating.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPutUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiPutUserRequest
 */
 func (a *UsersAPIService) PutUser(ctx context.Context) ApiPutUserRequest {
 	return ApiPutUserRequest{
@@ -284,7 +286,8 @@ func (a *UsersAPIService) PutUser(ctx context.Context) ApiPutUserRequest {
 }
 
 // Execute executes the request
-//  @return User
+//
+//	@return User
 func (a *UsersAPIService) PutUserExecute(r ApiPutUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
