@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.10
+API version: 2.6.11
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetTagByName Information about a tag
 
 Gets information about a tag.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param tagName The name of the tag
-	@return ApiGetTagByNameRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param tagName The name of the tag
+ @return ApiGetTagByNameRequest
 */
 func (a *TagsAPIService) GetTagByName(ctx context.Context, tagName string) ApiGetTagByNameRequest {
 	return ApiGetTagByNameRequest{
@@ -51,8 +51,7 @@ func (a *TagsAPIService) GetTagByName(ctx context.Context, tagName string) ApiGe
 }
 
 // Execute executes the request
-//
-//	@return Tag
+//  @return Tag
 func (a *TagsAPIService) GetTagByNameExecute(r ApiGetTagByNameRequest) (*Tag, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -155,8 +154,8 @@ GetTags Information about tags
 
 Gets a list of tags
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetTagsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetTagsRequest
 */
 func (a *TagsAPIService) GetTags(ctx context.Context) ApiGetTagsRequest {
 	return ApiGetTagsRequest{
@@ -166,8 +165,7 @@ func (a *TagsAPIService) GetTags(ctx context.Context) ApiGetTagsRequest {
 }
 
 // Execute executes the request
-//
-//	@return []Tag
+//  @return []Tag
 func (a *TagsAPIService) GetTagsExecute(r ApiGetTagsRequest) ([]Tag, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -275,8 +273,8 @@ PutTag Create or update a tag
 
 Creates a tag if no tag exists or update it if already exists. Uses name for updating.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutTagRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutTagRequest
 */
 func (a *TagsAPIService) PutTag(ctx context.Context) ApiPutTagRequest {
 	return ApiPutTagRequest{
@@ -286,8 +284,7 @@ func (a *TagsAPIService) PutTag(ctx context.Context) ApiPutTagRequest {
 }
 
 // Execute executes the request
-//
-//	@return Tag
+//  @return Tag
 func (a *TagsAPIService) PutTagExecute(r ApiPutTagRequest) (*Tag, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

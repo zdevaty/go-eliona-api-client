@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.10
+API version: 2.6.11
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ DeleteCalculationRuleById Delete a calculation rule
 
 Deletes a calculation rule.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param calculationRuleId The id of the calculation rule
-	@return ApiDeleteCalculationRuleByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param calculationRuleId The id of the calculation rule
+ @return ApiDeleteCalculationRuleByIdRequest
 */
 func (a *CalculationRulesAPIService) DeleteCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiDeleteCalculationRuleByIdRequest {
 	return ApiDeleteCalculationRuleByIdRequest{
@@ -144,9 +144,9 @@ GetCalculationRuleById Information about a calculation rules rule
 
 Gets information about a calculation rule.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param calculationRuleId The id of the calculation rule
-	@return ApiGetCalculationRuleByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param calculationRuleId The id of the calculation rule
+ @return ApiGetCalculationRuleByIdRequest
 */
 func (a *CalculationRulesAPIService) GetCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiGetCalculationRuleByIdRequest {
 	return ApiGetCalculationRuleByIdRequest{
@@ -157,8 +157,7 @@ func (a *CalculationRulesAPIService) GetCalculationRuleById(ctx context.Context,
 }
 
 // Execute executes the request
-//
-//	@return CalculationRule
+//  @return CalculationRule
 func (a *CalculationRulesAPIService) GetCalculationRuleByIdExecute(r ApiGetCalculationRuleByIdRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -268,8 +267,8 @@ GetCalculationRules Information about calculation rules
 
 Gets information about calculation rules.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetCalculationRulesRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetCalculationRulesRequest
 */
 func (a *CalculationRulesAPIService) GetCalculationRules(ctx context.Context) ApiGetCalculationRulesRequest {
 	return ApiGetCalculationRulesRequest{
@@ -279,8 +278,7 @@ func (a *CalculationRulesAPIService) GetCalculationRules(ctx context.Context) Ap
 }
 
 // Execute executes the request
-//
-//	@return []CalculationRule
+//  @return []CalculationRule
 func (a *CalculationRulesAPIService) GetCalculationRulesExecute(r ApiGetCalculationRulesRequest) ([]CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -391,8 +389,8 @@ PutCalculationRule Creates or updates a calculation rule
 
 Creates a new or updates an existing calculation rule.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutCalculationRuleRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutCalculationRuleRequest
 */
 func (a *CalculationRulesAPIService) PutCalculationRule(ctx context.Context) ApiPutCalculationRuleRequest {
 	return ApiPutCalculationRuleRequest{
@@ -402,8 +400,7 @@ func (a *CalculationRulesAPIService) PutCalculationRule(ctx context.Context) Api
 }
 
 // Execute executes the request
-//
-//	@return CalculationRule
+//  @return CalculationRule
 func (a *CalculationRulesAPIService) PutCalculationRuleExecute(r ApiPutCalculationRuleRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -517,9 +514,9 @@ PutCalculationRuleById Update a calculation rule
 
 Update a calculation rule.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param calculationRuleId The id of the calculation rule
-	@return ApiPutCalculationRuleByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param calculationRuleId The id of the calculation rule
+ @return ApiPutCalculationRuleByIdRequest
 */
 func (a *CalculationRulesAPIService) PutCalculationRuleById(ctx context.Context, calculationRuleId int32) ApiPutCalculationRuleByIdRequest {
 	return ApiPutCalculationRuleByIdRequest{
@@ -530,8 +527,7 @@ func (a *CalculationRulesAPIService) PutCalculationRuleById(ctx context.Context,
 }
 
 // Execute executes the request
-//
-//	@return CalculationRule
+//  @return CalculationRule
 func (a *CalculationRulesAPIService) PutCalculationRuleByIdExecute(r ApiPutCalculationRuleByIdRequest) (*CalculationRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

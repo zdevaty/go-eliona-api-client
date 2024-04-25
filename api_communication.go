@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.10
+API version: 2.6.11
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetMessageReceiptById Information about a message
 
 Gets receipt information for a message.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param messageId The id of the message
-	@return ApiGetMessageReceiptByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param messageId The id of the message
+ @return ApiGetMessageReceiptByIdRequest
 */
 func (a *CommunicationAPIService) GetMessageReceiptById(ctx context.Context, messageId string) ApiGetMessageReceiptByIdRequest {
 	return ApiGetMessageReceiptByIdRequest{
@@ -51,8 +51,7 @@ func (a *CommunicationAPIService) GetMessageReceiptById(ctx context.Context, mes
 }
 
 // Execute executes the request
-//
-//	@return MessageReceipt
+//  @return MessageReceipt
 func (a *CommunicationAPIService) GetMessageReceiptByIdExecute(r ApiGetMessageReceiptByIdRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -161,8 +160,8 @@ PostMail Send e-mail
 
 Sends an e-mail to recipients
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostMailRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostMailRequest
 */
 func (a *CommunicationAPIService) PostMail(ctx context.Context) ApiPostMailRequest {
 	return ApiPostMailRequest{
@@ -172,8 +171,7 @@ func (a *CommunicationAPIService) PostMail(ctx context.Context) ApiPostMailReque
 }
 
 // Execute executes the request
-//
-//	@return MessageReceipt
+//  @return MessageReceipt
 func (a *CommunicationAPIService) PostMailExecute(r ApiPostMailRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -286,8 +284,8 @@ PostNotification Send notification
 
 Sends a notification to Eliona users
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPostNotificationRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPostNotificationRequest
 */
 func (a *CommunicationAPIService) PostNotification(ctx context.Context) ApiPostNotificationRequest {
 	return ApiPostNotificationRequest{
@@ -297,8 +295,7 @@ func (a *CommunicationAPIService) PostNotification(ctx context.Context) ApiPostN
 }
 
 // Execute executes the request
-//
-//	@return MessageReceipt
+//  @return MessageReceipt
 func (a *CommunicationAPIService) PostNotificationExecute(r ApiPostNotificationRequest) (*MessageReceipt, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost

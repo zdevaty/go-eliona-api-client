@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.10
+API version: 2.6.11
 Contact: hello@eliona.io
 */
 
@@ -38,9 +38,9 @@ GetProjectById Information about a project
 
 Gets information about a project.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The id of the project
-	@return ApiGetProjectByIdRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId The id of the project
+ @return ApiGetProjectByIdRequest
 */
 func (a *ProjectsAPIService) GetProjectById(ctx context.Context, projectId string) ApiGetProjectByIdRequest {
 	return ApiGetProjectByIdRequest{
@@ -51,8 +51,7 @@ func (a *ProjectsAPIService) GetProjectById(ctx context.Context, projectId strin
 }
 
 // Execute executes the request
-//
-//	@return Project
+//  @return Project
 func (a *ProjectsAPIService) GetProjectByIdExecute(r ApiGetProjectByIdRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -155,8 +154,8 @@ GetProjects Information about projects
 
 Gets a list of projects
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetProjectsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetProjectsRequest
 */
 func (a *ProjectsAPIService) GetProjects(ctx context.Context) ApiGetProjectsRequest {
 	return ApiGetProjectsRequest{
@@ -166,8 +165,7 @@ func (a *ProjectsAPIService) GetProjects(ctx context.Context) ApiGetProjectsRequ
 }
 
 // Execute executes the request
-//
-//	@return []Project
+//  @return []Project
 func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) ([]Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -275,8 +273,8 @@ PutProject Create or update a project
 
 Creates a project if no project exists or update it if already exists. Uses the id for updating.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiPutProjectRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiPutProjectRequest
 */
 func (a *ProjectsAPIService) PutProject(ctx context.Context) ApiPutProjectRequest {
 	return ApiPutProjectRequest{
@@ -286,8 +284,7 @@ func (a *ProjectsAPIService) PutProject(ctx context.Context) ApiPutProjectReques
 }
 
 // Execute executes the request
-//
-//	@return Project
+//  @return Project
 func (a *ProjectsAPIService) PutProjectExecute(r ApiPutProjectRequest) (*Project, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
