@@ -4,6 +4,7 @@ All URIs are relative to *https://name.eliona.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteAlarmById**](AlarmsAPI.md#DeleteAlarmById) | **Delete** /alarms/{alarm-rule-id} | Removes an alarm
 [**GetAlarmById**](AlarmsAPI.md#GetAlarmById) | **Get** /alarms/{alarm-rule-id} | Information about alarm
 [**GetAlarmHistoryById**](AlarmsAPI.md#GetAlarmHistoryById) | **Get** /alarms-history/{alarm-rule-id} | Information about alarm history
 [**GetAlarms**](AlarmsAPI.md#GetAlarms) | **Get** /alarms | Information about alarms
@@ -11,7 +12,76 @@ Method | HTTP request | Description
 [**GetHighestAlarms**](AlarmsAPI.md#GetHighestAlarms) | **Get** /alarms-highest | Information about most prioritized alarms
 [**ListenAlarm**](AlarmsAPI.md#ListenAlarm) | **Get** /alarm-listener | WebSocket connection for alarm changes
 [**PatchAlarmById**](AlarmsAPI.md#PatchAlarmById) | **Patch** /alarms/{alarm-rule-id} | Update alarm
+[**PutAlarm**](AlarmsAPI.md#PutAlarm) | **Put** /alarms | Create or update an alarm
 
+
+
+## DeleteAlarmById
+
+> DeleteAlarmById(ctx, alarmRuleId).Execute()
+
+Removes an alarm
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+	alarmRuleId := int32(4711) // int32 | The id of the alarm rule
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.AlarmsAPI.DeleteAlarmById(context.Background(), alarmRuleId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.DeleteAlarmById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**alarmRuleId** | **int32** | The id of the alarm rule | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAlarmByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetAlarmById
@@ -489,6 +559,72 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PutAlarm
+
+> Alarm PutAlarm(ctx).Alarm(alarm).Execute()
+
+Create or update an alarm
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+	alarm := *openapiclient.NewAlarm(int32(123), map[string]interface{}({})) // Alarm | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AlarmsAPI.PutAlarm(context.Background()).Alarm(alarm).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AlarmsAPI.PutAlarm``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutAlarm`: Alarm
+	fmt.Fprintf(os.Stdout, "Response from `AlarmsAPI.PutAlarm`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutAlarmRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **alarm** | [**Alarm**](Alarm.md) |  | 
+
+### Return type
+
+[**Alarm**](Alarm.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

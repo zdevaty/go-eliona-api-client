@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.12
+API version: 2.7.2
 Contact: hello@eliona.io
 */
 
@@ -24,31 +24,33 @@ var _ MappedNullable = &AlarmListen{}
 // AlarmListen struct for AlarmListen
 type AlarmListen struct {
 	// The id of the corresponding rule
-	RuleId NullableInt32 `json:"ruleId,omitempty"`
+	RuleId int32 `json:"ruleId"`
 	// ID of the corresponding asset
-	AssetId int32       `json:"assetId"`
-	Subtype DataSubtype `json:"subtype"`
+	AssetId NullableInt32 `json:"assetId,omitempty"`
+	// Type of asset data
+	Subtype NullableString `json:"subtype,omitempty"`
 	// Name of the attribute of the asset type
 	Attribute NullableString `json:"attribute,omitempty"`
-	Priority  AlarmPriority  `json:"priority"`
+	// The priority of the alarm. The lower this value the higher the priority.
+	Priority NullableInt32 `json:"priority,omitempty"`
 	// Requires the alarm an acknowledgment
-	RequiresAcknowledge *bool `json:"requiresAcknowledge,omitempty"`
+	RequiresAcknowledge NullableBool `json:"requiresAcknowledge,omitempty"`
 	// The value which triggers the alarm
 	Value NullableFloat64 `json:"value,omitempty"`
 	// Timestamp of the latest data change
-	Timestamp time.Time `json:"timestamp"`
+	Timestamp NullableTime `json:"timestamp,omitempty"`
 	// Timestamp of the latest data change
 	GoneTimestamp NullableTime `json:"goneTimestamp,omitempty"`
 	// Timestamp of the latest data change
 	AcknowledgeTimestamp NullableTime `json:"acknowledgeTimestamp,omitempty"`
 	// How often this alarm is triggered
-	Occurrences int32 `json:"occurrences"`
+	Occurrences NullableInt32 `json:"occurrences,omitempty"`
 	// Text of acknowledgement
 	AcknowledgeText NullableString `json:"acknowledgeText,omitempty"`
 	// User who acknowledged the alarm
 	AcknowledgeUserId NullableString `json:"acknowledgeUserId,omitempty"`
 	// Message.yaml texts for alarm
-	Message   map[string]interface{} `json:"message,omitempty"`
+	Message   map[string]interface{} `json:"message"`
 	AssetInfo NullableAsset          `json:"assetInfo,omitempty"`
 	RuleInfo  NullableAlarmRule      `json:"ruleInfo,omitempty"`
 	// The status code expecting when actually perform the operation. Some values are - 200: updated (ok)  - 201: created - 204: deleted (no content) - 304: unchanged (not modified) - 400: problem (bad request) - 404: not found - 409: duplicated (conflict) - 422: unprocessable
@@ -61,15 +63,12 @@ type _AlarmListen AlarmListen
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAlarmListen(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32) *AlarmListen {
+func NewAlarmListen(ruleId int32, message map[string]interface{}) *AlarmListen {
 	this := AlarmListen{}
-	this.AssetId = assetId
-	this.Subtype = subtype
-	this.Priority = priority
+	this.RuleId = ruleId
 	var requiresAcknowledge bool = false
-	this.RequiresAcknowledge = &requiresAcknowledge
-	this.Timestamp = timestamp
-	this.Occurrences = occurrences
+	this.RequiresAcknowledge = *NewNullableBool(&requiresAcknowledge)
+	this.Message = message
 	return &this
 }
 
@@ -78,102 +77,119 @@ func NewAlarmListen(assetId int32, subtype DataSubtype, priority AlarmPriority, 
 // but it doesn't guarantee that properties required by API are set
 func NewAlarmListenWithDefaults() *AlarmListen {
 	this := AlarmListen{}
-	var subtype DataSubtype = SUBTYPE_INPUT
-	this.Subtype = subtype
 	var requiresAcknowledge bool = false
-	this.RequiresAcknowledge = &requiresAcknowledge
+	this.RequiresAcknowledge = *NewNullableBool(&requiresAcknowledge)
 	return &this
 }
 
-// GetRuleId returns the RuleId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRuleId returns the RuleId field value
 func (o *AlarmListen) GetRuleId() int32 {
-	if o == nil || IsNil(o.RuleId.Get()) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.RuleId.Get()
+
+	return o.RuleId
 }
 
-// GetRuleIdOk returns a tuple with the RuleId field value if set, nil otherwise
+// GetRuleIdOk returns a tuple with the RuleId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmListen) GetRuleIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.RuleId.Get(), o.RuleId.IsSet()
+	return &o.RuleId, true
 }
 
-// HasRuleId returns a boolean if a field has been set.
-func (o *AlarmListen) HasRuleId() bool {
-	if o != nil && o.RuleId.IsSet() {
+// SetRuleId sets field value
+func (o *AlarmListen) SetRuleId(v int32) {
+	o.RuleId = v
+}
+
+// GetAssetId returns the AssetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmListen) GetAssetId() int32 {
+	if o == nil || IsNil(o.AssetId.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.AssetId.Get()
+}
+
+// GetAssetIdOk returns a tuple with the AssetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmListen) GetAssetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AssetId.Get(), o.AssetId.IsSet()
+}
+
+// HasAssetId returns a boolean if a field has been set.
+func (o *AlarmListen) HasAssetId() bool {
+	if o != nil && o.AssetId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRuleId gets a reference to the given NullableInt32 and assigns it to the RuleId field.
-func (o *AlarmListen) SetRuleId(v int32) {
-	o.RuleId.Set(&v)
-}
-
-// SetRuleIdNil sets the value for RuleId to be an explicit nil
-func (o *AlarmListen) SetRuleIdNil() {
-	o.RuleId.Set(nil)
-}
-
-// UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
-func (o *AlarmListen) UnsetRuleId() {
-	o.RuleId.Unset()
-}
-
-// GetAssetId returns the AssetId field value
-func (o *AlarmListen) GetAssetId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.AssetId
-}
-
-// GetAssetIdOk returns a tuple with the AssetId field value
-// and a boolean to check if the value has been set.
-func (o *AlarmListen) GetAssetIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AssetId, true
-}
-
-// SetAssetId sets field value
+// SetAssetId gets a reference to the given NullableInt32 and assigns it to the AssetId field.
 func (o *AlarmListen) SetAssetId(v int32) {
-	o.AssetId = v
+	o.AssetId.Set(&v)
 }
 
-// GetSubtype returns the Subtype field value
-func (o *AlarmListen) GetSubtype() DataSubtype {
-	if o == nil {
-		var ret DataSubtype
+// SetAssetIdNil sets the value for AssetId to be an explicit nil
+func (o *AlarmListen) SetAssetIdNil() {
+	o.AssetId.Set(nil)
+}
+
+// UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
+func (o *AlarmListen) UnsetAssetId() {
+	o.AssetId.Unset()
+}
+
+// GetSubtype returns the Subtype field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmListen) GetSubtype() string {
+	if o == nil || IsNil(o.Subtype.Get()) {
+		var ret string
 		return ret
 	}
-
-	return o.Subtype
+	return *o.Subtype.Get()
 }
 
-// GetSubtypeOk returns a tuple with the Subtype field value
+// GetSubtypeOk returns a tuple with the Subtype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlarmListen) GetSubtypeOk() (*DataSubtype, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmListen) GetSubtypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Subtype, true
+	return o.Subtype.Get(), o.Subtype.IsSet()
 }
 
-// SetSubtype sets field value
-func (o *AlarmListen) SetSubtype(v DataSubtype) {
-	o.Subtype = v
+// HasSubtype returns a boolean if a field has been set.
+func (o *AlarmListen) HasSubtype() bool {
+	if o != nil && o.Subtype.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtype gets a reference to the given NullableString and assigns it to the Subtype field.
+func (o *AlarmListen) SetSubtype(v string) {
+	o.Subtype.Set(&v)
+}
+
+// SetSubtypeNil sets the value for Subtype to be an explicit nil
+func (o *AlarmListen) SetSubtypeNil() {
+	o.Subtype.Set(nil)
+}
+
+// UnsetSubtype ensures that no value is present for Subtype, not even an explicit nil
+func (o *AlarmListen) UnsetSubtype() {
+	o.Subtype.Unset()
 }
 
 // GetAttribute returns the Attribute field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -219,60 +235,90 @@ func (o *AlarmListen) UnsetAttribute() {
 	o.Attribute.Unset()
 }
 
-// GetPriority returns the Priority field value
-func (o *AlarmListen) GetPriority() AlarmPriority {
-	if o == nil {
-		var ret AlarmPriority
+// GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmListen) GetPriority() int32 {
+	if o == nil || IsNil(o.Priority.Get()) {
+		var ret int32
 		return ret
 	}
-
-	return o.Priority
+	return *o.Priority.Get()
 }
 
-// GetPriorityOk returns a tuple with the Priority field value
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AlarmListen) GetPriorityOk() (*AlarmPriority, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmListen) GetPriorityOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Priority, true
+	return o.Priority.Get(), o.Priority.IsSet()
 }
 
-// SetPriority sets field value
-func (o *AlarmListen) SetPriority(v AlarmPriority) {
-	o.Priority = v
-}
-
-// GetRequiresAcknowledge returns the RequiresAcknowledge field value if set, zero value otherwise.
-func (o *AlarmListen) GetRequiresAcknowledge() bool {
-	if o == nil || IsNil(o.RequiresAcknowledge) {
-		var ret bool
-		return ret
-	}
-	return *o.RequiresAcknowledge
-}
-
-// GetRequiresAcknowledgeOk returns a tuple with the RequiresAcknowledge field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AlarmListen) GetRequiresAcknowledgeOk() (*bool, bool) {
-	if o == nil || IsNil(o.RequiresAcknowledge) {
-		return nil, false
-	}
-	return o.RequiresAcknowledge, true
-}
-
-// HasRequiresAcknowledge returns a boolean if a field has been set.
-func (o *AlarmListen) HasRequiresAcknowledge() bool {
-	if o != nil && !IsNil(o.RequiresAcknowledge) {
+// HasPriority returns a boolean if a field has been set.
+func (o *AlarmListen) HasPriority() bool {
+	if o != nil && o.Priority.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetRequiresAcknowledge gets a reference to the given bool and assigns it to the RequiresAcknowledge field.
+// SetPriority gets a reference to the given NullableInt32 and assigns it to the Priority field.
+func (o *AlarmListen) SetPriority(v int32) {
+	o.Priority.Set(&v)
+}
+
+// SetPriorityNil sets the value for Priority to be an explicit nil
+func (o *AlarmListen) SetPriorityNil() {
+	o.Priority.Set(nil)
+}
+
+// UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+func (o *AlarmListen) UnsetPriority() {
+	o.Priority.Unset()
+}
+
+// GetRequiresAcknowledge returns the RequiresAcknowledge field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmListen) GetRequiresAcknowledge() bool {
+	if o == nil || IsNil(o.RequiresAcknowledge.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.RequiresAcknowledge.Get()
+}
+
+// GetRequiresAcknowledgeOk returns a tuple with the RequiresAcknowledge field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmListen) GetRequiresAcknowledgeOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RequiresAcknowledge.Get(), o.RequiresAcknowledge.IsSet()
+}
+
+// HasRequiresAcknowledge returns a boolean if a field has been set.
+func (o *AlarmListen) HasRequiresAcknowledge() bool {
+	if o != nil && o.RequiresAcknowledge.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRequiresAcknowledge gets a reference to the given NullableBool and assigns it to the RequiresAcknowledge field.
 func (o *AlarmListen) SetRequiresAcknowledge(v bool) {
-	o.RequiresAcknowledge = &v
+	o.RequiresAcknowledge.Set(&v)
+}
+
+// SetRequiresAcknowledgeNil sets the value for RequiresAcknowledge to be an explicit nil
+func (o *AlarmListen) SetRequiresAcknowledgeNil() {
+	o.RequiresAcknowledge.Set(nil)
+}
+
+// UnsetRequiresAcknowledge ensures that no value is present for RequiresAcknowledge, not even an explicit nil
+func (o *AlarmListen) UnsetRequiresAcknowledge() {
+	o.RequiresAcknowledge.Unset()
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -318,28 +364,47 @@ func (o *AlarmListen) UnsetValue() {
 	o.Value.Unset()
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmListen) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp.Get()) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp.Get()
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmListen) GetTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp.Get(), o.Timestamp.IsSet()
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *AlarmListen) HasTimestamp() bool {
+	if o != nil && o.Timestamp.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given NullableTime and assigns it to the Timestamp field.
 func (o *AlarmListen) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp.Set(&v)
+}
+
+// SetTimestampNil sets the value for Timestamp to be an explicit nil
+func (o *AlarmListen) SetTimestampNil() {
+	o.Timestamp.Set(nil)
+}
+
+// UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
+func (o *AlarmListen) UnsetTimestamp() {
+	o.Timestamp.Unset()
 }
 
 // GetGoneTimestamp returns the GoneTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -428,28 +493,47 @@ func (o *AlarmListen) UnsetAcknowledgeTimestamp() {
 	o.AcknowledgeTimestamp.Unset()
 }
 
-// GetOccurrences returns the Occurrences field value
+// GetOccurrences returns the Occurrences field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AlarmListen) GetOccurrences() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Occurrences.Get()) {
 		var ret int32
 		return ret
 	}
-
-	return o.Occurrences
+	return *o.Occurrences.Get()
 }
 
-// GetOccurrencesOk returns a tuple with the Occurrences field value
+// GetOccurrencesOk returns a tuple with the Occurrences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmListen) GetOccurrencesOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Occurrences, true
+	return o.Occurrences.Get(), o.Occurrences.IsSet()
 }
 
-// SetOccurrences sets field value
+// HasOccurrences returns a boolean if a field has been set.
+func (o *AlarmListen) HasOccurrences() bool {
+	if o != nil && o.Occurrences.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetOccurrences gets a reference to the given NullableInt32 and assigns it to the Occurrences field.
 func (o *AlarmListen) SetOccurrences(v int32) {
-	o.Occurrences = v
+	o.Occurrences.Set(&v)
+}
+
+// SetOccurrencesNil sets the value for Occurrences to be an explicit nil
+func (o *AlarmListen) SetOccurrencesNil() {
+	o.Occurrences.Set(nil)
+}
+
+// UnsetOccurrences ensures that no value is present for Occurrences, not even an explicit nil
+func (o *AlarmListen) UnsetOccurrences() {
+	o.Occurrences.Unset()
 }
 
 // GetAcknowledgeText returns the AcknowledgeText field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -538,35 +622,26 @@ func (o *AlarmListen) UnsetAcknowledgeUserId() {
 	o.AcknowledgeUserId.Unset()
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetMessage returns the Message field value
 func (o *AlarmListen) GetMessage() map[string]interface{} {
 	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AlarmListen) GetMessageOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Message) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.Message, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *AlarmListen) HasMessage() bool {
-	if o != nil && IsNil(o.Message) {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given map[string]interface{} and assigns it to the Message field.
+// SetMessage sets field value
 func (o *AlarmListen) SetMessage(v map[string]interface{}) {
 	o.Message = v
 }
@@ -699,38 +774,44 @@ func (o AlarmListen) MarshalJSON() ([]byte, error) {
 
 func (o AlarmListen) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RuleId.IsSet() {
-		toSerialize["ruleId"] = o.RuleId.Get()
+	toSerialize["ruleId"] = o.RuleId
+	if o.AssetId.IsSet() {
+		toSerialize["assetId"] = o.AssetId.Get()
 	}
-	toSerialize["assetId"] = o.AssetId
-	toSerialize["subtype"] = o.Subtype
+	if o.Subtype.IsSet() {
+		toSerialize["subtype"] = o.Subtype.Get()
+	}
 	if o.Attribute.IsSet() {
 		toSerialize["attribute"] = o.Attribute.Get()
 	}
-	toSerialize["priority"] = o.Priority
-	if !IsNil(o.RequiresAcknowledge) {
-		toSerialize["requiresAcknowledge"] = o.RequiresAcknowledge
+	if o.Priority.IsSet() {
+		toSerialize["priority"] = o.Priority.Get()
+	}
+	if o.RequiresAcknowledge.IsSet() {
+		toSerialize["requiresAcknowledge"] = o.RequiresAcknowledge.Get()
 	}
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
 	}
-	toSerialize["timestamp"] = o.Timestamp
+	if o.Timestamp.IsSet() {
+		toSerialize["timestamp"] = o.Timestamp.Get()
+	}
 	if o.GoneTimestamp.IsSet() {
 		toSerialize["goneTimestamp"] = o.GoneTimestamp.Get()
 	}
 	if o.AcknowledgeTimestamp.IsSet() {
 		toSerialize["acknowledgeTimestamp"] = o.AcknowledgeTimestamp.Get()
 	}
-	toSerialize["occurrences"] = o.Occurrences
+	if o.Occurrences.IsSet() {
+		toSerialize["occurrences"] = o.Occurrences.Get()
+	}
 	if o.AcknowledgeText.IsSet() {
 		toSerialize["acknowledgeText"] = o.AcknowledgeText.Get()
 	}
 	if o.AcknowledgeUserId.IsSet() {
 		toSerialize["acknowledgeUserId"] = o.AcknowledgeUserId.Get()
 	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
+	toSerialize["message"] = o.Message
 	if o.AssetInfo.IsSet() {
 		toSerialize["assetInfo"] = o.AssetInfo.Get()
 	}
@@ -748,11 +829,8 @@ func (o *AlarmListen) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"assetId",
-		"subtype",
-		"priority",
-		"timestamp",
-		"occurrences",
+		"ruleId",
+		"message",
 	}
 
 	allProperties := make(map[string]interface{})

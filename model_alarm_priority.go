@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.12
+API version: 2.7.2
 Contact: hello@eliona.io
 */
 
@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// AlarmPriority The priority of the alarm. The higher this value the higher the priority.
+// AlarmPriority The priority of the alarm. The lower this value the higher the priority.
 type AlarmPriority int32
 
 // List of AlarmPriority

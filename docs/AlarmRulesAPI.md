@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 ## GetAlarmRules
 
-> []AlarmRule GetAlarmRules(ctx).AlarmRuleIds(alarmRuleIds).Expansions(expansions).Execute()
+> []AlarmRule GetAlarmRules(ctx).AlarmRuleIds(alarmRuleIds).AssetId(assetId).Expansions(expansions).Execute()
 
 Information about alarm rules
 
@@ -175,11 +175,12 @@ import (
 
 func main() {
 	alarmRuleIds := []int32{int32(123)} // []int32 | List of alarm rule ids for filtering (optional)
+	assetId := int32(4711) // int32 | Filter for a specific asset id (optional)
 	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRules(context.Background()).AlarmRuleIds(alarmRuleIds).Expansions(expansions).Execute()
+	resp, r, err := apiClient.AlarmRulesAPI.GetAlarmRules(context.Background()).AlarmRuleIds(alarmRuleIds).AssetId(assetId).Expansions(expansions).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AlarmRulesAPI.GetAlarmRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,6 +202,7 @@ Other parameters are passed through a pointer to a apiGetAlarmRulesRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alarmRuleIds** | **[]int32** | List of alarm rule ids for filtering | 
+ **assetId** | **int32** | Filter for a specific asset id | 
  **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
 
 ### Return type

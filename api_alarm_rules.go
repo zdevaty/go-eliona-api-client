@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.6.12
+API version: 2.7.2
 Contact: hello@eliona.io
 */
 
@@ -261,12 +261,19 @@ type ApiGetAlarmRulesRequest struct {
 	ctx          context.Context
 	ApiService   *AlarmRulesAPIService
 	alarmRuleIds *[]int32
+	assetId      *int32
 	expansions   *[]string
 }
 
 // List of alarm rule ids for filtering
 func (r ApiGetAlarmRulesRequest) AlarmRuleIds(alarmRuleIds []int32) ApiGetAlarmRulesRequest {
 	r.alarmRuleIds = &alarmRuleIds
+	return r
+}
+
+// Filter for a specific asset id
+func (r ApiGetAlarmRulesRequest) AssetId(assetId int32) ApiGetAlarmRulesRequest {
+	r.assetId = &assetId
 	return r
 }
 
@@ -319,6 +326,9 @@ func (a *AlarmRulesAPIService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 
 	if r.alarmRuleIds != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "alarmRuleIds", r.alarmRuleIds, "csv")
+	}
+	if r.assetId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
 	}
 	if r.expansions != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")

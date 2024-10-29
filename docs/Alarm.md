@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RuleId** | Pointer to **NullableInt32** | The id of the corresponding rule | [optional] 
-**AssetId** | **int32** | ID of the corresponding asset | 
-**Subtype** | [**DataSubtype**](DataSubtype.md) |  | [default to SUBTYPE_INPUT]
-**Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] 
-**Priority** | [**AlarmPriority**](AlarmPriority.md) |  | 
-**RequiresAcknowledge** | Pointer to **bool** | Requires the alarm an acknowledgment | [optional] [default to false]
+**RuleId** | **int32** | The id of the corresponding rule | [readonly] 
+**AssetId** | Pointer to **NullableInt32** | ID of the corresponding asset | [optional] [readonly] 
+**Subtype** | Pointer to **NullableString** | Type of asset data | [optional] [readonly] 
+**Attribute** | Pointer to **NullableString** | Name of the attribute of the asset type | [optional] [readonly] 
+**Priority** | Pointer to **NullableInt32** | The priority of the alarm. The lower this value the higher the priority. | [optional] 
+**RequiresAcknowledge** | Pointer to **NullableBool** | Requires the alarm an acknowledgment | [optional] [default to false]
 **Value** | Pointer to **NullableFloat64** | The value which triggers the alarm | [optional] 
-**Timestamp** | **time.Time** | Timestamp of the latest data change | 
-**GoneTimestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
-**AcknowledgeTimestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
-**Occurrences** | **int32** | How often this alarm is triggered | 
-**AcknowledgeText** | Pointer to **NullableString** | Text of acknowledgement | [optional] 
-**AcknowledgeUserId** | Pointer to **NullableString** | User who acknowledged the alarm | [optional] 
-**Message** | Pointer to **map[string]interface{}** | Message.yaml texts for alarm | [optional] 
+**Timestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] 
+**GoneTimestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] [readonly] 
+**AcknowledgeTimestamp** | Pointer to **NullableTime** | Timestamp of the latest data change | [optional] [readonly] 
+**Occurrences** | Pointer to **NullableInt32** | How often this alarm is triggered | [optional] [readonly] 
+**AcknowledgeText** | Pointer to **NullableString** | Text of acknowledgement | [optional] [readonly] 
+**AcknowledgeUserId** | Pointer to **NullableString** | User who acknowledged the alarm | [optional] [readonly] 
+**Message** | **map[string]interface{}** | Message.yaml texts for alarm | 
 **AssetInfo** | Pointer to [**NullableAsset**](Asset.md) |  | [optional] 
 **RuleInfo** | Pointer to [**NullableAlarmRule**](AlarmRule.md) |  | [optional] 
 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewAlarm
 
-`func NewAlarm(assetId int32, subtype DataSubtype, priority AlarmPriority, timestamp time.Time, occurrences int32, ) *Alarm`
+`func NewAlarm(ruleId int32, message map[string]interface{}, ) *Alarm`
 
 NewAlarm instantiates a new Alarm object
 This constructor will assign default values to properties that have it defined,
@@ -59,22 +59,7 @@ and a boolean to check if the value has been set.
 
 SetRuleId sets RuleId field to given value.
 
-### HasRuleId
 
-`func (o *Alarm) HasRuleId() bool`
-
-HasRuleId returns a boolean if a field has been set.
-
-### SetRuleIdNil
-
-`func (o *Alarm) SetRuleIdNil(b bool)`
-
- SetRuleIdNil sets the value for RuleId to be an explicit nil
-
-### UnsetRuleId
-`func (o *Alarm) UnsetRuleId()`
-
-UnsetRuleId ensures that no value is present for RuleId, not even an explicit nil
 ### GetAssetId
 
 `func (o *Alarm) GetAssetId() int32`
@@ -94,27 +79,57 @@ and a boolean to check if the value has been set.
 
 SetAssetId sets AssetId field to given value.
 
+### HasAssetId
 
+`func (o *Alarm) HasAssetId() bool`
+
+HasAssetId returns a boolean if a field has been set.
+
+### SetAssetIdNil
+
+`func (o *Alarm) SetAssetIdNil(b bool)`
+
+ SetAssetIdNil sets the value for AssetId to be an explicit nil
+
+### UnsetAssetId
+`func (o *Alarm) UnsetAssetId()`
+
+UnsetAssetId ensures that no value is present for AssetId, not even an explicit nil
 ### GetSubtype
 
-`func (o *Alarm) GetSubtype() DataSubtype`
+`func (o *Alarm) GetSubtype() string`
 
 GetSubtype returns the Subtype field if non-nil, zero value otherwise.
 
 ### GetSubtypeOk
 
-`func (o *Alarm) GetSubtypeOk() (*DataSubtype, bool)`
+`func (o *Alarm) GetSubtypeOk() (*string, bool)`
 
 GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtype
 
-`func (o *Alarm) SetSubtype(v DataSubtype)`
+`func (o *Alarm) SetSubtype(v string)`
 
 SetSubtype sets Subtype field to given value.
 
+### HasSubtype
 
+`func (o *Alarm) HasSubtype() bool`
+
+HasSubtype returns a boolean if a field has been set.
+
+### SetSubtypeNil
+
+`func (o *Alarm) SetSubtypeNil(b bool)`
+
+ SetSubtypeNil sets the value for Subtype to be an explicit nil
+
+### UnsetSubtype
+`func (o *Alarm) UnsetSubtype()`
+
+UnsetSubtype ensures that no value is present for Subtype, not even an explicit nil
 ### GetAttribute
 
 `func (o *Alarm) GetAttribute() string`
@@ -152,24 +167,39 @@ HasAttribute returns a boolean if a field has been set.
 UnsetAttribute ensures that no value is present for Attribute, not even an explicit nil
 ### GetPriority
 
-`func (o *Alarm) GetPriority() AlarmPriority`
+`func (o *Alarm) GetPriority() int32`
 
 GetPriority returns the Priority field if non-nil, zero value otherwise.
 
 ### GetPriorityOk
 
-`func (o *Alarm) GetPriorityOk() (*AlarmPriority, bool)`
+`func (o *Alarm) GetPriorityOk() (*int32, bool)`
 
 GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriority
 
-`func (o *Alarm) SetPriority(v AlarmPriority)`
+`func (o *Alarm) SetPriority(v int32)`
 
 SetPriority sets Priority field to given value.
 
+### HasPriority
 
+`func (o *Alarm) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
+
+### SetPriorityNil
+
+`func (o *Alarm) SetPriorityNil(b bool)`
+
+ SetPriorityNil sets the value for Priority to be an explicit nil
+
+### UnsetPriority
+`func (o *Alarm) UnsetPriority()`
+
+UnsetPriority ensures that no value is present for Priority, not even an explicit nil
 ### GetRequiresAcknowledge
 
 `func (o *Alarm) GetRequiresAcknowledge() bool`
@@ -195,6 +225,16 @@ SetRequiresAcknowledge sets RequiresAcknowledge field to given value.
 
 HasRequiresAcknowledge returns a boolean if a field has been set.
 
+### SetRequiresAcknowledgeNil
+
+`func (o *Alarm) SetRequiresAcknowledgeNil(b bool)`
+
+ SetRequiresAcknowledgeNil sets the value for RequiresAcknowledge to be an explicit nil
+
+### UnsetRequiresAcknowledge
+`func (o *Alarm) UnsetRequiresAcknowledge()`
+
+UnsetRequiresAcknowledge ensures that no value is present for RequiresAcknowledge, not even an explicit nil
 ### GetValue
 
 `func (o *Alarm) GetValue() float64`
@@ -249,7 +289,22 @@ and a boolean to check if the value has been set.
 
 SetTimestamp sets Timestamp field to given value.
 
+### HasTimestamp
 
+`func (o *Alarm) HasTimestamp() bool`
+
+HasTimestamp returns a boolean if a field has been set.
+
+### SetTimestampNil
+
+`func (o *Alarm) SetTimestampNil(b bool)`
+
+ SetTimestampNil sets the value for Timestamp to be an explicit nil
+
+### UnsetTimestamp
+`func (o *Alarm) UnsetTimestamp()`
+
+UnsetTimestamp ensures that no value is present for Timestamp, not even an explicit nil
 ### GetGoneTimestamp
 
 `func (o *Alarm) GetGoneTimestamp() time.Time`
@@ -339,7 +394,22 @@ and a boolean to check if the value has been set.
 
 SetOccurrences sets Occurrences field to given value.
 
+### HasOccurrences
 
+`func (o *Alarm) HasOccurrences() bool`
+
+HasOccurrences returns a boolean if a field has been set.
+
+### SetOccurrencesNil
+
+`func (o *Alarm) SetOccurrencesNil(b bool)`
+
+ SetOccurrencesNil sets the value for Occurrences to be an explicit nil
+
+### UnsetOccurrences
+`func (o *Alarm) UnsetOccurrences()`
+
+UnsetOccurrences ensures that no value is present for Occurrences, not even an explicit nil
 ### GetAcknowledgeText
 
 `func (o *Alarm) GetAcknowledgeText() string`
@@ -429,22 +499,7 @@ and a boolean to check if the value has been set.
 
 SetMessage sets Message field to given value.
 
-### HasMessage
 
-`func (o *Alarm) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
-
-### SetMessageNil
-
-`func (o *Alarm) SetMessageNil(b bool)`
-
- SetMessageNil sets the value for Message to be an explicit nil
-
-### UnsetMessage
-`func (o *Alarm) UnsetMessage()`
-
-UnsetMessage ensures that no value is present for Message, not even an explicit nil
 ### GetAssetInfo
 
 `func (o *Alarm) GetAssetInfo() Asset`
