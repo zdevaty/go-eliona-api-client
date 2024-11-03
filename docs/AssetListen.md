@@ -20,6 +20,8 @@ Name | Type | Description | Notes
 **FunctionalAssetIdPath** | Pointer to **[]int32** | The hierarchical path of functional ids of the asset | [optional] [readonly] 
 **ParentLocationalAssetId** | Pointer to **NullableInt32** | The id of an asset which groups this asset as a locational child | [optional] 
 **LocationalAssetIdPath** | Pointer to **[]int32** | The hierarchical path of locational ids of the asset | [optional] [readonly] 
+**ParentFunctionalIdentifier** | Pointer to **NullableString** | The identifier specified by the identifiedBy parameter classifies this asset as a functional child. | [optional] 
+**ParentLocationalIdentifier** | Pointer to **NullableString** | The identifier specified by the identifiedBy parameter classifies this asset as a locational child | [optional] 
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **ChildrenInfo** | Pointer to [**[]Asset**](Asset.md) | List of children for this asset. | [optional] [readonly] 
 **Attachments** | Pointer to [**[]Attachment**](Attachment.md) | A list of files attached to the asset | [optional] 
@@ -559,6 +561,76 @@ HasLocationalAssetIdPath returns a boolean if a field has been set.
 `func (o *AssetListen) UnsetLocationalAssetIdPath()`
 
 UnsetLocationalAssetIdPath ensures that no value is present for LocationalAssetIdPath, not even an explicit nil
+### GetParentFunctionalIdentifier
+
+`func (o *AssetListen) GetParentFunctionalIdentifier() string`
+
+GetParentFunctionalIdentifier returns the ParentFunctionalIdentifier field if non-nil, zero value otherwise.
+
+### GetParentFunctionalIdentifierOk
+
+`func (o *AssetListen) GetParentFunctionalIdentifierOk() (*string, bool)`
+
+GetParentFunctionalIdentifierOk returns a tuple with the ParentFunctionalIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentFunctionalIdentifier
+
+`func (o *AssetListen) SetParentFunctionalIdentifier(v string)`
+
+SetParentFunctionalIdentifier sets ParentFunctionalIdentifier field to given value.
+
+### HasParentFunctionalIdentifier
+
+`func (o *AssetListen) HasParentFunctionalIdentifier() bool`
+
+HasParentFunctionalIdentifier returns a boolean if a field has been set.
+
+### SetParentFunctionalIdentifierNil
+
+`func (o *AssetListen) SetParentFunctionalIdentifierNil(b bool)`
+
+ SetParentFunctionalIdentifierNil sets the value for ParentFunctionalIdentifier to be an explicit nil
+
+### UnsetParentFunctionalIdentifier
+`func (o *AssetListen) UnsetParentFunctionalIdentifier()`
+
+UnsetParentFunctionalIdentifier ensures that no value is present for ParentFunctionalIdentifier, not even an explicit nil
+### GetParentLocationalIdentifier
+
+`func (o *AssetListen) GetParentLocationalIdentifier() string`
+
+GetParentLocationalIdentifier returns the ParentLocationalIdentifier field if non-nil, zero value otherwise.
+
+### GetParentLocationalIdentifierOk
+
+`func (o *AssetListen) GetParentLocationalIdentifierOk() (*string, bool)`
+
+GetParentLocationalIdentifierOk returns a tuple with the ParentLocationalIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentLocationalIdentifier
+
+`func (o *AssetListen) SetParentLocationalIdentifier(v string)`
+
+SetParentLocationalIdentifier sets ParentLocationalIdentifier field to given value.
+
+### HasParentLocationalIdentifier
+
+`func (o *AssetListen) HasParentLocationalIdentifier() bool`
+
+HasParentLocationalIdentifier returns a boolean if a field has been set.
+
+### SetParentLocationalIdentifierNil
+
+`func (o *AssetListen) SetParentLocationalIdentifierNil(b bool)`
+
+ SetParentLocationalIdentifierNil sets the value for ParentLocationalIdentifier to be an explicit nil
+
+### UnsetParentLocationalIdentifier
+`func (o *AssetListen) UnsetParentLocationalIdentifier()`
+
+UnsetParentLocationalIdentifier ensures that no value is present for ParentLocationalIdentifier, not even an explicit nil
 ### GetTags
 
 `func (o *AssetListen) GetTags() []string`

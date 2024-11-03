@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.7.2
+API version: 2.7.3
 Contact: hello@eliona.io
 */
 
@@ -55,6 +55,10 @@ type Asset struct {
 	ParentLocationalAssetId NullableInt32 `json:"parentLocationalAssetId,omitempty"`
 	// The hierarchical path of locational ids of the asset
 	LocationalAssetIdPath []int32 `json:"locationalAssetIdPath,omitempty"`
+	// The identifier specified by the identifiedBy parameter classifies this asset as a functional child.
+	ParentFunctionalIdentifier NullableString `json:"parentFunctionalIdentifier,omitempty"`
+	// The identifier specified by the identifiedBy parameter classifies this asset as a locational child
+	ParentLocationalIdentifier NullableString `json:"parentLocationalIdentifier,omitempty"`
 	// List of associated tags
 	Tags []string `json:"tags,omitempty"`
 	// List of children for this asset.
@@ -693,6 +697,92 @@ func (o *Asset) SetLocationalAssetIdPath(v []int32) {
 	o.LocationalAssetIdPath = v
 }
 
+// GetParentFunctionalIdentifier returns the ParentFunctionalIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetParentFunctionalIdentifier() string {
+	if o == nil || IsNil(o.ParentFunctionalIdentifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ParentFunctionalIdentifier.Get()
+}
+
+// GetParentFunctionalIdentifierOk returns a tuple with the ParentFunctionalIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetParentFunctionalIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ParentFunctionalIdentifier.Get(), o.ParentFunctionalIdentifier.IsSet()
+}
+
+// HasParentFunctionalIdentifier returns a boolean if a field has been set.
+func (o *Asset) HasParentFunctionalIdentifier() bool {
+	if o != nil && o.ParentFunctionalIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetParentFunctionalIdentifier gets a reference to the given NullableString and assigns it to the ParentFunctionalIdentifier field.
+func (o *Asset) SetParentFunctionalIdentifier(v string) {
+	o.ParentFunctionalIdentifier.Set(&v)
+}
+
+// SetParentFunctionalIdentifierNil sets the value for ParentFunctionalIdentifier to be an explicit nil
+func (o *Asset) SetParentFunctionalIdentifierNil() {
+	o.ParentFunctionalIdentifier.Set(nil)
+}
+
+// UnsetParentFunctionalIdentifier ensures that no value is present for ParentFunctionalIdentifier, not even an explicit nil
+func (o *Asset) UnsetParentFunctionalIdentifier() {
+	o.ParentFunctionalIdentifier.Unset()
+}
+
+// GetParentLocationalIdentifier returns the ParentLocationalIdentifier field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Asset) GetParentLocationalIdentifier() string {
+	if o == nil || IsNil(o.ParentLocationalIdentifier.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ParentLocationalIdentifier.Get()
+}
+
+// GetParentLocationalIdentifierOk returns a tuple with the ParentLocationalIdentifier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Asset) GetParentLocationalIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ParentLocationalIdentifier.Get(), o.ParentLocationalIdentifier.IsSet()
+}
+
+// HasParentLocationalIdentifier returns a boolean if a field has been set.
+func (o *Asset) HasParentLocationalIdentifier() bool {
+	if o != nil && o.ParentLocationalIdentifier.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetParentLocationalIdentifier gets a reference to the given NullableString and assigns it to the ParentLocationalIdentifier field.
+func (o *Asset) SetParentLocationalIdentifier(v string) {
+	o.ParentLocationalIdentifier.Set(&v)
+}
+
+// SetParentLocationalIdentifierNil sets the value for ParentLocationalIdentifier to be an explicit nil
+func (o *Asset) SetParentLocationalIdentifierNil() {
+	o.ParentLocationalIdentifier.Set(nil)
+}
+
+// UnsetParentLocationalIdentifier ensures that no value is present for ParentLocationalIdentifier, not even an explicit nil
+func (o *Asset) UnsetParentLocationalIdentifier() {
+	o.ParentLocationalIdentifier.Unset()
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Asset) GetTags() []string {
 	if o == nil {
@@ -843,6 +933,12 @@ func (o Asset) ToMap() (map[string]interface{}, error) {
 	}
 	if o.LocationalAssetIdPath != nil {
 		toSerialize["locationalAssetIdPath"] = o.LocationalAssetIdPath
+	}
+	if o.ParentFunctionalIdentifier.IsSet() {
+		toSerialize["parentFunctionalIdentifier"] = o.ParentFunctionalIdentifier.Get()
+	}
+	if o.ParentLocationalIdentifier.IsSet() {
+		toSerialize["parentLocationalIdentifier"] = o.ParentLocationalIdentifier.Get()
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
