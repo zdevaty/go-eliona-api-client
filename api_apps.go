@@ -318,7 +318,7 @@ func (a *AppsAPIService) PatchAppByNameExecute(r ApiPatchAppByNameRequest) (*htt
 	localVarFormParams := url.Values{}
 
 	if r.registered != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "registered", r.registered, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "registered", r.registered, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -438,7 +438,7 @@ func (a *AppsAPIService) PatchPatchByNameExecute(r ApiPatchPatchByNameRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.apply != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "apply", r.apply, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "apply", r.apply, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

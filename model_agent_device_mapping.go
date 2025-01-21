@@ -55,7 +55,7 @@ func (dst *AgentDeviceMapping) UnmarshalJSON(data []byte) error {
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src *AgentDeviceMapping) MarshalJSON() ([]byte, error) {
+func (src AgentDeviceMapping) MarshalJSON() ([]byte, error) {
 	if src.IosysAgentDeviceMapping != nil {
 		return json.Marshal(&src.IosysAgentDeviceMapping)
 	}

@@ -98,16 +98,16 @@ func (a *DataAPIService) GetDataExecute(r ApiGetDataRequest) ([]Data, *http.Resp
 	localVarFormParams := url.Values{}
 
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.parentAssetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "parentAssetId", r.parentAssetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parentAssetId", r.parentAssetId, "form", "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -278,25 +278,25 @@ func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "form", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "form", "")
 	}
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "form", "")
 	}
 	if r.aggregationId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationId", r.aggregationId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationId", r.aggregationId, "form", "")
 	}
 	if r.aggregationRaster != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -487,19 +487,19 @@ func (a *DataAPIService) GetDataTrendAggregatedByIdExecute(r ApiGetDataTrendAggr
 		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "form", "")
 	if r.sumMethod != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sumMethod", r.sumMethod, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sumMethod", r.sumMethod, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "form", "")
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -673,15 +673,15 @@ func (a *DataAPIService) GetDataTrendByIdExecute(r ApiGetDataTrendByIdRequest) (
 		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "form", "")
 	if r.offset != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.size != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -838,19 +838,19 @@ func (a *DataAPIService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "form", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "form", "")
 	}
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
 	}
 	if r.assetTypeName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -981,10 +981,10 @@ func (a *DataAPIService) ListenDataExecute(r ApiListenDataRequest) (*DataListen,
 	localVarFormParams := url.Values{}
 
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.dataSubtype != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1114,7 +1114,7 @@ func (a *DataAPIService) PutBulkDataExecute(r ApiPutBulkDataRequest) (*http.Resp
 	}
 
 	if r.directMode != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1237,7 +1237,7 @@ func (a *DataAPIService) PutDataExecute(r ApiPutDataRequest) (*http.Response, er
 	}
 
 	if r.directMode != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "directMode", r.directMode, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

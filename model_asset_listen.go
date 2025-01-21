@@ -202,7 +202,7 @@ func (o *AssetListen) GetDeviceIdsOk() ([]string, bool) {
 
 // HasDeviceIds returns a boolean if a field has been set.
 func (o *AssetListen) HasDeviceIds() bool {
-	if o != nil && IsNil(o.DeviceIds) {
+	if o != nil && !IsNil(o.DeviceIds) {
 		return true
 	}
 
@@ -611,7 +611,7 @@ func (o *AssetListen) GetFunctionalAssetIdPathOk() ([]int32, bool) {
 
 // HasFunctionalAssetIdPath returns a boolean if a field has been set.
 func (o *AssetListen) HasFunctionalAssetIdPath() bool {
-	if o != nil && IsNil(o.FunctionalAssetIdPath) {
+	if o != nil && !IsNil(o.FunctionalAssetIdPath) {
 		return true
 	}
 
@@ -687,7 +687,7 @@ func (o *AssetListen) GetLocationalAssetIdPathOk() ([]int32, bool) {
 
 // HasLocationalAssetIdPath returns a boolean if a field has been set.
 func (o *AssetListen) HasLocationalAssetIdPath() bool {
-	if o != nil && IsNil(o.LocationalAssetIdPath) {
+	if o != nil && !IsNil(o.LocationalAssetIdPath) {
 		return true
 	}
 
@@ -806,7 +806,7 @@ func (o *AssetListen) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *AssetListen) HasTags() bool {
-	if o != nil && IsNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -839,7 +839,7 @@ func (o *AssetListen) GetChildrenInfoOk() ([]Asset, bool) {
 
 // HasChildrenInfo returns a boolean if a field has been set.
 func (o *AssetListen) HasChildrenInfo() bool {
-	if o != nil && IsNil(o.ChildrenInfo) {
+	if o != nil && !IsNil(o.ChildrenInfo) {
 		return true
 	}
 
@@ -872,7 +872,7 @@ func (o *AssetListen) GetAttachmentsOk() ([]Attachment, bool) {
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *AssetListen) HasAttachments() bool {
-	if o != nil && IsNil(o.Attachments) {
+	if o != nil && !IsNil(o.Attachments) {
 		return true
 	}
 

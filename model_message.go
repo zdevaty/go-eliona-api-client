@@ -147,7 +147,7 @@ func (o *Message) GetCopyRecipientsOk() ([]string, bool) {
 
 // HasCopyRecipients returns a boolean if a field has been set.
 func (o *Message) HasCopyRecipients() bool {
-	if o != nil && IsNil(o.CopyRecipients) {
+	if o != nil && !IsNil(o.CopyRecipients) {
 		return true
 	}
 
@@ -180,7 +180,7 @@ func (o *Message) GetBlindCopyRecipientsOk() ([]string, bool) {
 
 // HasBlindCopyRecipients returns a boolean if a field has been set.
 func (o *Message) HasBlindCopyRecipients() bool {
-	if o != nil && IsNil(o.BlindCopyRecipients) {
+	if o != nil && !IsNil(o.BlindCopyRecipients) {
 		return true
 	}
 
@@ -269,7 +269,7 @@ func (o *Message) GetAttachmentsOk() ([]Attachment, bool) {
 
 // HasAttachments returns a boolean if a field has been set.
 func (o *Message) HasAttachments() bool {
-	if o != nil && IsNil(o.Attachments) {
+	if o != nil && !IsNil(o.Attachments) {
 		return true
 	}
 

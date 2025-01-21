@@ -471,7 +471,7 @@ func (o *AttributeDisplay) GetMapOk() ([]map[string]interface{}, bool) {
 
 // HasMap returns a boolean if a field has been set.
 func (o *AttributeDisplay) HasMap() bool {
-	if o != nil && IsNil(o.Map) {
+	if o != nil && !IsNil(o.Map) {
 		return true
 	}
 

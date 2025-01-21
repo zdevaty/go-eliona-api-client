@@ -251,7 +251,7 @@ func (o *Dashboard) GetWidgetsOk() ([]Widget, bool) {
 
 // HasWidgets returns a boolean if a field has been set.
 func (o *Dashboard) HasWidgets() bool {
-	if o != nil && IsNil(o.Widgets) {
+	if o != nil && !IsNil(o.Widgets) {
 		return true
 	}
 

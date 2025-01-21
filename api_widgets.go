@@ -81,7 +81,7 @@ func (a *WidgetsAPIService) GetDashboardWidgetsExecute(r ApiGetDashboardWidgetsR
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -215,7 +215,7 @@ func (a *WidgetsAPIService) PostDashboardWidgetExecute(r ApiPostDashboardWidgetR
 	}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

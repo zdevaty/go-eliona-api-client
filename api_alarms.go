@@ -187,7 +187,7 @@ func (a *AlarmsAPIService) GetAlarmByIdExecute(r ApiGetAlarmByIdRequest) (*Alarm
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -315,7 +315,7 @@ func (a *AlarmsAPIService) GetAlarmHistoryByIdExecute(r ApiGetAlarmHistoryByIdRe
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -446,10 +446,10 @@ func (a *AlarmsAPIService) GetAlarmsExecute(r ApiGetAlarmsRequest) ([]Alarm, *ht
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -580,10 +580,10 @@ func (a *AlarmsAPIService) GetAlarmsHistoryExecute(r ApiGetAlarmsHistoryRequest)
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -714,10 +714,10 @@ func (a *AlarmsAPIService) GetHighestAlarmsExecute(r ApiGetHighestAlarmsRequest)
 	localVarFormParams := url.Values{}
 
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -965,9 +965,9 @@ func (a *AlarmsAPIService) PatchAlarmByIdExecute(r ApiPatchAlarmByIdRequest) (*h
 		return nil, reportError("acknowledged is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledged", r.acknowledged, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledged", r.acknowledged, "form", "")
 	if r.acknowledgeText != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledgeText", r.acknowledgeText, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "acknowledgeText", r.acknowledgeText, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

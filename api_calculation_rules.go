@@ -301,7 +301,7 @@ func (a *CalculationRulesAPIService) GetCalculationRulesExecute(r ApiGetCalculat
 	localVarFormParams := url.Values{}
 
 	if r.calculationRuleIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "calculationRuleIds", r.calculationRuleIds, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "calculationRuleIds", r.calculationRuleIds, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

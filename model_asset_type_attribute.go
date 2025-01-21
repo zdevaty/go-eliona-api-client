@@ -886,7 +886,7 @@ func (o *AssetTypeAttribute) GetMapOk() ([]map[string]interface{}, bool) {
 
 // HasMap returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasMap() bool {
-	if o != nil && IsNil(o.Map) {
+	if o != nil && !IsNil(o.Map) {
 		return true
 	}
 
@@ -919,7 +919,7 @@ func (o *AssetTypeAttribute) GetSourcePathOk() ([]string, bool) {
 
 // HasSourcePath returns a boolean if a field has been set.
 func (o *AssetTypeAttribute) HasSourcePath() bool {
-	if o != nil && IsNil(o.SourcePath) {
+	if o != nil && !IsNil(o.SourcePath) {
 		return true
 	}
 

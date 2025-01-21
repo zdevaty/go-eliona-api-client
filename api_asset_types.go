@@ -187,7 +187,7 @@ func (a *AssetTypesAPIService) GetAssetTypeByNameExecute(r ApiGetAssetTypeByName
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -311,7 +311,7 @@ func (a *AssetTypesAPIService) GetAssetTypesExecute(r ApiGetAssetTypesRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -444,7 +444,7 @@ func (a *AssetTypesAPIService) PostAssetTypeExecute(r ApiPostAssetTypeRequest) (
 	}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -708,7 +708,7 @@ func (a *AssetTypesAPIService) PutAssetTypeExecute(r ApiPutAssetTypeRequest) (*A
 	}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -976,7 +976,7 @@ func (a *AssetTypesAPIService) PutAssetTypeByNameExecute(r ApiPutAssetTypeByName
 	}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

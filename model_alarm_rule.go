@@ -450,7 +450,7 @@ func (o *AlarmRule) GetMessageOk() (map[string]interface{}, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *AlarmRule) HasMessage() bool {
-	if o != nil && IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -483,7 +483,7 @@ func (o *AlarmRule) GetTagsOk() ([]string, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *AlarmRule) HasTags() bool {
-	if o != nil && IsNil(o.Tags) {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -605,7 +605,7 @@ func (o *AlarmRule) GetParamsOk() (map[string]interface{}, bool) {
 
 // HasParams returns a boolean if a field has been set.
 func (o *AlarmRule) HasParams() bool {
-	if o != nil && IsNil(o.Params) {
+	if o != nil && !IsNil(o.Params) {
 		return true
 	}
 

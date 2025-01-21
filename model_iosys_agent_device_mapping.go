@@ -566,7 +566,7 @@ func (o *IosysAgentDeviceMapping) GetMaskOk() ([]int64, bool) {
 
 // HasMask returns a boolean if a field has been set.
 func (o *IosysAgentDeviceMapping) HasMask() bool {
-	if o != nil && IsNil(o.Mask) {
+	if o != nil && !IsNil(o.Mask) {
 		return true
 	}
 
@@ -599,7 +599,7 @@ func (o *IosysAgentDeviceMapping) GetMaskAttributesOk() ([]string, bool) {
 
 // HasMaskAttributes returns a boolean if a field has been set.
 func (o *IosysAgentDeviceMapping) HasMaskAttributes() bool {
-	if o != nil && IsNil(o.MaskAttributes) {
+	if o != nil && !IsNil(o.MaskAttributes) {
 		return true
 	}
 

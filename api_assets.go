@@ -196,10 +196,10 @@ func (a *AssetsAPIService) DeleteBulkAssetsExecute(r ApiDeleteBulkAssetsRequest)
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -342,10 +342,10 @@ func (a *AssetsAPIService) DryRunDeleteBulkAssetsExecute(r ApiDryRunDeleteBulkAs
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -487,10 +487,10 @@ func (a *AssetsAPIService) DryRunPostBulkAssetsExecute(r ApiDryRunPostBulkAssets
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -632,10 +632,10 @@ func (a *AssetsAPIService) DryRunPutBulkAssetsExecute(r ApiDryRunPutBulkAssetsRe
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -765,7 +765,7 @@ func (a *AssetsAPIService) GetAssetByIdExecute(r ApiGetAssetByIdRequest) (*Asset
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -903,13 +903,13 @@ func (a *AssetsAPIService) GetAssetsExecute(r ApiGetAssetsRequest) ([]Asset, *ht
 	localVarFormParams := url.Values{}
 
 	if r.assetTypeName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetTypeName", r.assetTypeName, "form", "")
 	}
 	if r.projectId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "projectId", r.projectId, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1147,7 +1147,7 @@ func (a *AssetsAPIService) ListenAssetExecute(r ApiListenAssetRequest) (*AssetLi
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1288,10 +1288,10 @@ func (a *AssetsAPIService) PostAssetExecute(r ApiPostAssetRequest) (*Asset, *htt
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1443,10 +1443,10 @@ func (a *AssetsAPIService) PostBulkAssetsExecute(r ApiPostBulkAssetsRequest) ([]
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1599,10 +1599,10 @@ func (a *AssetsAPIService) PutAssetExecute(r ApiPutAssetRequest) (*Asset, *http.
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1755,7 +1755,7 @@ func (a *AssetsAPIService) PutAssetByIdExecute(r ApiPutAssetByIdRequest) (*Asset
 	}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -2022,10 +2022,10 @@ func (a *AssetsAPIService) PutBulkAssetsExecute(r ApiPutBulkAssetsRequest) ([]As
 	}
 
 	if r.identifyBy != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "identifyBy", r.identifyBy, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

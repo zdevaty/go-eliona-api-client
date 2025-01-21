@@ -187,7 +187,7 @@ func (a *AlarmRulesAPIService) GetAlarmRuleByIdExecute(r ApiGetAlarmRuleByIdRequ
 	localVarFormParams := url.Values{}
 
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -325,13 +325,13 @@ func (a *AlarmRulesAPIService) GetAlarmRulesExecute(r ApiGetAlarmRulesRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.alarmRuleIds != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "alarmRuleIds", r.alarmRuleIds, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "alarmRuleIds", r.alarmRuleIds, "form", "csv")
 	}
 	if r.assetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assetId", r.assetId, "form", "")
 	}
 	if r.expansions != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expansions", r.expansions, "form", "csv")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

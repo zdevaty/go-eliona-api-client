@@ -493,7 +493,7 @@ func (o *AssetType) GetAttributesOk() ([]AssetTypeAttribute, bool) {
 
 // HasAttributes returns a boolean if a field has been set.
 func (o *AssetType) HasAttributes() bool {
-	if o != nil && IsNil(o.Attributes) {
+	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
 

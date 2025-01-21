@@ -328,7 +328,7 @@ func (o *CalculationRule) GetFilterOk() (map[string]interface{}, bool) {
 
 // HasFilter returns a boolean if a field has been set.
 func (o *CalculationRule) HasFilter() bool {
-	if o != nil && IsNil(o.Filter) {
+	if o != nil && !IsNil(o.Filter) {
 		return true
 	}
 

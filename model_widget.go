@@ -144,7 +144,7 @@ func (o *Widget) GetDetailsOk() (map[string]interface{}, bool) {
 
 // HasDetails returns a boolean if a field has been set.
 func (o *Widget) HasDetails() bool {
-	if o != nil && IsNil(o.Details) {
+	if o != nil && !IsNil(o.Details) {
 		return true
 	}
 
@@ -263,7 +263,7 @@ func (o *Widget) GetDataOk() ([]WidgetData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *Widget) HasData() bool {
-	if o != nil && IsNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
