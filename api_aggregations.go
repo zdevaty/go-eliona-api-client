@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.7.3
+API version: 2.8.1
 Contact: hello@eliona.io
 */
 
@@ -36,11 +36,14 @@ func (r ApiDeleteAggregationByIdRequest) Execute() (*http.Response, error) {
 /*
 DeleteAggregationById Delete an aggregation
 
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
 Deletes an aggregation by the given id.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param aggregationId The id of the aggregation
 	@return ApiDeleteAggregationByIdRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) DeleteAggregationById(ctx context.Context, aggregationId int32) ApiDeleteAggregationByIdRequest {
 	return ApiDeleteAggregationByIdRequest{
@@ -51,6 +54,7 @@ func (a *AggregationsAPIService) DeleteAggregationById(ctx context.Context, aggr
 }
 
 // Execute executes the request
+// Deprecated
 func (a *AggregationsAPIService) DeleteAggregationByIdExecute(r ApiDeleteAggregationByIdRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
@@ -142,11 +146,14 @@ func (r ApiGetAggregationByIdRequest) Execute() (*Aggregation, *http.Response, e
 /*
 GetAggregationById Information about an aggregation
 
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
 Gets information about an aggregation by the given id.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param aggregationId The id of the aggregation
 	@return ApiGetAggregationByIdRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) GetAggregationById(ctx context.Context, aggregationId int32) ApiGetAggregationByIdRequest {
 	return ApiGetAggregationByIdRequest{
@@ -159,6 +166,8 @@ func (a *AggregationsAPIService) GetAggregationById(ctx context.Context, aggrega
 // Execute executes the request
 //
 //	@return Aggregation
+//
+// Deprecated
 func (a *AggregationsAPIService) GetAggregationByIdExecute(r ApiGetAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -259,10 +268,13 @@ func (r ApiGetAggregationsRequest) Execute() ([]Aggregation, *http.Response, err
 /*
 GetAggregations Information about aggregations
 
-Gets a list of aggregations
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+Gets a list of aggregations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetAggregationsRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) GetAggregations(ctx context.Context) ApiGetAggregationsRequest {
 	return ApiGetAggregationsRequest{
@@ -274,6 +286,8 @@ func (a *AggregationsAPIService) GetAggregations(ctx context.Context) ApiGetAggr
 // Execute executes the request
 //
 //	@return []Aggregation
+//
+// Deprecated
 func (a *AggregationsAPIService) GetAggregationsExecute(r ApiGetAggregationsRequest) ([]Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -379,10 +393,13 @@ func (r ApiPostAggregationRequest) Execute() (*Aggregation, *http.Response, erro
 /*
 PostAggregation Creates an aggregation
 
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
 Creates a new aggregation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiPostAggregationRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) PostAggregation(ctx context.Context) ApiPostAggregationRequest {
 	return ApiPostAggregationRequest{
@@ -394,6 +411,8 @@ func (a *AggregationsAPIService) PostAggregation(ctx context.Context) ApiPostAgg
 // Execute executes the request
 //
 //	@return Aggregation
+//
+// Deprecated
 func (a *AggregationsAPIService) PostAggregationExecute(r ApiPostAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -504,10 +523,13 @@ func (r ApiPutAggregationRequest) Execute() (*Aggregation, *http.Response, error
 /*
 PutAggregation Creates or updates an aggregation
 
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
 Creates an aggregation or updates if already exists. Uses the unique combination of asset id, subtype, attribute and raster for updating.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiPutAggregationRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) PutAggregation(ctx context.Context) ApiPutAggregationRequest {
 	return ApiPutAggregationRequest{
@@ -519,6 +541,8 @@ func (a *AggregationsAPIService) PutAggregation(ctx context.Context) ApiPutAggre
 // Execute executes the request
 //
 //	@return Aggregation
+//
+// Deprecated
 func (a *AggregationsAPIService) PutAggregationExecute(r ApiPutAggregationRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -630,11 +654,14 @@ func (r ApiPutAggregationByIdRequest) Execute() (*Aggregation, *http.Response, e
 /*
 PutAggregationById Updates an aggregation
 
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
 Updates an aggregation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param aggregationId The id of the aggregation
 	@return ApiPutAggregationByIdRequest
+
+Deprecated
 */
 func (a *AggregationsAPIService) PutAggregationById(ctx context.Context, aggregationId int32) ApiPutAggregationByIdRequest {
 	return ApiPutAggregationByIdRequest{
@@ -647,6 +674,8 @@ func (a *AggregationsAPIService) PutAggregationById(ctx context.Context, aggrega
 // Execute executes the request
 //
 //	@return Aggregation
+//
+// Deprecated
 func (a *AggregationsAPIService) PutAggregationByIdExecute(r ApiPutAggregationByIdRequest) (*Aggregation, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.7.3
+API version: 2.8.1
 Contact: hello@eliona.io
 */
 
@@ -45,9 +45,12 @@ type AlarmRule struct {
 	// List of associated tags
 	Tags []string `json:"tags,omitempty"`
 	// The subject for the alarm
+	// Deprecated
 	Subject NullableString `json:"subject,omitempty"`
 	// The url describing the alarm
 	Urldoc NullableString `json:"urldoc,omitempty"`
+	// Parameter for aggregated alarms
+	Params map[string]interface{} `json:"params,omitempty"`
 	// Notification
 	NotifyOn NullableString `json:"notifyOn,omitempty"`
 	// Do not mask
@@ -493,6 +496,7 @@ func (o *AlarmRule) SetTags(v []string) {
 }
 
 // GetSubject returns the Subject field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *AlarmRule) GetSubject() string {
 	if o == nil || IsNil(o.Subject.Get()) {
 		var ret string
@@ -504,6 +508,7 @@ func (o *AlarmRule) GetSubject() string {
 // GetSubjectOk returns a tuple with the Subject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *AlarmRule) GetSubjectOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -521,6 +526,7 @@ func (o *AlarmRule) HasSubject() bool {
 }
 
 // SetSubject gets a reference to the given NullableString and assigns it to the Subject field.
+// Deprecated
 func (o *AlarmRule) SetSubject(v string) {
 	o.Subject.Set(&v)
 }
@@ -576,6 +582,39 @@ func (o *AlarmRule) SetUrldocNil() {
 // UnsetUrldoc ensures that no value is present for Urldoc, not even an explicit nil
 func (o *AlarmRule) UnsetUrldoc() {
 	o.Urldoc.Unset()
+}
+
+// GetParams returns the Params field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AlarmRule) GetParams() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Params
+}
+
+// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AlarmRule) GetParamsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Params) {
+		return map[string]interface{}{}, false
+	}
+	return o.Params, true
+}
+
+// HasParams returns a boolean if a field has been set.
+func (o *AlarmRule) HasParams() bool {
+	if o != nil && IsNil(o.Params) {
+		return true
+	}
+
+	return false
+}
+
+// SetParams gets a reference to the given map[string]interface{} and assigns it to the Params field.
+func (o *AlarmRule) SetParams(v map[string]interface{}) {
+	o.Params = v
 }
 
 // GetNotifyOn returns the NotifyOn field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -793,6 +832,9 @@ func (o AlarmRule) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Urldoc.IsSet() {
 		toSerialize["urldoc"] = o.Urldoc.Get()
+	}
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
 	}
 	if o.NotifyOn.IsSet() {
 		toSerialize["notifyOn"] = o.NotifyOn.Get()

@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.7.3
+API version: 2.8.1
 Contact: hello@eliona.io
 */
 
@@ -40,9 +40,11 @@ type AssetTypeAttribute struct {
 	Min NullableFloat64 `json:"min,omitempty"`
 	// Upper limit
 	Max NullableFloat64 `json:"max,omitempty"`
-	// Aggregation calculation mode
-	AggregationMode    NullableString `json:"aggregationMode,omitempty"`
-	AggregationRasters []string       `json:"aggregationRasters,omitempty"`
+	// Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations. Aggregation calculation mode.
+	// Deprecated
+	AggregationMode NullableString `json:"aggregationMode,omitempty"`
+	// Deprecated
+	AggregationRasters []string `json:"aggregationRasters,omitempty"`
 	// Should the attribute be displayed in viewer
 	Viewer NullableBool `json:"viewer,omitempty"`
 	// Should the attribute be displayed in AR
@@ -482,6 +484,7 @@ func (o *AssetTypeAttribute) UnsetMax() {
 }
 
 // GetAggregationMode returns the AggregationMode field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *AssetTypeAttribute) GetAggregationMode() string {
 	if o == nil || IsNil(o.AggregationMode.Get()) {
 		var ret string
@@ -493,6 +496,7 @@ func (o *AssetTypeAttribute) GetAggregationMode() string {
 // GetAggregationModeOk returns a tuple with the AggregationMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated
 func (o *AssetTypeAttribute) GetAggregationModeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -510,6 +514,7 @@ func (o *AssetTypeAttribute) HasAggregationMode() bool {
 }
 
 // SetAggregationMode gets a reference to the given NullableString and assigns it to the AggregationMode field.
+// Deprecated
 func (o *AssetTypeAttribute) SetAggregationMode(v string) {
 	o.AggregationMode.Set(&v)
 }
@@ -525,6 +530,7 @@ func (o *AssetTypeAttribute) UnsetAggregationMode() {
 }
 
 // GetAggregationRasters returns the AggregationRasters field value if set, zero value otherwise.
+// Deprecated
 func (o *AssetTypeAttribute) GetAggregationRasters() []string {
 	if o == nil || IsNil(o.AggregationRasters) {
 		var ret []string
@@ -535,6 +541,7 @@ func (o *AssetTypeAttribute) GetAggregationRasters() []string {
 
 // GetAggregationRastersOk returns a tuple with the AggregationRasters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *AssetTypeAttribute) GetAggregationRastersOk() ([]string, bool) {
 	if o == nil || IsNil(o.AggregationRasters) {
 		return nil, false
@@ -552,6 +559,7 @@ func (o *AssetTypeAttribute) HasAggregationRasters() bool {
 }
 
 // SetAggregationRasters gets a reference to the given []string and assigns it to the AggregationRasters field.
+// Deprecated
 func (o *AssetTypeAttribute) SetAggregationRasters(v []string) {
 	o.AggregationRasters = v
 }

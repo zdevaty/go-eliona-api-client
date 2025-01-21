@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | List of associated tags | [optional] 
 **Subject** | Pointer to **NullableString** | The subject for the alarm | [optional] 
 **Urldoc** | Pointer to **NullableString** | The url describing the alarm | [optional] 
+**Params** | Pointer to **map[string]interface{}** | Parameter for aggregated alarms | [optional] 
 **NotifyOn** | Pointer to **NullableString** | Notification | [optional] 
 **DontMask** | Pointer to **NullableBool** | Do not mask | [optional] [default to false]
 **CheckType** | Pointer to **NullableString** | Check type | [optional] 
@@ -452,6 +453,41 @@ HasUrldoc returns a boolean if a field has been set.
 `func (o *AlarmRule) UnsetUrldoc()`
 
 UnsetUrldoc ensures that no value is present for Urldoc, not even an explicit nil
+### GetParams
+
+`func (o *AlarmRule) GetParams() map[string]interface{}`
+
+GetParams returns the Params field if non-nil, zero value otherwise.
+
+### GetParamsOk
+
+`func (o *AlarmRule) GetParamsOk() (*map[string]interface{}, bool)`
+
+GetParamsOk returns a tuple with the Params field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParams
+
+`func (o *AlarmRule) SetParams(v map[string]interface{})`
+
+SetParams sets Params field to given value.
+
+### HasParams
+
+`func (o *AlarmRule) HasParams() bool`
+
+HasParams returns a boolean if a field has been set.
+
+### SetParamsNil
+
+`func (o *AlarmRule) SetParamsNil(b bool)`
+
+ SetParamsNil sets the value for Params to be an explicit nil
+
+### UnsetParams
+`func (o *AlarmRule) UnsetParams()`
+
+UnsetParams ensures that no value is present for Params, not even an explicit nil
 ### GetNotifyOn
 
 `func (o *AlarmRule) GetNotifyOn() string`

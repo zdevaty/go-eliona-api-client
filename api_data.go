@@ -3,7 +3,7 @@ Eliona REST API
 
 The Eliona REST API enables unified access to the resources and data of an Eliona environment.
 
-API version: 2.7.3
+API version: 2.8.1
 Contact: hello@eliona.io
 */
 
@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 // DataAPIService DataAPI service
@@ -237,10 +238,13 @@ func (r ApiGetDataAggregatedRequest) Execute() ([]DataAggregated, *http.Response
 /*
 GetDataAggregated Get aggregated data
 
-Gets aggregated data sets which combines a set of data points for a defined periodical raster
+Deprecated: Use the 'GET /data-trend-aggregated' endpoint to retrieve aggregated data for periodic rasters without defining aggregations.
+Gets aggregated data sets which combines a set of data points for a defined periodical raster.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetDataAggregatedRequest
+
+Deprecated
 */
 func (a *DataAPIService) GetDataAggregated(ctx context.Context) ApiGetDataAggregatedRequest {
 	return ApiGetDataAggregatedRequest{
@@ -252,6 +256,8 @@ func (a *DataAPIService) GetDataAggregated(ctx context.Context) ApiGetDataAggreg
 // Execute executes the request
 //
 //	@return []DataAggregated
+//
+// Deprecated
 func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest) ([]DataAggregated, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -291,6 +297,391 @@ func (a *DataAPIService) GetDataAggregatedExecute(r ApiGetDataAggregatedRequest)
 	}
 	if r.aggregationRaster != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetDataTrendAggregatedByIdRequest struct {
+	ctx               context.Context
+	ApiService        *DataAPIService
+	assetId           int32
+	dataSubtype       *string
+	attributeName     *string
+	aggregationRaster *string
+	fromDate          *string
+	toDate            *string
+	sumMethod         *string
+	offset            *int32
+	size              *int32
+}
+
+// Type of asset data
+func (r ApiGetDataTrendAggregatedByIdRequest) DataSubtype(dataSubtype string) ApiGetDataTrendAggregatedByIdRequest {
+	r.dataSubtype = &dataSubtype
+	return r
+}
+
+// Data attribute name
+func (r ApiGetDataTrendAggregatedByIdRequest) AttributeName(attributeName string) ApiGetDataTrendAggregatedByIdRequest {
+	r.attributeName = &attributeName
+	return r
+}
+
+// Aggregation calculation period
+func (r ApiGetDataTrendAggregatedByIdRequest) AggregationRaster(aggregationRaster string) ApiGetDataTrendAggregatedByIdRequest {
+	r.aggregationRaster = &aggregationRaster
+	return r
+}
+
+// Lower date time (RFC3339) limit inclusive
+func (r ApiGetDataTrendAggregatedByIdRequest) FromDate(fromDate string) ApiGetDataTrendAggregatedByIdRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// Upper date time (RFC3339) limit inclusive
+func (r ApiGetDataTrendAggregatedByIdRequest) ToDate(toDate string) ApiGetDataTrendAggregatedByIdRequest {
+	r.toDate = &toDate
+	return r
+}
+
+// Method for summarize data
+func (r ApiGetDataTrendAggregatedByIdRequest) SumMethod(sumMethod string) ApiGetDataTrendAggregatedByIdRequest {
+	r.sumMethod = &sumMethod
+	return r
+}
+
+// Specifies the starting point for pagination by indicating the number of items to skip.
+func (r ApiGetDataTrendAggregatedByIdRequest) Offset(offset int32) ApiGetDataTrendAggregatedByIdRequest {
+	r.offset = &offset
+	return r
+}
+
+// Specifies the number of items per page for pagination.
+func (r ApiGetDataTrendAggregatedByIdRequest) Size(size int32) ApiGetDataTrendAggregatedByIdRequest {
+	r.size = &size
+	return r
+}
+
+func (r ApiGetDataTrendAggregatedByIdRequest) Execute() ([]DataTrendAggregated, *http.Response, error) {
+	return r.ApiService.GetDataTrendAggregatedByIdExecute(r)
+}
+
+/*
+GetDataTrendAggregatedById Get aggregated trend of historical data
+
+Gets aggregated trend of historical data for a period and time grid for an asset
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiGetDataTrendAggregatedByIdRequest
+*/
+func (a *DataAPIService) GetDataTrendAggregatedById(ctx context.Context, assetId int32) ApiGetDataTrendAggregatedByIdRequest {
+	return ApiGetDataTrendAggregatedByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+		assetId:    assetId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return []DataTrendAggregated
+func (a *DataAPIService) GetDataTrendAggregatedByIdExecute(r ApiGetDataTrendAggregatedByIdRequest) ([]DataTrendAggregated, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []DataTrendAggregated
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.GetDataTrendAggregatedById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/data-trend-aggregated/{asset-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-id"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.dataSubtype == nil {
+		return localVarReturnValue, nil, reportError("dataSubtype is required and must be specified")
+	}
+	if r.attributeName == nil {
+		return localVarReturnValue, nil, reportError("attributeName is required and must be specified")
+	}
+	if r.aggregationRaster == nil {
+		return localVarReturnValue, nil, reportError("aggregationRaster is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "aggregationRaster", r.aggregationRaster, "")
+	if r.sumMethod != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sumMethod", r.sumMethod, "")
+	}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.size != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetDataTrendByIdRequest struct {
+	ctx           context.Context
+	ApiService    *DataAPIService
+	assetId       int32
+	dataSubtype   *string
+	attributeName *string
+	fromDate      *string
+	toDate        *string
+	offset        *int32
+	size          *int32
+}
+
+// Type of asset data
+func (r ApiGetDataTrendByIdRequest) DataSubtype(dataSubtype string) ApiGetDataTrendByIdRequest {
+	r.dataSubtype = &dataSubtype
+	return r
+}
+
+// Data attribute name
+func (r ApiGetDataTrendByIdRequest) AttributeName(attributeName string) ApiGetDataTrendByIdRequest {
+	r.attributeName = &attributeName
+	return r
+}
+
+// Lower date time (RFC3339) limit inclusive
+func (r ApiGetDataTrendByIdRequest) FromDate(fromDate string) ApiGetDataTrendByIdRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// Upper date time (RFC3339) limit inclusive
+func (r ApiGetDataTrendByIdRequest) ToDate(toDate string) ApiGetDataTrendByIdRequest {
+	r.toDate = &toDate
+	return r
+}
+
+// Specifies the starting point for pagination by indicating the number of items to skip.
+func (r ApiGetDataTrendByIdRequest) Offset(offset int32) ApiGetDataTrendByIdRequest {
+	r.offset = &offset
+	return r
+}
+
+// Specifies the number of items per page for pagination.
+func (r ApiGetDataTrendByIdRequest) Size(size int32) ApiGetDataTrendByIdRequest {
+	r.size = &size
+	return r
+}
+
+func (r ApiGetDataTrendByIdRequest) Execute() ([]Data, *http.Response, error) {
+	return r.ApiService.GetDataTrendByIdExecute(r)
+}
+
+/*
+GetDataTrendById Get trend of historical data
+
+Gets trend information about historical data for an asset
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param assetId The id of the asset
+	@return ApiGetDataTrendByIdRequest
+*/
+func (a *DataAPIService) GetDataTrendById(ctx context.Context, assetId int32) ApiGetDataTrendByIdRequest {
+	return ApiGetDataTrendByIdRequest{
+		ApiService: a,
+		ctx:        ctx,
+		assetId:    assetId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return []Data
+func (a *DataAPIService) GetDataTrendByIdExecute(r ApiGetDataTrendByIdRequest) ([]Data, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Data
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataAPIService.GetDataTrendById")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/data-trend/{asset-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"asset-id"+"}", url.PathEscape(parameterValueToString(r.assetId, "assetId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.dataSubtype == nil {
+		return localVarReturnValue, nil, reportError("dataSubtype is required and must be specified")
+	}
+	if r.attributeName == nil {
+		return localVarReturnValue, nil, reportError("attributeName is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "dataSubtype", r.dataSubtype, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "attributeName", r.attributeName, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fromDate", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "toDate", r.toDate, "")
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
+	}
+	if r.size != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "size", r.size, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -407,10 +798,13 @@ func (r ApiGetDataTrendsRequest) Execute() ([]Data, *http.Response, error) {
 /*
 GetDataTrends Get trend of historical data
 
+Deprecated: Use 'GET /data-trend/{asset-id}' instead.
 Gets trend information about historical data for assets.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetDataTrendsRequest
+
+Deprecated
 */
 func (a *DataAPIService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequest {
 	return ApiGetDataTrendsRequest{
@@ -422,6 +816,8 @@ func (a *DataAPIService) GetDataTrends(ctx context.Context) ApiGetDataTrendsRequ
 // Execute executes the request
 //
 //	@return []Data
+//
+// Deprecated
 func (a *DataAPIService) GetDataTrendsExecute(r ApiGetDataTrendsRequest) ([]Data, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet

@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetData**](DataAPI.md#GetData) | **Get** /data | Gets all data
 [**GetDataAggregated**](DataAPI.md#GetDataAggregated) | **Get** /data-aggregated | Get aggregated data
+[**GetDataTrendAggregatedById**](DataAPI.md#GetDataTrendAggregatedById) | **Get** /data-trend-aggregated/{asset-id} | Get aggregated trend of historical data
+[**GetDataTrendById**](DataAPI.md#GetDataTrendById) | **Get** /data-trend/{asset-id} | Get trend of historical data
 [**GetDataTrends**](DataAPI.md#GetDataTrends) | **Get** /data-trends | Get trend of historical data
 [**ListenData**](DataAPI.md#ListenData) | **Get** /data-listener | WebSocket connection for asset data changes
 [**PutBulkData**](DataAPI.md#PutBulkData) | **Put** /data-bulk | Create or update multiple asset data
@@ -148,6 +150,174 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]DataAggregated**](DataAggregated.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDataTrendAggregatedById
+
+> []DataTrendAggregated GetDataTrendAggregatedById(ctx, assetId).DataSubtype(dataSubtype).AttributeName(attributeName).AggregationRaster(aggregationRaster).FromDate(fromDate).ToDate(toDate).SumMethod(sumMethod).Offset(offset).Size(size).Execute()
+
+Get aggregated trend of historical data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+	assetId := int32(4711) // int32 | The id of the asset
+	dataSubtype := "input" // string | Type of asset data
+	attributeName := "temperature" // string | Data attribute name
+	aggregationRaster := "1d" // string | Aggregation calculation period
+	fromDate := "2020-01-01T09:00:00.000Z" // string | Lower date time (RFC3339) limit inclusive
+	toDate := "2021-12-31T23:00:00.000Z" // string | Upper date time (RFC3339) limit inclusive
+	sumMethod := "sum" // string | Method for summarize data (optional)
+	offset := int32(3) // int32 | Specifies the starting point for pagination by indicating the number of items to skip.  (optional)
+	size := int32(10) // int32 | Specifies the number of items per page for pagination.  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.GetDataTrendAggregatedById(context.Background(), assetId).DataSubtype(dataSubtype).AttributeName(attributeName).AggregationRaster(aggregationRaster).FromDate(fromDate).ToDate(toDate).SumMethod(sumMethod).Offset(offset).Size(size).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataTrendAggregatedById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDataTrendAggregatedById`: []DataTrendAggregated
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataTrendAggregatedById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **int32** | The id of the asset | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDataTrendAggregatedByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dataSubtype** | **string** | Type of asset data | 
+ **attributeName** | **string** | Data attribute name | 
+ **aggregationRaster** | **string** | Aggregation calculation period | 
+ **fromDate** | **string** | Lower date time (RFC3339) limit inclusive | 
+ **toDate** | **string** | Upper date time (RFC3339) limit inclusive | 
+ **sumMethod** | **string** | Method for summarize data | 
+ **offset** | **int32** | Specifies the starting point for pagination by indicating the number of items to skip.  | 
+ **size** | **int32** | Specifies the number of items per page for pagination.  | 
+
+### Return type
+
+[**[]DataTrendAggregated**](DataTrendAggregated.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDataTrendById
+
+> []Data GetDataTrendById(ctx, assetId).DataSubtype(dataSubtype).AttributeName(attributeName).FromDate(fromDate).ToDate(toDate).Offset(offset).Size(size).Execute()
+
+Get trend of historical data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
+)
+
+func main() {
+	assetId := int32(4711) // int32 | The id of the asset
+	dataSubtype := "input" // string | Type of asset data
+	attributeName := "temperature" // string | Data attribute name
+	fromDate := "2020-01-01T09:00:00.000Z" // string | Lower date time (RFC3339) limit inclusive
+	toDate := "2021-12-31T23:00:00.000Z" // string | Upper date time (RFC3339) limit inclusive
+	offset := int32(3) // int32 | Specifies the starting point for pagination by indicating the number of items to skip.  (optional)
+	size := int32(10) // int32 | Specifies the number of items per page for pagination.  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DataAPI.GetDataTrendById(context.Background(), assetId).DataSubtype(dataSubtype).AttributeName(attributeName).FromDate(fromDate).ToDate(toDate).Offset(offset).Size(size).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAPI.GetDataTrendById``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDataTrendById`: []Data
+	fmt.Fprintf(os.Stdout, "Response from `DataAPI.GetDataTrendById`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**assetId** | **int32** | The id of the asset | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDataTrendByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dataSubtype** | **string** | Type of asset data | 
+ **attributeName** | **string** | Data attribute name | 
+ **fromDate** | **string** | Lower date time (RFC3339) limit inclusive | 
+ **toDate** | **string** | Upper date time (RFC3339) limit inclusive | 
+ **offset** | **int32** | Specifies the starting point for pagination by indicating the number of items to skip.  | 
+ **size** | **int32** | Specifies the number of items per page for pagination.  | 
+
+### Return type
+
+[**[]Data**](Data.md)
 
 ### Authorization
 

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Precision** | Pointer to **NullableInt64** | Number of decimal places | [optional] 
 **Min** | Pointer to **NullableFloat64** | Lower limit | [optional] 
 **Max** | Pointer to **NullableFloat64** | Upper limit | [optional] 
-**AggregationMode** | Pointer to **NullableString** | Aggregation calculation mode | [optional] 
+**AggregationMode** | Pointer to **NullableString** | Deprecated: Use the &#39;GET /data-trend-aggregated&#39; endpoint to retrieve aggregated data for periodic rasters without defining aggregations. Aggregation calculation mode.  | [optional] 
 **AggregationRasters** | Pointer to **[]string** |  | [optional] 
 **Viewer** | Pointer to **NullableBool** | Should the attribute be displayed in viewer | [optional] [default to false]
 **Ar** | Pointer to **NullableBool** | Should the attribute be displayed in AR | [optional] [default to false]
