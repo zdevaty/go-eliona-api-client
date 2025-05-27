@@ -155,7 +155,7 @@ func (r ApiGetPatchByNameRequest) Execute() (*Patch, *http.Response, error) {
 /*
 GetPatchByName Information about a patch for an app
 
-Gets information about a patch for an app.
+Getaas information about a patch for an app.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param appName The name of the app
