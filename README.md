@@ -130,7 +130,6 @@ Class | Method | HTTP request | Description
 *AssetTypesAPI* | [**PutAssetTypeByName**](docs/AssetTypesAPI.md#putassettypebyname) | **Put** /asset-types/{asset-type-name} | Update an asset type
 *AssetsAPI* | [**DeleteAssetById**](docs/AssetsAPI.md#deleteassetbyid) | **Delete** /assets/{asset-id} | Delete an asset
 *AssetsAPI* | [**DeleteBulkAssets**](docs/AssetsAPI.md#deletebulkassets) | **Delete** /assets-bulk | Delete a list of assets
-*AssetsAPI* | [**DryRunDeleteBulkAssets**](docs/AssetsAPI.md#dryrundeletebulkassets) | **Delete** /assets-bulk/dry-run | Dry-run for deleting a list of assets
 *AssetsAPI* | [**DryRunPostBulkAssets**](docs/AssetsAPI.md#dryrunpostbulkassets) | **Post** /assets-bulk/dry-run | Dry-run for creating a list of assets
 *AssetsAPI* | [**DryRunPutBulkAssets**](docs/AssetsAPI.md#dryrunputbulkassets) | **Put** /assets-bulk/dry-run | Dry-run for creating or updating a list of assets
 *AssetsAPI* | [**GetAssetById**](docs/AssetsAPI.md#getassetbyid) | **Get** /assets/{asset-id} | Information about an asset

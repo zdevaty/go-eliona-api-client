@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteAssetById**](AssetsAPI.md#DeleteAssetById) | **Delete** /assets/{asset-id} | Delete an asset
 [**DeleteBulkAssets**](AssetsAPI.md#DeleteBulkAssets) | **Delete** /assets-bulk | Delete a list of assets
-[**DryRunDeleteBulkAssets**](AssetsAPI.md#DryRunDeleteBulkAssets) | **Delete** /assets-bulk/dry-run | Dry-run for deleting a list of assets
 [**DryRunPostBulkAssets**](AssetsAPI.md#DryRunPostBulkAssets) | **Post** /assets-bulk/dry-run | Dry-run for creating a list of assets
 [**DryRunPutBulkAssets**](AssetsAPI.md#DryRunPutBulkAssets) | **Put** /assets-bulk/dry-run | Dry-run for creating or updating a list of assets
 [**GetAssetById**](AssetsAPI.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
@@ -142,76 +141,6 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DryRunDeleteBulkAssets
-
-> []AssetDryRun DryRunDeleteBulkAssets(ctx).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
-
-Dry-run for deleting a list of assets
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
-)
-
-func main() {
-	requestBody := []string{"1234"} // []string | 
-	identifyBy := "resourceId" // string | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn't defined, all field names are used in the order defined. So if there is no 'resourceId' present in the request body, the 'deviceId' is used and when there is also no deviceId present the 'id' field (assetId) is used.  (optional)
-	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssetsAPI.DryRunDeleteBulkAssets(context.Background()).RequestBody(requestBody).IdentifyBy(identifyBy).Expansions(expansions).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.DryRunDeleteBulkAssets``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DryRunDeleteBulkAssets`: []AssetDryRun
-	fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.DryRunDeleteBulkAssets`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDryRunDeleteBulkAssetsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **requestBody** | **[]string** |  | 
- **identifyBy** | **string** | Serves the field name send in the request body as a unique identifier for the asset, essential for operations like updates or deletions. Please refer to the Asset schema definition for further information about this fields.  In cases where this parameter isn&#39;t defined, all field names are used in the order defined. So if there is no &#39;resourceId&#39; present in the request body, the &#39;deviceId&#39; is used and when there is also no deviceId present the &#39;id&#39; field (assetId) is used.  | 
- **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
-
-### Return type
-
-[**[]AssetDryRun**](AssetDryRun.md)
 
 ### Authorization
 
