@@ -1,7 +1,7 @@
 /*
 Eliona REST API
 
-The Eliona REST API enables unified access to the resources and data of an Eliona environment.
+The Eliona REST PI enables unified access to the resources and data of an Eliona environment.
 
 API version: 2.9.1
 Contact: hello@eliona.io
@@ -270,7 +270,7 @@ type ApiPatchAppByNameRequest struct {
 	registered *bool
 }
 
-// Marks that the app is now initialized and installed. Further request to get app information returns { \&quot;registered\&quot;: true }
+// Mareks that the app is now initialized and installed. Further request to get app information returns { \&quot;registered\&quot;: true }
 func (r ApiPatchAppByNameRequest) Registered(registered bool) ApiPatchAppByNameRequest {
 	r.registered = &registered
 	return r

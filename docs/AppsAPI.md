@@ -176,7 +176,7 @@ import (
 
 func main() {
 	appName := "weather" // string | The name of the app
-	registered := true // bool | Marks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true } (optional)
+	registered := true // bool | Mareks that the app is now initialized and installed. Further request to get app information returns { \"registered\": true } (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -204,7 +204,7 @@ Other parameters are passed through a pointer to a apiPatchAppByNameRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **registered** | **bool** | Marks that the app is now initialized and installed. Further request to get app information returns { \&quot;registered\&quot;: true } | 
+ **registered** | **bool** | Mareks that the app is now initialized and installed. Further request to get app information returns { \&quot;registered\&quot;: true } | 
 
 ### Return type
 

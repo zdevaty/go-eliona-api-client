@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**DryRunPostBulkAssets**](AssetsAPI.md#DryRunPostBulkAssets) | **Post** /assets-bulk/dry-run | Dry-run for creating a list of assets
 [**DryRunPutBulkAssets**](AssetsAPI.md#DryRunPutBulkAssets) | **Put** /assets-bulk/dry-run | Dry-run for creating or updating a list of assets
 [**GetAssetById**](AssetsAPI.md#GetAssetById) | **Get** /assets/{asset-id} | Information about an asset
-[**GetAssets**](AssetsAPI.md#GetAssets) | **Get** /assets | Information about assets
 [**GetAttributeDisplay**](AssetsAPI.md#GetAttributeDisplay) | **Get** /attribute-display | How attributes are displayed
 [**ListenAsset**](AssetsAPI.md#ListenAsset) | **Get** /asset-listener | WebSocket connection for asset changes
 [**PostAsset**](AssetsAPI.md#PostAsset) | **Post** /assets | Create an asset
@@ -425,76 +424,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Asset**](Asset.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetAssets
-
-> []Asset GetAssets(ctx).AssetTypeName(assetTypeName).ProjectId(projectId).Expansions(expansions).Execute()
-
-Information about assets
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/eliona-smart-building-assistant/go-eliona-api-client/v2"
-)
-
-func main() {
-	assetTypeName := "weather_location" // string | Filter the name of the asset type (optional)
-	projectId := "projectId_example" // string | Filter for a specific project (optional)
-	expansions := []string{"Inner_example"} // []string | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows 'ObjectName.fieldName'. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AssetsAPI.GetAssets(context.Background()).AssetTypeName(assetTypeName).ProjectId(projectId).Expansions(expansions).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AssetsAPI.GetAssets``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `GetAssets`: []Asset
-	fmt.Fprintf(os.Stdout, "Response from `AssetsAPI.GetAssets`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAssetsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assetTypeName** | **string** | Filter the name of the asset type | 
- **projectId** | **string** | Filter for a specific project | 
- **expansions** | **[]string** | List of referenced data to load, insert or update. Each entry defines the full qualified name of the field to be expanded as follows &#39;ObjectName.fieldName&#39;. | 
-
-### Return type
-
-[**[]Asset**](Asset.md)
 
 ### Authorization
 
